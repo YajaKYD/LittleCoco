@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spectrum_0419.CSharp", "Spectrum_0419.CSharp.csproj", "{C97E1098-2CC9-E0C7-227A-B35202E57BC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C97E1098-2CC9-E0C7-227A-B35202E57BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97E1098-2CC9-E0C7-227A-B35202E57BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97E1098-2CC9-E0C7-227A-B35202E57BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97E1098-2CC9-E0C7-227A-B35202E57BC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

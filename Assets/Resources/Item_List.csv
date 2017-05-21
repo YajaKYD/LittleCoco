@@ -1,0 +1,21 @@
+Number,아이템Usable,Interaction,,0 = 소모X,Explanation
+1,공,0,,1,야외에서 가지고 놀기 좋은 고무공
+2,dogfood,1,Player,1,코코가 가장 좋아하는 간식
+3,Mirror_Part,1,Mirror_Socket,1,거울 조각. 좌우를 반전시킨다.
+4,손거울,1,HandMirror,0,삭제예정
+5,Star,1,Player,0,주인이 좋아하는 캐릭터 인형.
+6,금반지,0,,0,추후 나옴
+7,Clockwork,1,Clockwork,0,태엽장치를 작동시켜보자.
+8,multitaps,1,Multitap,1,멀티탭 뭉치. 전원을 연결할 때 쓸 수 있겠다.
+9,remotecon,1,Audio,0,무언가를 켤 수 있는 리모컨이다.
+10,Dog_bag,0,,1,코코의 응가봉투. 에티켓은 필수!
+11,ball1,1,Air,1,야외에서 가지고 놀기 좋은 고무공
+12,ball2,1,Air,1,야외에서 가지고 놀기 좋은 고무공
+13,ball3,1,Air,1,야외에서 가지고 놀기 좋은 고무공
+14,Diary,0,,0,일기장. 흔들어보면 추억이 떨어질 것 같다.
+15,Tape,1,HandMirror,1,전기가 통할 것 같지 않다
+16,,,,,
+17,,,,,
+18,,,,,
+19,,,,,
+20,,,,,
