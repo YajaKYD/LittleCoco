@@ -13,7 +13,9 @@ public class Test_textposition : MonoBehaviour {
 		s = GetComponent<RectTransform> ();
 	}
 
-	void Update () {
+	void OnEnable(){
+		aa = Camera.main;
+		bb = GameObject.Find ("IvonTextPos");
 		if (bb) {
 			s.position = aa.WorldToScreenPoint (bb.transform.position);
 		}

@@ -28,7 +28,7 @@ public class Stage3_1_GameController : MonoBehaviour {
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
-		player.transform.position = start_pos.position;
+
 
 //		if (!Stage3_Controller._Stage3_Quest[0]) {
 //			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
@@ -45,7 +45,10 @@ public class Stage3_1_GameController : MonoBehaviour {
 
 	void Start(){
 		if (GetComponent<Load_data> ()._where_are_you_from == 16) {
+			Debug.Log ("from 16");
 			player.transform.position = regen_pos.position;
+		} else {
+			player.transform.position = start_pos.position;
 		}
 		if (Stage3_Controller._Stage3_Quest[2])
         {
