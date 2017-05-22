@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Script\Using_Item\Item_Drag.cs">
+    <Files>
+      <File FileName="Assets\_Script\CameraManager.cs" Line="26" Column="3" />
+      <File FileName="Assets\_Script\Stage2\Stage2_2_GameController.cs" Line="225" Column="68" />
+      <File FileName="Assets\2DOutline\Scripts\Outline.cs" Line="221" Column="5" />
+      <File FileName="Assets\_Script\Item_Controller.cs" Line="170" Column="36" />
+      <File FileName="Assets\_Script\Using_Item\Item_Drag.cs" Line="32" Column="37" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

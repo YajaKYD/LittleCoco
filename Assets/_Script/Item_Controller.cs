@@ -13,6 +13,7 @@ public class Item_Controller : MonoBehaviour {
 	public bool[] _consumable;
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public string[] _explanations;
+	public Item_Drag[] _itemDrags;
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//public Text _get_item_name;
@@ -85,7 +86,7 @@ public class Item_Controller : MonoBehaviour {
 					_explanations [i] = explanation;
 					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					Destroy (item);
-
+					_itemDrags [i].enabled = true;
 					if (onofflist.OnOffButton.localScale.x == 1) { //아이템창이 꺼져있는 상태면
 						onofflist.TurnOnOffitemList();
 					}
@@ -166,7 +167,7 @@ public class Item_Controller : MonoBehaviour {
 					if (onofflist.OnOffButton.localScale.x == 1) { //아이템창이 꺼져있는 상태면
 						onofflist.TurnOnOffitemList();
 					}
-
+					_itemDrags [i].enabled = true;
 					Save_Script.Save_Item_Info ();
 					return true;
 				}

@@ -138,6 +138,12 @@ public class Stage2_2_GameController : MonoBehaviour {
 			j.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			j.transform.position = new Vector3 (j.transform.position.x, j.transform.position.y, 0f);
 			j.name = "Tape";
+
+			Item_Drag[] ids = ic.GetComponentsInChildren<Item_Drag> ();
+			for (int x = 0; x < ids.Length; x++) {
+				ids [x]._diary_usable = false;
+			} //change diary image -unusable-
+
 			drop_tape = true;
 		}
 			
@@ -208,6 +214,10 @@ public class Stage2_2_GameController : MonoBehaviour {
 			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
 			aa.currLineArr [1] += 2;//별감 다음대사 치게함.
 			aa.NPC_Say_yeah ("별감");
+			Item_Drag[] ids = ic.GetComponentsInChildren<Item_Drag> ();
+			for (int k = 0; k < ids.Length; k++) {
+				ids [k]._diary_usable = true;
+			} //change diary image -usable-
 			Stage2_Controller._Stage2_Quest[8] = true;
 			Save_Script.Save_Quest_Info ();
 		}

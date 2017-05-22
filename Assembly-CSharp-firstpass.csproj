@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C57E7FAF-0B8D-30D4-7EF4-45353142B6D7}</ProjectGuid>
+    <ProjectGuid>{6CE4FCF4-6F12-5754-A09D-55490ED19C25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -56,6 +56,7 @@
      <None Include="Assets\Resources\15.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineBufferShader.shader" />
      <None Include="Assets\Resources\1.txt" />
+     <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
  <Reference Include="UnityEngine.UI">
@@ -83,28 +84,28 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="Editor">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
  </Reference>
  <Reference Include="Purchasing.Common">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
  </Reference>
  <Reference Include="Security">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Security.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Security.dll</HintPath>
  </Reference>
  <Reference Include="Stores">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
  </Reference>
  <Reference Include="Apple">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
  </Reference>
  <Reference Include="Facebook">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Facebook/Facebook.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Facebook/Facebook.dll</HintPath>
  </Reference>
  <Reference Include="Tizen">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
  </Reference>
  <Reference Include="winrt">
- <HintPath>E:/Unity Projects/LittleCoco_0502/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

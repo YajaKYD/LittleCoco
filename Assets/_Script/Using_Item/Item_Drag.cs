@@ -23,6 +23,9 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 	private int countshake = 0;
 
 	private bool drag_ornot = false;
+
+	public bool _diary_usable = false;
+	private bool foronce = false;
 	void Awake(){
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		item_Info = GameObject.Find ("Item_Info");
@@ -31,14 +34,43 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 
 	void Start(){
 		item_Info.SetActive (false);
+
+		if (ic._item_name_list [numbering] == "Diary" && Stage2_Controller._Stage2_Quest[6] && Stage2_Controller._Stage2_Quest[7] && !Stage2_Controller._Stage2_Quest[25]) {
+			print ("Change Diary Image -usable- on startphase");
+			_diary_usable = true;
+			foronce = true; //following diary usable value
+		}
+
+		for (int i = 0; i < ic._item_name_list.Length; i++) {
+			if (ic._item_name_list [i] == "" && i == numbering) {
+				gameObject.GetComponent<Item_Drag> ().enabled = false;
+			}
+		}
+
 	}
 
 	void Update(){
 		if (countshake >= 4) {
-			print ("DD");
 			_NOW_Shaked = true;
 			countshake = 0;
 		}
+
+		for (int i = 0; i < ic._item_name_list.Length; i++) {
+			if (ic._item_name_list [i] == "" && i == numbering) {
+				gameObject.GetComponent<Item_Drag> ().enabled = false;
+			}
+		}
+
+		if (ic._item_name_list [numbering] == "Diary" && _diary_usable && !foronce) {
+			print ("Change Diary Imgae -usable- on Updatephase");
+			foronce = true;
+		}
+
+		if (ic._item_name_list [numbering] == "Diary" && !_diary_usable && foronce) {
+			print ("Change Diary Image -unusable- on Updatephase");
+			foronce = false;
+		}
+
 	}
 
 	public virtual void OnDrag(PointerEventData ped){
