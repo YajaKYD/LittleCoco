@@ -24,6 +24,8 @@ public class CameraManager : MonoBehaviour {
 		focusObject = GameObject.Find("Player");
 		//내가 추가//
 	}
+
+	//
 		
     void Start() {
 
