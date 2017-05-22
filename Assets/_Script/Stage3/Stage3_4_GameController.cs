@@ -8,7 +8,8 @@ public class Stage3_4_GameController : MonoBehaviour {
     private Transform start_pos;
     private Item_Controller ic;
     private Text_Importer aa;
-	public GameObject ivon_textbox, coco_textbox;
+	public GameObject ivon_textbox, coco_textbox, IvonTextPos;
+	private Vector3 IvonTextPosTemp;
 
     //public bool quest1_start1;
     public bool quest1_start2;
@@ -60,9 +61,12 @@ public class Stage3_4_GameController : MonoBehaviour {
 			_park.SetActive(true);
 		}
 		if (Stage3_Controller._Stage3_Quest [9] && !Stage3_Controller._Stage3_Quest [10]) {
-			quest1_gauge = Instantiate(quest1_gaugePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(0,300,0), Quaternion.identity) as GameObject;
 			quest1_gauge.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
 		}
+		IvonTextPos = GameObject.Find("IvonTextPos");
+		IvonTextPosTemp = IvonTextPos.transform.position;
+		Debug.Log (IvonTextPosTemp);
 	}
     
     void OnTriggerEnter2D()
@@ -79,6 +83,9 @@ public class Stage3_4_GameController : MonoBehaviour {
             if (quest2_start1 && !ivon_textbox.activeSelf)
             {
                 aa.currLineArr[1] += 2;
+				Debug.Log (IvonTextPos.transform.position + " = " + IvonTextPosTemp);
+				IvonTextPos.transform.position = IvonTextPosTemp;
+				Debug.Log (IvonTextPos.transform.position + " = " + IvonTextPosTemp);
                 aa.NPC_Say_yeah(name); // 공놀이 시작
 				Stage3_Controller._Stage3_Quest[10] = true;
 				Save_Script.Save_Quest_Info ();
@@ -131,6 +138,7 @@ public class Stage3_4_GameController : MonoBehaviour {
     }
 
 	void Update () {
+
 		if (Stage3_Controller._Stage3_Quest[8] && !Stage3_Controller._Stage3_Quest[9])
         {
 			Q6_Running_Start (); //게이지 생김.
@@ -164,7 +172,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 	void Q6_Running_Start(){
 		if (quest1_start2 && !ivon_textbox.activeSelf)
 		{
-			quest1_gauge = Instantiate(quest1_gaugePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(0,400,0), Quaternion.identity) as GameObject;
 			quest1_gauge.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
 			Stage3_Controller._Stage3_Quest[9] = true;
 			Save_Script.Save_Quest_Info ();
@@ -184,6 +192,17 @@ public class Stage3_4_GameController : MonoBehaviour {
 		{
 			quest2_start1 = true;
 			aa.currLineArr[1] += 2;
+
+			if ((player.transform.position.x - transform.position.x) >= 0) { //플레이어가 오른쪽
+				Debug.Log("player right");
+				IvonTextPos.transform.position = new Vector3 (7, 2.71f, 0);
+			} else if ((player.transform.position.x - transform.position.x) >= -10) { // 왼쪽
+				Debug.Log("player left");
+				IvonTextPos.transform.position = new Vector3 (1.5f, 2.71f, 0);
+			} else {
+				Debug.Log("player left");
+				IvonTextPos.transform.position = new Vector3 (-2.5f, 2.71f, 0);
+			}
 			aa.NPC_Say_yeah("이본"); // 코코 부름
 			ivon_textbox = GameObject.Find("이본_text");
 			a2a1 = true;
