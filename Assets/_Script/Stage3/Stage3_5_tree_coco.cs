@@ -15,11 +15,12 @@ public class Stage3_5_tree_coco : MonoBehaviour {
     public int treeNo;
     public bool showPosting;
     public GameObject[] postings;
-    private bool instructQuest;
+    private bool[] instructQuest;
 
     void Awake()
     {
         postings = GameObject.FindGameObjectsWithTag("posting");
+		instructQuest = new bool[2];
     }
 
     void Start () {
@@ -37,34 +38,66 @@ public class Stage3_5_tree_coco : MonoBehaviour {
         closeToTree = false;
     }
 	
-    void OnMouseDown()
-    {
-		if (!Stage3_Controller._Stage3_Quest[14])
-        {
-			Stage3_Controller._Stage3_Quest[14] = true;
+//    void OnMouseDown()
+//    {
+//		if (!Stage3_Controller._Stage3_Quest[14])
+//        {
+//			Stage3_Controller._Stage3_Quest[14] = true;
+//			Save_Script.Save_Quest_Info ();
+//            ti.NPC_Say_yeah("별감"); // 나무를 만지면 흔적을 볼 수 있어(설명1)
+//		} else if (!postingOn && Stage3_Controller._Stage3_Quest[14] && closeToTree)
+//        {
+//            for(int i=0; i<postings.Length; i++)
+//            {
+//                postings[i].SetActive(false);
+//                controller.trees[i].GetComponent<Stage3_5_tree_coco>().postingOn = false;
+//            }
+//            posting.SetActive(true);
+//            postingOn = true;
+//
+//            if (!instructQuest)
+//            {
+//                ti.currLineArr[2] += 2; // 별감이 다음 대사
+//                ti.NPC_Say_yeah("별감"); // 화살표를 클릭해서 좋아요를 눌러준 친구를 확인하고 너도 좋아요를 눌러주렴
+//                instructQuest = true;
+//            }
+//
+//		} else if(postingOn && Stage3_Controller._Stage3_Quest[14] && closeToTree)
+//        {
+//            posting.SetActive(false);
+//            postingOn = false;
+//        }
+//    }
+
+
+	void OnMouseDown()
+	{
+		if (!instructQuest[0])
+		{
+			instructQuest[0] = true;
 			Save_Script.Save_Quest_Info ();
-            ti.NPC_Say_yeah("별감"); // 나무를 만지면 흔적을 볼 수 있어(설명1)
-		} else if (!postingOn && Stage3_Controller._Stage3_Quest[14] && closeToTree)
-        {
-            for(int i=0; i<postings.Length; i++)
-            {
-                postings[i].SetActive(false);
-                controller.trees[i].GetComponent<Stage3_5_tree_coco>().postingOn = false;
-            }
-            posting.SetActive(true);
-            postingOn = true;
+			ti.NPC_Say_yeah("별감"); // 나무를 만지면 흔적을 볼 수 있어(설명1)
+		} else if (!postingOn && instructQuest[0] && closeToTree)
+		{
+			for(int i=0; i<postings.Length; i++)
+			{
+				postings[i].SetActive(false);
+				controller.trees[i].GetComponent<Stage3_5_tree_coco>().postingOn = false;
+			}
+			posting.SetActive(true);
+			postingOn = true;
 
-            if (!instructQuest)
-            {
-                ti.currLineArr[2] += 2; // 별감이 다음 대사
-                ti.NPC_Say_yeah("별감"); // 화살표를 클릭해서 좋아요를 눌러준 친구를 확인하고 너도 좋아요를 눌러주렴
-                instructQuest = true;
-            }
+			if (!instructQuest[1])
+			{
+				ti.currLineArr[2] += 2; // 별감이 다음 대사
+				ti.NPC_Say_yeah("별감"); // 화살표를 클릭해서 좋아요를 눌러준 친구를 확인하고 너도 좋아요를 눌러주렴
+				instructQuest[1] = true;
+			}
 
-		} else if(postingOn && Stage3_Controller._Stage3_Quest[14] && closeToTree)
-        {
-            posting.SetActive(false);
-            postingOn = false;
-        }
-    }
+		} else if(postingOn && instructQuest[0] && closeToTree)
+		{
+			posting.SetActive(false);
+			postingOn = false;
+		}
+	}
 }

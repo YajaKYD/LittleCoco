@@ -13,6 +13,7 @@ public class Stage3_7_GameController : MonoBehaviour {
 	private GameObject Item_Canvas;
 	private Text_Importer ti;
 	private bool active;
+	private bool lookingforIvon;
 
 	void Start () {
 		active = true;
@@ -20,6 +21,8 @@ public class Stage3_7_GameController : MonoBehaviour {
 		GameObject.FindWithTag ("Player").transform.position = startPos.transform.position;
 		Item_Canvas = GameObject.Find ("Item_Canvas");
 		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+
+		//ti.Import (15);
 
 		if (GameObject.Find ("quest12_likelist(Clone)") != null) {
 			Destroy (GameObject.Find ("quest12_likelist(Clone)"));
@@ -46,8 +49,11 @@ public class Stage3_7_GameController : MonoBehaviour {
 		leftSound.Play ();
 		Debug.Log ("left sound");
 		yield return new WaitForSeconds(1);
-		ti.currLineArr [0] = 8; //코코 대사 
-		ti.NPC_Say_yeah ("코코");
+		if (!lookingforIvon) {
+			ti.currLineArr [0] = 8; //코코 대사 
+			ti.NPC_Say_yeah ("코코");
+			lookingforIvon = true;
+		}
 		yield return new WaitForSeconds(2);
 		portal1.GetComponent<BoxCollider2D> ().enabled = true;
 		portal2.GetComponent<BoxCollider2D> ().enabled = true;

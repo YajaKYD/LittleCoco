@@ -38,6 +38,8 @@ public class Stage3_4_GameController : MonoBehaviour {
     public Transform _Ivon_Position;
     public GameObject portal3_5;
 	public GameObject portalEnd;
+	public GameObject background_far;
+	public Sprite background_far_img;
 
     void Awake()
     {
@@ -67,6 +69,10 @@ public class Stage3_4_GameController : MonoBehaviour {
 		IvonTextPos = GameObject.Find("IvonTextPos");
 		IvonTextPosTemp = IvonTextPos.transform.position;
 		Debug.Log (IvonTextPosTemp);
+
+		if (Stage3_Controller._Stage3_Quest [19]) {
+			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
+		}
 	}
     
     void OnTriggerEnter2D()
@@ -83,9 +89,7 @@ public class Stage3_4_GameController : MonoBehaviour {
             if (quest2_start1 && !ivon_textbox.activeSelf)
             {
                 aa.currLineArr[1] += 2;
-				Debug.Log (IvonTextPos.transform.position + " = " + IvonTextPosTemp);
-				IvonTextPos.transform.position = IvonTextPosTemp;
-				Debug.Log (IvonTextPos.transform.position + " = " + IvonTextPosTemp);
+				ModifySpeechBubble ();
                 aa.NPC_Say_yeah(name); // 공놀이 시작
 				Stage3_Controller._Stage3_Quest[10] = true;
 				Save_Script.Save_Quest_Info ();
@@ -100,6 +104,7 @@ public class Stage3_4_GameController : MonoBehaviour {
             if (a1a3 && !a1a4)
             {
                 aa.currLineArr[1] += 2;//이본 다음대사 넘김
+				ModifySpeechBubble();
                 aa.NPC_Say_yeah("이본"); //잘했어 한번 더 물ㅓ와라
 				ivon_textbox = GameObject.Find("이본_text");
                 a1a4 = true;
@@ -113,6 +118,7 @@ public class Stage3_4_GameController : MonoBehaviour {
             if (!a1a5 && a1a6)
             {
                 aa.currLineArr[1] += 2;//이본 다음대사 넘김
+				ModifySpeechBubble();
                 aa.NPC_Say_yeah("이본"); // 공놀이 끝
 				ivon_textbox = GameObject.Find("이본_text");
                 quest1_gauge.SetActive(true);
@@ -125,6 +131,7 @@ public class Stage3_4_GameController : MonoBehaviour {
             if (!a7)
             {
                 aa.currLineArr[1] += 2;//이본 다음대사 넘김
+				ModifySpeechBubble();
                 aa.NPC_Say_yeah("이본");//코코 착하지 마음껏 놀았니? (가서 다른 강아지들이랑 놀고오렴)
 				ivon_textbox = GameObject.Find("이본_text");
                 portal3_5.GetComponent<BoxCollider2D>().enabled = true;
@@ -136,6 +143,22 @@ public class Stage3_4_GameController : MonoBehaviour {
 			a8 = true;
 		}
     }
+
+	void ModifySpeechBubble(){
+		if ((player.transform.position.x - transform.position.x) >= 0) { //플레이어가 오른쪽
+			IvonTextPos.transform.position = new Vector3 (7.4f, 2.71f, 0);
+			ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler (new Vector3(0,180,0));
+			ivon_textbox.transform.rotation = Quaternion.Euler (new Vector3(0,0,0));
+			//ivon_textbox.transform.Rotate (new Vector3 (0, 180, 0));
+			//ivon_textbox.transform.parent.gameObject.transform.Rotate (new Vector3 (0, 180, 0));
+		} else {
+			IvonTextPos.transform.position = IvonTextPosTemp;
+			ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler (Vector3.zero);
+			ivon_textbox.transform.rotation = Quaternion.Euler (Vector3.zero);
+			//ivon_textbox.transform.Rotate (new Vector3 (0, 180, 0));
+			//ivon_textbox.transform.parent.gameObject.transform.Rotate (new Vector3 (0, 180, 0));
+		}
+	}
 
 	void Update () {
 
@@ -194,14 +217,12 @@ public class Stage3_4_GameController : MonoBehaviour {
 			aa.currLineArr[1] += 2;
 
 			if ((player.transform.position.x - transform.position.x) >= 0) { //플레이어가 오른쪽
-				Debug.Log("player right");
-				IvonTextPos.transform.position = new Vector3 (7, 2.71f, 0);
+				IvonTextPos.transform.position = new Vector3 (7.4f, 2.71f, 0);
+				ivon_textbox.transform.rotation = Quaternion.Euler (new Vector3(0,180,0));
+				ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler (new Vector3(0,180,0));
 			} else if ((player.transform.position.x - transform.position.x) >= -10) { // 왼쪽
-				Debug.Log("player left");
-				IvonTextPos.transform.position = new Vector3 (1.5f, 2.71f, 0);
 			} else {
-				Debug.Log("player left");
-				IvonTextPos.transform.position = new Vector3 (-2.5f, 2.71f, 0);
+				IvonTextPos.transform.position = new Vector3 (player.transform.position.x + 7.3f, 2.71f, 0);
 			}
 			aa.NPC_Say_yeah("이본"); // 코코 부름
 			ivon_textbox = GameObject.Find("이본_text");

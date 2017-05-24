@@ -19,6 +19,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 			ti.currLineArr[1] += 2; //이본 다음대사 넘김
 			ti.NPC_Say_yeah ("이본"); // Ivon calls Coco
 			portal.GetComponent<BoxCollider2D>().enabled = false; // deactivate portal to 3_7
+			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 		}
 
 		Debug.Log ("sceneIndex is " + SceneManager.GetActiveScene ().buildIndex);

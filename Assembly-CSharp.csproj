@@ -1,218 +1,3 @@
-<<<<<<< HEAD
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{B4F7BDF1-2239-2D91-2623-7C321935AB61}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <BaseDirectory>Assets</BaseDirectory>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_5_6_0;UNITY_5_6;UNITY_5;UNITY_PURCHASING;UNITY_ANALYTICS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;ENABLE_VIDEO;UNITY_ANDROID;ENABLE_SUBSTANCE;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UNITY_HAS_GOOGLEVR</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>Temp\bin\Release\</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-     <Compile Include="Assets\2DOutline\Scripts\AlwaysRotate.cs" />
-     <Compile Include="Assets\2DOutline\Scripts\AnimateSprite.cs" />
-     <Compile Include="Assets\2DOutline\Scripts\Outline.cs" />
-     <Compile Include="Assets\2DOutline\Scripts\OutlineManager.cs" />
-     <Compile Include="Assets\2DOutline\Scripts\demo1.cs" />
-     <Compile Include="Assets\Book-Page Curl Pro\Examples\scripts\BotAnimationControl.cs" />
-     <Compile Include="Assets\Book-Page Curl Pro\Scripts\AutoFlip.cs" />
-     <Compile Include="Assets\Book-Page Curl Pro\Scripts\BookPro.cs" />
-     <Compile Include="Assets\Book-Page Curl Pro\Scripts\Timing.cs" />
-     <Compile Include="Assets\Frame_check.cs" />
-     <Compile Include="Assets\LikeButton.cs" />
-     <Compile Include="Assets\NPC_Trigger.cs" />
-     <Compile Include="Assets\_Script\Background_Script\Closest_bg.cs" />
-     <Compile Include="Assets\_Script\Background_Script\Farther_8_bg.cs" />
-     <Compile Include="Assets\_Script\Background_Script\Farther_9_bg.cs" />
-     <Compile Include="Assets\_Script\Background_Script\Farthest_bg.cs" />
-     <Compile Include="Assets\_Script\CameraManager.cs" />
-     <Compile Include="Assets\_Script\Destroy_tutorialMessage.cs" />
-     <Compile Include="Assets\_Script\FORTEST_SkipStage.cs" />
-     <Compile Include="Assets\_Script\Instantiate_Message.cs" />
-     <Compile Include="Assets\_Script\Item_Controller.cs" />
-     <Compile Include="Assets\_Script\Load_data.cs" />
-     <Compile Include="Assets\_Script\Main_Scene\MainScene_start.cs" />
-     <Compile Include="Assets\_Script\Main_Scene\Main_Select_Stage_Controller.cs" />
-     <Compile Include="Assets\_Script\Main_Scene\MenuOnOff.cs" />
-     <Compile Include="Assets\_Script\Main_Scene\Panel_off_when_clickOutside.cs" />
-     <Compile Include="Assets\_Script\Main_Scene\Selecting_stage.cs" />
-     <Compile Include="Assets\_Script\NPC_Click_to_Talk\Click_to_Close.cs" />
-     <Compile Include="Assets\_Script\NPC_Click_to_Talk\Coco_TextPosition.cs" />
-     <Compile Include="Assets\_Script\NPC_Click_to_Talk\NPC_Click.cs" />
-     <Compile Include="Assets\_Script\NPC_Click_to_Talk\Star_TextPosition.cs" />
-     <Compile Include="Assets\_Script\NPC_Click_to_Talk\Test_textposition.cs" />
-     <Compile Include="Assets\_Script\NewBehaviourScript.cs" />
-     <Compile Include="Assets\_Script\PlayerPrefsX.cs" />
-     <Compile Include="Assets\_Script\Player_Moving\Joystick.cs" />
-     <Compile Include="Assets\_Script\Player_Moving\Jump_MouseDown.cs" />
-     <Compile Include="Assets\_Script\Player_Moving\Moving_by_RLbuttons.cs" />
-     <Compile Include="Assets\_Script\Player_get_Item.cs" />
-     <Compile Include="Assets\_Script\Player_get_Item_just_click.cs" />
-     <Compile Include="Assets\_Script\Portal_Controller.cs" />
-     <Compile Include="Assets\_Script\Purchaser.cs" />
-     <Compile Include="Assets\_Script\Save&amp;Load\Save_Script.cs" />
-     <Compile Include="Assets\_Script\SavingData.cs" />
-     <Compile Include="Assets\_Script\Stage1\Cart_Puzzle.cs" />
-     <Compile Include="Assets\_Script\Stage1\Lever_Click.cs" />
-     <Compile Include="Assets\_Script\Stage1\Lever_Puzzle.cs" />
-     <Compile Include="Assets\_Script\Stage1\Mirror_Socket_Controller.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_1_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_1x_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_2_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_3_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_4_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_5_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_6_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stage1_Controller.cs" />
-     <Compile Include="Assets\_Script\Stage1\Stone_Break.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_1_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_2_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_3_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_4_Collider.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_4_GameControler.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_Controller.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_Switch.cs" />
-     <Compile Include="Assets\_Script\Stage2\Stage2_ending.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_10_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_10_basil.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_10_portal.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_1_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_2_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_3_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_4_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_5_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_5_tree_coco.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_5_tree_other.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_6_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_7_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_7_earphone_message.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_8_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_8_basil.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_9_GameController.cs" />
-     <Compile Include="Assets\_Script\Stage3\Stage3_Controller.cs" />
-     <Compile Include="Assets\_Script\Stage3\Toys.cs" />
-     <Compile Include="Assets\_Script\Stage3\bag.cs" />
-     <Compile Include="Assets\_Script\Text_Importer.cs" />
-     <Compile Include="Assets\_Script\Tutorial_Scene\Ball_popup.cs" />
-     <Compile Include="Assets\_Script\Tutorial_Scene\Game_Controller_0_1.cs" />
-     <Compile Include="Assets\_Script\Tutorial_Scene\Game_Controller_0_2.cs" />
-     <Compile Include="Assets\_Script\Tutorial_Scene\Play_Tutorial_Ending.cs" />
-     <Compile Include="Assets\_Script\Tutorial_Scene\Tutorial_Controller.cs" />
-     <Compile Include="Assets\_Script\Using_Item\Item_Drag.cs" />
-     <Compile Include="Assets\_Script\Using_Item\TurnOnOffItemList.cs" />
-     <Compile Include="Assets\arrowButton.cs" />
-     <Compile Include="Assets\asdgasdgasdg.cs" />
-     <Compile Include="Assets\likeList.cs" />
-     <None Include="Assets\Resources\11.txt" />
-     <None Include="Assets\Dialogue\Tutorial\1.txt" />
-     <None Include="Assets\Resources\15.txt" />
-     <None Include="Assets\2DOutline\Resources\Mats\OutlineBufferShader.shader" />
-     <None Include="Assets\Resources\1.txt" />
-     <None Include="Assets\Resources\25.txt" />
-     <None Include="Assets\Resources\4.txt" />
-     <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="nunit.framework">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.HoloLens">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.VR">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
- </Reference>
- <Reference Include="Editor">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
- </Reference>
- <Reference Include="Purchasing.Common">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
- </Reference>
- <Reference Include="Security">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Security.dll</HintPath>
- </Reference>
- <Reference Include="Stores">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
- </Reference>
- <Reference Include="Apple">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
- </Reference>
- <Reference Include="Facebook">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Facebook/Facebook.dll</HintPath>
- </Reference>
- <Reference Include="Tizen">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
- </Reference>
- <Reference Include="winrt">
- <HintPath>E:/Unity Projects/LittleCoco/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
- </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{6CE4FCF4-6F12-5754-A09D-55490ED19C25}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  
-</Project>
-=======
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -271,7 +56,6 @@
      <Compile Include="Assets\Book-Page Curl Pro\Scripts\BookPro.cs" />
      <Compile Include="Assets\Book-Page Curl Pro\Scripts\Timing.cs" />
      <Compile Include="Assets\Frame_check.cs" />
-     <Compile Include="Assets\LikeButton.cs" />
      <Compile Include="Assets\NPC_Trigger.cs" />
      <Compile Include="Assets\_Script\Background_Script\Closest_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_8_bg.cs" />
@@ -333,6 +117,9 @@
      <Compile Include="Assets\_Script\Stage3\Stage3_3_GameController.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_4_GameController.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage3\Stage3_5_LikeButton.cs" />
+     <Compile Include="Assets\_Script\Stage3\Stage3_5_arrowButton.cs" />
+     <Compile Include="Assets\_Script\Stage3\Stage3_5_likeList.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_5_tree_coco.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_5_tree_other.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_6_GameController.cs" />
@@ -352,14 +139,13 @@
      <Compile Include="Assets\_Script\Tutorial_Scene\Tutorial_Controller.cs" />
      <Compile Include="Assets\_Script\Using_Item\Item_Drag.cs" />
      <Compile Include="Assets\_Script\Using_Item\TurnOnOffItemList.cs" />
-     <Compile Include="Assets\arrowButton.cs" />
      <Compile Include="Assets\asdgasdgasdg.cs" />
-     <Compile Include="Assets\likeList.cs" />
      <None Include="Assets\Resources\11.txt" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
      <None Include="Assets\Resources\15.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineBufferShader.shader" />
      <None Include="Assets\Resources\1.txt" />
+     <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
  <Reference Include="UnityEngine.UI">
@@ -386,29 +172,29 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
- <Reference Include="Facebook">
- <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Facebook/Facebook.dll</HintPath>
- </Reference>
- <Reference Include="Security">
- <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Security.dll</HintPath>
+ <Reference Include="Editor">
+ <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
  </Reference>
  <Reference Include="Purchasing.Common">
  <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
  </Reference>
- <Reference Include="Apple">
- <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+ <Reference Include="Security">
+ <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Security.dll</HintPath>
  </Reference>
  <Reference Include="Stores">
  <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+ </Reference>
+ <Reference Include="Apple">
+ <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+ </Reference>
+ <Reference Include="Facebook">
+ <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Facebook/Facebook.dll</HintPath>
  </Reference>
  <Reference Include="Tizen">
  <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Tizen/Tizen.dll</HintPath>
  </Reference>
  <Reference Include="winrt">
  <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
- </Reference>
- <Reference Include="Editor">
- <HintPath>/Users/itct/Desktop/coco/LittleCoco/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -425,4 +211,3 @@
   -->
   
 </Project>
->>>>>>> 3b99f11d0133eb079d74d3d2294ff05b94a78d78

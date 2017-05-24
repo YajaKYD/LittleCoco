@@ -12,12 +12,14 @@ public class Stage3_5_GameController : MonoBehaviour {
     protected Text_Importer ti;
 	public GameObject portal3_4, portal3_6;
 
-    public Sprite npcTemp;
+    //public Sprite npcTemp;
     public bool usable;
     public bool consumable;
 
     public GameObject[] trees;
     protected GameObject[] likeButton;
+	public GameObject background_far;
+	public Sprite background_far_img;
 
     protected void Awake()
     {
@@ -47,15 +49,15 @@ public class Stage3_5_GameController : MonoBehaviour {
         {
             for (int i = 0; i < likeButton.Length; i++)
             {
-                likeButton[i].GetComponent<LikeButton>().enabled = false; // like 버튼 비활성화
+                likeButton[i].GetComponent<Stage3_5_LikeButton>().enabled = false; // like 버튼 비활성화
             }
         }
 
 		if (Stage3_Controller._Stage3_Quest[19]) {
 			portal3_4.GetComponent<BoxCollider2D> ().enabled = true;
 			portal3_6.GetComponent<BoxCollider2D> ().enabled = false;
+			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 		}
-
     }
 	
 	
