@@ -25,5 +25,6 @@ public class Test_textposition : MonoBehaviour {
 		if (bb) {
 			s.position = aa.WorldToScreenPoint (bb.transform.position);
 		}
+
 	}
 }

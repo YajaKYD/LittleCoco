@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage3_10_GameController : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class Stage3_10_GameController : MonoBehaviour {
 		active = true;
 		leftSound = GetComponent<AudioSource> ();
 		GameObject.FindWithTag ("Player").transform.position = startPos.transform.position;
-
+		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
 		if (Stage3_Controller._Stage3_Quest[22]) {
 			Destroy (GameObject.Find ("basil"));
 		}

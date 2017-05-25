@@ -1,24 +1,34 @@
 ﻿<Properties StartupItem="Assembly-CSharp-firstpass.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Script/Stage3/Stage3_4_GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Script/Save&amp;Load/Save_Script.cs">
     <Files>
-      <File FileName="Assets/_Script/Stage3/Stage3_4_GameController.cs" Line="59" Column="37" />
+      <File FileName="Assets/_Script/Stage3/Stage3_7_GameController.cs" Line="17" Column="59" />
+      <File FileName="Assets/_Script/Stage3/Stage3_4_GameController.cs" Line="57" Column="37" />
       <File FileName="Assets/_Script/Destroy_tutorialMessage.cs" Line="1" Column="1" />
-      <File FileName="Assets/_Script/Stage3/Stage3_7_earphone_message.cs" Line="13" Column="46" />
-      <File FileName="Assets/_Script/Stage3/Stage3_5_GameController.cs" Line="59" Column="79" />
+      <File FileName="Assets/_Script/Stage3/Stage3_7_earphone_message.cs" Line="19" Column="1" />
+      <File FileName="Assets/_Script/Stage3/Stage3_5_GameController.cs" Line="31" Column="1" />
       <File FileName="Assets/_Script/Stage3/Stage3_5_tree_other.cs" Line="30" Column="35" />
       <File FileName="Assets/_Script/Stage3/Stage3_5_tree_coco.cs" Line="1" Column="1" />
-      <File FileName="Assets/_Script/Stage3/Stage3_Controller.cs" Line="14" Column="52" />
+      <File FileName="Assets/_Script/Stage3/Stage3_Controller.cs" Line="23" Column="49" />
       <File FileName="Assets/_Script/Stage3/Stage3_5_likeList.cs" Line="1" Column="1" />
       <File FileName="Assets/_Script/Stage3/Stage3_5_LikeButton.cs" Line="1" Column="1" />
       <File FileName="Assets/_Script/Portal_Controller.cs" Line="1" Column="1" />
-      <File FileName="Assets/_Script/Stage3/Stage3_5_arrowButton.cs" Line="29" Column="48" />
-      <File FileName="Assets/_Script/Text_Importer.cs" Line="140" Column="1" />
-      <File FileName="Assets/_Script/NPC_Click_to_Talk/Test_textposition.cs" Line="24" Column="3" />
-      <File FileName="Assets/_Script/Stage3/Stage3_7_GameController.cs" Line="25" Column="20" />
-      <File FileName="Assets/_Script/Stage3/Stage3_6_GameController.cs" Line="19" Column="40" />
-      <File FileName="Assets/_Script/Stage3/Stage3_10_GameController.cs" Line="16" Column="3" />
-      <File FileName="Assets/_Script/Stage3/Stage3_10_portal.cs" Line="10" Column="47" />
+      <File FileName="Assets/_Script/Stage3/Stage3_5_arrowButton.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Script/Text_Importer.cs" Line="119" Column="1" />
+      <File FileName="Assets/_Script/NPC_Click_to_Talk/Test_textposition.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Script/Stage3/Stage3_6_GameController.cs" Line="23" Column="4" />
+      <File FileName="Assets/_Script/Stage3/Stage3_10_GameController.cs" Line="17" Column="76" />
+      <File FileName="Assets/_Script/Stage3/Stage3_10_portal.cs" Line="10" Column="51" />
+      <File FileName="Assets/_Script/Stage3/Stage3_8_GameController.cs" Line="17" Column="2" />
+      <File FileName="Assets/_Script/Stage3/Stage3_9_GameController.cs" Line="4" Column="35" />
+      <File FileName="Assets/_Script/NPC_Click_to_Talk/Click_to_Close.cs" Line="27" Column="23" />
+      <File FileName="Assets/_Script/Main_Scene/MainScene_start.cs" Line="39" Column="16" />
+      <File FileName="Assets/_Script/Stage2/Stage2_3_GameController.cs" Line="156" Column="23" />
+      <File FileName="Assets/_Script/Item_Controller.cs" Line="33" Column="3" />
+      <File FileName="Assets/onlydontdestroy.cs" Line="10" Column="46" />
+      <File FileName="Assets/_Script/Using_Item/Item_Drag.cs" Line="64" Column="1" />
+      <File FileName="Assets/_Script/Save&amp;Load/Save_Script.cs" Line="15" Column="1" />
+      <File FileName="Assets/_Script/PlayerPrefsX.cs" Line="21" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

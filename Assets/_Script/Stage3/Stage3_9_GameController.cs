@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage3_9_GameController : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class Stage3_9_GameController : MonoBehaviour {
 		active = true;
 		rightSound = GetComponent<AudioSource> ();
 		GameObject.FindWithTag ("Player").transform.position = startPos.transform.position;
+		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
 	}
 
 	void Update () {

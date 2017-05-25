@@ -72,6 +72,7 @@
      <Compile Include="Assets\_Script\Main_Scene\MenuOnOff.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Panel_off_when_clickOutside.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Selecting_stage.cs" />
+     <Compile Include="Assets\_Script\Main_Scene\Setting_Diary.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Click_to_Close.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Coco_TextPosition.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\NPC_Click.cs" />
@@ -131,6 +132,10 @@
      <Compile Include="Assets\_Script\Stage3\Stage3_Controller.cs" />
      <Compile Include="Assets\_Script\Stage3\Toys.cs" />
      <Compile Include="Assets\_Script\Stage3\bag.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_1_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_2_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_Controller.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_Dogbed.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />
      <Compile Include="Assets\_Script\Tutorial_Scene\Ball_popup.cs" />
      <Compile Include="Assets\_Script\Tutorial_Scene\Game_Controller_0_1.cs" />
@@ -140,6 +145,7 @@
      <Compile Include="Assets\_Script\Using_Item\Item_Drag.cs" />
      <Compile Include="Assets\_Script\Using_Item\TurnOnOffItemList.cs" />
      <Compile Include="Assets\asdgasdgasdg.cs" />
+     <Compile Include="Assets\onlydontdestroy.cs" />
      <None Include="Assets\Resources\11.txt" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
      <None Include="Assets\Resources\15.txt" />

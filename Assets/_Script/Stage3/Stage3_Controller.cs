@@ -7,7 +7,6 @@ public class Stage3_Controller : MonoBehaviour {
 	//textimporter랑 clicktoclose에 npccollider를 주인이 나올 때 마다 controller에서 지정해야 함
 
 	public Item_Controller ic;
-	private GameObject player;
 
 	public static int sceneIndex;
 
@@ -21,9 +20,9 @@ public class Stage3_Controller : MonoBehaviour {
 	//public static bool _stage3_q3_3 = false; //3장난감 고르기5
 	//public static bool _stage3_q4 = false; // 봉투 가져오기6
     //public static bool _stage3_q4_1 = false; // 봉투 먹는 순간 체크7
-    //public static bool _stage3_q5 = false; // 산책 나가기8
-    //public static bool _stage3_q6 = false; // Running mission start9
-	//public static bool _stage3_q7 = false; // 산책 1/3 + 코코부름10
+    //public static bool _stage3_q5 = false; // 산책 나가기 8
+    //public static bool _stage3_q6 = false; // Running mission start 9
+	//public static bool _stage3_q7 = false; // 산책 1/3 + 코코부름 10
 	//public static bool _stage3_q8 = false; // 1번 공던짐11
 	//public static bool _stage3_q9 = false; // 공가져온다음 한번 더 던짐.12
 	//public static bool _stage3_q10 = false; // 공놀이 완료. 산책 마무리.13
@@ -37,14 +36,15 @@ public class Stage3_Controller : MonoBehaviour {
 	//public static bool _stage3_q13_2 = false; // get basil21
 	//public static bool _stage3_q13_3 = false; // get basil 2-22
 
-
-
+	void Enable(){
+		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+	}
 
 	void Update () {
         
 		if (ic != null && ic._now_used_item == "Star") {
 			//별감은 계속 멍멍이한테 사용할 수 있다.
-			player.GetComponent<Outline> ().used_or_not_for_retry = false;
+			GameObject.FindWithTag("Player").GetComponent<Outline> ().used_or_not_for_retry = false;
 			//별감은 계속 멍멍이한테 사용할 수 있다.
 
 		}

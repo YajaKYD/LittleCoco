@@ -54,7 +54,6 @@ public class Stage3_4_GameController : MonoBehaviour {
 		aa = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
 		if (Stage3_Controller._Stage3_Quest[8] && !Stage3_Controller._Stage3_Quest[9]) {
 			//집에서 나옴. 달리기미션 not clear
-			//aa = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
 			aa.currLineArr[1] += 2;//이본 다음대사 넘김
 			Save_Script.Save_Dialogue_Info();
 			//quest1_start1 = true;
