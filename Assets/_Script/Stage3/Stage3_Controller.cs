@@ -7,7 +7,6 @@ public class Stage3_Controller : MonoBehaviour {
 	//textimporter랑 clicktoclose에 npccollider를 주인이 나올 때 마다 controller에서 지정해야 함
 
 	public Item_Controller ic;
-	private GameObject player;
 
 	public static int sceneIndex;
 
@@ -37,14 +36,15 @@ public class Stage3_Controller : MonoBehaviour {
 	//public static bool _stage3_q13_2 = false; // get basil21
 	//public static bool _stage3_q13_3 = false; // get basil 2-22
 
-
-
+	void Enable(){
+		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+	}
 
 	void Update () {
         
 		if (ic != null && ic._now_used_item == "Star") {
 			//별감은 계속 멍멍이한테 사용할 수 있다.
-			player.GetComponent<Outline> ().used_or_not_for_retry = false;
+			GameObject.FindWithTag("Player").GetComponent<Outline> ().used_or_not_for_retry = false;
 			//별감은 계속 멍멍이한테 사용할 수 있다.
 
 		}

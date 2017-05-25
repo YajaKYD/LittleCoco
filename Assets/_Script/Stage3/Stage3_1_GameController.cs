@@ -30,11 +30,6 @@ public class Stage3_1_GameController : MonoBehaviour {
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 
 
-//		if (!Stage3_Controller._Stage3_Quest[0]) {
-//			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-//			aa.Import ();
-//			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
-//		}
 
 		if (Stage3_Controller._Stage3_Quest[7])
         {

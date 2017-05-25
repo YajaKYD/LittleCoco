@@ -46,7 +46,7 @@ public class TurnOnOffItemList : MonoBehaviour {
 	IEnumerator MovingList(int x){
 		if (x > 0) {
 			while (true) {
-				aa.position += new Vector3 (Time.deltaTime * 150f , 0f, 0f);
+				aa.position += new Vector3 (Time.deltaTime * 300f , 0f, 0f);
 				if (aa.anchoredPosition.x >= x) {
 					StopCoroutine ("MovingList");
 					OnOffButton.GetComponent<Button> ().interactable = true;
@@ -56,7 +56,7 @@ public class TurnOnOffItemList : MonoBehaviour {
 			}
 		} else {
 			while (true) {
-				aa.position -= new Vector3 (Time.deltaTime * 150f, 0f, 0f);
+				aa.position -= new Vector3 (Time.deltaTime * 300f, 0f, 0f);
 				if (aa.anchoredPosition.x <= x) {
 					StopCoroutine ("MovingList");
 					OnOffButton.GetComponent<Button> ().interactable = true;

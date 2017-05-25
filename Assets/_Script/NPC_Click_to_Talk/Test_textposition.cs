@@ -8,9 +8,10 @@ public class Test_textposition : MonoBehaviour {
 	RectTransform s;
 	public GameObject bb;
 
-	void Start () {
+	void Awake () {
 		aa = Camera.main;
 		s = GetComponent<RectTransform> ();
+		bb = GameObject.Find ("IvonTextPos");
 	}
 
 	void OnEnable(){
@@ -19,5 +20,6 @@ public class Test_textposition : MonoBehaviour {
 		if (bb) {
 			s.position = aa.WorldToScreenPoint (bb.transform.position);
 		}
+
 	}
 }

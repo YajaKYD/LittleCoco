@@ -26,7 +26,7 @@ public class Star_TextPosition : MonoBehaviour {
 	}
 
 	void Update () {
-		s.position = new Vector3( Star_pos.position.x - 30, Star_pos.position.y, Star_pos.position.z);
+		s.position = new Vector3( Star_pos.position.x - 50, Star_pos.position.y, Star_pos.position.z);
 		itemlist.OnTime = Time.realtimeSinceStartup;
 	}
 }

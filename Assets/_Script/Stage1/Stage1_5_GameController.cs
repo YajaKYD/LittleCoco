@@ -38,7 +38,7 @@ public class Stage1_5_GameController : MonoBehaviour {
 		}
 
 		if (Stage1_Controller._Stage1_Quest[6]) {
-			xx[0].SetActive(false);
+			xx[1].SetActive(false);
 			transparent_walls[0].enabled = false;
 			msc [0].mirror_in_ornot = false;
 			Destroy (msc [0].gameObject);
@@ -64,10 +64,11 @@ public class Stage1_5_GameController : MonoBehaviour {
 
 		if (msc[0].mirror_in_ornot) {//거울이 있을 때
 			//xx[0].SetActive(false);
-			Mirror_Effect_Off(xx[0].GetComponent<SpriteRenderer>());
+			StartCoroutine(Mirror_Effect(xx[0].GetComponent<SpriteRenderer>()));
 			transparent_walls[0].enabled = false;
 			msc [0].mirror_in_ornot = false;
 			Destroy (msc [0].gameObject);
+			player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 			Stage1_Controller._Stage1_Quest[6] = true;
 			Save_Script.Save_Quest_Info ();
 		}
@@ -89,18 +90,27 @@ public class Stage1_5_GameController : MonoBehaviour {
 //		}
 	}
 
-	IEnumerator Mirror_Effect_Off(SpriteRenderer a){
-		//if (a.size.x > 1f) {
-		float i = 1.91f;
-		while (true) {
-			i -= 0.08f;
-			a.size = new Vector2 (i, 3.74f);
-			if (i < 0) {
-				a.size = new Vector2 (0f, 3.74f);
+	void GhostRemove(){
+		print ("GhostRemove_Ani");
+		xx [0].SetActive (false);
+		xx [1].SetActive (false);
+		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+	}
+
+	IEnumerator Mirror_Effect(SpriteRenderer a){
+		float i = 0f;
+		while(true) {
+			i += 0.08f;
+			//print (broken_bridge);
+			a.size = new Vector2 (i, 2.78f);
+
+			if (i > 1.92f) {
+				a.size = new Vector2 (1.92f, 2.78f);
+				Invoke ("GhostRemove", 1f);
 				break;
 			}
 			yield return null;
 		}
-		//}
+		//broken_bridge.
 	}
 }

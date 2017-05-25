@@ -11,6 +11,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 	public int this_num; //stage_controller가 해줌
 	public bool xxx;
 	public static int _what_stage_now_cleared;
+	private Text_Importer aa;
 
 	public GameObject[] _stage2_con_di;
 
@@ -24,6 +25,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 
 		mssc = GameObject.Find ("Stage_select_controller").GetComponent<Main_Select_Stage_Controller> ();
 		xxx = false;
+		aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 
 		if (_what_stage_now_cleared == 0 && this_num == 0) {
 			SceneManager.LoadScene (4);
@@ -47,6 +49,9 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 		}
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.Alpha3)) {
 			_what_stage_now_cleared = 2;
+		}
+		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.Alpha4)) {
+			_what_stage_now_cleared = 3;
 		}
 	}
 
@@ -76,8 +81,17 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
+
+				aa.Import (15);
 				break;
 			case 3:
+				SceneManager.LoadScene (25);
+				_stage2_con_di [0].SetActive (true); //Stage controller
+				_stage2_con_di [1].SetActive (true); //Dialogue controller
+				DontDestroyOnLoad (_stage2_con_di [0]);
+				DontDestroyOnLoad (_stage2_con_di [1]);
+
+				aa.Import (25);
 				break;
 			case 4:
 				break;
