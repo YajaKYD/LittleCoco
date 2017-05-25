@@ -1,31 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Setting_Diary : MonoBehaviour {
 
 	public GameObject Diary_Canvas;
-	public GameObject Diary_Bgi;
-	public GameObject CloseButton;
-
-	public Moving_by_RLbuttons mbr;
+	public GameObject mbr;
 	public GameObject item_canvas;
+
+	private Image img;
+	private Button but;
+
+	void Awake(){
+		img = GetComponent<Image> ();
+		but = GetComponent<Button> ();
+	}
+
+	void Update(){
+		if (SceneManager.GetActiveScene ().buildIndex < 11) {
+			img.color = new Color (1, 1, 1, 0.5f);
+			but.enabled = false;
+		} else {
+			img.color = new Color (1, 1, 1, 1);
+			but.enabled = true;
+		}
+	}
 
 	public void Diary_Click(){
 		if (!Diary_Canvas.activeSelf) {
 			if (GameObject.FindWithTag ("Player") != null) {
-				mbr = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
-				mbr.enabled = false;
+				mbr = GameObject.FindWithTag ("Player");
+				mbr.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 			}
 			if (GameObject.FindWithTag ("Item_Canvas") != null) {
 				item_canvas = GameObject.FindWithTag ("Item_Canvas");
-				item_canvas.SetActive (false);
+				item_canvas.GetComponent<Canvas> ().enabled = false;
 			}
 			Diary_Canvas.SetActive (true);
-			Diary_Bgi.SetActive (true);
-			CloseButton.SetActive (true);
 		}
 	}
 
-
+	public void Diary_Close(){
+		mbr.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+		item_canvas.GetComponent<Canvas> ().enabled = true;
+	}
 }
