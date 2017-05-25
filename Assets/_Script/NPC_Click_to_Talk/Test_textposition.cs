@@ -11,12 +11,17 @@ public class Test_textposition : MonoBehaviour {
 	void Awake () {
 		aa = Camera.main;
 		s = GetComponent<RectTransform> ();
-		bb = GameObject.Find ("IvonTextPos");
+		if (GameObject.Find ("IvonTextPos") != null) {
+			bb = GameObject.Find ("IvonTextPos");
+		}
 	}
 
 	void OnEnable(){
 		aa = Camera.main;
-		bb = GameObject.Find ("IvonTextPos");
+		if (GameObject.Find ("IvonTextPos") != null) {
+			bb = GameObject.Find ("IvonTextPos");
+		}
+
 		if (bb) {
 			s.position = aa.WorldToScreenPoint (bb.transform.position);
 		}

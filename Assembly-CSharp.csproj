@@ -56,7 +56,6 @@
      <Compile Include="Assets\Book-Page Curl Pro\Scripts\BookPro.cs" />
      <Compile Include="Assets\Book-Page Curl Pro\Scripts\Timing.cs" />
      <Compile Include="Assets\Frame_check.cs" />
-     <Compile Include="Assets\LikeButton.cs" />
      <Compile Include="Assets\NPC_Trigger.cs" />
      <Compile Include="Assets\_Script\Background_Script\Closest_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_8_bg.cs" />
@@ -119,6 +118,9 @@
      <Compile Include="Assets\_Script\Stage3\Stage3_3_GameController.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_4_GameController.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage3\Stage3_5_LikeButton.cs" />
+     <Compile Include="Assets\_Script\Stage3\Stage3_5_arrowButton.cs" />
+     <Compile Include="Assets\_Script\Stage3\Stage3_5_likeList.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_5_tree_coco.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_5_tree_other.cs" />
      <Compile Include="Assets\_Script\Stage3\Stage3_6_GameController.cs" />
@@ -142,9 +144,7 @@
      <Compile Include="Assets\_Script\Tutorial_Scene\Tutorial_Controller.cs" />
      <Compile Include="Assets\_Script\Using_Item\Item_Drag.cs" />
      <Compile Include="Assets\_Script\Using_Item\TurnOnOffItemList.cs" />
-     <Compile Include="Assets\arrowButton.cs" />
      <Compile Include="Assets\asdgasdgasdg.cs" />
-     <Compile Include="Assets\likeList.cs" />
      <None Include="Assets\Resources\11.txt" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
      <None Include="Assets\Resources\15.txt" />
