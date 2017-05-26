@@ -11,7 +11,7 @@ public class Game_Controller_0_2 : MonoBehaviour {
 	private GameObject _ic;
 	//public Portal_Controller end_portal;
 	public AudioSource bgm;
-	public GameObject tutorial_controller;
+	public Tutorial_Controller tc;
 	public SpriteRenderer _blackout;
 	public GameObject _Canvas;
 
@@ -21,8 +21,14 @@ public class Game_Controller_0_2 : MonoBehaviour {
 		start_pos = GameObject.Find ("Start_pos").transform;
 		_ic = GameObject.FindWithTag ("Item_Canvas");
 		player.transform.position = start_pos.position;
-		tutorial_controller = GameObject.FindWithTag ("Controller");
-		bgm = tutorial_controller.GetComponentInChildren<AudioSource> ();
+		tc = GameObject.FindWithTag ("Controller").GetComponent<Tutorial_Controller>();
+		tc.tutorialMessageIndex++;
+		bgm = tc.gameObject.GetComponentInChildren<AudioSource> ();
+		//bgm = tc.GetComponentInChildren<AudioSource> ();
+	}
+
+	void Start(){
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -72,6 +78,6 @@ public class Game_Controller_0_2 : MonoBehaviour {
 			}
 			yield return null;
 		}
-		Destroy (tutorial_controller);
+		Destroy (tc);
 	}
 }
