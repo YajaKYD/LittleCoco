@@ -73,7 +73,7 @@ public class Portal_Controller : MonoBehaviour {
 		SceneManager.LoadScene (_To_Scene);
 		//Save ();
 		//포탈이 넘어갈 때 위치정보 저장.
-		PlayerPrefs.SetInt (SceneManager.GetActiveScene ().buildIndex.ToString () + "Scene", _To_Scene);
+		PlayerPrefs.SetInt ("SceneFromWhere", SceneManager.GetActiveScene ().buildIndex);
 	}
 
 

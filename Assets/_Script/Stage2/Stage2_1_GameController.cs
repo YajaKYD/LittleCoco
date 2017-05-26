@@ -30,19 +30,18 @@ public class Stage2_1_GameController : MonoBehaviour {
 		player.transform.position = start_pos.position;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		s2c = GameObject.Find ("Stage2_Controller").GetComponent<Stage2_Controller> ();
-
-		if (!Stage2_Controller._Stage2_Quest[0]) {
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-
-			aa.Import ();
-			//s2c._ti_stage2 = aa;
-			s2c.ic = ic;
-			//s2c._dialogue_Canvas = GameObject.FindWithTag ("Dialogue");
-			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
-		}
 	}
 
 	void Start(){
+
+		if (!Stage2_Controller._Stage2_Quest[0]) {
+			//3rd save point//
+			Save_Script.Save_Now_Point();
+			print ("Saved");
+			//3rd save point//
+			s2c.ic = ic; //?이거뭐냐
+			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
+		}
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 12) {
 			player.transform.position = regen_pos.position;
@@ -100,7 +99,6 @@ public class Stage2_1_GameController : MonoBehaviour {
 			aa.NPC_Say_yeah ("코코");
 
 			Stage2_Controller._Stage2_Quest[0] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -113,7 +111,6 @@ public class Stage2_1_GameController : MonoBehaviour {
 
 		if (!multiTap [0]) {
 			Stage2_Controller._Stage2_Quest[4] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 

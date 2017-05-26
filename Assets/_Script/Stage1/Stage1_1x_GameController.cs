@@ -22,6 +22,15 @@ public class Stage1_1x_GameController : MonoBehaviour {
 	}
 
 	void Start(){
+		if (PlayerPrefs.GetInt ("SceneFromWhere") == 6) {
+			//2nd save point//
+			Save_Script.Save_Now_Point ();
+			print ("Saved");
+			//print (PlayerPrefs.GetInt ("Restart_SceneNum"));
+			//print (PlayerPrefs.GetInt ("Now_SceneNum"));
+			//2nd save point//
+		}
+
 		if (GetComponent<Load_data> ()._where_are_you_from == 8) {
 			player.transform.position = regen_pos.position;
 		} else {

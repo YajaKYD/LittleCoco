@@ -65,7 +65,6 @@ public class Stage1_3_GameController : MonoBehaviour {
 				player.SetActive (true);
 				player.transform.position = new Vector3 (14.5f, -1.37f, 7f);
 				Stage1_Controller._Stage1_Quest[3] = true;
-				Save_Script.Save_Quest_Info ();
 				GameObject.Find ("Main Camera").GetComponent<CameraManager> ().FocusObject = player;
 			}
 		}
@@ -88,8 +87,6 @@ public class Stage1_3_GameController : MonoBehaviour {
 		aa.currLineArr [0] = 5;//코코 다음대사로 넘김
 		aa.NPC_Say_yeah ("코코");
 		Stage1_Controller._Stage1_Quest[4] = true;
-
-		Save_Script.Save_Quest_Info ();
 		_coco_textbox = GameObject.Find ("코코_text");
 	}
 

@@ -76,6 +76,14 @@ public class Stage2_4_GameControler : MonoBehaviour {
 
 		if (Stage2_Controller._Stage2_Quest[22] && Stage2_Controller._Stage2_Quest[19]) {
 			_Last_wall.SetActive (false);
+			Stage2_Controller._Stage2_Quest [23] = true;
+		}
+
+		if (Stage2_Controller._Stage2_Quest [22] && Stage2_Controller._Stage2_Quest [19] && !Stage2_Controller._Stage2_Quest[24]) {
+			//8th save point//
+			Save_Script.Save_Now_Point ();
+			print ("Saved");
+			//8th save point//
 		}
 
 		if (Stage2_Controller._Stage2_Quest[23]) {
@@ -154,7 +162,6 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			mbr.enabled = false;
 			StartCoroutine ("Backback");
 			Stage2_Controller._Stage2_Quest[3] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 
 	}
@@ -175,7 +182,6 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			mbr.enabled = false;
 			StartCoroutine ("Backback");
 			Stage2_Controller._Stage2_Quest[13] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -190,7 +196,6 @@ public class Stage2_4_GameControler : MonoBehaviour {
 	void Q13_ClockWork(){
 		if (_clockwork_ol.used_or_not_for_retry) {
 			Stage2_Controller._Stage2_Quest_intArr[1]++;
-			Save_Script.Save_Quest_Info ();
 			_cws.Play ();
 			_clockwork_ol.used_or_not_for_retry = false;
 
@@ -214,12 +219,10 @@ public class Stage2_4_GameControler : MonoBehaviour {
 				for (int i = 0; i < 5; i++) {
 					if (aa._item_name_list [i] == "remotecon") {
 						aa._consumable [i] = true;
-						Save_Script.Save_Item_Info ();
 						break;
 					}
 				}
 				Stage2_Controller._Stage2_Quest[18] = true;
-				Save_Script.Save_Quest_Info ();
 			}
 		}
 	}
@@ -230,7 +233,6 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_moode_code [1].SetActive (true);
 			_sparkle.SetActive (true);
 			Stage2_Controller._Stage2_Quest[20] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -242,7 +244,6 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_mirror_use_last.GetComponent<SpriteRenderer> ().sprite = iVon;
 			_star.enabled = true;
 			Stage2_Controller._Stage2_Quest[23] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -253,7 +254,6 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_star.gameObject.GetComponent<SpriteRenderer> ().sprite = sTar;
 			_dogdog.enabled = true;
 			Stage2_Controller._Stage2_Quest[24] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 }

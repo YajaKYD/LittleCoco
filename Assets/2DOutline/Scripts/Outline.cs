@@ -219,8 +219,6 @@ public class Outline : MonoBehaviour
 				}
 
 			}
-
-			Save_Script.Save_Item_Info ();
 			//사용되었다면 사용된 상대에 대한 정보 + 그 후 무슨일이 일어날 지?(GameController 외에도)
 			// -> Item_Drag Class에서 다룸. hit.collider.tag로 판별이 더 쉬움
 

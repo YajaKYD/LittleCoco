@@ -11,7 +11,16 @@ public class Save_Script : MonoBehaviour {
 	public static Item_Controller _ic_for_Save;
 	public static Text_Importer _ti_for_Save;
 
-	public static void Save_Item_Info(){ //아이템을 먹거나 사용할 때 호출
+	//save는 전부 특정 시점에만 실행됨.
+
+	public static void Save_Now_Point(){
+		Save_Item_Info ();
+		Save_Dialogue_Info ();
+		Save_Quest_Info ();
+		Save_Scene_Info ();
+	}
+
+	public static void Save_Item_Info(){ //아이템 정보
 
 		_ic_for_Save = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 
@@ -24,7 +33,7 @@ public class Save_Script : MonoBehaviour {
 
 	}
 		
-	public static void Save_Dialogue_Info(){ //대사가 끝나면 호출
+	public static void Save_Dialogue_Info(){ //대사 정보
 		
 		if (GameObject.FindWithTag ("Dialogue")) {
 			_ti_for_Save = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
@@ -35,11 +44,11 @@ public class Save_Script : MonoBehaviour {
 
 	}
 
-	public static void Save_Scene_Info(){ //씬을 넘어가면 호출
-		//우선 기존방식 유지
+	public static void Save_Scene_Info(){ //씬 정보
+		PlayerPrefs.SetInt("Restart_SceneNum",PlayerPrefs.GetInt("Now_SceneNum"));
 	}
 
-	public static void Save_Quest_Info(){ //퀘스트를 끝내면(bool변경될 때 마다)호출
+	public static void Save_Quest_Info(){ //퀘스트 정보
 		Save_S1 ();
 		Save_S2 ();
 		Save_S3 ();

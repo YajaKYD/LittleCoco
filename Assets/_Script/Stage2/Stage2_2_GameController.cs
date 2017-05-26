@@ -153,7 +153,6 @@ public class Stage2_2_GameController : MonoBehaviour {
 			for (int i = 0; i < ic._item_list.Length; i++) {
 				if (ic._item_name_list [i] == "Tape") {
 					Stage2_Controller._Stage2_Quest [25] = true;
-					Save_Script.Save_Quest_Info ();
 				}
 			}
 		}
@@ -174,7 +173,6 @@ public class Stage2_2_GameController : MonoBehaviour {
 			aa.NPC_Say_yeah ("별감");
 			a2a2 = false;
 			Stage2_Controller._Stage2_Quest[1] = true;
-			Save_Script.Save_Quest_Info ();
 		} // ? 다음 집 설명. 끝.
 
 	}
@@ -184,14 +182,12 @@ public class Stage2_2_GameController : MonoBehaviour {
 		if (!Stage2_Controller._Stage2_Quest[6]) { //multi1 사용
 			if (_multitap [0].used_or_not_for_retry) {
 				Stage2_Controller._Stage2_Quest[6] = true;
-				Save_Script.Save_Quest_Info ();
 				Destroy (_multitap [0].gameObject);
 			}
 		}
 		if (!Stage2_Controller._Stage2_Quest[7]) { //multi2 사용(왼쪽)
 			if (_multitap [1].used_or_not_for_retry) {
 				Stage2_Controller._Stage2_Quest[7] = true;
-				Save_Script.Save_Quest_Info ();
 				Destroy (_multitap [1].gameObject);
 			}
 		}
@@ -219,7 +215,6 @@ public class Stage2_2_GameController : MonoBehaviour {
 				ids [k]._diary_usable = true;
 			} //change diary image -usable-
 			Stage2_Controller._Stage2_Quest[8] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 
 		if (Stage2_Controller._Stage2_Quest[8] && !_mirror_use.enabled) {
@@ -235,14 +230,18 @@ public class Stage2_2_GameController : MonoBehaviour {
 			_multi_image [1].SetActive (false);
 			_multi_image [2].SetActive(true);
 			Stage2_Controller._Stage2_Quest[5] = true;
-			Save_Script.Save_Quest_Info ();
+
+			//5th save point//
+			Save_Script.Save_Now_Point ();
+			print ("Saved");
+			//5th save point//
 		}
 	}
 
 	void Q7_find_Remote(){
 		if (a4a4) {
 			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
+			aa.currLineArr [0] = 12;//코코 다음대사 치게함.
 			aa.NPC_Say_yeah ("코코");
 			_coco_textbox = GameObject.Find ("코코_text");
 			a4a4 = false;
@@ -253,7 +252,6 @@ public class Stage2_2_GameController : MonoBehaviour {
 			aa.NPC_Say_yeah ("별감");
 			_remote.enabled = true;
 			Stage2_Controller._Stage2_Quest[10] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -264,7 +262,11 @@ public class Stage2_2_GameController : MonoBehaviour {
 
 			if (Stage2_Controller._Stage2_Quest[16]) {
 				Stage2_Controller._Stage2_Quest[15] = true;
-				Save_Script.Save_Quest_Info ();
+
+				//7th save point//
+				Save_Script.Save_Now_Point ();
+				print ("Saved");
+				//7th save point//
 			}
 
 			//_sparkle_1.SetActive (false);
@@ -281,7 +283,6 @@ public class Stage2_2_GameController : MonoBehaviour {
 
 			if (Stage2_Controller._Stage2_Quest[22]) {
 				Stage2_Controller._Stage2_Quest[21] = true;
-				Save_Script.Save_Quest_Info ();
 			}
 
 			//_sparkle_1.SetActive (false);

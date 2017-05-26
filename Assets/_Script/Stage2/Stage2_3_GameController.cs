@@ -22,6 +22,9 @@ public class Stage2_3_GameController : MonoBehaviour {
 	private bool a1a1 = true;
 	private bool a2a2 = false;
 
+	private bool temp_to_saymunch = false;
+	private GameObject cocobox;
+	private int temp;
 	//public GameObject _coco_textbox;
 
 	void Awake(){
@@ -34,6 +37,13 @@ public class Stage2_3_GameController : MonoBehaviour {
 	}
 
 	void Start(){
+
+		if (Stage2_Controller._Stage2_Quest [3] && !Stage2_Controller._Stage2_Quest [4]) {
+			//4th save point//
+			Save_Script.Save_Now_Point ();
+			print ("Saved");
+			//4th save point//
+		}
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 14) {
 			player.transform.position = regen_pos.position;
@@ -123,6 +133,12 @@ public class Stage2_3_GameController : MonoBehaviour {
 			Q14_Turn_off_Audio ();
 		}
 
+		if (temp_to_saymunch) {
+			if (!cocobox.activeSelf) {
+				Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
+				aa.currLineArr [0] = temp;
+			}
+		}
 	}
 
 	void Q3_Talk(){
@@ -134,14 +150,12 @@ public class Stage2_3_GameController : MonoBehaviour {
 			aa.NPC_Say_yeah ("코코");
 			a1a1 = false;
 			Stage2_Controller._Stage2_Quest[2] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
 	void Q6_1_Say_munch(){
 		if (a2a2) {
 			Stage2_Controller._Stage2_Quest[9] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -158,7 +172,11 @@ public class Stage2_3_GameController : MonoBehaviour {
 			portal_to_2_4.SetActive (true);
 			GetComponent<BoxCollider2D> ().enabled = false;
 			Stage2_Controller._Stage2_Quest[12] = true;
-			Save_Script.Save_Quest_Info ();
+
+			//6th save point//
+			Save_Script.Save_Now_Point ();
+			print ("Saved");
+			//6th save point//
 		}
 	}
 
@@ -171,10 +189,9 @@ public class Stage2_3_GameController : MonoBehaviour {
 			if (hit.collider != null) {
 				if (hit.collider.CompareTag ("Audio")) {
 					Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-					aa.currLineArr [0] += 2;//코코 다음대사 치게함.
-					aa.NPC_Say_yeah ("코코");
+					//aa.currLineArr [0] += 2;//코코 다음대사 치게함.
+					//aa.NPC_Say_yeah ("코코");
 					Stage2_Controller._Stage2_Quest[14] = true;
-					Save_Script.Save_Quest_Info ();
 				}
 			}
 		}
@@ -192,7 +209,6 @@ public class Stage2_3_GameController : MonoBehaviour {
 			_orgelsound.GetComponent<AudioSource> ().volume = 1f;
 
 			Stage2_Controller._Stage2_Quest[19] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -214,11 +230,10 @@ public class Stage2_3_GameController : MonoBehaviour {
 			yield return null;
 		}
 		Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		int temp = aa.currLineArr [0];
+		temp = aa.currLineArr [0];
 		aa.currLineArr [0] = 6;
 		aa.NPC_Say_yeah ("코코");
-		//mbr.enabled = false;
-		aa.currLineArr [0] = temp +1;
-		//mbr.enabled = true;
+		cocobox = GameObject.Find ("코코_text");
+		temp_to_saymunch = true;
 	}
 }

@@ -46,14 +46,12 @@ public class Stage1_4_GameController : MonoBehaviour {
 				StartCoroutine (Mirror_Effect_Off (fence));
 				//fence.SetActive (false);
 				Stage1_Controller._Stage1_Quest [5] = true;
-				Save_Script.Save_Quest_Info ();
 				//Destroy(GameObject.Find("Mirror_Socket"));
 			} else {
 				transparent_wall.enabled = true;
 				StartCoroutine (Mirror_Effect_On (fence));
 				//fence.SetActive (true);
 				Stage1_Controller._Stage1_Quest [5] = false;
-				Save_Script.Save_Quest_Info ();
 			}
 			tempbool = msc.mirror_in_ornot;
 		}

@@ -70,7 +70,6 @@ public class Stage1_5_GameController : MonoBehaviour {
 			Destroy (msc [0].gameObject);
 			player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 			Stage1_Controller._Stage1_Quest[6] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 //		if (msc[1].mirror_in_ornot) {//거울이 있을 때
 //			//xx[1].SetActive(false);

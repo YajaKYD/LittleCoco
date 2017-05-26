@@ -16,14 +16,17 @@ public class Stage1_1_GameController : MonoBehaviour {
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
-
-		if (!Stage1_Controller._Stage1_Quest[0]) {
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.Import ();
-		}
 	}
 
 	void Start(){
+		
+		if (!Stage1_Controller._Stage1_Quest[0]) {
+			//1st save point//
+			Save_Script.Save_Now_Point ();
+			print ("Saved");
+			//1st save point//
+		}
+
 		if (GetComponent<Load_data> ()._where_are_you_from == 5) {
 			player.transform.position = regen_pos.position;
 		}
@@ -49,7 +52,6 @@ public class Stage1_1_GameController : MonoBehaviour {
 
 		if (!mirror) {
 			Stage1_Controller._Stage1_Quest[1] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -57,7 +59,6 @@ public class Stage1_1_GameController : MonoBehaviour {
 		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		aa.NPC_Say_yeah ("코코");
 		Stage1_Controller._Stage1_Quest[0] = true;
-		Save_Script.Save_Quest_Info ();
 	}
 
 

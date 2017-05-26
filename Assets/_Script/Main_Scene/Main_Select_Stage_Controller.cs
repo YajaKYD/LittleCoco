@@ -40,11 +40,16 @@ public class Main_Select_Stage_Controller : MonoBehaviour {
 			Stage_images [i].this_num = i; //각 stage에 번호 부여
 		}
 		player.transform.localScale = new Vector3 (1f, 1f, player.transform.localScale.z);
-
-
 	}
 
 	void Start(){
+
+		//SS save//
+		print ("SS Saved");
+		Save_Script.Save_Now_Point ();
+		PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
+		//SS save//
+
 		if (Item_canvas && player) {
 			Item_canvas.SetActive (false);
 			player.transform.position = follow_it.transform.position;

@@ -22,8 +22,6 @@ public class Stage1_2_GameController : MonoBehaviour {
 		o_l.used_or_not_for_retry = false;
 
 		player.transform.position = start_pos.position;
-
-
 	}
 
 	void Start(){
@@ -40,11 +38,7 @@ public class Stage1_2_GameController : MonoBehaviour {
 		}
 	}
 
-
 	void Update(){
-
-
-
 		if (!Stage1_Controller._Stage1_Quest[2]) {
 			Q2_remove_partOfmirror ();
 		}
@@ -63,7 +57,6 @@ public class Stage1_2_GameController : MonoBehaviour {
 			StartCoroutine("Mirror_Effect");
 			Destroy(GameObject.Find("Mirror_Socket"));
 			Stage1_Controller._Stage1_Quest[2] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 

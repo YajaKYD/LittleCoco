@@ -16,12 +16,12 @@ public class Load_data : MonoBehaviour {
 	}
 
 	public void Load(){
-		if (PlayerPrefs.GetInt (SceneManager.GetActiveScene ().buildIndex.ToString () + "Scene") != 0) {
-			_where_are_you_from = PlayerPrefs.GetInt (SceneManager.GetActiveScene ().buildIndex.ToString () + "Scene");
+		if (PlayerPrefs.GetInt ("SceneFromWhere") != 0) {
+			_where_are_you_from = PlayerPrefs.GetInt ("SceneFromWhere");
 		}
 	}
 
 	public void autoSave_to_restart(){
-		PlayerPrefs.SetInt ("Restart_SceneNum",SceneManager.GetActiveScene ().buildIndex);
+		PlayerPrefs.SetInt ("Now_SceneNum",SceneManager.GetActiveScene ().buildIndex);
 	}
 }

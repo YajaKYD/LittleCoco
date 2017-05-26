@@ -33,6 +33,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 			_stage2_con_di [1].SetActive (true);
 			DontDestroyOnLoad (_stage2_con_di [0]);
 			DontDestroyOnLoad (_stage2_con_di [1]);
+			aa.Import (4);
 		}
 
 	}
@@ -67,6 +68,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				_stage2_con_di [1].SetActive (true);
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
+				aa.Import (4);
 				break;
 			case 1:
 				SceneManager.LoadScene (11);
@@ -74,6 +76,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				_stage2_con_di [1].SetActive (true);
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
+				aa.Import (11);
 				break;
 			case 2:
 				SceneManager.LoadScene (15);
@@ -81,7 +84,6 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-
 				aa.Import (15);
 				break;
 			case 3:
@@ -90,7 +92,6 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-
 				aa.Import (25);
 				break;
 			case 4:

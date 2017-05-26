@@ -104,7 +104,7 @@ public class Stage1_6_GameController : MonoBehaviour {
 			portaltoend.transform.position = player.transform.position;
 			portaltoend.GetComponent<BoxCollider2D> ().enabled = true;
 			Selecting_stage._what_stage_now_cleared = 1;//2스테이지 오픈시킴
-			PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
+			//PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
 		}
 
 	}
@@ -148,7 +148,6 @@ public class Stage1_6_GameController : MonoBehaviour {
 		if (a2 && !_star_textbox.activeSelf) {
 			//print ("4");
 			Stage1_Controller._Stage1_Quest[9] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 
@@ -197,7 +196,6 @@ public class Stage1_6_GameController : MonoBehaviour {
 
 		a4 = true;
 		Stage1_Controller._Stage1_Quest [10] = true;
-		Save_Script.Save_Quest_Info ();
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 
 		//글자띄우고.

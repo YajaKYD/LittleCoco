@@ -161,13 +161,8 @@ public class Text_Importer : MonoBehaviour {
 	}
 
 	public bool NPC_Say_yeah(string npcname){
-
-		Save_Script.Save_Dialogue_Info();
-
 		for (int i = 0; i < pNum; i++) {//받은 NPC이름하고 가지고 있는 NPC리스트 비교
 			if (nameArr [i] == npcname) {//같은 이름 NPC 찾고
-
-
 				if (npcname == "코코") {
 					//
 					_text_boxes[i].transform.parent.gameObject.SetActive(true);
@@ -185,7 +180,6 @@ public class Text_Importer : MonoBehaviour {
 								//_coco_dialogue [j].transform.rotation = player_moving.gameObject.transform.rotation;
 								_coco_dialogue[j].SetActive(true);
 								currLineArr [i]++;
-								Save_Script.Save_Dialogue_Info();
 								break;
 							}
 						}
@@ -194,7 +188,6 @@ public class Text_Importer : MonoBehaviour {
 					} else {//대화가 끝난 상태면 직전 마지막 말을 반복함
 						player_moving.enabled = true;
 						currLineArr[i]--;
-						Save_Script.Save_Dialogue_Info();
 						return false;
 					}
 				}
@@ -216,12 +209,10 @@ public class Text_Importer : MonoBehaviour {
 				player_moving.enabled = false;
 				if (dialogArr [i] [currLineArr [i]] != "<><>") {
 					_text_in_boxes [i].text = dialogArr [i] [currLineArr [i]++];
-					Save_Script.Save_Dialogue_Info();
 					return true;
 				} else {//대화가 끝난 상태면 직전 마지막 말을 반복함
 					player_moving.enabled = true;
 					currLineArr[i]--;
-					Save_Script.Save_Dialogue_Info();
 					return false;
 				}
 			} else {

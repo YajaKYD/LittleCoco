@@ -88,7 +88,6 @@
      <Compile Include="Assets\_Script\Portal_Controller.cs" />
      <Compile Include="Assets\_Script\Purchaser.cs" />
      <Compile Include="Assets\_Script\Save&amp;Load\Save_Script.cs" />
-     <Compile Include="Assets\_Script\SavingData.cs" />
      <Compile Include="Assets\_Script\Stage1\Cart_Puzzle.cs" />
      <Compile Include="Assets\_Script\Stage1\Lever_Click.cs" />
      <Compile Include="Assets\_Script\Stage1\Lever_Puzzle.cs" />
