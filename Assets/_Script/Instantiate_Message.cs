@@ -6,9 +6,6 @@ using UnityEngine.EventSystems;
 
 public class Instantiate_Message : MonoBehaviour, IPointerClickHandler {
     public int index;
-    public GameObject tutorialMessage;
-    public GameObject tutorialMessagePrefab;
-    public GameObject canvas;
     private Tutorial_Controller tc;
     private bool able_message;
 
@@ -36,10 +33,8 @@ public class Instantiate_Message : MonoBehaviour, IPointerClickHandler {
     {
         if (other.gameObject.CompareTag("Player") && !able_message)
         {
-            //Debug.Log("바위를 만났다");
-			GameObject ic = GameObject.FindWithTag("Item_Canvas");
-            tutorialMessage = Instantiate(tutorialMessagePrefab, Vector3.zero, Quaternion.identity) as GameObject;
-			tutorialMessage.transform.SetParent(ic.transform, false);
+			Debug.Log ("collision");
+			tc.instantiateMessage (index);
             able_message = true;
         }
     }

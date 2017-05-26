@@ -43,10 +43,7 @@ public class Destroy_tutorialMessage : MonoBehaviour, IPointerDownHandler {
     {
         if (tutorialMessage && tutorialMessage.name.Substring(17,1) == index.ToString())
         {
-//			Instantiate_Message im = GameObject.FindWithTag ("Item_Canvas").GetComponent<Instantiate_Message> ();
-//			im.stay_list = false;
             Destroy(tutorialMessage);
-            //Debug.Log("destroy");
             tc.tutorialMessageIndex++;
         }
     }
