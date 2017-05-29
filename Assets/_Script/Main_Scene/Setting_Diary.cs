@@ -39,6 +39,7 @@ public class Setting_Diary : MonoBehaviour {
 				item_canvas.GetComponent<Canvas> ().enabled = false;
 			}
 			Diary_Canvas.SetActive (true);
+			Diary_Canvas.GetComponentInChildren<BookPro> ().CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared") + 1;
 		}
 	}
 

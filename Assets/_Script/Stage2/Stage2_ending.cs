@@ -19,6 +19,8 @@ public class Stage2_ending : MonoBehaviour {
 	public GameObject _coco_textbox;
 	public GameObject _star_textbox;
 	public GameObject portaltoend;
+	public SpriteRenderer ivon;
+	public Sprite withcoco;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
@@ -31,6 +33,7 @@ public class Stage2_ending : MonoBehaviour {
 			player.transform.position = this.transform.position;
 			player.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0);
 			//GetComponent<SpriteRenderer>().color = new Color (1, 1, 1, 1);
+			ivon.sprite = withcoco;
 			mbr.enabled = false;
 			//sound 들어가자.
 			aa.currLineArr [1] += 2;

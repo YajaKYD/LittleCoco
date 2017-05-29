@@ -41,6 +41,11 @@ public class Stage2_4_GameControler : MonoBehaviour {
 	public Sprite iVon;
 	public Sprite sTar;
 
+
+	public SpriteRenderer _whiteOut;
+	public GameObject _endingText;
+	public static bool whiteOut = false;
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
@@ -77,6 +82,10 @@ public class Stage2_4_GameControler : MonoBehaviour {
 		if (Stage2_Controller._Stage2_Quest[22] && Stage2_Controller._Stage2_Quest[19]) {
 			_Last_wall.SetActive (false);
 			Stage2_Controller._Stage2_Quest [23] = true;
+			if (!whiteOut) {
+				StartCoroutine ("WhiteOut");
+				whiteOut = true;
+			}
 		}
 
 		if (Stage2_Controller._Stage2_Quest [22] && Stage2_Controller._Stage2_Quest [19] && !Stage2_Controller._Stage2_Quest[24]) {
@@ -255,5 +264,50 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_dogdog.enabled = true;
 			Stage2_Controller._Stage2_Quest[24] = true;
 		}
+	}
+
+	IEnumerator WhiteOut(){
+		GameObject.FindWithTag("Item_Canvas").GetComponent<Canvas> ().enabled = false;
+		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = false;
+		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
+		yield return new WaitForSeconds (1f);
+
+		for (float f = 0f; f < 1; f += Time.deltaTime) {
+			Color c = _whiteOut.color;
+			c.a = f;
+			_whiteOut.color = c;
+			yield return null;
+		}
+		yield return new WaitForSeconds (1f);
+//		for (int i = 0; i < _yellowThings.Length; i++) {
+//			_yellowThings [i].SetActive (true);
+//		}
+		PopUpEndingText ();
+		StartCoroutine ("WhiteIn");
+	}
+
+	IEnumerator WhiteIn(){
+
+		for (float f = 1f; f > 0; f -= Time.deltaTime) {
+			Color c = _whiteOut.color;
+			c.a = f;
+			_whiteOut.color = c;
+			yield return null;
+		}
+
+		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+
+		GameObject.FindWithTag("Item_Canvas").GetComponent<Canvas> ().enabled = true;
+		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = true;
+		//글자띄우고.
+	}
+
+	void PopUpEndingText(){
+		_endingText.SetActive (true);
+		Invoke ("DestroyEndingText", 3f);
+	}
+
+	void DestroyEndingText(){
+		Destroy (_endingText);
 	}
 }

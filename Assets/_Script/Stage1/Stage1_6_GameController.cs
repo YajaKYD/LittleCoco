@@ -169,6 +169,8 @@ public class Stage1_6_GameController : MonoBehaviour {
 	}
 
 	IEnumerator WhiteOut(){
+		i_c.GetComponent<Canvas> ().enabled = false;
+		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = false;
 		yield return new WaitForSeconds (1f);
 
 		for (float f = 0f; f < 1; f += Time.deltaTime) {
@@ -198,6 +200,8 @@ public class Stage1_6_GameController : MonoBehaviour {
 		Stage1_Controller._Stage1_Quest [10] = true;
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 
+		i_c.GetComponent<Canvas> ().enabled = true;
+		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = true;
 		//글자띄우고.
 	}
 

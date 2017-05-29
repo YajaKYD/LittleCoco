@@ -56,7 +56,15 @@ public class Main_Select_Stage_Controller : MonoBehaviour {
 		}
 
 
-		bp.CurrentPaper = PlayerPrefs.GetInt ("Restart_SceneNum")-1;
+		bp.CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared") + 1;
+	}
+
+	void Update(){
+//		if (Input.GetKey (KeyCode.Q) && Input.GetKeyDown (KeyCode.W)) {
+//			bp.CurrentPaper++;
+//			print (bp.currentPaper);
+//			// 1 = 1page
+//		}
 	}
 
 	void OnDisable(){
