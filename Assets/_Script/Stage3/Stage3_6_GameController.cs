@@ -14,6 +14,14 @@ public class Stage3_6_GameController : Stage3_5_GameController
 
     void Start()
     {
+		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + ", sceneIndex is " + Stage3_Controller.sceneIndex);
+		if (Stage3_Controller.sceneIndex > SceneManager.GetActiveScene ().buildIndex || Stage3_Controller.sceneIndex==0) {
+			Save_Script.Save_Now_Point ();
+			player.transform.position = end_pos.position;
+		}
+		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
+		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + ", sceneIndex is " + Stage3_Controller.sceneIndex);
+
         activatePortal();
 		if (Stage3_Controller._Stage3_Quest[19]) {
 			ti.currLineArr[1] += 2; //이본 다음대사 넘김
@@ -26,13 +34,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 			}
 		}
 
-		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
-		if (Stage3_Controller.sceneIndex > SceneManager.GetActiveScene ().buildIndex) {
-			Save_Script.Save_Now_Point ();
-			player.transform.position = end_pos.position;
-		}
-		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
+
     }
     
     public void activatePortal()
