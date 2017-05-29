@@ -78,6 +78,6 @@ public class Game_Controller_0_2 : MonoBehaviour {
 			}
 			yield return null;
 		}
-		Destroy (tc);
+		Destroy (tc.gameObject);
 	}
 }
