@@ -43,14 +43,16 @@ public class Stage3_7_GameController : MonoBehaviour {
 		}
 			
 		if (!Stage3_Controller._Stage3_Quest[20]) {
+			Save_Script.Save_Now_Point();
 			earphone_message = Instantiate (earphone_message, Vector3.zero, Quaternion.identity) as GameObject;
 			earphone_message.transform.SetParent (Item_Canvas.transform, false);
 		}
+		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
 		if (Stage3_Controller.sceneIndex >= SceneManager.GetActiveScene ().buildIndex) {
 			lookingforIvon = true;
 		}
 		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-		//Debug.Log ("sceneIndex is " + Stage3_Controller.sceneIndex);
+		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
 	}
 
 	void Update () {

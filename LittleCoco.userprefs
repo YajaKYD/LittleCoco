@@ -1,28 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp-firstpass.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Script\Stage3\Stage3_3_GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_Script/Stage3/Stage3_6_GameController.cs">
     <Files>
-      <File FileName="Assets\_Script\Load_data.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Script\Main_Scene\MainScene_start.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Script\Main_Scene\Main_Select_Stage_Controller.cs" Line="14" Column="17" />
-      <File FileName="Assets\_Script\Main_Scene\Selecting_stage.cs" Line="1" Column="26" />
-      <File FileName="Assets\_Script\Main_Scene\MenuOnOff.cs" Line="14" Column="32" />
-      <File FileName="Assets\Frame_check.cs" Line="19" Column="6" />
-      <File FileName="Assets\_Script\Stage3\Stage3_1_GameController.cs" Line="47" Column="26" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_2_GameController.cs" Line="60" Column="43" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_3_GameController.cs" Line="80" Column="29" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_4_GameController.cs" Line="44" Column="17" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_5_arrowButton.cs" Line="30" Column="34" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_5_LikeButton.cs" Line="22" Column="15" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_6_GameController.cs" Line="41" Column="47" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_7_earphone_message.cs" Line="13" Column="46" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_10_portal.cs" Line="11" Column="6" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_10_GameController.cs" Line="7" Column="2" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_10_basil.cs" Line="13" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_9_GameController.cs" Line="30" Column="5" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_8_GameController.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_8_basil.cs" Line="9" Column="47" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage3\Stage3_7_GameController.cs" Line="53" Column="5" NotebookId="1" />
+      <File FileName="Assets/_Script/Stage3/Stage3_4_GameController.cs" Line="264" Column="43" />
+      <File FileName="Assets/_Script/Stage3/Stage3_7_GameController.cs" Line="55" Column="21" />
+      <File FileName="Assets/_Script/Stage3/Stage3_Controller.cs" Line="13" Column="52" />
+      <File FileName="Assets/_Script/Save&amp;Load/Save_Script.cs" Line="107" Column="1" />
+      <File FileName="Assets/_Script/Stage3/Stage3_1_GameController.cs" Line="46" Column="4" />
+      <File FileName="Assets/_Script/Stage3/Toys.cs" Line="58" Column="8" />
+      <File FileName="Assets/_Script/Text_Importer.cs" Line="210" Column="1" />
+      <File FileName="Assets/_Script/Stage3/bag.cs" Line="13" Column="10" />
+      <File FileName="Assets/_Script/Main_Scene/MainScene_start.cs" Line="58" Column="58" />
+      <File FileName="Assets/_Script/Stage3/Stage3_6_GameController.cs" Line="20" Column="46" />
+      <File FileName="Assets/_Script/Stage3/Stage3_9_GameController.cs" Line="30" Column="3" />
+      <File FileName="Assets/_Script/Stage3/Stage3_5_GameController.cs" Line="58" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

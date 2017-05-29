@@ -9,7 +9,7 @@ public class bag : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
 			Stage3_Controller._Stage3_Quest[7] = true;
-			Save_Script.Save_Quest_Info ();
+			//Save_Script.Save_Quest_Info ();
         }
     }
 }

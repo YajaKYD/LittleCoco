@@ -1,2 +1,6 @@
 Base path: /Applications/Unity/Unity.app/Contents
 Cmd: initializeCompiler
+Cmd: preprocess
+  insize=2480 outsize=422 ok=1
+Cmd: preprocess
+  insize=1177 outsize=1607 ok=1

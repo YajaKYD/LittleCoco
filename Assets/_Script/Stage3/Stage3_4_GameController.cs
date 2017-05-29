@@ -281,12 +281,13 @@ public class Stage3_4_GameController : MonoBehaviour {
 
     void Q10_Running_Finish()
     {
-        if (tempPos != player.transform.position)
+		if (quest1_gauge != null && tempPos != player.transform.position)
         {
-            quest1_gauge.transform.localScale = new Vector3(quest1_gauge.transform.localScale.x - Vector3.Distance(tempPos, player.transform.position) / 180f, 1, 1);
+			quest1_gauge.transform.localScale = new Vector3(quest1_gauge.transform.localScale.x - Vector3.Distance(tempPos, player.transform.position) / 180f, 1, 1);
             tempPos = player.transform.position; // 맵의 가로길이가 30이라고 가정한 수치
         }
-        if (quest1_gauge.transform.localScale.x <= 0)
+
+		if (quest1_gauge != null && quest1_gauge.transform.localScale.x <= 0)
         {
             Destroy(quest1_gauge); // 게이지 다달면 끝
 			Stage3_Controller._Stage3_Quest[13] = true;

@@ -104,5 +104,6 @@ public class Save_Script : MonoBehaviour {
 	public static void Save_S3(){
 		//S3 = new bool[23];
 		S3 = Stage3_Controller._Stage3_Quest;
+		Debug.Log ("save quest info activated");
 	}
 }

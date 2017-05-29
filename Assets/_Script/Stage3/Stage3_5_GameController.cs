@@ -34,11 +34,13 @@ public class Stage3_5_GameController : MonoBehaviour {
     }
 
     void Start() {
+		Debug.Log ("buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
 		if (Stage3_Controller.sceneIndex > SceneManager.GetActiveScene ().buildIndex) {
 			player.transform.position = end_pos.position;
 		}
 		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-			
+		Debug.Log ("buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
+
 		if (!Stage3_Controller._Stage3_Quest[14])
         {
 			//ic.Get_Item_Auto (5, npcTemp); //temp code
