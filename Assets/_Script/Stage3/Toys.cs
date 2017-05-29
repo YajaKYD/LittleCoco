@@ -31,13 +31,13 @@ public class Toys : MonoBehaviour {
 
 				if (_this_num == 11) {
 					Stage3_Controller._Stage3_Quest[3] = true;
-					Save_Script.Save_Quest_Info ();
+					//Save_Script.Save_Quest_Info ();
 				} else if (_this_num == 12) {
 					Stage3_Controller._Stage3_Quest[4] = true;
-					Save_Script.Save_Quest_Info ();
+					//Save_Script.Save_Quest_Info ();
 				} else if (_this_num == 13){
 					Stage3_Controller._Stage3_Quest[5] = true;
-					Save_Script.Save_Quest_Info ();
+					//Save_Script.Save_Quest_Info ();
 				}
 				Destroy (this.gameObject);
 			}
@@ -55,16 +55,16 @@ public class Toys : MonoBehaviour {
                 if (_this_num == 11)
                 {
 					Stage3_Controller._Stage3_Quest[3] = true;
-					Save_Script.Save_Quest_Info ();
+					//Save_Script.Save_Quest_Info ();
                 }
                 else if (_this_num == 12)
                 {
 					Stage3_Controller._Stage3_Quest[4] = true;
-					Save_Script.Save_Quest_Info ();
+					//Save_Script.Save_Quest_Info ();
                 }
                 else {
 					Stage3_Controller._Stage3_Quest[5] = true;
-					Save_Script.Save_Quest_Info ();
+					//Save_Script.Save_Quest_Info ();
                 }
                 Destroy(this.gameObject);
             }
