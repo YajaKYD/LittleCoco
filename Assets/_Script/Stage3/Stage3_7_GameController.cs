@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
+//using UnityEditor;
 
 public class Stage3_7_GameController : MonoBehaviour {
 
-	[MenuItem("MyMenu/for test")]
-	static void DoSomething()
-	{
-		Debug.Log("Doing Something...");
-		GameObject.Find ("Player").SetActive (false);
-		GameObject.Find ("Dialogue_Canvas_").SetActive (false);
-		GameObject.Find ("Item_Canvas").SetActive (false);
-		GameObject.Find ("Stage3_Controller").SetActive (false);
-	}
+//	[MenuItem("MyMenu/for test")]
+//	static void DoSomething()
+//	{
+//		Debug.Log("Doing Something...");
+//		GameObject.Find ("Player").SetActive (false);
+//		GameObject.Find ("Dialogue_Canvas_").SetActive (false);
+//		GameObject.Find ("Item_Canvas").SetActive (false);
+//		GameObject.Find ("Stage3_Controller").SetActive (false);
+//	}
 
 	public AudioSource leftSound;
 	public GameObject portal1, portal2;
@@ -50,7 +50,7 @@ public class Stage3_7_GameController : MonoBehaviour {
 			lookingforIvon = true;
 		}
 		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-		Debug.Log ("sceneIndex is " + Stage3_Controller.sceneIndex);
+		//Debug.Log ("sceneIndex is " + Stage3_Controller.sceneIndex);
 	}
 
 	void Update () {

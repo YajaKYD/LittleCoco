@@ -58,21 +58,16 @@ public class Stage3_2_GameController : MonoBehaviour {
 
 	void Q3_pick_them_up(){
 		if (_air.used_or_not_for_retry) { //떨굴 때
-			print(_ic._now_used_item);
-
 			GameObject aa = (GameObject)Instantiate(Resources.Load("Prefabs/Hokyun/" + _ic._now_used_item));
 			aa.GetComponent<Toys> ()._pickable = true;
 			aa.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			aa.transform.position = new Vector3 (aa.transform.position.x, aa.transform.position.y, 6.5f);
 			if (aa.GetComponent<Toys> ()._this_num == 11) {
 				Stage3_Controller._Stage3_Quest[3] = false;
-				Save_Script.Save_Quest_Info ();
 			} else if (aa.GetComponent<Toys> ()._this_num == 12) {
 				Stage3_Controller._Stage3_Quest[4] = false;
-				Save_Script.Save_Quest_Info ();
 			} else {
 				Stage3_Controller._Stage3_Quest[5]	 = false;
-				Save_Script.Save_Quest_Info ();
 			}
 			_air.used_or_not_for_retry = false;
 		}

@@ -7,7 +7,14 @@ using UnityEngine.SceneManagement;
 public class MenuOnOff : MonoBehaviour, IPointerDownHandler {
 
 	public GameObject _MenuPanel;
+	public GameObject _exitpanel;
 
+	void Update(){
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			_exitpanel.SetActive (true);
+			//Application.Quit ();
+		}
+	}
 
 	public void OnPointerDown(PointerEventData ped)
 	{

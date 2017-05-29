@@ -53,9 +53,11 @@ public class Stage3_4_GameController : MonoBehaviour {
 	void Start(){
 		aa = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
 		if (Stage3_Controller._Stage3_Quest[8] && !Stage3_Controller._Stage3_Quest[9]) {
+			//Stage3 Save point 2//
+			Save_Script.Save_Now_Point();
+			//Stage3 Save point 2//
 			//집에서 나옴. 달리기미션 not clear
 			aa.currLineArr[1] += 2;//이본 다음대사 넘김
-			Save_Script.Save_Dialogue_Info();
 			//quest1_start1 = true;
 			GameObject _room = GameObject.FindWithTag("Controller").transform.GetChild (0).gameObject;
 			GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject;
@@ -68,7 +70,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 		}
 		IvonTextPos = GameObject.Find("IvonTextPos");
 		IvonTextPosTemp = IvonTextPos.transform.position;
-		Debug.Log (IvonTextPosTemp);
+		//Debug.Log (IvonTextPosTemp);
 
 		if (Stage3_Controller._Stage3_Quest [19]) {
 			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
@@ -92,7 +94,6 @@ public class Stage3_4_GameController : MonoBehaviour {
 				ModifySpeechBubble ();
                 aa.NPC_Say_yeah(name); // 공놀이 시작
 				Stage3_Controller._Stage3_Quest[10] = true;
-				Save_Script.Save_Quest_Info ();
                 quest2_start1 = false;
             }
         }
@@ -198,7 +199,6 @@ public class Stage3_4_GameController : MonoBehaviour {
 			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(0,400,0), Quaternion.identity) as GameObject;
 			quest1_gauge.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
 			Stage3_Controller._Stage3_Quest[9] = true;
-			Save_Script.Save_Quest_Info ();
 			quest1_start2 = false;
 			tempPos = player.transform.position;
 		}
@@ -253,7 +253,6 @@ public class Stage3_4_GameController : MonoBehaviour {
             }
 			a1a2 = false;
 			Stage3_Controller._Stage3_Quest[11] = true;
-			Save_Script.Save_Quest_Info ();
             quest1_gauge.SetActive(false); // running pause
         }
         
@@ -275,7 +274,6 @@ public class Stage3_4_GameController : MonoBehaviour {
             }
             a1a4 = false;
 			Stage3_Controller._Stage3_Quest[12] = true;
-			Save_Script.Save_Quest_Info ();
             quest1_gauge.SetActive(false); // running pause
         }
         
@@ -292,7 +290,6 @@ public class Stage3_4_GameController : MonoBehaviour {
         {
             Destroy(quest1_gauge); // 게이지 다달면 끝
 			Stage3_Controller._Stage3_Quest[13] = true;
-			Save_Script.Save_Quest_Info ();
         }
     }
 
@@ -349,19 +346,16 @@ public class Stage3_4_GameController : MonoBehaviour {
                 {
                     a = true;
                     Use_Item("ball1");
-					Save_Script.Save_Item_Info ();
                     return a;
                 } else if (ic._item_name_list[i] == "ball2")
                 {
                     a = true;
                     Use_Item("ball2");
-					Save_Script.Save_Item_Info ();
                     return a;
                 } else if(ic._item_name_list[i] == "ball3")
                 {
                     a = true;
                     Use_Item("ball3");
-					Save_Script.Save_Item_Info ();
                     return a;
                 }
             }

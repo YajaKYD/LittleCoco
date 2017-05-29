@@ -39,7 +39,6 @@ public class Stage3_6_GameController : Stage3_5_GameController
         {
             portal.GetComponent<BoxCollider2D>().enabled = true;
 			Stage3_Controller._Stage3_Quest[15] = true;
-			Save_Script.Save_Quest_Info ();
             Debug.Log("likebutton" + likeButton.Length);
             for (int i = 0; i < likeButton.Length; i++)
                 {

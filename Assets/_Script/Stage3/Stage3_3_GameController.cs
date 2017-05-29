@@ -63,29 +63,24 @@ public class Stage3_3_GameController : MonoBehaviour {
         aa.currLineArr[1] = 2;
         aa.NPC_Say_yeah(name);
 		Stage3_Controller._Stage3_Quest[1] = true;
-		Save_Script.Save_Quest_Info ();
     }
 
 	void Q4_start_getaBag(){
         Use_Item("ball1");
         Use_Item("ball2");
         Use_Item("ball3");//공주워온거지움
-		Save_Script.Save_Item_Info();
         aa.currLineArr[1] += 2;//이본 다음대사 치게함.
         aa.NPC_Say_yeah("이본");
         _ivon_textbox = GameObject.Find("이본_text");
 		Stage3_Controller._Stage3_Quest[2] = true;
-		Save_Script.Save_Quest_Info ();
 	}
 
     void Q5_start_goOut()
     {
         Use_Item("Dog_bag");
-		Save_Script.Save_Item_Info();
         aa.currLineArr[1] += 2;//이본 다음대사 치게함.
         aa.NPC_Say_yeah("이본");
 		Stage3_Controller._Stage3_Quest[8] = true;
-		Save_Script.Save_Quest_Info ();
         portalto3_4.GetComponent<BoxCollider2D>().enabled = true;
     }
 

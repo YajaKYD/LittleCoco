@@ -39,8 +39,15 @@ public class Stage3_1_GameController : MonoBehaviour {
 	}
 
 	void Start(){
+
+		//Stage3 Save point 1//
+		if (!Stage3_Controller._Stage3_Quest [0]) {
+			Save_Script.Save_Now_Point ();
+		}
+		//Stage3 Save point 1//
+
 		if (GetComponent<Load_data> ()._where_are_you_from == 16) {
-			Debug.Log ("from 16");
+			//Debug.Log ("from 16");
 			player.transform.position = regen_pos.position;
 		} else {
 			player.transform.position = start_pos.position;
@@ -73,7 +80,6 @@ public class Stage3_1_GameController : MonoBehaviour {
 			aa.currLineArr[0] = 0;
 			aa.NPC_Say_yeah ("코코");
 			Stage3_Controller._Stage3_Quest[0] = true;
-			Save_Script.Save_Quest_Info ();
 		}
 	}
 }

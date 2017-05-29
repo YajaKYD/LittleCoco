@@ -27,7 +27,7 @@ public class Stage3_9_GameController : MonoBehaviour {
 	IEnumerator WaitAndSound(){
 		yield return new WaitForSeconds(2);
 		rightSound.Play ();
-		Debug.Log ("right sound");
+		//Debug.Log ("right sound");
 		yield return new WaitForSeconds(2);
 		portal1.GetComponent<BoxCollider2D> ().enabled = true;
 		portal2.GetComponent<BoxCollider2D> ().enabled = true;

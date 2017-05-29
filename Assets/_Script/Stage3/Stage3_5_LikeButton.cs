@@ -19,7 +19,7 @@ public class Stage3_5_LikeButton : MonoBehaviour {
         if (GameObject.Find("Stage3_6_GameController"))
         {
             controller = GameObject.Find("Stage3_6_GameController").GetComponent<Stage3_6_GameController>();
-            Debug.Log("Find controller");
+            //Debug.Log("Find controller");
         }
     }
     	
@@ -32,19 +32,16 @@ public class Stage3_5_LikeButton : MonoBehaviour {
             if (tree.ID == 1)
             {
 				Stage3_Controller._Stage3_Quest[16] = false;
-				Save_Script.Save_Quest_Info ();
                 showHeart(0);
             }
             else if (tree.ID == 2)
             {
 				Stage3_Controller._Stage3_Quest[17] = false;
-				Save_Script.Save_Quest_Info ();
                 showHeart(1);
             }
             else if (tree.ID == 3)
             {
 				Stage3_Controller._Stage3_Quest[18] = false;
-				Save_Script.Save_Quest_Info ();
                 showHeart(2);
             }
         }
@@ -54,19 +51,16 @@ public class Stage3_5_LikeButton : MonoBehaviour {
             if (tree.ID == 1)
             {
 				Stage3_Controller._Stage3_Quest[16] = true;
-				Save_Script.Save_Quest_Info ();
                 showHeart(0);
             }
             else if (tree.ID == 2)
             {
 				Stage3_Controller._Stage3_Quest[17] = true;
-				Save_Script.Save_Quest_Info ();
                 showHeart(1);
             }
             else if (tree.ID == 3)
             {
 				Stage3_Controller._Stage3_Quest[18] = true;
-				Save_Script.Save_Quest_Info ();
                 showHeart(2);
             }
         }
@@ -76,7 +70,7 @@ public class Stage3_5_LikeButton : MonoBehaviour {
             controller.activatePortal();
         } else
         {
-            Debug.Log("not working");
+            //Debug.Log("not working");
         }
     }
     

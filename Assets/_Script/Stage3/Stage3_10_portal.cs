@@ -8,8 +8,7 @@ public class Stage3_10_portal : MonoBehaviour {
 		Debug.Log ("collision");
 		if (other.gameObject.tag == "Player") {
 			Stage3_Controller._Stage3_Quest[19] = true; //?
-			Save_Script.Save_Quest_Info ();
-			Debug.Log ("perfect");
+			//Debug.Log ("perfect");
 		}
 	}
 }

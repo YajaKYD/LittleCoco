@@ -14,8 +14,8 @@ public class Frame_check : MonoBehaviour {
 
 	void Update () {
 		aa.text = (1 / Time.deltaTime).ToString();
-		if(Input.GetKeyDown(KeyCode.Escape)){
-			Application.Quit ();
-		}
+//		if(Input.GetKeyDown(KeyCode.Escape)){
+//			Application.Quit ();
+//		}
 	}
 }

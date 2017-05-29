@@ -11,7 +11,6 @@ public class Stage3_7_earphone_message : MonoBehaviour, IPointerDownHandler {
 	public virtual void OnPointerDown(PointerEventData eventdata){
 		gameObject.SetActive (false);
 		Stage3_Controller._Stage3_Quest[20] = true;
-		Save_Script.Save_Quest_Info ();
 	}
 
 	void OnDisable(){
