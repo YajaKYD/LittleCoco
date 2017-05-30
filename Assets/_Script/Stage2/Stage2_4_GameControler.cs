@@ -214,6 +214,16 @@ public class Stage2_4_GameControler : MonoBehaviour {
 				_orgel.sprite = _day_orgel2;
 			}
 
+			if (Stage2_Controller._Stage2_Quest_intArr [1] == 2 && Stage2_Controller._Stage2_Quest[22]) {
+				Item_Controller aa = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+				for (int i = 0; i < 5; i++) {
+					if (aa._item_name_list [i] == "Clockwork") {
+						aa._consumable [i] = true;
+						break;
+					}
+				}
+			}
+
 			if (Stage2_Controller._Stage2_Quest_intArr[1] == 3) {
 //				_OrgelSound.SetActive (true);
 //				_OrgelSound.GetComponent<AudioSource> ().volume = 0.4f;

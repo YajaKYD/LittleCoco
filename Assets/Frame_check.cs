@@ -13,7 +13,7 @@ public class Frame_check : MonoBehaviour {
 	}
 
 	void Update () {
-		aa.text = (1 / Time.deltaTime).ToString();
+		aa.text = "테스트입니다. 계속 40 이하이면 말씀해주세요 : " + ((int)(1 / Time.deltaTime)).ToString();
 //		if(Input.GetKeyDown(KeyCode.Escape)){
 //			Application.Quit ();
 //		}

@@ -39,6 +39,7 @@ public class Stage3_4_GameController : MonoBehaviour {
     public GameObject portal3_5;
 	public GameObject portalEnd;
 	public GameObject background_far;
+	public GameObject background_far1;
 	public Sprite background_far_img;
 
     void Awake()
@@ -48,6 +49,8 @@ public class Stage3_4_GameController : MonoBehaviour {
         player.transform.position = start_pos.position;
 		_Ivon_Position = GameObject.FindWithTag("NPC").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
+
+		player.transform.localScale = new Vector3 (1f, 1f, player.transform.localScale.z);
     }
 
 	void Start(){
@@ -74,6 +77,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 
 		if (Stage3_Controller._Stage3_Quest [19]) {
 			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
+			background_far1.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 		}
 	}
     
@@ -331,6 +335,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 			Debug.Log ("a8a5");
 			portal3_5.GetComponent<BoxCollider2D> ().enabled = false;
 			portalEnd.GetComponent<BoxCollider2D> ().enabled = true;
+			Selecting_stage._what_stage_now_cleared = 3;//4스테이지 오픈시킴
 			_Ivon_Position.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			a8 = false;
 		}

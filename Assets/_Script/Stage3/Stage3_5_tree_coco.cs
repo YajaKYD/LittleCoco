@@ -75,7 +75,6 @@ public class Stage3_5_tree_coco : MonoBehaviour {
 		if (!instructQuest[0])
 		{
 			instructQuest[0] = true;
-			Save_Script.Save_Quest_Info ();
 			ti.NPC_Say_yeah("별감"); // 나무를 만지면 흔적을 볼 수 있어(설명1)
 		} else if (!postingOn && instructQuest[0] && closeToTree)
 		{

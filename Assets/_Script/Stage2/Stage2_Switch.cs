@@ -23,11 +23,13 @@ public class Stage2_Switch : MonoBehaviour {
 				_Switch.SetActive (true);
 				_LightFromSide.SetActive (false);
 
-				Item_Controller aa = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-				for (int i = 0; i < 5; i++) {
-					if (aa._item_name_list [i] == "Clockwork") {
-						aa._consumable [i] = true;
-						break;
+				if (Stage2_Controller._Stage2_Quest [18]) {
+					Item_Controller aa = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+					for (int i = 0; i < 5; i++) {
+						if (aa._item_name_list [i] == "Clockwork") {
+							aa._consumable [i] = true;
+							break;
+						}
 					}
 				}
 				Stage2_Controller._Stage2_Quest[22] = true;

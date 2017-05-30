@@ -1,25 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp-firstpass.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Script\Stage1\Stage1_5_GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Script\Stage2\Stage2_Switch.cs">
     <Files>
       <File FileName="Assets\_Script\Load_data.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Script\Main_Scene\MainScene_start.cs" Line="75" Column="4" />
+      <File FileName="Assets\_Script\Main_Scene\MainScene_start.cs" Line="79" Column="18" />
       <File FileName="Assets\_Script\Main_Scene\Setting_Diary.cs" Line="1" Column="1" />
       <File FileName="Assets\_Script\Main_Scene\Main_Select_Stage_Controller.cs" Line="1" Column="1" />
       <File FileName="Assets\_Script\Main_Scene\Selecting_stage.cs" Line="1" Column="1" />
       <File FileName="Assets\_Script\Main_Scene\MenuOnOff.cs" Line="14" Column="32" />
-      <File FileName="Assets\_Script\Main_Scene\AudioVolumeSetting.cs" Line="16" Column="8" />
-      <File FileName="Assets\_Script\Stage1\Stage1_2_GameController.cs" Line="66" Column="13" />
-      <File FileName="Assets\_Script\Stage1\Stage1_5_GameController.cs" Line="125" Column="3" />
-      <File FileName="Assets\_Script\Stage1\Stage1_6_GameController.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_1_GameController.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_2_GameController.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_3_GameController.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_4_GameControler.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_4_Collider.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_ending.cs" Line="14" Column="20" NotebookId="1" />
-      <File FileName="Assets\_Script\Stage2\Stage2_Switch.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage2\Stage2_4_GameControler.cs" Line="223" Column="7" />
+      <File FileName="Assets\_Script\Stage2\Stage2_2_GameController.cs" Line="23" Column="31" />
+      <File FileName="Assets\_Script\Stage2\Stage2_3_GameController.cs" Line="134" Column="4" />
+      <File FileName="Assets\_Script\Stage1\Stage1_6_GameController.cs" Line="80" Column="22" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage2\Stage2_1_GameController.cs" Line="43" Column="90" NotebookId="1" />
       <File FileName="Assets\_Script\Stage1\Stage1_1x_GameController.cs" Line="42" Column="11" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_4_GameController.cs" Line="338" Column="51" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_5_GameController.cs" Line="57" Column="10" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_6_GameController.cs" Line="26" Column="33" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage2\Stage2_Switch.cs" Line="13" Column="4" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
