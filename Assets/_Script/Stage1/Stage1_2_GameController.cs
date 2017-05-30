@@ -63,7 +63,7 @@ public class Stage1_2_GameController : MonoBehaviour {
 	IEnumerator Mirror_Effect(){
 		float i = 0f;
 		while(true) {
-			i += 0.08f;
+			i += 0.15f;
 			//print (broken_bridge);
 			broken_bridge.size = new Vector2 (i, 1.59f);
 			yield return null;

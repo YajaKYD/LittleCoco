@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stage1_5_GameController : MonoBehaviour {
 
-	public BoxCollider2D[] transparent_walls;
+	public BoxCollider2D transparent_walls;
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -13,14 +13,17 @@ public class Stage1_5_GameController : MonoBehaviour {
 	public Mirror_Socket_Controller[] msc;
 	public GameObject[] xx;
 
+	private Moving_by_RLbuttons mbr;
 	//public static bool stage1_5_mirror_or_not_1 = false;
 	//public static bool stage1_5_mirror_or_not_2 = false;
 	//public static bool stage1_5_mirror_or_not_3 = false;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
+		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
+		transparent_walls = GetComponent<BoxCollider2D> ();
 //		msc = GameObject.Find ("Mirror_Socket").GetComponent<Mirror_Socket_Controller> ();
 //		o_l = GameObject.Find ("Mirror_Socket").GetComponent<Outline> ();
 //		o_l.used_or_not_for_retry = true;
@@ -39,7 +42,7 @@ public class Stage1_5_GameController : MonoBehaviour {
 
 		if (Stage1_Controller._Stage1_Quest[6]) {
 			xx[1].SetActive(false);
-			transparent_walls[0].enabled = false;
+			transparent_walls.enabled = false;
 			msc [0].mirror_in_ornot = false;
 			Destroy (msc [0].gameObject);
 		}
@@ -59,13 +62,13 @@ public class Stage1_5_GameController : MonoBehaviour {
 	}
 
 
-	void LateUpdate(){
+	void Update(){
 		//static으로 고정필요
 
 		if (msc[0].mirror_in_ornot) {//거울이 있을 때
 			//xx[0].SetActive(false);
 			StartCoroutine(Mirror_Effect(xx[0].GetComponent<SpriteRenderer>()));
-			transparent_walls[0].enabled = false;
+			transparent_walls.enabled = false;
 			msc [0].mirror_in_ornot = false;
 			Destroy (msc [0].gameObject);
 			player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
@@ -87,6 +90,14 @@ public class Stage1_5_GameController : MonoBehaviour {
 //			Destroy (msc [2].gameObject);
 //			Stage1_Controller._Stage1_Quest[8] = true;
 //		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject == player) {
+			//말하고 뒤로 자동으로 움직임?
+			mbr.enabled = false;
+			StartCoroutine ("Backback");
+		}
 	}
 
 	void GhostRemove(){
@@ -111,5 +122,15 @@ public class Stage1_5_GameController : MonoBehaviour {
 			yield return null;
 		}
 		//broken_bridge.
+	}
+
+	IEnumerator Backback(){
+		for (int i = 0; i < 30; i++) {
+			mbr.Moving_Right (8f);
+			yield return null;
+		}
+		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+		aa.NPC_Say_yeah ("코코");
+		mbr.enabled = true;     
 	}
 }

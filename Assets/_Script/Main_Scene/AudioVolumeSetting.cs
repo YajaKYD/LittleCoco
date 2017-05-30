@@ -13,7 +13,7 @@ public class AudioVolumeSetting : MonoBehaviour {
 	}
 
 	void Update(){
-		if (tog.isOn) {
+		if (!tog.isOn) {
 			AudioListener.volume = 0f;
 		} else {
 			AudioListener.volume = sl.value;
