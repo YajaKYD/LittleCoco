@@ -11,23 +11,30 @@ public class Stage4_1_GameController : MonoBehaviour {
 	private GameObject player;
 	private Text_Importer ti;
 	private Item_Controller ic;
+	private GameObject textbox_Ivon;
+	private GameObject textbox_Coco;
+	private GameObject textbox_Star;
+	private GameObject textbox_Racoon;
 
-	private bool a1a1 = false;
-	private bool a1a2 = false;
-	private bool a1a3 = false;
+	private bool q2_1 = false;
+	private bool q2_2 = false;
+	private bool q3_1 = false;
 
-	private bool a0a0 = false;
-	private bool a0a1 = false;
+	private bool q2_0 = false;
+	private bool q3_0 = false;
 
 	void Awake(){
 		player = GameObject.FindWithTag ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
-		//ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-		//s2c = GameObject.Find ("Stage2_Controller").GetComponent<Stage2_Controller> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		if (!Stage4_Controller._stage4_q1) {
+		textbox_Coco = ti._text_boxes [0];
+		textbox_Star = ti._text_boxes [1];
+		textbox_Racoon = ti._text_boxes [2];
+		textbox_Ivon = ti._text_boxes [3];
+
+		if (!Stage4_Controller.q1) {
 			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
 		}
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
@@ -37,103 +44,84 @@ public class Stage4_1_GameController : MonoBehaviour {
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 26) {
 			player.transform.position = regen_pos.position;
+			Destroy(GameObject.FindWithTag ("NPC"));
 		} else {
 			ti.NPC_Say_yeah ("이본");
-		}
-
-		if (Stage4_Controller._stage4_q1) {
-			GameObject ivon = GameObject.FindWithTag ("NPC");
-			ivon.SetActive (false);
 		}
 	}
 
 	void Update(){
-		if (!Stage4_Controller._stage4_q1) {
+		if (!Stage4_Controller.q1) {
 			Q1_SayGoodnight ();
 		}
 
-		if (Stage4_Controller._stage4_q1 && !Stage4_Controller._stage4_q2) {
+		if (Stage4_Controller.q1 && !Stage4_Controller.q2) {
 			Q2_CheckIvon ();
 		}
 
-		if (Stage4_Controller._stage4_q2 && Stage4_Controller._stage4_q3 && !Stage4_Controller._stage4_q4) {
+		if (Stage4_Controller.q3 && !Stage4_Controller.q4) {
 			Q3_SayandReturn ();
 		}
 
-		if (Stage4_Controller._stage4_q7 && !Stage4_Controller._stage4_q8) {
+		if (Stage4_Controller.q7 && !Stage4_Controller.q8) {
 			Q5_PutDoll ();
 		}
-
-
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.CompareTag ("Player") && Stage4_Controller._stage4_q2 && !Stage4_Controller._stage4_q3) {
-			Stage4_Controller._stage4_q3 = true;
-			Save_Script.Save_Quest_Info ();
+		if (other.CompareTag ("Player") && Stage4_Controller.q2 && !Stage4_Controller.q3) {
+			Stage4_Controller.q3 = true; // check if ivon sleep
 		}
 
-		if (other.CompareTag ("Player") && Stage4_Controller._stage4_q8 && !Stage4_Controller._stage4_q9) {
-			Stage4_Controller._stage4_q9 = true;
-			Save_Script.Save_Quest_Info ();
+		if (other.CompareTag ("Player") && Stage4_Controller.q8 && !Stage4_Controller.q9) {
+			Stage4_Controller.q9 = true;
 			print ("Check Again");
 		}
 	}
 
 	void Q1_SayGoodnight(){
-		if (!ti._text_boxes [3].activeSelf) {
-			GameObject ivon = GameObject.FindWithTag ("NPC");
-			ivon.SetActive (false);
-			Save_Script.Save_Dialogue_Info ();
-			Stage4_Controller._stage4_q1 = true;
-			Save_Script.Save_Quest_Info ();
+		if (!textbox_Ivon.activeSelf) {
+			Destroy(GameObject.FindWithTag ("NPC"));
+			Stage4_Controller.q1 = true;
 		}
 	}
 
 	void Q2_CheckIvon(){
-		if (!a0a0) {
+		if (!q2_0) {
+			ti.NPC_Say_yeah ("별감"); // 
+			q2_0 = true;
+		}
+		if (q2_0 && !textbox_Star.activeSelf && !q2_1) {
+			ti.NPC_Say_yeah ("코코"); // ivon
+			q2_1 = true;
+		}
+		if (q2_1 && !textbox_Coco.activeSelf && !q2_2) {
+			ti.currLineArr [1] += 2; // next line
 			ti.NPC_Say_yeah ("별감");
-			Save_Script.Save_Dialogue_Info ();
-			a0a0 = true;
+			q2_2 = true;
 		}
-		if (!ti._text_boxes [1].activeSelf && !a1a1) {
-			ti.NPC_Say_yeah ("코코");
-			Save_Script.Save_Dialogue_Info ();
-			a1a1 = true;
-		}
-		if (a1a1 && !ti._text_boxes [0].activeSelf && !a1a2) {
-			ti.currLineArr [1] += 2;
-			ti.NPC_Say_yeah ("별감");
-			Save_Script.Save_Dialogue_Info ();
-			a1a2 = true;
-		}
-		if (a1a2 && !ti._text_boxes [1].activeSelf) {
-			Stage4_Controller._stage4_q2 = true;
-			Save_Script.Save_Quest_Info ();
+		if (q2_2 && !textbox_Star.activeSelf) { // end of talking
+			Stage4_Controller.q2 = true;
 		}
 	}
 
 	void Q3_SayandReturn(){
-		if (!a0a1) {
-			ti.currLineArr [0] += 2;
-			ti.NPC_Say_yeah ("코코");
-			Save_Script.Save_Dialogue_Info ();
-			a0a1 = true;
+		if (!q3_0) {
+			ti.currLineArr [0] += 2; 
+			ti.NPC_Say_yeah ("코코"); // music
+			q3_0 = true;
 		}
-		if (a0a1 && !ti._text_boxes [0].activeSelf && !a1a3) {
+		if (q3_0 && !textbox_Coco.activeSelf && !q3_1) {
 			ti.currLineArr [1] += 2;
-			ti.NPC_Say_yeah ("별감");
-			Save_Script.Save_Dialogue_Info ();
-			a1a3 = true;
-			Stage4_Controller._stage4_q4 = true;
-			Save_Script.Save_Quest_Info ();
+			ti.NPC_Say_yeah ("별감"); // ivon listening music
+			q3_1 = true;
+			Stage4_Controller.q4 = true;
 		}
 	}
 
 	void Q5_PutDoll(){
 		if (ic._now_used_item == "StarDoll") {
-			Stage4_Controller._stage4_q8 = true;
-			Save_Script.Save_Quest_Info ();
+			Stage4_Controller.q8 = true;
 			Light.SetActive (false);
 			print ("Change Image with doll and bed");
 		}
