@@ -30,16 +30,16 @@ public class Stage4_2_GameController : MonoBehaviour {
 
 	void Start(){
 
-		if (Stage4_Controller._stage4_q6) {
+		if (Stage4_Controller.q6) {
 			Star.enabled = true;
 		}
-		if (Stage4_Controller._stage4_q7) {
+		if (Stage4_Controller.q7) {
 			Destroy (Star.gameObject);
 		}
 	}
 
 	void Update(){
-		if (Stage4_Controller._stage4_q6 && !Stage4_Controller._stage4_q7) {
+		if (Stage4_Controller.q6 && !Stage4_Controller.q7) {
 			Q4_GetaDoll ();
 		}
 	}
@@ -47,7 +47,7 @@ public class Stage4_2_GameController : MonoBehaviour {
 	void Q4_GetaDoll(){
 		for (int i = 0; i < ic._item_list.Length; i++) {
 			if (ic._item_name_list [i] == "StarDoll") {
-				Stage4_Controller._stage4_q7 = true;
+				Stage4_Controller.q7 = true;
 				Save_Script.Save_Quest_Info ();
 				break;
 			}
