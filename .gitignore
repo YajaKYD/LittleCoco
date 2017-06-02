@@ -1,5 +1,8 @@
 # General #
 Library/
+*/Library/
+**/Library/
+/Library/
 *.info
 *.userprefs
 *.meta

@@ -56,7 +56,11 @@ public class Main_Select_Stage_Controller : MonoBehaviour {
 		}
 
 
-		bp.CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared") + 1;
+		if (PlayerPrefs.GetInt ("Stage_Now_Cleared") != 5) {
+			bp.CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared") + 1;
+		} else {
+			bp.CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared");
+		}
 	}
 
 	void Update(){

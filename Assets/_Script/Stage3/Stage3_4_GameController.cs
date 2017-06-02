@@ -337,6 +337,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 			portalEnd.GetComponent<BoxCollider2D> ().enabled = true;
 			Selecting_stage._what_stage_now_cleared = 3;//4스테이지 오픈시킴
 			_Ivon_Position.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+			_Ivon_Position.gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 			a8 = false;
 		}
 			

@@ -39,7 +39,11 @@ public class Setting_Diary : MonoBehaviour {
 				item_canvas.GetComponent<Canvas> ().enabled = false;
 			}
 			Diary_Canvas.SetActive (true);
-			Diary_Canvas.GetComponentInChildren<BookPro> ().CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared") + 1;
+			if (PlayerPrefs.GetInt ("Stage_Now_Cleared") != 5) {
+				Diary_Canvas.GetComponentInChildren<BookPro> ().CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared") + 1;
+			} else { //page 6은 없으므로 5에 고정
+				Diary_Canvas.GetComponentInChildren<BookPro> ().CurrentPaper = PlayerPrefs.GetInt ("Stage_Now_Cleared");
+			}
 		}
 	}
 
