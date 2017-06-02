@@ -6,18 +6,19 @@ public class Stage4_Controller : MonoBehaviour {
 	
 	public Item_Controller ic;
 
-	//public static bool[] _Stage4_Quest = new bool[20];
+	public static bool[] q = new bool[20];
+	public static bool[] q4 = new bool[3];
 
-	public static bool q1 = false; // ivon go to sleep
-	public static bool q2 = false;
-	public static bool q3 = false;
-	public static bool q4 = false;
-	public static bool q5 = false;
-	public static bool q6 = false;
-	public static bool q7 = false;
-	public static bool q8 = false;
-	public static bool q9 = false;
-	public static bool q10 = false;
+//	public static bool q1 = false; // ivon go to sleep
+//	public static bool q2 = false;
+//	public static bool q3 = false;
+//	public static bool q4 = false;
+//	public static bool q5 = false;
+//	public static bool q6 = false;
+//	public static bool q7 = false;
+//	public static bool q8 = false;
+//	public static bool q9 = false;
+//	public static bool q10 = false;
 
 	void Enable(){
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();

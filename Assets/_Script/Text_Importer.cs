@@ -137,6 +137,7 @@ public class Text_Importer : MonoBehaviour {
 			dialogArr [i] = new List<string> ();
 			currLineArr [i] = 0;
 			nameArr [i] = _textLines [line++];
+			Debug.Log (nameArr [i]);
 			_text_in_boxes [i] = GameObject.Find (nameArr [i] + "_text").GetComponent<Text> ();
 
 
