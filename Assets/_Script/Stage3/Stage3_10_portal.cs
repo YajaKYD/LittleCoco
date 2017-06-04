@@ -9,6 +9,7 @@ public class Stage3_10_portal : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			Stage3_Controller._Stage3_Quest[19] = true; //?
 			//Debug.Log ("perfect");
+
 		}
 	}
 }

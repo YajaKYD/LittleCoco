@@ -20,10 +20,12 @@ public class Setting_Diary : MonoBehaviour {
 
 	void Update(){
 		if (SceneManager.GetActiveScene ().buildIndex < 11) {
-			img.color = new Color (1, 1, 1, 0.5f);
+			GetComponentInChildren<Text>().color = new Color (1, 1, 1, 0.5f);
+			//img.color = new Color (1, 1, 1, 0.5f);
 			but.enabled = false;
 		} else {
-			img.color = new Color (1, 1, 1, 1);
+			GetComponentInChildren<Text>().color = new Color (1, 1, 1, 1);
+			//img.color = new Color (1, 1, 1, 1);
 			but.enabled = true;
 		}
 	}

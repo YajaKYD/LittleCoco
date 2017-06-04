@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage3_1_GameController : MonoBehaviour {
 
@@ -59,6 +60,15 @@ public class Stage3_1_GameController : MonoBehaviour {
     }
 
 	void Update(){
+
+		//개발용//
+		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.W)) {
+			print ("goto3maze");
+			SceneManager.LoadScene (21);
+		}
+		//
+
+
 		if (!Stage3_Controller._Stage3_Quest[0]) {
 			Q1_StartTalk ();
 		}
