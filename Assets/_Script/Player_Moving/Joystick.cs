@@ -29,6 +29,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 			//print (inputVetcor.magnitude);
 			//move joystick Img
 			joystickImg.rectTransform.anchoredPosition = new Vector3(inputVetcor.x * (bgImg.rectTransform.sizeDelta.x/2), inputVetcor.z * (bgImg.rectTransform.sizeDelta.y/2));
+			mbr.now_Draged = true;
 		}
 	}
 
@@ -39,6 +40,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 	public virtual void OnPointerUp(PointerEventData ped){
 		inputVetcor = Vector3.zero;
 		joystickImg.rectTransform.anchoredPosition = Vector3.zero;
+		mbr.now_Draged = false;
 	}
 
 	public void FixedUpdate(){

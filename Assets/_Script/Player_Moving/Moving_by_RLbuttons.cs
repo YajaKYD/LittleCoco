@@ -15,6 +15,52 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 	public bool in_air = false;
 	private bool check_before_jump = false;
 
+	//animation//
+	public CocoState state = CocoState.Idle;
+	public AnimateSprite[] ani;
+	public bool now_Draged = false;
+
+	public void SetState(CocoState newState){
+		state = newState;
+		for (int i = 0; i < ani.Length; i++) {
+			ani [i].enabled = false;
+		}
+		ani [(int)state].enabled = true;
+	}
+
+	public void OnEnable(){
+		StartCoroutine ("FSMMain");
+	}
+
+	IEnumerator FSMMain(){
+		while (true) {
+			yield return StartCoroutine (state.ToString ());
+		}
+	}
+
+	public IEnumerator Idle(){
+		//enter
+		while (state == CocoState.Idle) {
+			yield return null;
+			//execute
+		}
+		//exit
+	}
+
+	public IEnumerator Run(){
+		while (state == CocoState.Run) {
+			yield return null;
+			if (!now_Draged) {
+				SetState (CocoState.Idle);
+			}
+		}
+//		if (before_position == (Vector2)this.transform.position) {
+//			SetState(CocoState.Idle);
+//		}
+//		before_position = (Vector2)this.transform.position;
+
+	}
+
 	void Awake () {
 		player_rb = GetComponent<Rigidbody2D> ();
 		before_position = (Vector2)this.transform.position;
@@ -37,59 +83,30 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 			print ("Delete All data");
 			PlayerPrefs.DeleteAll ();
 		}
+		//for test//
 
-		if (Input.GetMouseButton (1) && Input.GetKey (KeyCode.P) && Input.GetKeyDown (KeyCode.O)) {
-			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-		}
-		//테스트용//
-		/*
-		//개발용//
-		if (Input.GetAxis ("Horizontal") > 0) {
-			Moving_Right (20f);
-		}
-		if (Input.GetAxis ("Horizontal") < 0) {
-			Moving_left (-20f);
-		}
-		if (Input.GetButton("Jump")){
-			Jumping ();
-		}
-		//개발용//
-		*/
 		if (click_to_get) {
 			Moving_to_get ();
 		}
-
-		/*
-		if (transform.position.y > before_jump_position.y + 2f) {
-			player_rb.velocity = Vector2.down;
-		}
-		*/
-	}
-
-	void LateUpdate(){
-		//움직일때만 발이 움직임//
-		if (before_position == (Vector2)this.transform.position) {
-			this.GetComponent<AnimateSprite> ().enabled = false;
-		}
-		before_position = (Vector2)this.transform.position;
-		////////////////////////
 	}
 
 	public void Moving_left(float speed){ //왼쪽 이동
+		SetState(CocoState.Run);
 		transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));
 		//transform.localScale = new Vector3 (-1f, 1f, 1f); //왼쪽보는 이미지
 		this.transform.position = (Vector2)this.transform.position + new Vector2(speed * Time.deltaTime,0f);
 		click_to_get = false;
 
 		//player_rb.AddForce (new Vector2(speed * 20f * Time.deltaTime,0));
-		this.GetComponent<AnimateSprite> ().enabled = true;
+		//this.GetComponent<AnimateSprite> ().enabled = true;
 	}
 	public void Moving_Right(float speed){ //오른쪽 이동
+		SetState(CocoState.Run);
 		transform.localRotation = Quaternion.Euler(new Vector3(0f,0f,0f));
 		//transform.localScale = new Vector3 (1f, 1f, 1f);//오른쪽보는 이미지
 		this.transform.position = (Vector2)this.transform.position + new Vector2(speed * Time.deltaTime,0f);
 		click_to_get = false;
-		this.GetComponent<AnimateSprite> ().enabled = true;
+		//this.GetComponent<AnimateSprite> ().enabled = true;
 	}
 
 	public void Jumping(){
@@ -121,14 +138,17 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		this.GetComponent<AnimateSprite> ().enabled = true;
 		*/
 	}
-	public void Stop_Animation(){
-		//this.GetComponent<Animator> ().enabled = false;
-	}
+
+
+
+
+
 	public void Click_item_to_get(Vector2 item_position){
 		item_position_to_get = new Vector2(item_position.x, this.transform.position.y);
 		click_to_get = true;
 	}
 	void Moving_to_get(){
+		SetState(CocoState.Run);
 		if (transform.position.x > item_position_to_get.x) {//아이템이 왼쪽
 			transform.position = Vector2.MoveTowards (transform.position, item_position_to_get, 8f * Time.deltaTime);
 			transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));

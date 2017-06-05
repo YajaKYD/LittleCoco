@@ -23,7 +23,7 @@ public class AnimateSprite : MonoBehaviour {
 			vElapseTime += Time.deltaTime;
 			if (vElapseTime >= vCptTime) {
 
-				if (vCptSprite == vSpriteList.Count - 1)
+				if (vCptSprite == vSpriteList.Count)
 					vCptSprite = 0;
 			
 				vRenderer.sprite = vSpriteList [vCptSprite];

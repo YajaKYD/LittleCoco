@@ -196,6 +196,16 @@ public class Stage3_4_GameController : MonoBehaviour {
 		}
     }
 
+	void OnDisable(){
+		if (Stage3_Controller._Stage3_Quest [19] && !_Ivon_Position.gameObject.GetComponent<SpriteRenderer> ().enabled) {
+			Destroy (GameObject.FindWithTag ("Controller"));
+			Destroy (GameObject.FindWithTag ("Dialogue"));
+			Selecting_stage._what_stage_now_cleared = 3;//4스테이지 오픈시킴
+			PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
+			print ("Stage3 End");
+		}
+	}
+
 
 	void Q6_Running_Start(){
 		if (quest1_start2 && !ivon_textbox.activeSelf)
@@ -335,7 +345,6 @@ public class Stage3_4_GameController : MonoBehaviour {
 			Debug.Log ("a8a5");
 			portal3_5.GetComponent<BoxCollider2D> ().enabled = false;
 			portalEnd.GetComponent<BoxCollider2D> ().enabled = true;
-			Selecting_stage._what_stage_now_cleared = 3;//4스테이지 오픈시킴
 			_Ivon_Position.gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			_Ivon_Position.gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 			a8 = false;

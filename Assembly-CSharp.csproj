@@ -81,6 +81,7 @@
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Test_textposition.cs" />
      <Compile Include="Assets\_Script\NewBehaviourScript.cs" />
      <Compile Include="Assets\_Script\PlayerPrefsX.cs" />
+     <Compile Include="Assets\_Script\Player_Moving\CocoState.cs" />
      <Compile Include="Assets\_Script\Player_Moving\Joystick.cs" />
      <Compile Include="Assets\_Script\Player_Moving\Jump_MouseDown.cs" />
      <Compile Include="Assets\_Script\Player_Moving\Moving_by_RLbuttons.cs" />

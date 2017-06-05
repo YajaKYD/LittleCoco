@@ -33,6 +33,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 			//print("whiteout");
 
 
+			GameObject.FindWithTag("Player").transform.localScale = new Vector3 (1f, 1f, 1f);
 			GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject;
 			_park.SetActive (true);
 

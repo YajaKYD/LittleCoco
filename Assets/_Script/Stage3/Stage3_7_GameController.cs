@@ -42,6 +42,8 @@ public class Stage3_7_GameController : MonoBehaviour {
 			Destroy (GameObject.Find ("quest12_likelist(Clone)"));
 		}
 			
+		GameObject.FindWithTag ("Player").transform.localScale = new Vector3 (0.6f, 0.6f, 1f);
+
 		if (!Stage3_Controller._Stage3_Quest[20]) {
 			Save_Script.Save_Now_Point();
 			earphone_message = Instantiate (earphone_message, Vector3.zero, Quaternion.identity) as GameObject;
