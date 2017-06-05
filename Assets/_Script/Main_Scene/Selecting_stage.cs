@@ -26,6 +26,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 		mssc = GameObject.Find ("Stage_select_controller").GetComponent<Main_Select_Stage_Controller> ();
 		xxx = false;
 		aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+		Debug.Log ("find dialouge");
 
 		if (_what_stage_now_cleared == 0 && this_num == 0) {
 			SceneManager.LoadScene (4);
@@ -92,6 +93,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
+				aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> (); // why???? only this one????
 				aa.Import (25);
 				break;
 			case 4:

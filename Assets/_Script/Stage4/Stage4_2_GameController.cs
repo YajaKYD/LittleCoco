@@ -30,24 +30,24 @@ public class Stage4_2_GameController : MonoBehaviour {
 
 	void Start(){
 
-		if (Stage4_Controller.q6) {
+		if (Stage4_Controller.q[5]) {
 			Star.enabled = true;
 		}
-		if (Stage4_Controller.q7) {
+		if (Stage4_Controller.q[6]) {
 			Destroy (Star.gameObject);
 		}
 	}
 
 	void Update(){
-		if (Stage4_Controller.q6 && !Stage4_Controller.q7) {
-			Q4_GetaDoll ();
+		if (Stage4_Controller.q[5] && !Stage4_Controller.q[6]) {
+			Q6_GetaDoll ();
 		}
 	}
 
-	void Q4_GetaDoll(){
+	void Q6_GetaDoll(){
 		for (int i = 0; i < ic._item_list.Length; i++) {
 			if (ic._item_name_list [i] == "StarDoll") {
-				Stage4_Controller.q7 = true;
+				Stage4_Controller.q[6] = true;
 				Save_Script.Save_Quest_Info ();
 				break;
 			}
