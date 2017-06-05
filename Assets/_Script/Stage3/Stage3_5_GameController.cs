@@ -22,6 +22,8 @@ public class Stage3_5_GameController : MonoBehaviour {
 	public GameObject background_far1;
 	public Sprite background_far_img;
 
+	public GameObject logo;
+
     protected void Awake()
     {
         player = GameObject.Find("Player");
@@ -57,6 +59,9 @@ public class Stage3_5_GameController : MonoBehaviour {
         }
 
 		if (Stage3_Controller._Stage3_Quest[19]) {
+
+			logo.SetActive (false);
+
 			portal3_4.GetComponent<BoxCollider2D> ().enabled = true;
 			portal3_6.GetComponent<BoxCollider2D> ().enabled = false;
 			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
