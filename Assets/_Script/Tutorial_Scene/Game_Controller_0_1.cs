@@ -37,7 +37,11 @@ public class Game_Controller_0_1 : MonoBehaviour {
 		portal = GameObject.Find ("Portal");
 		_t_i = GameObject.Find ("Dialogue_Canvas_").GetComponent<Text_Importer> ();
 		i_c = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+		bool musictog = PlayerPrefsX.GetBool ("Music_ONOFF");
+		float musicsl = PlayerPrefs.GetFloat ("Music_Volume");
 		PlayerPrefs.DeleteAll ();
+		PlayerPrefsX.SetBool ("Music_ONOFF", musictog);
+		PlayerPrefs.SetFloat ("Music_Volume", musicsl);
         tc = GameObject.FindWithTag("Controller").GetComponent<Tutorial_Controller>();
     }
 
