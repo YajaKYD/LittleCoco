@@ -45,7 +45,7 @@ public class Main_Select_Stage_Controller : MonoBehaviour {
 	void Start(){
 
 		//SS save//
-		print ("SS Saved");
+		//print ("SS Saved");
 		Save_Script.Save_Now_Point ();
 		PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
 		//SS save//

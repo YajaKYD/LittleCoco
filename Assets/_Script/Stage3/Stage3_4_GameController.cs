@@ -199,7 +199,8 @@ public class Stage3_4_GameController : MonoBehaviour {
 	void OnDisable(){
 		if (Stage3_Controller._Stage3_Quest [19] && !_Ivon_Position.gameObject.GetComponent<SpriteRenderer> ().enabled) {
 			Destroy (GameObject.FindWithTag ("Controller"));
-			Destroy (GameObject.FindWithTag ("Dialogue"));
+			Destroy (aa.gameObject);
+			Debug.Log ("stage3 dialouge destroyed");
 			Selecting_stage._what_stage_now_cleared = 3;//4스테이지 오픈시킴
 			PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
 			print ("Stage3 End");
