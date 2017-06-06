@@ -29,8 +29,13 @@ public class Item_Controller : MonoBehaviour {
 	public TurnOnOffItemList onofflist;
 	public bool cant_pick_during_using; //아이템 사용을 위해 활성화 시 다른 아템을 먹을 수 없다.
 
+	//ani//
+	public Moving_by_RLbuttons mbr;
+	//ani//
+
 	void Awake(){
-		
+
+		mbr = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
 		onofflist = GetComponentInChildren<TurnOnOffItemList> ();
 		DontDestroyOnLoad (transform.gameObject);
 		cant_pick_during_using = true;
@@ -52,6 +57,8 @@ public class Item_Controller : MonoBehaviour {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void Get_Item(GameObject item ,string item_name, Sprite item_image, bool usable, string interaction, bool consumable, string explanation){
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		mbr.SetState (CocoState.GetItem);
 
 		if (cant_pick_during_using) {
 			_getItem.Play ();
@@ -99,6 +106,8 @@ public class Item_Controller : MonoBehaviour {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public bool Get_Item_Auto(int _item_numbering, Sprite item_image){
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		mbr.SetState (CocoState.GetItem);
 
 		if (cant_pick_during_using) {
 			_getItem.Play ();
