@@ -69,9 +69,11 @@
      <Compile Include="Assets\_Script\Load_data.cs" />
      <Compile Include="Assets\_Script\Main_Scene\AudioVolumeSetting.cs" />
      <Compile Include="Assets\_Script\Main_Scene\MainScene_start.cs" />
+     <Compile Include="Assets\_Script\Main_Scene\Main_GameStart.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Main_Select_Stage_Controller.cs" />
      <Compile Include="Assets\_Script\Main_Scene\MenuOnOff.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Panel_off_when_clickOutside.cs" />
+     <Compile Include="Assets\_Script\Main_Scene\Save_Setting.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Selecting_stage.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Setting_Diary.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Click_to_Close.cs" />

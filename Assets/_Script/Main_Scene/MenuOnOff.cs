@@ -3,11 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement; 
+using UnityEngine.UI;
 
 public class MenuOnOff : MonoBehaviour, IPointerDownHandler {
 
 	public GameObject _MenuPanel;
 	public GameObject _exitpanel;
+
+	public Toggle tog;
+	public Slider sl;
+
+	void Awake(){
+
+		if (PlayerPrefsX.GetBool ("Music_ONOFF")) {
+			AudioListener.volume = PlayerPrefs.GetFloat ("Music_Volume");
+			tog.isOn = true;
+		} else {
+			AudioListener.volume = 0f;
+			tog.isOn = false;
+		}
+
+		sl.value = PlayerPrefs.GetFloat ("Music_Volume");
+
+		print ("loadsetting");
+	}
 
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Escape)){
