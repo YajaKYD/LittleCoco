@@ -54,11 +54,34 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 				SetState (CocoState.Idle);
 			}
 		}
-//		if (before_position == (Vector2)this.transform.position) {
-//			SetState(CocoState.Idle);
-//		}
-//		before_position = (Vector2)this.transform.position;
+	}
 
+	public IEnumerator Jump(){
+		//enter
+		while (state == CocoState.Jump) {
+			yield return null;
+			//execute
+			if (player_rb.velocity == Vector2.zero) {
+				SetState (CocoState.Idle);
+			}
+		}
+		//exit
+	}
+
+	public IEnumerator GetItem(){
+		//enter
+		float timenow = 0f;
+		this.enabled = false;
+		while (state == CocoState.GetItem) {
+			yield return null;
+			//execute
+			timenow += Time.deltaTime;
+			if (timenow >= 1f) {
+				SetState (CocoState.Idle);
+				this.enabled = true;
+			}
+		}
+		//exit
 	}
 
 	void Awake () {
@@ -91,7 +114,9 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 	}
 
 	public void Moving_left(float speed){ //왼쪽 이동
-		SetState(CocoState.Run);
+		if (state == CocoState.Idle) {
+			SetState (CocoState.Run);
+		}
 		transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));
 		//transform.localScale = new Vector3 (-1f, 1f, 1f); //왼쪽보는 이미지
 		this.transform.position = (Vector2)this.transform.position + new Vector2(speed * Time.deltaTime,0f);
@@ -101,7 +126,9 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		//this.GetComponent<AnimateSprite> ().enabled = true;
 	}
 	public void Moving_Right(float speed){ //오른쪽 이동
-		SetState(CocoState.Run);
+		if (state == CocoState.Idle) {
+			SetState (CocoState.Run);
+		}
 		transform.localRotation = Quaternion.Euler(new Vector3(0f,0f,0f));
 		//transform.localScale = new Vector3 (1f, 1f, 1f);//오른쪽보는 이미지
 		this.transform.position = (Vector2)this.transform.position + new Vector2(speed * Time.deltaTime,0f);
@@ -117,8 +144,13 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		if (player_rb.velocity == Vector2.zero) {//한번만 점프가능
 			//player_rb.AddForce (new Vector2 (0, 320f));
 			player_rb.velocity = new Vector2 (0, 6f);
+
 			click_to_get = false;
 			//this.GetComponent<Animator> ().enabled = true;
+		}
+
+		if(player_rb.velocity != Vector2.zero){
+			SetState (CocoState.Jump);
 		}
 
 
@@ -148,7 +180,9 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		click_to_get = true;
 	}
 	void Moving_to_get(){
-		SetState(CocoState.Run);
+		if (state == CocoState.Idle) {
+			SetState (CocoState.Run);
+		}
 		if (transform.position.x > item_position_to_get.x) {//아이템이 왼쪽
 			transform.position = Vector2.MoveTowards (transform.position, item_position_to_get, 8f * Time.deltaTime);
 			transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));

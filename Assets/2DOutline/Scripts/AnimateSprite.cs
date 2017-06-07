@@ -7,7 +7,7 @@ public class AnimateSprite : MonoBehaviour {
 	public List<Sprite> vSpriteList;
 
 	private float vElapseTime = 0f;
-	private float vCptTime = 0.15f;
+	public float vCptTime = 0.15f;
 	private SpriteRenderer vRenderer;
 	private int vCptSprite = 0;
 
@@ -27,6 +27,9 @@ public class AnimateSprite : MonoBehaviour {
 					vCptSprite = 0;
 			
 				vRenderer.sprite = vSpriteList [vCptSprite];
+				if (GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ().state == CocoState.GetItem) {
+					print ("CHeck");
+				}
 				vElapseTime = 0f;
 				vCptSprite++;
 			}
