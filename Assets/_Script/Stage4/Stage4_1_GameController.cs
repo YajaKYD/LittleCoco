@@ -28,6 +28,7 @@ public class Stage4_1_GameController : MonoBehaviour {
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
+		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		textbox_Coco = ti._text_boxes [0];
 		textbox_Star = ti._text_boxes [1];
@@ -37,7 +38,7 @@ public class Stage4_1_GameController : MonoBehaviour {
 		if (!Stage4_Controller.q[1]) {
 			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
 		}
-		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+
 	}
 
 	void Start(){

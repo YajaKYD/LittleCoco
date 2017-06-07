@@ -13,18 +13,8 @@ public class Stage3_1_GameController : MonoBehaviour {
 	private Transform regen_pos;
 
     public GameObject bag;
-	//개발 후 삭제//
-	public GameObject[] aaaaaa;
 
 	void Awake(){
-
-		//개발 후 삭제//
-		if (Stage3_Controller._Stage3_Quest[0]) {
-			Destroy (aaaaaa[0]);
-			Destroy (aaaaaa[1]);
-			Destroy (aaaaaa[2]);
-		}
-		//개발 후 삭제//
 
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
@@ -63,8 +53,12 @@ public class Stage3_1_GameController : MonoBehaviour {
 
 		//개발용//
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.W)) {
-			print ("goto3maze");
-			SceneManager.LoadScene (21);
+			print ("go to end");
+			for (int i = 0; i < Stage3_Controller._Stage3_Quest.Length; i++) {
+				Stage3_Controller._Stage3_Quest [i] = true;
+			}
+			SceneManager.LoadScene (18);
+			//SceneManager.LoadScene (21);
 		}
 		//
 
