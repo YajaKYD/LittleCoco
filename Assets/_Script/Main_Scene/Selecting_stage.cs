@@ -26,7 +26,6 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 		mssc = GameObject.Find ("Stage_select_controller").GetComponent<Main_Select_Stage_Controller> ();
 		xxx = false;
 		aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		Debug.Log ("find dialouge");
 
 		if (_what_stage_now_cleared == 0 && this_num == 0) {
 			SceneManager.LoadScene (4);

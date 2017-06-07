@@ -27,31 +27,21 @@ public class Star_TextPosition : MonoBehaviour {
 //	}
 		
 	void Update () {
-//		if (findIC == false) {
-//			Debug.Log (GameObject.FindWithTag ("Item_Canvas").name);
-//			_ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-//			itemlist = _ic.GetComponentInChildren<TurnOnOffItemList> ();
-//			if (Star_pos == null) {
-//				for (int i = 0; i < _ic._item_list.Length; i++) {
-//					if (_ic._item_name_list [i] == "Star") {
-//						Star_pos = GameObject.Find ("Item_button_" + i).GetComponent<RectTransform> ();
-//					}
-//				}
-//			}
-//			Debug.Log ("4 find IC " + findIC);
-//			findIC = true;
-//		}
-
-		Debug.Log (GameObject.FindWithTag ("Item_Canvas").name);
-		_ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-		itemlist = _ic.GetComponentInChildren<TurnOnOffItemList> ();
-		if (Star_pos == null) {
-			for (int i = 0; i < _ic._item_list.Length; i++) {
-				if (_ic._item_name_list [i] == "Star") {
-					Star_pos = GameObject.Find ("Item_button_" + i).GetComponent<RectTransform> ();
+		if (findIC == false) {
+			Debug.Log (GameObject.FindWithTag ("Item_Canvas").name);
+			_ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+			itemlist = _ic.GetComponentInChildren<TurnOnOffItemList> ();
+			if (Star_pos == null) {
+				for (int i = 0; i < _ic._item_list.Length; i++) {
+					if (_ic._item_name_list [i] == "Star") {
+						Star_pos = GameObject.Find ("Item_button_" + i).GetComponent<RectTransform> ();
+					}
 				}
 			}
+			Debug.Log ("find IC " + findIC);
+			findIC = true;
 		}
+
 		s.position = new Vector3( Star_pos.position.x - 50, Star_pos.position.y, Star_pos.position.z);
 		itemlist.OnTime = Time.realtimeSinceStartup;
 	}

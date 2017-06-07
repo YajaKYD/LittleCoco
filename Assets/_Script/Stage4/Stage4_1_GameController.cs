@@ -16,12 +16,17 @@ public class Stage4_1_GameController : MonoBehaviour {
 	private GameObject textbox_Star;
 	private GameObject textbox_Racoon;
 
+	public SpriteRenderer _blackout;
+	private Color bb;
+
 	private bool q2_1 = false;
 	private bool q2_2 = false;
 	private bool q3_1 = false;
 
 	private bool q2_0 = false;
 	private bool q3_0 = false;
+
+	//private GameObject camera;
 
 	void Awake(){
 		player = GameObject.FindWithTag ("Player");
@@ -39,6 +44,9 @@ public class Stage4_1_GameController : MonoBehaviour {
 			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
 		}
 
+		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
+		_blackout.color = bb;
+
 	}
 
 	void Start(){
@@ -49,6 +57,9 @@ public class Stage4_1_GameController : MonoBehaviour {
 		} else {
 			ti.NPC_Say_yeah ("이본");
 		}
+
+		//for test
+		//StartCoroutine ("CameraMove");
 	}
 
 	void Update(){
@@ -71,6 +82,10 @@ public class Stage4_1_GameController : MonoBehaviour {
 		if (Stage4_Controller.q[9] && !Stage4_Controller.q[10]) {
 			Q10_Neogulman ();
 		}
+
+		if (Stage4_Controller.q[10] && !Stage4_Controller.q[11]) {
+			Q11_CheckRoom ();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -79,7 +94,9 @@ public class Stage4_1_GameController : MonoBehaviour {
 		}
 
 		if (other.CompareTag ("Player") && Stage4_Controller.q[7] && !Stage4_Controller.q[8]) {
-			Stage4_Controller.q[8] = true; 
+			Stage4_Controller.q[8] = true;
+			ti.currLineArr [0] += 2; 
+			ti.NPC_Say_yeah ("코코"); // ivon fell asleep
 			print ("Check Again");
 		}
 	}
@@ -133,14 +150,59 @@ public class Stage4_1_GameController : MonoBehaviour {
 	}
 
 	void Q10_Neogulman(){
-	
+		StartCoroutine ("FadeOutandIn");
+
+		Stage4_Controller.q [10] = true;
 	}
 
-	IEnumerator WaitAndPrint()
-	{
-		// suspend execution for 5 seconds
-		yield return new WaitForSeconds(5);
-		print("WaitAndPrint " + Time.time);
+	void Q11_CheckRoom(){
+		if (player.transform.position.x <= -16) {
+			ti.NPC_Say_yeah ("코코"); // !!!!
+			// add sound effect 
+			Stage4_Controller.q [11] = true;	
+		}
 	}
 
+	IEnumerator FadeOutandIn(){
+
+		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
+		for (float f = 0f; f < 1; f += Time.deltaTime) {
+			Color c = _blackout.color;
+			c.a = f;
+			_blackout.color = c;
+			yield return null;
+		}
+
+		yield return new WaitForSeconds(2);
+
+		Light.SetActive (true);
+		Light.transform.position = new Vector3 (-20, 0, 0);
+		Light.transform.localScale = new Vector3 (1, 1, 1);
+
+
+		for (float f = 1f; f > 0; f -= Time.deltaTime) {
+			bb.a = f;
+			_blackout.color = bb;
+			yield return null;
+		}
+		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+
+		ti.currLineArr [0] += 4; 
+		ti.NPC_Say_yeah ("코코"); // !!!!
+	}
+//	//for test
+//	IEnumerator CameraMove(){
+//		camera = GameObject.FindWithTag ("MainCamera");
+//		camera.GetComponent<CameraManager> ().enabled = false;
+//
+//		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
+//		for (float f = 0f; f < 1f; f += Time.deltaTime) {
+//			camera.transform.Translate (new Vector3(-camera.transform.position.x,0,0) * Time.deltaTime);
+//			yield return null;
+//		}
+//
+//		yield return new WaitForSeconds(1);
+//		camera.GetComponent<CameraManager> ().enabled = true;
+//		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+//	}
 }

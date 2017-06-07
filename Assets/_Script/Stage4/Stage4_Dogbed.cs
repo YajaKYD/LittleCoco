@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 public class Stage4_Dogbed : MonoBehaviour{
 	public GameObject player;
 	public int _To_Scene;
-	public SpriteRenderer _blackout;
-	private Color bb;
+
 	public bool enter_;
 	public bool exit_ = false;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
-		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
-		_blackout.color = bb;
+	
 	}
 
 	void OnMouseDown(){
@@ -33,19 +31,10 @@ public class Stage4_Dogbed : MonoBehaviour{
 
 		if (Stage4_Controller.q[8] && !Stage4_Controller.q[9]) {
 			print ("Sleep");
-			StartCoroutine ("FadeOut");
 			Stage4_Controller.q[9] = true;
 		}
 	}
 
-	IEnumerator FadeOut(){
-		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
-		for (float f = 0f; f < 1; f += Time.deltaTime) {
-			Color c = _blackout.color;
-			c.a = f;
-			_blackout.color = c;
-			yield return null;
-		}
-		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
-	}
+
+
 }
