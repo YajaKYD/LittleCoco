@@ -20,18 +20,18 @@ public class Stage4_Controller : MonoBehaviour {
 //	public static bool q9 = false;
 //	public static bool q10 = false;
 
-	void Enable(){
-		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-	}
-
-	void Update () {
-
-		if (ic != null && ic._now_used_item == "Star") {
-			//별감은 계속 멍멍이한테 사용할 수 있다.
-			GameObject.FindWithTag("Player").GetComponent<Outline> ().used_or_not_for_retry = false;
-			//별감은 계속 멍멍이한테 사용할 수 있다.
-
-		}
-	}
+//	void Enable(){
+//		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+//	}
+//
+//	void Update () {
+//
+//		if (ic != null && ic._now_used_item == "Star") {
+//			//별감은 계속 멍멍이한테 사용할 수 있다.
+//			GameObject.FindWithTag("Player").GetComponent<Outline> ().used_or_not_for_retry = false;
+//			//별감은 계속 멍멍이한테 사용할 수 있다.
+//
+//		}
+//	}
 
 }
