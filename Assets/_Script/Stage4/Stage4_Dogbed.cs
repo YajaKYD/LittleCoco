@@ -16,11 +16,11 @@ public class Stage4_Dogbed : MonoBehaviour{
 	}
 
 	void OnMouseDown(){
-		print("Clicked");
 
 		if (Stage4_Controller.q[4] && !Stage4_Controller.q4[0]) { //땅파기
 			print("Dig");
 			Stage4_Controller.q4 [0] = true;
+			return;
 		}
 
 		if (Stage4_Controller.q4[0] && !Stage4_Controller.q4[1]) {

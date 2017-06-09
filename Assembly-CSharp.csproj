@@ -57,6 +57,7 @@
      <Compile Include="Assets\Book-Page Curl Pro\Scripts\Timing.cs" />
      <Compile Include="Assets\Frame_check.cs" />
      <Compile Include="Assets\NPC_Trigger.cs" />
+     <Compile Include="Assets\Stage4_3_gum.cs" />
      <Compile Include="Assets\_Script\Background_Script\Closest_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_8_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_9_bg.cs" />
@@ -137,6 +138,7 @@
      <Compile Include="Assets\_Script\Stage3\bag.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_1_GameController.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_2_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_2_Neogul.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_Controller.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_Dogbed.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />

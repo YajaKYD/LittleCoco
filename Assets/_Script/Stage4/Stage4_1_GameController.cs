@@ -15,6 +15,7 @@ public class Stage4_1_GameController : MonoBehaviour {
 	private GameObject textbox_Coco;
 	private GameObject textbox_Star;
 	private GameObject textbox_Racoon;
+	public GameObject portal2;
 
 	public SpriteRenderer _blackout;
 	private Color bb;
@@ -53,37 +54,29 @@ public class Stage4_1_GameController : MonoBehaviour {
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 26) {
 			player.transform.position = regen_pos.position;
-			Destroy(GameObject.FindWithTag ("NPC"));
 		} else {
 			ti.NPC_Say_yeah ("이본");
 		}
 
-		//for test
-		//StartCoroutine ("CameraMove");
+		if (Stage4_Controller.q [1])
+			Destroy (GameObject.FindWithTag ("NPC"));
+
+		if (Stage4_Controller.q [13])
+			portal2.SetActive (true);
 	}
 
 	void Update(){
 		if (!Stage4_Controller.q[1]) {
 			Q1_SayGoodnight ();
-		}
-
-		if (Stage4_Controller.q[1] && !Stage4_Controller.q[2]) {
+		} else if (Stage4_Controller.q[1] && !Stage4_Controller.q[2]) {
 			Q2_CheckIvon ();
-		}
-
-		if (Stage4_Controller.q[3] && !Stage4_Controller.q[4]) {
+		} else if (Stage4_Controller.q[3] && !Stage4_Controller.q[4]) {
 			Q4_SayandReturn ();
-		}
-
-		if (Stage4_Controller.q[6] && !Stage4_Controller.q[7]) {
+		} else if (Stage4_Controller.q[6] && !Stage4_Controller.q[7]) {
 			Q7_PutDoll ();
-		}
-
-		if (Stage4_Controller.q[9] && !Stage4_Controller.q[10]) {
+		} else if (Stage4_Controller.q[9] && !Stage4_Controller.q[10]) {
 			Q10_Neogulman ();
-		}
-
-		if (Stage4_Controller.q[10] && !Stage4_Controller.q[11]) {
+		} else if (Stage4_Controller.q[10] && !Stage4_Controller.q[11]) {
 			Q11_CheckRoom ();
 		}
 	}
@@ -152,14 +145,14 @@ public class Stage4_1_GameController : MonoBehaviour {
 	void Q10_Neogulman(){
 		StartCoroutine ("FadeOutandIn");
 
-		Stage4_Controller.q [10] = true;
+		Stage4_Controller.q[10] = true;
 	}
 
 	void Q11_CheckRoom(){
 		if (player.transform.position.x <= -16) {
-			ti.NPC_Say_yeah ("코코"); // !!!!
-			// add sound effect 
-			Stage4_Controller.q [11] = true;	
+			//ti.NPC_Say_yeah ("코코"); // !!!!
+
+			Stage4_Controller.q[11] = true;	
 		}
 	}
 
@@ -189,6 +182,7 @@ public class Stage4_1_GameController : MonoBehaviour {
 
 		ti.currLineArr [0] += 4; 
 		ti.NPC_Say_yeah ("코코"); // !!!!
+		// add sound effect 
 	}
 //	//for test
 //	IEnumerator CameraMove(){

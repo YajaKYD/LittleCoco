@@ -7,55 +7,62 @@ public class Stage4_2_GameController : MonoBehaviour {
 	public BoxCollider2D Star;
 
 	private Transform start_pos;
-	private GameObject player;
+	public GameObject player, neogul;
 	private Text_Importer ti;
 	private Item_Controller ic;
 	private GameObject camera;
+	private GameObject textbox_Ivon;
+	private GameObject textbox_Coco;
+	private GameObject textbox_Star;
+	private GameObject textbox_Racoon;
 
-	private bool a1a1 = false;
-	private bool a1a2 = false;
-	private bool a1a3 = false;
-
-	private bool a0a0 = false;
-	private bool a0a1 = false;
+	public bool q13_meetNeogul;
+	public bool q13_sayonce;
 
 	void Awake(){
 		player = GameObject.FindWithTag ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		player.transform.position = start_pos.position;
-		//ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-		//s2c = GameObject.Find ("Stage2_Controller").GetComponent<Stage2_Controller> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+		textbox_Coco = ti._text_boxes [0];
+		textbox_Star = ti._text_boxes [1];
+		textbox_Racoon = ti._text_boxes [2];
+		textbox_Ivon = ti._text_boxes [3];
 	}
 
 	void Start(){
 
 		if (Stage4_Controller.q[5]) {
 			Star.enabled = true;
-		}
+		} 
 		if (Stage4_Controller.q[6]) {
 			Destroy (Star.gameObject);
-		}
+		} 
 		if (Stage4_Controller.q [11]) {
 			Debug.Log ("change background");
+		} else {
+			neogul.SetActive (false);
 		}
 	}
 
 	void Update(){
-		if (Stage4_Controller.q[5] && !Stage4_Controller.q[6]) {
+		if (Stage4_Controller.q [5] && !Stage4_Controller.q [6]) {
 			Q6_GetaDoll ();
-		}
-		if (Stage4_Controller.q [11] && !Stage4_Controller.q [12]) {
+		} else if (Stage4_Controller.q [11] && !Stage4_Controller.q [12]) {
 			Q12_CheckRoom2 ();
-		}
+		} else if (Stage4_Controller.q [12] && !Stage4_Controller.q [13] && q13_meetNeogul) {
+			Q13_TalkToNeogul ();
+		} 
+//		else if (Stage4_Controller.q [13] && !Stage4_Controller.q [14]) {
+//			Q14_StartChasing ();
+//		}
 	}
 
 	void Q6_GetaDoll(){
 		for (int i = 0; i < ic._item_list.Length; i++) {
 			if (ic._item_name_list [i] == "StarDoll") {
 				Stage4_Controller.q[6] = true;
-				Save_Script.Save_Quest_Info ();
 				break;
 			}
 		}
@@ -64,6 +71,30 @@ public class Stage4_2_GameController : MonoBehaviour {
 	void Q12_CheckRoom2(){
 		StartCoroutine ("CameraMove");
 		Stage4_Controller.q [12] = true;
+	}
+
+	void Q13_TalkToNeogul(){
+		if (!q13_sayonce) {
+			//Debug.Log ("1 sayonce is " + sayonce);
+			q13_sayonce = true;
+			ti.NPC_Say_yeah ("너굴맨");
+			//Debug.Log ("2 sayonce is " + sayonce);
+		}
+
+		if (!textbox_Racoon.activeSelf) {
+			neogul.SetActive (false);
+			Stage4_Controller.q [13] = true;	
+		}
+		// add conversation
+	}
+
+	void Q14_StartChasing(){
+//		if (neogul.transform.position.x > -20) {
+//			neogul.transform.Translate (Vector3.left * Time.deltaTime * 2);
+//		} else {
+			neogul.SetActive (false); // add animation
+			Stage4_Controller.q [14] = true;
+		//}
 	}
 
 	IEnumerator CameraMove(){
