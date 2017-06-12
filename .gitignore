@@ -1,0 +1,7 @@
+# General #
+Library/
+Library/*
+*.info
+*.userprefs
+*.meta
+*.dll
