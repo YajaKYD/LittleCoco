@@ -18,6 +18,7 @@ public class Stage3_5_GameController : MonoBehaviour {
 
     public GameObject[] trees;
     protected GameObject[] likeButton;
+	public Sprite likeOn, likeOff;
 	public GameObject background_far;
 	public GameObject background_far1;
 	public Sprite background_far_img;
@@ -37,6 +38,8 @@ public class Stage3_5_GameController : MonoBehaviour {
     }
 
     void Start() {
+		//Save_Script.Save_Now_Point();
+
 		Debug.Log ("buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
 		if (Stage3_Controller.sceneIndex > SceneManager.GetActiveScene ().buildIndex) {
 			player.transform.position = end_pos.position;
