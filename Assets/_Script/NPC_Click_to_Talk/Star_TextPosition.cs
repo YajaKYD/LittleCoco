@@ -42,7 +42,7 @@ public class Star_TextPosition : MonoBehaviour {
 //			findIC = true;
 //		}
 
-		Debug.Log (GameObject.FindWithTag ("Item_Canvas").name);
+		//Debug.Log (GameObject.FindWithTag ("Item_Canvas").name);
 		_ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		itemlist = _ic.GetComponentInChildren<TurnOnOffItemList> ();
 		if (Star_pos == null) {

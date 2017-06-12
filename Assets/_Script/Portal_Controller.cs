@@ -57,6 +57,7 @@ public class Portal_Controller : MonoBehaviour {
 			_blackout.color = bb;
 			yield return null;
 		}
+		_blackout.color = new Color (0, 0, 0, 0);
 		_Player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 		enter_ = true; //해당 씬이 시작했음
 	}
