@@ -1,0 +1,27 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Script\Stage3\Stage3_3_GameController.cs">
+    <Files>
+      <File FileName="Assets\_Script\Item_Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Script\Save&amp;Load\Save_Script.cs" Line="20" Column="53" />
+      <File FileName="Assets\_Script\NewBehaviourScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Script\Text_Importer.cs" Line="184" Column="70" />
+      <File FileName="Assets\_Script\Stage2\Stage2_1_GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Script\Stage1\Stage1_1_GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Script\Tutorial_Scene\Game_Controller_0_1.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Script\Main_Scene\MainScene_start.cs" Line="83" Column="5" />
+      <File FileName="Assets\_Script\Stage3\Stage3_3_GameController.cs" Line="63" Column="28" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_1_GameController.cs" Line="75" Column="23" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Toys.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_2_GameController.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_5_GameController.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\_Script\Stage3\Stage3_4_GameController.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\_Script\FORTEST_SkipStage.cs" Line="1" Column="1" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -61,7 +61,11 @@ public class Stage3_6_GameController : Stage3_5_GameController
             Debug.Log("likebutton" + likeButton.Length);
             for (int i = 0; i < likeButton.Length; i++)
                 {
+<<<<<<< HEAD
                     likeButton[i].GetComponent<BoxCollider2D>().enabled = false; // like 버튼 비활성화
+=======
+                    likeButton[i].GetComponent<PolygonCollider2D>().enabled = false; // like 버튼 비활성화
+>>>>>>> 2d9e80396e0292ace09424982220109bc235a130
                 }
         } else
         {
