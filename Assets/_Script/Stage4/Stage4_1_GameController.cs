@@ -51,9 +51,11 @@ public class Stage4_1_GameController : MonoBehaviour {
 	}
 
 	void Start(){
+		Save_Script.Save_Now_Point();
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 26) {
 			player.transform.position = regen_pos.position;
+
 		} else {
 			ti.NPC_Say_yeah ("이본");
 		}
