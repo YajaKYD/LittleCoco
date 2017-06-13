@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Stage5_4_GameController : MonoBehaviour {
 
-	private Transform from_5_5;
-	private Transform from_5_6;
-	private Transform from_5_7;
-	private Transform from_5_8;
+	public Transform from_5_5;
+	public Transform from_5_6;
+	public Transform from_5_7;
+	public Transform from_5_8;
 	private GameObject player;
 	private Moving_by_RLbuttons mbr;
 	private GameObject _star_textbox;
@@ -27,8 +27,17 @@ public class Stage5_4_GameController : MonoBehaviour {
 
 	void Start(){
 
-		if (GetComponent<Load_data> ()._where_are_you_from == 33) {
-			//player.transform.position = regen_pos.position;
+		if (GetComponent<Load_data> ()._where_are_you_from == 37) {
+			player.transform.position = from_5_5.position;
+		}
+		if (GetComponent<Load_data> ()._where_are_you_from == 38) {
+			player.transform.position = from_5_6.position;
+		}
+		if (GetComponent<Load_data> ()._where_are_you_from == 39) {
+			player.transform.position = from_5_7.position;
+		}
+		if (GetComponent<Load_data> ()._where_are_you_from == 40) {
+			player.transform.position = from_5_8.position;
 		}
 
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
