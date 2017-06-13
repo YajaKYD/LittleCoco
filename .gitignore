@@ -1,7 +1,12 @@
-# General #
-Library/
-Library/*
-*.info
-*.userprefs
-*.meta
-*.dll
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+
+/*.csproj
+/*.unityproj
+/*.sln
+/*.suo
+/*.user
+/*.userprefs
+/*.pidb
+/*.booproj
