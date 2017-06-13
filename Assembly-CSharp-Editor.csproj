@@ -54,8 +54,8 @@
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
-     <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
      <None Include="Assets\Resources\32.txt" />
+     <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
