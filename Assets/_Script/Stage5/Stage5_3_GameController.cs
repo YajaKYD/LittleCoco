@@ -5,7 +5,6 @@ using UnityEngine;
 public class Stage5_3_GameController : MonoBehaviour {
 
 	private Transform start_pos;
-	private Transform regen_pos;
 	private GameObject player;
 	private Moving_by_RLbuttons mbr;
 	private GameObject _star_textbox;
@@ -26,7 +25,6 @@ public class Stage5_3_GameController : MonoBehaviour {
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
-		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 
 		player.transform.position = start_pos.position;

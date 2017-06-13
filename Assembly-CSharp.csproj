@@ -151,6 +151,7 @@
      <Compile Include="Assets\_Script\Stage5\Stage5_4_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_5_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_Controller.cs" />
+     <Compile Include="Assets\_Script\Stage5\stage5Paper.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />
      <Compile Include="Assets\_Script\Tutorial_Scene\Ball_popup.cs" />
      <Compile Include="Assets\_Script\Tutorial_Scene\Game_Controller_0_1.cs" />
