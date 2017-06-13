@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stage4_3_gum : MonoBehaviour {
 
 	public GameObject gumPuzzle;
+	public GameObject gumPuzzlePrefab;
 	private GameObject item_Canvas;
 
 	void Start () {
@@ -12,7 +13,13 @@ public class Stage4_3_gum : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(){
-		gumPuzzle = Instantiate (gumPuzzle, Vector3.zero, Quaternion.identity) as GameObject;
-		gumPuzzle.transform.SetParent (item_Canvas.transform, false);
+		if (gumPuzzle == null) {
+			gumPuzzle = Instantiate (gumPuzzlePrefab, Vector3.zero, Quaternion.identity) as GameObject;
+			gumPuzzle.transform.SetParent (item_Canvas.transform, false);
+		}
+	}
+
+	void OnTriggerExit2D(){
+		Destroy (gumPuzzle);
 	}
 }

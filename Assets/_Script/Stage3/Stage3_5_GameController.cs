@@ -69,7 +69,10 @@ public class Stage3_5_GameController : MonoBehaviour {
 			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 			background_far1.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 			for (int i = 0; i < trees.Length; i++) {
-				trees [i].GetComponent<PolygonCollider2D> ().enabled = false;
+				try{
+					trees [i].GetComponent<BoxCollider2D> ().enabled = false;
+				} catch {
+				}
 			}
 		}
     }
