@@ -138,7 +138,6 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 
 	public void Jumping(){
 		 
-
 		//before_jump_position = (Vector2)transform.position;
 
 		if (player_rb.velocity == Vector2.zero) {//한번만 점프가능

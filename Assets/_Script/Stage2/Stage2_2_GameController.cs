@@ -143,7 +143,7 @@ public class Stage2_2_GameController : MonoBehaviour {
 			for (int x = 0; x < ids.Length; x++) {
 				ids [x]._diary_usable = false;
 			} //change diary image -unusable-
-
+			Item_Drag._NOW_Shaked = false;
 			drop_tape = true;
 		}
 			

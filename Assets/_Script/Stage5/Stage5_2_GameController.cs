@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stage5_2_GameController : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class Stage5_2_GameController : MonoBehaviour {
 	public BoxCollider2D snack;
 	public SpriteRenderer _blackout;
 	public GameObject _dogsnack;
+	public Transform sleep_pos;
+	public BoxCollider2D gooutportal;
 	//temp
 	public GameObject _stardoll; 
 	//
@@ -63,9 +66,24 @@ public class Stage5_2_GameController : MonoBehaviour {
 		if (Stage5_Controller._Stage5_Quest[7]) {
 			Destroy (_stardoll);
 		}
+		if (Stage5_Controller._Stage5_Quest [8] && !Stage5_Controller._Stage5_Quest [9]) {
+			
+		}
+
 		if (Stage5_Controller._Stage5_Quest[11] && !Stage5_Controller._Stage5_Quest[12]) {//savepoint
+			player.transform.position = sleep_pos.position;
+			StartCoroutine (Fadein_black ());
 			bed.enabled = false;
 			door.enabled = true;
+		}
+
+		if (Stage5_Controller._Stage5_Quest [12] && !Stage5_Controller._Stage5_Quest [13]) {
+			bed.enabled = false;
+			door.enabled = true;
+		}
+
+		if (Stage5_Controller._Stage5_Quest [24]) {
+			gooutportal.enabled = true;
 		}
 
 	}
@@ -97,45 +115,66 @@ public class Stage5_2_GameController : MonoBehaviour {
 		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest[4] && !Stage5_Controller._Stage5_Quest[5]) {
 			ti.currLineArr [1] = 8;
 			ti.NPC_Say_yeah ("이본");
-			tr1 = true;
 			//Stage5_Controller._Stage5_Quest[5] = true;
 			Stage5_Controller._Stage5_Quest [5] = true;
 		}
 		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest[8] && !Stage5_Controller._Stage5_Quest[9]) {
+
 			ti.currLineArr [0] = 13;
 			ti.NPC_Say_yeah ("별감");
 			bed.enabled = true;
 			door.enabled = false;
-			tr3 = true;
 			//Stage5_Controller.q10 = true;
 			Stage5_Controller._Stage5_Quest [9] = true;
 		}
 		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest[7] && !Stage5_Controller._Stage5_Quest[8]) {
+
+			Auto_ItemUse ();
+
+
 			print ("방문 닫히는 소리");
 			ti.currLineArr [0] = 8;
 			ti.NPC_Say_yeah ("별감");
 			bed.enabled = false;
 			door.enabled = true;
-			tr2 = true;
 			//Stage5_Controller.q9 = true;
 			Stage5_Controller._Stage5_Quest [8] = true;
 		}
 
 		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest[10] && !Stage5_Controller._Stage5_Quest[11] &&  !tr4) {
 			print ("잠든다");
+			mbr.enabled = false;
 			bed.enabled = false;
 			door.enabled = true;
 			StartCoroutine (Fadeout_black ());
 			tr4 = true;
 		}
 
-		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest[13] && !Stage5_Controller._Stage5_Quest[14] && !tr5) {
+		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest[13] && !Stage5_Controller._Stage5_Quest[14]) {
 			ti.currLineArr [0] = 19;
 			ti.NPC_Say_yeah ("별감");
 			//Stage5_Controller.q15 = true;
 			Stage5_Controller._Stage5_Quest [14] = true;
-			tr5 = true;
 		}
+
+		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest [12] && !Stage5_Controller._Stage5_Quest [13] && !q8_a1) {
+			if (!_star_textbox.activeSelf) {
+				ti.currLineArr [1] = 14;
+				ti.NPC_Say_yeah ("이본");
+				q8_a1 = true;
+			}
+		}
+	}
+
+	void Auto_ItemUse(){
+		print ("DSF");
+		ic._item_name_list [3] = "";
+		ic._usable_item [3] = false;
+		ic._interaction_object [3] = "";
+		ic._the_number_of_items [3] = 0;
+		ic._item_list [3].GetComponent<Image> ().color = new Color (1, 1, 1, 0);
+		ic._item_list [3].transform.parent.GetComponentInChildren<Text> ().color = new Color (1, 1, 1, 0);
+		ic._explanations [3] = "";
 	}
 
 	void Q4_move_to_bed(){
@@ -184,12 +223,8 @@ public class Stage5_2_GameController : MonoBehaviour {
 	}
 
 	void Q8_ivon_out(){
-		if (!q8_a1 && !_star_textbox.activeSelf) {
-			ti.currLineArr [1] = 14;
-			ti.NPC_Say_yeah ("이본");
-			q8_a1 = true;
-		}
-		if (!_ivon_textbox.activeSelf) {
+		
+		if (q8_a1 && !_ivon_textbox.activeSelf) {
 			bed.enabled = false;
 			door.enabled = false;
 			snack.enabled = true;
@@ -248,6 +283,7 @@ public class Stage5_2_GameController : MonoBehaviour {
 	}
 
 	IEnumerator Fadeout_black(){
+
 		for (float f = 0f; f < 1; f += Time.deltaTime) {
 			Color c = _blackout.color;
 			c.a = f;
@@ -277,12 +313,14 @@ public class Stage5_2_GameController : MonoBehaviour {
 			yield return null;
 		}
 		_blackout.color = new Color (0, 0, 0, 0);
-
+		mbr.enabled = false;
 		print ("코코 눈뜸");
 		while (true) {
 			yield return new WaitForSeconds (1f);
 			break;
 		}
+		bed.enabled = false;
+		door.enabled = true;
 		ti.currLineArr [0] = 17;
 		ti.NPC_Say_yeah ("별감");
 		//Stage5_Controller.q13 = true;

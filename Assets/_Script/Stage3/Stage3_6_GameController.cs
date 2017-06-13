@@ -11,6 +11,10 @@ public class Stage3_6_GameController : Stage3_5_GameController
 	public GameObject _endingText;
 	public static bool whiteOut_3_6 = false;
 
+	public Sprite waterc1;
+	public Sprite waterc2;
+	public AnimateSprite asp;
+
     new void Awake()
     {
         base.Awake();
@@ -36,7 +40,8 @@ public class Stage3_6_GameController : Stage3_5_GameController
 			GameObject.FindWithTag("Player").transform.localScale = new Vector3 (1f, 1f, 1f);
 			GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject;
 			_park.SetActive (true);
-
+			asp.vSpriteList [0] = waterc1;
+			asp.vSpriteList [1] = waterc2;
 
 			portal.GetComponent<BoxCollider2D>().enabled = false; // deactivate portal to 3_7
 			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;

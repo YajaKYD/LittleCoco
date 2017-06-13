@@ -97,12 +97,11 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				break;
 			case 4:
 				SceneManager.LoadScene (32);
-				aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> (); // why???? only this one????
-				aa.Import (32); 
 				_stage2_con_di [0].SetActive (true); //Stage controller
 				_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
+				aa.Import (32);
 				break;
 			case 5:
 				break;
