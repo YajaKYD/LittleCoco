@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Stage3_5_tree_other : Stage3_5_tree_coco
 {
+	private int clickcount;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class Stage3_5_tree_other : Stage3_5_tree_coco
 
     void OnMouseDown()
     {
+		clickcount++;
+		Debug.Log ("clickcount " + clickcount);
 		if (Stage3_Controller._Stage3_Quest[14] && closeToTree)
         {
             if (!postingOn)
