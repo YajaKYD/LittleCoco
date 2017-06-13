@@ -47,7 +47,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 			background_far.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 			background_far1.GetComponent<SpriteRenderer> ().sprite = background_far_img;
 			for (int i = 0; i < trees.Length; i++) {
-				trees [i].GetComponent<PolygonCollider2D> ().enabled = false;
+				trees [i].GetComponent<BoxCollider2D> ().enabled = false;
 			}
 
 			if (!whiteOut_3_6) {
