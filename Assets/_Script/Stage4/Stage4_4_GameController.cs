@@ -16,8 +16,18 @@ public class Stage4_4_GameController : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
 	}
+
+	void Update(){
 		
+	}
+
 	void FixedUpdate(){
+		if (!Stage4_Controller.q [16]) {
+			Q16_PosterPuzzle ();
+		}
+	}
+
+	void Q16_PosterPuzzle(){
 		if (movePlayer) {
 			Debug.Log ("Fixed Update" + playerPos + ", " + pos + " difference is " + (playerPos-pos));
 			player.GetComponent<Rigidbody2D> ().AddForce ((pos-playerPos) * speed * Time.deltaTime);
@@ -29,6 +39,7 @@ public class Stage4_4_GameController : MonoBehaviour {
 				player.GetComponent<Rigidbody2D> ().angularVelocity = 0;
 				GameObject.Find ("NewBackground(Clone)").SetActive (false);
 				StartCoroutine ("FinishPosterPuzzle");
+				Stage4_Controller.q [16] = true;
 			}
 		}
 	}

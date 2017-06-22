@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
     {
         GameState.State = State.Menu;
 
-        ShowMenu(gamePanel);
+        //ShowMenu(gamePanel);
         //HideMenu(gameoverPanel);
         //ShowMenu(mainmenuPanel);
     }
@@ -136,10 +136,13 @@ public class GameController : MonoBehaviour
         int theChosenImage = Random.Range(0, puzzleImages.Length);
         
         float imageSize = Mathf.Floor(puzzleImages[theChosenImage].width / puzzleSize);
+		Debug.Log ("image width " + puzzleImages [theChosenImage].width);
+		Debug.Log ("grid size xMax : " + puzzleGrid.rect.xMax + ", xMin : " + puzzleGrid.rect.xMin + ", yMax : " + puzzleGrid.rect.yMax + ", yMin "
+		+ puzzleGrid.rect.yMin);
         
         float x = 0;
         float y = puzzleImages[theChosenImage].width - imageSize;
-        for (int i = 0; i < puzzleSize * puzzleSize; i++)
+		for (int i = 0; i < puzzleSize * puzzleSize; i++)
         {
             if (i > 0 && i % puzzleSize == 0)
             {
@@ -524,6 +527,7 @@ public class GameController : MonoBehaviour
     /// <returns></returns>
     float GetTileSize()
     {
+		Debug.Log ("puzzle grid size " + puzzleGrid.sizeDelta.x);
         return puzzleGrid.sizeDelta.x / puzzleSize;
     }
 }
