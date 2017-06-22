@@ -24,6 +24,7 @@ public class TileController : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         isSliding = false;
+		Debug.Log (this.gameObject.name);
     }
 
     // overrides the moveSpeed and calls Slide()
@@ -86,7 +87,8 @@ public class TileController : MonoBehaviour, IPointerClickHandler
         // this check has to be against the local position
         Vector2 position = transform.localPosition;
         Vector2 destination = position + direction * GameController.Instance.TileSize;
-        
+		//Debug.Log ("position : " + position + ", direction : " + direction * GameController.Instance.TileSize);
+
         // if destination is not inside the grid return false
         if (destination.x < grid.rect.xMin ||
             destination.x > grid.rect.xMax ||
