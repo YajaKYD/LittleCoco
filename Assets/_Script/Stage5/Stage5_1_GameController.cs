@@ -54,7 +54,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 		player.transform.position = start_pos.position;
 
-		if (!Stage5_Controller._Stage5_Quest[0]) {
+		if (!Stage5_Controller._Stage5_Quest[0]) { // 첫 번째 퀘스트 깨기 전이면
 			mbr.enabled = false;
 			print ("엎드려있는ani");
 		}
@@ -62,7 +62,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 	void Start(){
 		
-		if (GetComponent<Load_data> ()._where_are_you_from == 33) {
+		if (GetComponent<Load_data> ()._where_are_you_from == 33) { // 스테이지 4에서 온 게 아니라면
 			player.transform.position = regen_pos.position;
 		}
 

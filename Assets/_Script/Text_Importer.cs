@@ -45,7 +45,7 @@ public class Text_Importer : MonoBehaviour {
 				dialogArr [i] = new List<string> ();
 				currLineArr [i] = 0;
 				nameArr [i] = _textLines [line++];
-				_text_in_boxes [i] = GameObject.Find (nameArr [i] + "_text").GetComponent<Text> ();
+                _text_in_boxes [i] = GameObject.Find (nameArr [i] + "_text").GetComponent<Text> ();
 
 				_text_boxes [i] = GameObject.Find (nameArr [i] + "_text");
 				_npc_collider [i] = GameObject.Find (nameArr [i]).GetComponent<BoxCollider2D> ();
@@ -171,7 +171,7 @@ public class Text_Importer : MonoBehaviour {
 					_text_boxes [i].SetActive (true);
 					player_moving.enabled = false;
 
-					for (int x = 0; x < _coco_dialogue.Length; x++) {
+					for (int x = 0; x < _coco_dialogue.Length; x    ++) {
 						_coco_dialogue [x].SetActive (false);
 					} //직전에 한 대사를 모두 끈다.
 
