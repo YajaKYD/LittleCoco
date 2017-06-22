@@ -15,14 +15,15 @@ public class Stage4_3_GameController : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
-		Save_Script.Save_Now_Point();
+		//test
+		Stage4_Controller.q[14] = true;
+		//Save_Script.Save_Now_Point();
 	}
 
 	void Update () {
 		if (Stage4_Controller.q [14] && !Stage4_Controller.q [15]) {
 			Q15_gumPuzzle ();
 		} 
-
 	}
 
 	void Q15_gumPuzzle(){
@@ -34,7 +35,7 @@ public class Stage4_3_GameController : MonoBehaviour {
 
 	IEnumerator FinishGumPuzzle(){
 		Debug.Log ("finish 4_3");
-		//background.GetComponents<BoxCollider2D> (). // player going down
+		background.GetComponent<BoxCollider2D> ().enabled = false; // player going down
 		yield return new WaitForSeconds(1);
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 		for (float f = 0f; f < 1; f += Time.deltaTime) {
