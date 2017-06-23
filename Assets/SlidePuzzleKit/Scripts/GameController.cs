@@ -169,6 +169,8 @@ public class GameController : MonoBehaviour
             {
                 GameState.State = State.Menu;
 
+				Stage4_Controller.q [19] = true; // puzzle done
+
                 ShowSolvedImage();
 
                 Invoke("ShowGameoverMenu", 3f);
