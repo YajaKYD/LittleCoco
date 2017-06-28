@@ -46,7 +46,7 @@ public class DropTheBal : MonoBehaviour {
 
 	void OnMouseDown(){
 		if (Stage5_Controller._Stage5_Quest [19] && !Stage5_Controller._Stage5_Quest[20]) {
-			ic.Get_Item_Auto (5, starImg);
+			ic.Get_Item_Auto (5, starImg); // 탭으로 아이템 획득
 			Stage5_Controller._Stage5_Quest [20] = true;
 		}
 	}
