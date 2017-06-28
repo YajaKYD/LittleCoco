@@ -152,6 +152,8 @@
      <Compile Include="Assets\_Script\Stage4\Stage4_5_Card.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_5_GameController.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_5_Neogulman.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_6_Fraud.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_6_GameController.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_Controller.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_Dogbed.cs" />
      <Compile Include="Assets\_Script\Stage5\DropTheBal.cs" />

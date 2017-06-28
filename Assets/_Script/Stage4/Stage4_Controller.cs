@@ -6,7 +6,7 @@ public class Stage4_Controller : MonoBehaviour {
 	
 	public Item_Controller ic;
 
-	public static bool[] q = new bool[20];
+	public static bool[] q = new bool[25];
 	public static bool[] q4 = new bool[3];
 	public static bool[] q15 = new bool[2];
 	public static bool[] q18 = new bool[2];
