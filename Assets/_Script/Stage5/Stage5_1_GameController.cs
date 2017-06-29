@@ -11,12 +11,20 @@ public class Stage5_1_GameController : MonoBehaviour {
 	private Moving_by_RLbuttons mbr;
 	private GameObject _star_textbox;
 	private GameObject _ivon_textbox;
+    private GameObject _coco_textbox;
 	private Text_Importer ti;
 	private Item_Controller ic;
 
 	private bool q1a1 = false;
 	private bool q1a2 = false;
-	private bool q2a1 = false;
+    private bool q1a3 = false;
+    private bool q1a4 = false;
+    private bool q1a5 = false;
+    private bool q1a6 = false;
+    private bool q1a7 = false;
+    private bool q1a8 = false;
+    private bool q1a9 = false;
+    private bool q2a1 = false;
 	private bool q2a2 = false;
 	private bool q2a3 = false;
 	private bool q2a4 = false;
@@ -26,19 +34,29 @@ public class Stage5_1_GameController : MonoBehaviour {
 	private bool q3a4 = false;
 	private bool q3a5 = false;
 	private bool q3a6 = false;
-	private bool q13a1 = false;
+    private bool q10a1 = false;
+    private bool q10a2 = false;
+    private bool q10a3 = false;
+    private bool q10a4 = false;
+    private bool q13a1 = false;
 	private bool q13a2 = false;
 	private bool q13a3 = false;
 	private bool q14a1 = false;
-	private bool q15a1 = false;
+    private bool q14a2 = false;
+    private bool q14a3 = false;
+    private bool q15a1 = false;
 	private bool q15a2 = false;
 	private bool q15a3 = false;
 	private bool q15a4 = false;
 	private bool q15a5 = false;
 	private bool q15a6 = false;
 	private bool q15a7 = false;
+    private bool q15a8 = false;
+    private bool q15a9 = false;
+    private bool q15a10 = false;
+    private bool q15a11 = false;
 
-	public SpriteRenderer _blackout; 
+    public SpriteRenderer _blackout; 
 	public SpriteRenderer _bg;
 	public GameObject _ivon;
 	public PolygonCollider2D ball;
@@ -69,6 +87,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		_star_textbox = ti._text_boxes [0];
 		_ivon_textbox = ti._text_boxes [1];
+        _coco_textbox = ti._text_boxes [2];
 
 		if (Stage5_Controller._Stage5_Quest[3]) {//after 1st scene end
 			//_blackout.color = new Color (0,0,0,0);
@@ -107,7 +126,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 			Q3_fadein_and_coco ();
 		}
 		if (Stage5_Controller._Stage5_Quest [15] && !Stage5_Controller._Stage5_Quest [16]) {
-			Q10_starSay ();
+            Q10_starSay ();
 		}
 		if (Stage5_Controller._Stage5_Quest [16] && !Stage5_Controller._Stage5_Quest [17]) {
 			Q11_putStaronPot ();
@@ -136,14 +155,49 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 	void Q1_starsay1(){
 		if (!q1a1 && !_star_textbox.activeSelf) {
-			ti.currLineArr [0] = 0;
+			ti.currLineArr [0] = 0; // 코코야 별일 없을거라니
 			ti.NPC_Say_yeah ("별감");
 			q1a1 = true;
 		}
-		if (q1a1 && !q1a2 && !_star_textbox.activeSelf) {
+        if (q1a1 && !q1a2 && !_star_textbox.activeSelf) {
+            ti.currLineArr[2] = 0; // 낑
+            ti.NPC_Say_yeah("코코");
+            q1a2 = true;
+        }
+        if (q1a2 && !q1a3 && !_coco_textbox.activeSelf) {
+            ti.currLineArr[0] = 2; // 죽긴 누가
+            ti.NPC_Say_yeah("별감");
+            q1a3 = true;
+        }
+        if (q1a3 && !q1a4 && !_star_textbox.activeSelf) {
+            ti.currLineArr[2] = 2; // 이본
+            ti.NPC_Say_yeah("코코");
+            q1a4 = true;
+        }
+        if (q1a4 && !q1a5 && !_coco_textbox.activeSelf) {
+            ti.currLineArr[0] = 5; // 응 주인님이 한동안
+            ti.NPC_Say_yeah("별감");
+            q1a5 = true;
+        }
+        if (q1a5 && !q1a6 && !_star_textbox.activeSelf) {
+            ti.currLineArr[2] = 4;
+            ti.NPC_Say_yeah("코코");
+            q1a6 = true;
+        }
+        if (q1a6 && !q1a7 && !_coco_textbox.activeSelf) {
+            ti.currLineArr[0] = 8;
+            ti.NPC_Say_yeah("별감");
+            q1a7 = true;
+        }
+        if (q1a7 && !q1a8 && !_star_textbox.activeSelf) {
+            ti.currLineArr[2] = 6;
+            ti.NPC_Say_yeah("코코");
+            q1a8 = true;
+        }
+		if (q1a8 && !q1a9 && !_star_textbox.activeSelf) {
 			mbr.enabled = false;
 			StartCoroutine (Delay_2sec ());
-			q1a2 = true;
+			q1a9 = true;
 		}
 	}
 
@@ -195,11 +249,32 @@ public class Stage5_1_GameController : MonoBehaviour {
 	}
 
 	void Q10_starSay(){
-		ti.currLineArr [0] = 27;//기운내서 해보자 코코야.
-		ti.NPC_Say_yeah("별감");
-		ic._consumable [1] = true; //임시로 소모품 만듦
-		Stage5_Controller._Stage5_Quest [16] = true;
-	}
+        if (!q10a1)
+        {
+            ti.currLineArr[0] = 43;//자! 해보자
+            ti.NPC_Say_yeah("별감");
+            q10a1 = true;
+        }
+		if (q10a1 && !q10a2 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 21;
+            ti.NPC_Say_yeah("코코");
+            q10a2 = true;
+        }
+        if (q10a2 && !q10a3 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 46;
+            ti.NPC_Say_yeah("별감");
+            q10a3 = true;
+        }
+        if (q10a3 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 21;
+            ti.NPC_Say_yeah("코코");
+            ic._consumable [1] = true; //임시로 소모품 만듦
+            Stage5_Controller._Stage5_Quest [16] = true;
+        }
+    }
 
 	void Q11_putStaronPot(){
 		if (ic._now_used_item == "Star") {
@@ -213,42 +288,70 @@ public class Stage5_1_GameController : MonoBehaviour {
 	void Q12_getTheball(){
 		for (int i = 0; i < ic._item_list.Length; i++) {
 			if (ic._item_name_list [i] == "Ball") {
-				Stage5_Controller._Stage5_Quest [18] = true;
+                //save point//
+                Save_Script.Save_Now_Point();
+                //save point//
+                Stage5_Controller._Stage5_Quest [18] = true;
 			}
 		}
 	}
 
 	void Q13_FadeOUT(){
 		if (!q13a1) {
-			StartCoroutine (sadcoco_2sec ());
+            //StartCoroutine (sadcoco_2sec ());
+            ti.currLineArr[2] = 23;
+            print("상당히 실망한 코코");
+            ti.NPC_Say_yeah("코코");
 			q13a1 = true;
 		}
-		if (q13a2 && !q13a3 && !_star_textbox.activeSelf) {
+        if (q13a1 && !q13a2 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 50;
+            ti.NPC_Say_yeah("별감");
+            q13a2 = true;
+        }
+        if (q13a2 && !q13a3 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 23;
+            ti.NPC_Say_yeah("코코");
+            q13a3 = true;
+        }
+		if (q13a3 && !_coco_textbox.activeSelf) {
 			StartCoroutine (ToDream ());
-			q13a3 = true;
 		}
 	}
 
 	void Q14_Until_diary(){
 		if (!q14a1) {
-			ti.currLineArr [0] = 33;//무슨일?
+			ti.currLineArr [0] = 52;//이게 무슨일
 			ti.NPC_Say_yeah("별감");
 			q14a1 = true;
 		}
-		if (q14a1 && !_star_textbox.activeSelf) {
-			StartCoroutine (Diary_enable ());
-			Stage5_Controller._Stage5_Quest [23] = true;
+		if (q14a1 && !q14a2 && !_star_textbox.activeSelf) {
+            ti.currLineArr[2] = 25;
+            ti.NPC_Say_yeah("코코");
+            q14a2 = true;
 		}
-	}
+        if (q14a2 && !q14a3 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 55;
+            ti.NPC_Say_yeah("별감");
+            q14a3 = true;
+        }
+        if (q14a3 && !_star_textbox.activeSelf)
+        {
+            StartCoroutine(Diary_enable());
+        }
+    }
 
 	void Q15_using_diary(){
 		if (!q15a1) {
-			ti.currLineArr [0] = 36;//어떡해
+			ti.currLineArr [0] = 57;//마..망했어!!
 			ti.NPC_Say_yeah ("별감");
 			q15a1 = true;
 		}
 		if (q15a1 && !q15a2 && !_star_textbox.activeSelf && Item_Drag._NOW_Shaked) {
-			ti.currLineArr [0] = 41;//도움이 될 만한.
+			ti.currLineArr [0] = 60; //도움이 될 만한.
 			ti.NPC_Say_yeah ("별감");
 			Item_Drag._NOW_Shaked = false;
 			q15a2 = true;
@@ -269,21 +372,50 @@ public class Stage5_1_GameController : MonoBehaviour {
 			q15a3 = true;
 		}
 		if (q15a3 && !q15a4) {
-			ti.currLineArr [0] = 44;//안돼 똥
+			ti.currLineArr [0] = 63;//안돼 똥
 			ti.NPC_Say_yeah ("별감");
 			q15a4 = true;
 		}
-		if (q15a4 && !_star_textbox.activeSelf && !q15a5) {
+        if (q15a4 && !q15a5 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 27; // 하트는 똥으로 바꾸고 no는 절망으로
+            ti.NPC_Say_yeah("코코");
+            q15a5 = true;
+        }
+		if (q15a5 && !_coco_textbox.activeSelf && !q15a6) {
 			StartCoroutine (Disapointed ());
-			q15a5 = true;
-		}
-		if (q15a5 && q15a7 && !q15a6 && !_star_textbox.activeSelf) {
-			print ("일어선다");
-			ti.currLineArr [0] = 50;//응? 새 화분?
-			ti.NPC_Say_yeah ("별감");
 			q15a6 = true;
-			Stage5_Controller._Stage5_Quest [24] = true;
 		}
+        if (q15a6 && q15a7 && !q15a8 && !_star_textbox.activeSelf)
+        {
+            StartCoroutine(Frustrated()); // 절망에 빠지는 털썩 엎드리는 코코
+        }
+        if (q15a8 && !q15a9)
+        {
+            ti.currLineArr[0] = 68; // 코코야 방법이...
+            ti.NPC_Say_yeah("별감");
+            q15a9 = true;
+        }
+        if (q15a9 && !q15a10 && !_star_textbox.activeSelf)
+        {
+            print("일어선다");
+            ti.currLineArr[2] = 30;
+            ti.NPC_Say_yeah("코코");
+            q15a10 = true;
+        }
+        if (q15a10 && !q15a11 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 72; // 응? 화분을 새로??
+            ti.NPC_Say_yeah("별감");
+            q15a11 = true;
+        }
+        if (q15a11 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 30;//멍
+            ti.NPC_Say_yeah("코코");
+            q15a11 = true;
+            Stage5_Controller._Stage5_Quest[24] = true;
+        }
 	}
 
 	IEnumerator Delay_2sec(){
@@ -291,7 +423,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 			yield return new WaitForSeconds (2f);
 			print ("일어남");
 			yield return new WaitForSeconds (1f);
-			ti.currLineArr [0] = 6;
+			ti.currLineArr [0] = 12;
 			ti.NPC_Say_yeah ("별감");
 			break;
 		}
@@ -394,8 +526,9 @@ public class Stage5_1_GameController : MonoBehaviour {
 		Item_Drag[] ids = ic.GetComponentsInChildren<Item_Drag> ();
 		for (int k = 0; k < ids.Length; k++) {
 			ids [k]._diary_usable = true;
-		} //change diary image -usable-
-	}
+        } //change diary image -usable-
+        Stage5_Controller._Stage5_Quest[23] = true;
+    }
 
 	IEnumerator Disapointed(){
 		mbr.enabled = false;
@@ -404,10 +537,22 @@ public class Stage5_1_GameController : MonoBehaviour {
 			yield return new WaitForSeconds (2f);
 			break;
 		}
-		ti.currLineArr [0] = 48;//??코코?
+		ti.currLineArr [0] = 65;//화분도 깨고 바닥에..
 		ti.NPC_Say_yeah ("별감");
 		q15a7 = true;
 	}
+
+    IEnumerator Frustrated()
+    {
+        mbr.enabled = false;
+        print("좌절하는 코코");
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            break;
+        }
+        q15a8 = true;
+    }
 
 //	IEnumerator Fadein_Dream(){
 //		while (true) {

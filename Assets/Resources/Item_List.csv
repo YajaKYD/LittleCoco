@@ -9,13 +9,14 @@ Number,아이템Usable,Interaction,,0 = 소모X,Explanation
 8,multitaps,1,Multitap,1,멀티탭 뭉치. 전원을 연결할 때 쓸 수 있겠다.
 9,remotecon,1,Audio,0,무언가를 켤 수 있는 리모컨이다.
 10,Dog_bag,0,,1,코코의 응가봉투. 에티켓은 필수!
-11,ball1,1,Air,1,야외에서 가지고 놀기 좋은 고무공
+11,ball1,1,Air,1,야외에서 가지고 놀기 좋은 고무공	
 12,ball2,1,Air,1,야외에서 가지고 놀기 좋은 고무공
 13,ball3,1,Air,1,야외에서 가지고 놀기 좋은 고무공
 14,Diary,0,,0,일기장. 흔들어보면 추억이 떨어질 것 같다.
 15,Tape,1,HandMirror,1,전기가 통할 것 같지 않다
 16,StarDoll,1,Bed,1,용감한 별감이 모습의 인형
 17,Basil,1,Basil,1,바질
-18,DogSnack,1,Player,0,간식
+18,DogSnack,1,Player,1,간식
 19,Card,1,Player,1,부적
-20,,,,,
+20,paper,1,Player,1,잘 팔리는 신문지. 오래 됐는지 색이 바랬다.
+21,,,,
