@@ -44,6 +44,10 @@ public class Stage5_3_GameController : MonoBehaviour {
     private bool q2a9 = false;
     private bool q2a10 = false;
     private bool q2a11 = false;
+    private bool q3a1 = false;
+    private bool q3a2 = false;
+    private bool q3a3 = false;
+    private bool q3a4 = false;
 
     void Awake(){
 		player = GameObject.Find ("Player");
@@ -56,9 +60,9 @@ public class Stage5_3_GameController : MonoBehaviour {
 
 	void Start(){
 
-//		if (GetComponent<Load_data> ()._where_are_you_from == 33) {
-//			player.transform.position = regen_pos.position;
-//		}
+		if (GetComponent<Load_data> ()._where_are_you_from == 40) {
+			player.transform.position = from_5_8.position;
+		}
 
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		_star_textbox = ti._text_boxes [0];
@@ -72,21 +76,24 @@ public class Stage5_3_GameController : MonoBehaviour {
 		if (Stage5_Controller._Stage5_Quest [25]) {
 			goto_5_5.enabled = true;
 		}
-        if (Stage5_Controller._Stage5_Quest[31] || Stage5_Controller._Stage5_Quest[32])
+        if (Stage5_Controller._Stage5_Quest[31])
         {
             warning.SetActive(false); // 다시 돌아왔을 때 맨홀 뚜껑 없어짐.
-            print("ASAS");
         }
-
+        goto_5_7.enabled = false; // 나중에 퀘스트 깨면 풀리게 해야됨.
     }
 
-	void Update(){
-		if (Stage5_Controller._Stage5_Quest [24] && !Stage5_Controller._Stage5_Quest [25]) {
-			Q1_firstcon ();
-		}
+    void Update() {
+        if (Stage5_Controller._Stage5_Quest[24] && !Stage5_Controller._Stage5_Quest[25]) {
+            Q1_firstcon();
+        }
         else if (Stage5_Controller._Stage5_Quest[31] && !Stage5_Controller._Stage5_Quest[32])
         {
             Q2_removed_manhole();
+        }
+        else if (Stage5_Controller._Stage5_Quest[32] && !Stage5_Controller._Stage5_Quest[33])
+        {
+            Q3_Pass_Portal_5_7();
         }
 
     }
@@ -187,6 +194,38 @@ public class Stage5_3_GameController : MonoBehaviour {
             //save point//
             Save_Script.Save_Now_Point();
             //save point//
+        }
+    }
+
+    void Q3_Pass_Portal_5_7()
+    {
+        if (!q3a1 && player.transform.position.x >= from_5_7.position.x)
+        {
+            ti.currLineArr[2] = 50;
+            ti.NPC_Say_yeah("코코");
+            q3a1 = true;
+        }
+        else if (q3a1 && !q3a2 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 124; // 여기를..?
+            ti.NPC_Say_yeah("별감");
+            q3a2 = true;
+        }
+        else if (q3a2 && !q3a3 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 50;
+            ti.NPC_Say_yeah("코코");
+            q3a3 = true;
+        }
+        else if (q3a3 && !q3a4 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 126;
+            ti.NPC_Say_yeah("별감");
+            q3a4 = true;
+        }
+        else if (q3a4 && !_star_textbox.activeSelf)
+        {
+            Stage5_Controller._Stage5_Quest[33] = true; // 5_7 포털 위치 지나갈 때 대화하는 거 끝냄. 이후 5_8로 가야됨.
         }
     }
 
