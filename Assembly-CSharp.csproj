@@ -155,6 +155,7 @@
      <Compile Include="Assets\_Script\Stage4\Stage4_6_GameController.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_Controller.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_Dogbed.cs" />
+     <Compile Include="Assets\_Script\Stage5\DragRigidBody2D.cs" />
      <Compile Include="Assets\_Script\Stage5\DropTheBal.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_1_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_1x_GameController.cs" />
@@ -162,6 +163,8 @@
      <Compile Include="Assets\_Script\Stage5\Stage5_3_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_4_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage5\Stage5_7_1_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage5\Stage5_8_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_Controller.cs" />
      <Compile Include="Assets\_Script\Stage5\newsStand.cs" />
      <Compile Include="Assets\_Script\Stage5\stage5Paper.cs" />
