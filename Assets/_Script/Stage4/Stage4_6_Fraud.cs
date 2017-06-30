@@ -16,18 +16,28 @@ public class Stage4_6_Fraud : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OnPointerClick(PointerEventData eventData){
-		Debug.Log ("click 1");
-		if (controller.clickable && neogulmanIn) {
-			//click effect
-			transform.GetChild(0).GetComponent<Image>().enabled = true; // if getcomponentinchildren -> affect parent
-			GetComponent<Image>().enabled = false;
+//		if (controller.clickable && neogulmanIn) {
+//			//click effect
+//			controller.figure.GetComponent<Image> ().enabled = true;
+//			GetComponent<Image>().enabled = false;
+//			controller.clickable = false;
+//			controller.scorePlayer++;
+//			scoreBoard.text = "Player " + controller.scorePlayer + " : " + controller.scoreNeogulman + " Neogulman";
+//		} else if(controller.clickable && !neogulmanIn){
+//			controller.figure.GetComponent<Image> ().enabled = true;
+//			GetComponent<Image>().enabled = false;
+//			controller.clickable = false;
+//			controller.scoreNeogulman++;
+//			scoreBoard.text = "Player " + controller.scorePlayer + " : " + controller.scoreNeogulman + " Neogulman";
+//		}
+		if (controller.clickable) {
+			if (neogulmanIn) {
+				controller.scorePlayer++;
+			} else if (!neogulmanIn) {
+				controller.scoreNeogulman++;
+			}
+			controller.ShowAnswer ();
 			controller.clickable = false;
-			controller.scorePlayer++;
-			scoreBoard.text = "Player " + controller.scorePlayer + " : " + controller.scoreNeogulman + " Neogulman";
-		} else if(controller.clickable && !neogulmanIn){
-			GetComponent<Image>().enabled = false;
-			controller.clickable = false;
-			controller.scoreNeogulman++;
 			scoreBoard.text = "Player " + controller.scorePlayer + " : " + controller.scoreNeogulman + " Neogulman";
 		}
 	}

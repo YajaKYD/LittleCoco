@@ -23,6 +23,8 @@ public class Stage5_4_GameController : MonoBehaviour {
     private GameObject paper;
     private GameObject ddong;
 
+    public BoxCollider2D portal_5_7_1;
+
     private float velocity = 0.0f;
     private float smoothTime = 0.7f; // For Camera move
 
@@ -59,6 +61,8 @@ public class Stage5_4_GameController : MonoBehaviour {
     private bool q4a1 = false;
     private bool q4a2 = false;
     private bool q4a3 = false;
+    private bool q5a1 = false;
+    private bool q5a2 = false;
 
     void Awake(){
 		player = GameObject.Find ("Player");
@@ -79,7 +83,7 @@ public class Stage5_4_GameController : MonoBehaviour {
 		if (GetComponent<Load_data> ()._where_are_you_from == 38) {
 			player.transform.position = from_5_6.position;
 		}
-		if (GetComponent<Load_data> ()._where_are_you_from == 39) {
+		if (GetComponent<Load_data> ()._where_are_you_from == 41) {
 			player.transform.position = from_5_7.position;
 		}
 		if (GetComponent<Load_data> ()._where_are_you_from == 40) {
@@ -121,7 +125,12 @@ public class Stage5_4_GameController : MonoBehaviour {
         {
             Q4_getPaper();
         }
-	}
+        if (Stage5_Controller._Stage5_Quest[34] && !Stage5_Controller._Stage5_Quest[35])
+        {
+            Q5_TalkBefore5_7_1();
+        }
+
+    }
 
 	void Q1_gotoPaper(){
 		if (!q1a1) {
@@ -291,11 +300,30 @@ public class Stage5_4_GameController : MonoBehaviour {
         }
         else if (q4a3 && !_star_textbox.activeSelf)
         {
+            portal_5_7_1.enabled = (false);
             Stage5_Controller._Stage5_Quest[31] = true; // 신문지 얻고 똥 없는 거 발견한거까지 완료.
         }
 	}
 
-	void Q5_go5_3(){
+	void Q5_TalkBefore5_7_1 ()
+    {
+        if (!q5a1 && player.transform.position.x >= from_5_7.transform.position.x)
+        {
+            ti.currLineArr[2] = 54; // 오! 여기 뭔가 좀 있겠;;
+            ti.NPC_Say_yeah("코코");
+            q5a1 = true;
+        }
+        else if (q5a1 && !q5a2 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 133;
+            ti.NPC_Say_yeah("별감");
+            q5a2 = true;
+        }
+        else if (q5a2 && !_star_textbox.activeSelf)
+        {
+            portal_5_7_1.enabled = (true);
+            Stage5_Controller._Stage5_Quest[35] = true; // 5_7_1로 들어가기 전 대사 완료.
+        }
 	}
 
 	IEnumerator Coco_ddong_ready(){

@@ -71,7 +71,8 @@ public class Stage5_2_GameController : MonoBehaviour {
         _dogsnack_not_item = GameObject.Find("DogSnack_notItem");
 
 		player.transform.position = start_pos.position;
-	}
+        _stardoll_afterused.SetActive(false);
+    }
 
 	void Start(){
         _dogsnack_not_item.SetActive(false); // 처음에는 없어야 하므로...
