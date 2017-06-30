@@ -6,6 +6,7 @@ public class Stage1_2_GameController : MonoBehaviour {
 
 	public BoxCollider2D transparent_wall;
 	public SpriteRenderer broken_bridge;
+	public GameObject sp;
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -35,6 +36,7 @@ public class Stage1_2_GameController : MonoBehaviour {
 			broken_bridge.size = new Vector2 (7.05f, 1.59f);
 			//broken_bridge.SetActive (true);
 			Destroy(GameObject.Find("Mirror_Socket"));
+			sp.SetActive (false);
 		}
 	}
 
@@ -47,6 +49,7 @@ public class Stage1_2_GameController : MonoBehaviour {
 
 	void Q2_remove_partOfmirror(){
 		if (msc.mirror_in_ornot) {//거울을 빼면,
+			sp.SetActive(false);
 
 			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 			aa.currLineArr [0] += 2;//코코 다음대사로 넘김

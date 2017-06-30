@@ -10,6 +10,8 @@ public class Lever_Puzzle : MonoBehaviour {
 	private Mirror_Socket_Controller msc2;
 	private bool a1a1 = false;
 	public bool[] Lever_State = new bool[3];
+	public Sprite[] cart_light;
+	public SpriteRenderer cart;
 
 	public Sprite[] lever_bg = new Sprite[2];//0-on/1-off
 	public SpriteRenderer[] lever_each_bg = new SpriteRenderer[6]; //true0,1,2,fake0,1,2(1,2가 2에 붙어있음)
@@ -183,6 +185,7 @@ public class Lever_Puzzle : MonoBehaviour {
 		while (true) {
 			if (i == 0) {
 				if (aa) {// off > on
+					cart.sprite = cart_light[0];
 					if (lever [0].transform.localPosition.y >= 2.5f) {
 						lever_each_bg [0].sprite = lever_bg [0];
 						lever_each_bg [3].sprite = lever_bg [0];
@@ -194,6 +197,7 @@ public class Lever_Puzzle : MonoBehaviour {
 						lever [4].transform.localPosition += new Vector3 (0f, lever_speed * Time.deltaTime, 0f);
 					}
 				} else { // on > off
+					cart.sprite = cart_light[1];
 					if (lever [0].transform.localPosition.y < 0f) {
 						lever_each_bg [0].sprite = lever_bg [1];
 						lever_each_bg [3].sprite = lever_bg [1];
