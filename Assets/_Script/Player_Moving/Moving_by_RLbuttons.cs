@@ -76,7 +76,7 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 			yield return null;
 			//execute
 			timenow += Time.deltaTime;
-			if (timenow >= 1f) {
+			if (timenow >= 0.8f) {
 				SetState (CocoState.Idle);
 				this.enabled = true;
 			}
