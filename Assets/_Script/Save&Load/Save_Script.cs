@@ -8,7 +8,7 @@ public class Save_Script : MonoBehaviour {
 	public static bool[] S2 = new bool[26];
 	public static int[] S2_intArr = new int[3];
 	public static bool[] S3 = new bool[23];
-	public static bool[] S5 = new bool[40];
+	public static bool[] S5 = new bool[51];
 	public static Item_Controller _ic_for_Save;
 	public static Text_Importer _ti_for_Save;
 

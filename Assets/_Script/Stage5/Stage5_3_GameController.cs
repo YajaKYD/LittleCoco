@@ -20,9 +20,14 @@ public class Stage5_3_GameController : MonoBehaviour {
 
 	public BoxCollider2D goto_5_5;
     public BoxCollider2D goto_5_7;
+    public GameObject Goto_5_7;
 
 	public GameObject warning;
+    public GameObject trashTruck;
     public Camera main_Camera;
+
+    public ParticleSystem rainFall;
+    public ParticleSystem rainMist;
 
     private float velocity = 0.0f;
     private float smoothTime = 0.7f; // For Camera move
@@ -48,6 +53,10 @@ public class Stage5_3_GameController : MonoBehaviour {
     private bool q3a2 = false;
     private bool q3a3 = false;
     private bool q3a4 = false;
+    private bool q4a1 = false;
+    private bool q4a2 = false;
+    private bool q4a3 = false;
+    private bool q4a4 = false;
 
     void Awake(){
 		player = GameObject.Find ("Player");
@@ -63,8 +72,12 @@ public class Stage5_3_GameController : MonoBehaviour {
 		if (GetComponent<Load_data> ()._where_are_you_from == 40) {
 			player.transform.position = from_5_8.position;
 		}
+        if (GetComponent<Load_data>()._where_are_you_from == 42)
+        {
+            player.transform.position = from_5_7.position;
+        }
 
-		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+        ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		_star_textbox = ti._text_boxes [0];
 		_ivon_textbox = ti._text_boxes [1];
         _coco_textbox = ti._text_boxes [2];
@@ -80,7 +93,19 @@ public class Stage5_3_GameController : MonoBehaviour {
         {
             warning.SetActive(false); // 다시 돌아왔을 때 맨홀 뚜껑 없어짐.
         }
-        goto_5_7.enabled = false; // 나중에 퀘스트 깨면 풀리게 해야됨.
+        if (!Stage5_Controller._Stage5_Quest[39])
+        {
+            trashTruck.SetActive(true);
+            rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
+        }
+        if (Stage5_Controller._Stage5_Quest[40])
+        {
+            goto_5_7.enabled = true;
+        }
+        if (Stage5_Controller._Stage5_Quest[42])
+        {
+            Goto_5_7.GetComponent<Portal_Controller>()._To_Scene = 39; // 쓰레기더미도 아무것도 없는 순수 5-7 Scene으로.
+        }
     }
 
     void Update() {
@@ -95,12 +120,17 @@ public class Stage5_3_GameController : MonoBehaviour {
         {
             Q3_Pass_Portal_5_7();
         }
-
+        else if (Stage5_Controller._Stage5_Quest[39] && !Stage5_Controller._Stage5_Quest[40])
+        {
+            Q4_Talk_Before_Entry(); // 5_7_2 입구 앞에서의 대화
+        }
     }
 
 	void Q1_firstcon(){
-		if (!q1a1) {
-			StartCoroutine (Warigari ());
+		if (!q1a1)
+        {
+            mbr.enabled = false;
+            StartCoroutine (Warigari ());
 			q1a1 = true;
 		}
         if (q1a2 && !q1a3 && !_star_textbox.activeSelf)
@@ -229,10 +259,49 @@ public class Stage5_3_GameController : MonoBehaviour {
         }
     }
 
-	IEnumerator Warigari(){
+    void Q4_Talk_Before_Entry()
+    {
+        if (!q4a1 && player.transform.position.x <= from_5_7.position.x)
+        {
+            ti.currLineArr[2] = 58;
+            ti.NPC_Say_yeah("코코");
+            q4a1 = true;
+        }
+        else if (q4a1 && !q4a2 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 152; // 오 뭐야 들어 갈 수 잇네
+            ti.NPC_Say_yeah("별감");
+            q4a2 = true;
+        }
+        else if (q4a2 && !q4a3 && !_star_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 58;
+            ti.NPC_Say_yeah("코코");
+            q4a3 = true;
+        }
+        else if (q4a3 && !q4a4 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[0] = 156; // 아이 알겟어.
+            ti.NPC_Say_yeah("별감");
+            q4a4 = true;
+        }
+        else if (q4a4 && !_star_textbox.activeSelf)
+        {
+            goto_5_7.enabled = true;
+            Stage5_Controller._Stage5_Quest[40] = true; // 5_7 입구 앞에서 대화가 끝나고 통로가 열림.
+            //save point//
+            Save_Script.Save_Now_Point();
+            //save point//
+        }
+
+    }
+
+    IEnumerator Warigari(){
 		print ("전전긍긍");
+        mbr.enabled = false;
 		while (true) {
-			yield return new WaitForSeconds (2f);
+            mbr.enabled = false;
+            yield return new WaitForSeconds (2f);
 			break;
 		}
 		ti.currLineArr [0] = 75; //도대체 어디로
