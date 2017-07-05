@@ -10,6 +10,7 @@ public class Portal_Controller : MonoBehaviour {
 	private Color bb;
 	public bool enter_;
 	public bool exit_ = false;
+	public Joystick js;
 
 	void Awake(){
 		_Player = GameObject.Find ("Player");
@@ -17,6 +18,7 @@ public class Portal_Controller : MonoBehaviour {
 		_blackout.color = bb;
 		_Player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 		StartCoroutine ("FadeIn");
+		js = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<Joystick> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other){ //collider가 있어야함. 트리거로 해놓자.
@@ -64,6 +66,11 @@ public class Portal_Controller : MonoBehaviour {
 
 	IEnumerator FadeOut(){
 		_Player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
+
+		js.inputVetcor = Vector3.zero;
+		js.joystickImg.rectTransform.anchoredPosition = Vector3.zero;
+		js.mbr.now_Draged = false;
+
 		for (float f = 0f; f < 1; f += Time.deltaTime) {
 			Color c = _blackout.color;
 			c.a = f;

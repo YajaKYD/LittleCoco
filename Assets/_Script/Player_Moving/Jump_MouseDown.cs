@@ -9,8 +9,9 @@ public class Jump_MouseDown : MonoBehaviour, IPointerDownHandler {
 	public virtual void OnPointerDown(PointerEventData ped){
 //		OnDrag (ped);
 //		onoffList.OnTime = Time.realtimeSinceStartup;
-		Moving_by_RLbuttons aa = GameObject.FindWithTag("Player").GetComponent<Moving_by_RLbuttons>();
-		if (aa.enabled) {
+		GameObject pl = GameObject.FindWithTag("Player");
+		Moving_by_RLbuttons aa = pl.GetComponent<Moving_by_RLbuttons>();
+		if (aa.enabled && pl.GetComponent<Rigidbody2D>().velocity == Vector2.zero) {
 			aa.Jumping ();
 		}
 	}
