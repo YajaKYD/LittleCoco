@@ -76,7 +76,32 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 			yield return null;
 			//execute
 			timenow += Time.deltaTime;
-			if (timenow >= 1f) {
+			if (timenow >= 0.8f) {
+				SetState (CocoState.Idle);
+				this.enabled = true;
+			}
+		}
+		//exit
+	}
+
+	public IEnumerator Bark(){
+		//enter
+		while (state == CocoState.Bark) {
+			yield return null;
+			//execute
+		}
+		//exit
+	}
+
+	public IEnumerator Fear(){
+		//enter
+		float timenow = 0f;
+		this.enabled = false;
+		while (state == CocoState.Fear) {
+			yield return null;
+			//execute
+			timenow += Time.deltaTime;
+			if (timenow >= 0.9f) {
 				SetState (CocoState.Idle);
 				this.enabled = true;
 			}

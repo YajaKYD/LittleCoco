@@ -13,11 +13,12 @@ public class Stage4_6_GameController : MonoBehaviour {
 	public Sprite neogulman, star;
 	public bool clickable;
 	public int roundNo = 0;
-	private Text roundBoard;
+	private Text roundBoard, scoreBoard;
 
 	public GameObject[] slot;
 	private GameObject tempSlot;
 	public GameObject[] buttons;
+	public GameObject restart;
 	private Vector3[] velocity;
 	public float smoothTime = 0.3f;
 	public static bool getTempTransform;
@@ -30,6 +31,7 @@ public class Stage4_6_GameController : MonoBehaviour {
 		itemCanvas = GameObject.FindWithTag ("Item_Canvas");
 		Stage4_Controller.q [20] = true;
 		roundBoard = GameObject.Find ("Round").GetComponent<Text> ();
+		scoreBoard = GameObject.Find ("Score").GetComponent<Text> ();
 		returnRandom ();
 
 		tempPos = new Vector3[2];
@@ -120,11 +122,53 @@ public class Stage4_6_GameController : MonoBehaviour {
 			}
 			q22_1 = true;
 			mixDone = true;
+			//conversation
 		} else {
 			if (!mixDone) {
 				Mix (number [0], number [1]);
 			}
 		}
+	}
+
+	IEnumerator JudgeWinning(){
+		Debug.Log ("start coroutine");
+		yield return new WaitForSeconds (10);
+		StopCoroutine ("ActivateButtons");
+		for (int i = 0; i < buttons.Length; i++) {
+			buttons [i].GetComponent<Button> ().enabled = false;
+		}
+
+		yield return new WaitForSeconds (1f);
+
+		int answer = 0;
+		for (int i = 0; i < slot.Length; i++) {
+			if (slot [i].GetComponent<Stage4_6_Fraud> ().neogulmanIn) {
+				answer = i;
+				break;
+			}
+		}
+
+		if (mixTimes >= 5) {
+			int randomNo = Random.Range (0, 3);
+			PickAnswer (randomNo);
+			if (randomNo == answer) {
+				Debug.Log ("neogulman won");
+				scoreNeogulman++;
+			} else {
+				Debug.Log ("player won");
+				scorePlayer++;
+			}
+		} else if (mixTimes < 5) {
+			Debug.Log ("neogulman won");
+			scoreNeogulman++;
+			PickAnswer (answer);
+		}
+		scoreBoard.text = "Player " + scorePlayer + " : " + scoreNeogulman + " Neogulman";
+	}
+
+	void PickAnswer(int i){
+		//show message
+		Debug.Log("answer is " + i);
 	}
 		
 	public void MixButton(int a){
@@ -162,13 +206,14 @@ public class Stage4_6_GameController : MonoBehaviour {
 	}
 
 	public void tempComplete(){
-		Reset (3);
+		Reset ();
 		switch (roundNo) {
 		case 1:
 			CopyOneself(neogulman);
 			break;
 		case 2:
 			CopyOneself (star);
+			StartCoroutine ("JudgeWinning");
 			break;
 		case 3: 
 			CopyOneself(neogulman);
@@ -179,19 +224,36 @@ public class Stage4_6_GameController : MonoBehaviour {
 		q22_0 = true;
 	}
 
-	public void Reset(int _roundNo){
+	public void RestartButton(){
+		restart.SetActive (false);
+		roundNo = 0;
+		scoreNeogulman = 0;
+		scorePlayer = 0;
+		q22_1 = false;
+		tempComplete ();
+	}
+
+	public void Reset(){
+		roundNo++;
+		if (scorePlayer >= 2) {
+			// conversation
+			Stage4_Controller.q [22] = true;
+			Debug.Log ("Game End");
+		} else if (scoreNeogulman >= 2) {
+			restart.SetActive(true);
+			//conversation
+			Debug.Log ("Game Fail");
+		}
+		roundBoard.text = roundNo + " Round";
+
 		for (int i = 0; i < slot.Length; i++) {
 			slot [i].GetComponent<Stage4_6_Fraud> ().neogulmanIn = false;
 		}
 		mixTimes = 0;
 		clickable = false;
-		roundNo++;
-		roundBoard.text = roundNo + " Round";
+
 		for (int i = 0; i < buttons.Length; i++) {
 			buttons [i].SetActive (false);
-		}
-		if (roundNo > _roundNo) {
-			Stage4_Controller.q [22] = true;
 		}
 	}
 
