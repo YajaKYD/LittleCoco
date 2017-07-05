@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler {
+public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler, ICancelHandler, IDeselectHandler, IEndDragHandler {
 
 	private Image bgImg;
 	private Image joystickImg;
@@ -11,11 +11,25 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 	private Moving_by_RLbuttons mbr;
 	private GameObject player;
 
+	private bool exit_drag = false;
+
 	private void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		bgImg = GetComponent<Image> ();
 		joystickImg = transform.GetChild (0).GetComponent<Image> ();
+	}
+
+	public virtual void OnCancel(BaseEventData data){
+		print ("Canceled");
+	}
+
+	public virtual void OnDeselect(BaseEventData data){
+		print ("Deselect");
+	}
+
+	public virtual void OnEndDrag(PointerEventData ped){
+		print ("ENDDRAG");
 	}
 
 	public virtual void OnDrag(PointerEventData ped){
@@ -30,14 +44,21 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 			//move joystick Img
 			joystickImg.rectTransform.anchoredPosition = new Vector3(inputVetcor.x * (bgImg.rectTransform.sizeDelta.x/2), inputVetcor.z * (bgImg.rectTransform.sizeDelta.y/2));
 			mbr.now_Draged = true;
+			print ("DRAG");
+		}
+		if (exit_drag) {
+			OnPointerUp (ped);
+			exit_drag = false;
 		}
 	}
 
 	public virtual void OnPointerDown(PointerEventData ped){
+		print ("DOWN");
 		OnDrag (ped);
 	}
 
 	public virtual void OnPointerUp(PointerEventData ped){
+		print ("UP");
 		inputVetcor = Vector3.zero;
 		joystickImg.rectTransform.anchoredPosition = Vector3.zero;
 		mbr.now_Draged = false;
@@ -50,6 +71,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 			} else if (inputVetcor.x < 0 && mbr.isActiveAndEnabled) {//왼쪽
 				mbr.Moving_left (inputVetcor.x * 8f);
 			}
+		} else {
+			exit_drag = true;
 		}
 	}
 }

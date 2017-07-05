@@ -15,6 +15,10 @@ public class AnimateSprite : MonoBehaviour {
 	void Start () {
 		vRenderer = GetComponent<SpriteRenderer> ();
 	}
+
+	void OnEnable(){
+		vCptSprite = 0;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,7 +26,7 @@ public class AnimateSprite : MonoBehaviour {
 		if (vRenderer != null) {
 			vElapseTime += Time.deltaTime;
 			if (vElapseTime >= vCptTime) {
-
+				
 				if (vCptSprite == vSpriteList.Count)
 					vCptSprite = 0;
 			
@@ -30,6 +34,7 @@ public class AnimateSprite : MonoBehaviour {
 				if (GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ().state == CocoState.GetItem) {
 					print ("CHeck");
 				}
+
 				vElapseTime = 0f;
 				vCptSprite++;
 			}

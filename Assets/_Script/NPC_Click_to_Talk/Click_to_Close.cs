@@ -8,6 +8,7 @@ public class Click_to_Close : MonoBehaviour {
 	private BoxCollider2D npc_collider;
 	private Text_Importer _ti;
 	public bool aa = true;
+	private Moving_by_RLbuttons mbr;
 
 	void Awake(){
 		//player_moving = GameObject.Find ("Player").GetComponent<Moving_by_RLbuttons> ();
@@ -15,6 +16,11 @@ public class Click_to_Close : MonoBehaviour {
 			npc_collider = GameObject.Find (name.Remove (name.Length - 5, 5)).GetComponent<BoxCollider2D> ();
 		}
 		_ti = GetComponentInParent<Text_Importer> ();
+		mbr = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
+	}
+
+	void Update(){
+		mbr.enabled = false;
 	}
 
 	void OnMouseDown(){
@@ -36,7 +42,5 @@ public class Click_to_Close : MonoBehaviour {
 				}
 			}
 		}
-
-
 	}
 }
