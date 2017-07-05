@@ -14,6 +14,9 @@ public class Stage5_5_GameController : MonoBehaviour {
 	private Text_Importer ti;
 	private Item_Controller ic;
 
+    public ParticleSystem rainFall;
+    public ParticleSystem rainMist;
+
     private bool talk = false;
 
     private bool q1a1 = false;
@@ -39,6 +42,11 @@ public class Stage5_5_GameController : MonoBehaviour {
 		_star_textbox = ti._text_boxes [0];
 		_ivon_textbox = ti._text_boxes [1];
         _coco_textbox = ti._text_boxes [2];
+
+        if (!Stage5_Controller._Stage5_Quest[39])
+        {
+            rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
+        }
     }
     
     void Update()

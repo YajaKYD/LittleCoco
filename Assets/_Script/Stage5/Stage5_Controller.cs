@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stage5_Controller : MonoBehaviour {
 
-	public static bool[] _Stage5_Quest = new bool[40];
+	public static bool[] _Stage5_Quest = new bool[51];
 
 	//public static bool q1 = false;
 	//public static bool q2 = false;

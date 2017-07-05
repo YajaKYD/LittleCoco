@@ -13,8 +13,9 @@ public class DragRigidBody2D : MonoBehaviour
     private GameObject player;
     private SpriteRenderer spriteRenderer;
 
+    public GameObject mission;
     public float throwSpeed;
-    private bool mouseUp = false;
+    private bool clicked = false;
 
     private Vector2 start, end, force;
 
@@ -26,8 +27,8 @@ public class DragRigidBody2D : MonoBehaviour
         trashHeap = GameObject.Find("TrashHeap");
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        Physics2D.IgnoreCollision(trashHeap.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
-        Physics2D.IgnoreCollision(player.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(trashHeap.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(player.GetComponent<PolygonCollider2D>(), GetComponent<BoxCollider2D>());
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class DragRigidBody2D : MonoBehaviour
 
             force = start - end;
             
-            GetComponent<Rigidbody2D>().AddForce(force*-1*throwSpeed);
+            if (clicked) rb2D.AddForce(force*-1*throwSpeed);
 
             start = new Vector2(0f, 0f);
             end = new Vector2(0f, 0f);
@@ -53,18 +54,21 @@ public class DragRigidBody2D : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (!enabled && mission.activeSelf) return;
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
+        clicked = true;
     }
 
     void OnMouseDrag()
     {
+        if (!enabled || !clicked) return;
         Vector3 newPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f);
         transform.position = Camera.main.ScreenToWorldPoint(newPosition) + offset;
     }
 
     void OnMouseUp()
     {
-        mouseUp = true;
+        if (!enabled || !clicked) return;
         StartCoroutine(Disappear());
     }
 
@@ -77,7 +81,7 @@ public class DragRigidBody2D : MonoBehaviour
             spriteRenderer.color = c;
             yield return null;
         }
-        Destroy(this.gameObject);
         Stage5_Controller._Stage5_Quest[37] = true; // 별감 인형이 사라지고 대화 시작하기 전까지 완료
+        Destroy(this.gameObject);
     }
 }

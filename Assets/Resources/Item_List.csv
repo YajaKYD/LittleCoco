@@ -18,5 +18,7 @@ Number,아이템Usable,Interaction,,0 = 소모X,Explanation
 17,Basil,1,Basil,1,바질
 18,DogSnack,1,Player,1,간식
 19,Card,1,Player,1,부적
-20,paper,1,Player,1,잘 팔리는 신문지. 오래 됐는지 색이 바랬다.
-21,,,,
+20,paper,1,,1,잘 팔리는 신문지. 오래 됐는지 색이 바랬다.
+21,Umbrella,1,UmbrellaPot,1,고장난 우산
+22,HardBox,1,UmbrellaPot,1,단단한 박스
+23,,,,,
