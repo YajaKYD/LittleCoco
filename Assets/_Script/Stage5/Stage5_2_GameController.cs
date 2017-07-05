@@ -14,6 +14,7 @@ public class Stage5_2_GameController : MonoBehaviour {
     private GameObject _coco_textbox;
 	private Text_Importer ti;
 	private Item_Controller ic;
+    private Rigidbody2D rb2D;
 
     public Outline _Bed;
 	public GameObject _ivon;
@@ -69,6 +70,7 @@ public class Stage5_2_GameController : MonoBehaviour {
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
         _dogsnack_not_item = GameObject.Find("DogSnack_notItem");
+        rb2D = _stardoll.GetComponent<Rigidbody2D>();
 
 		player.transform.position = start_pos.position;
         _stardoll_afterused.SetActive(false);
@@ -85,7 +87,8 @@ public class Stage5_2_GameController : MonoBehaviour {
         _coco_textbox = ti._text_boxes [2];
 
 		if (Stage5_Controller._Stage5_Quest[3] && !Stage5_Controller._Stage5_Quest[4]) {
-			Save_Script.Save_Now_Point ();
+            _stardoll.GetComponent<Player_get_Item>().enabled = false;
+            Physics2D.IgnoreCollision(_stardoll.GetComponent<BoxCollider2D>(), bed);
 		}
 		if (Stage5_Controller._Stage5_Quest [6]) {
 			_ivon.SetActive (false);
@@ -423,10 +426,12 @@ public class Stage5_2_GameController : MonoBehaviour {
 		mbr.enabled = false;
 		while (true) {
 			print ("발로 참");
-			_stardoll.SetActive (true);
+            //	_stardoll.SetActive (true);
+            rb2D.velocity = new Vector2(5, 5);
 			yield return new WaitForSeconds (2f);
 			ti.currLineArr [1] = 10;
 			ti.NPC_Say_yeah ("이본");
+            _stardoll.GetComponent<Player_get_Item>().enabled = true;
 			break;
 		}
 		q5_a2 = true;

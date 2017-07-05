@@ -109,9 +109,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 		if (Stage5_Controller._Stage5_Quest [15] && !Stage5_Controller._Stage5_Quest[16]) {
 			print ("별감대사부터시작");
-			//save point//
-			Save_Script.Save_Now_Point ();
-			//save point//
 			player.transform.position = regen_pos.position;
 		}
 
@@ -120,7 +117,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 //		}
 
 		if (Stage5_Controller._Stage5_Quest [22] && !Stage5_Controller._Stage5_Quest[23]) {
-			Save_Script.Save_Now_Point ();
 			portal_to_dream.gameObject.SetActive(false);
 			player.transform.position = afterdreampos.position;
 			player.transform.rotation = Quaternion.Euler (0, 180, 0);
@@ -306,9 +302,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 	void Q12_getTheball(){
 		for (int i = 0; i < ic._item_list.Length; i++) {
 			if (ic._item_name_list [i] == "Ball") {
-                //save point//
-                Save_Script.Save_Now_Point();
-                //save point//
                 Stage5_Controller._Stage5_Quest [18] = true;
 			}
 		}
