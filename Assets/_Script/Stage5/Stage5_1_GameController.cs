@@ -55,6 +55,14 @@ public class Stage5_1_GameController : MonoBehaviour {
     private bool q15a9 = false;
     private bool q15a10 = false;
     private bool q15a11 = false;
+    private bool q16a1 = false;
+    private bool q16a2 = false;
+    private bool q16a3 = false;
+    private bool q16a4 = false;
+    private bool q16a5 = false;
+    private bool q16a6 = false;
+    private bool q16a7 = false;
+    private bool q16a8 = false;
 
     public SpriteRenderer _blackout; 
 	public SpriteRenderer _bg;
@@ -83,8 +91,12 @@ public class Stage5_1_GameController : MonoBehaviour {
 		if (GetComponent<Load_data> ()._where_are_you_from == 33) { // 스테이지 4에서 온 게 아니라면
 			player.transform.position = regen_pos.position;
 		}
+        else if (GetComponent<Load_data>()._where_are_you_from == 36)
+        { 
+            player.transform.position = start_pos.position;
+        }
 
-		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+        ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		_star_textbox = ti._text_boxes [0];
 		_ivon_textbox = ti._text_boxes [1];
         _coco_textbox = ti._text_boxes [2];
@@ -97,9 +109,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 		if (Stage5_Controller._Stage5_Quest [15] && !Stage5_Controller._Stage5_Quest[16]) {
 			print ("별감대사부터시작");
-			//save point//
-			Save_Script.Save_Now_Point ();
-			//save point//
 			player.transform.position = regen_pos.position;
 		}
 
@@ -108,7 +117,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 //		}
 
 		if (Stage5_Controller._Stage5_Quest [22] && !Stage5_Controller._Stage5_Quest[23]) {
-			Save_Script.Save_Now_Point ();
 			portal_to_dream.gameObject.SetActive(false);
 			player.transform.position = afterdreampos.position;
 			player.transform.rotation = Quaternion.Euler (0, 180, 0);
@@ -119,31 +127,35 @@ public class Stage5_1_GameController : MonoBehaviour {
 		if (!Stage5_Controller._Stage5_Quest[0] && _blackout.color.a <= 0) {
 			Q1_starsay1 ();
 		}
-		if (!Stage5_Controller._Stage5_Quest[2] && Stage5_Controller._Stage5_Quest[1]) {
+		else if (!Stage5_Controller._Stage5_Quest[2] && Stage5_Controller._Stage5_Quest[1]) {
 			Q2_Until_fadeout ();
 		}
-		if (!Stage5_Controller._Stage5_Quest[3] && Stage5_Controller._Stage5_Quest[2]) {
+		else if (!Stage5_Controller._Stage5_Quest[3] && Stage5_Controller._Stage5_Quest[2]) {
 			Q3_fadein_and_coco ();
 		}
-		if (Stage5_Controller._Stage5_Quest [15] && !Stage5_Controller._Stage5_Quest [16]) {
+		else if (Stage5_Controller._Stage5_Quest [15] && !Stage5_Controller._Stage5_Quest [16]) {
             Q10_starSay ();
 		}
-		if (Stage5_Controller._Stage5_Quest [16] && !Stage5_Controller._Stage5_Quest [17]) {
+		else if (Stage5_Controller._Stage5_Quest [16] && !Stage5_Controller._Stage5_Quest [17]) {
 			Q11_putStaronPot ();
 		}
-		if (Stage5_Controller._Stage5_Quest [17] && !Stage5_Controller._Stage5_Quest [18]) {
+		else if (Stage5_Controller._Stage5_Quest [17] && !Stage5_Controller._Stage5_Quest [18]) {
 			Q12_getTheball ();
 		}
-		if (Stage5_Controller._Stage5_Quest [20] && !Stage5_Controller._Stage5_Quest [21]) {
+		else if (Stage5_Controller._Stage5_Quest [20] && !Stage5_Controller._Stage5_Quest [21]) {
 			Q13_FadeOUT ();
 		}
-		if (Stage5_Controller._Stage5_Quest [22] && !Stage5_Controller._Stage5_Quest [23]) {
+		else if (Stage5_Controller._Stage5_Quest [22] && !Stage5_Controller._Stage5_Quest [23]) {
 			Q14_Until_diary ();
 		}
-		if (Stage5_Controller._Stage5_Quest [23] && !Stage5_Controller._Stage5_Quest [24]) {
+		else if (Stage5_Controller._Stage5_Quest [23] && !Stage5_Controller._Stage5_Quest [24]) {
 			Q15_using_diary ();
 		}
-	}
+        else if (Stage5_Controller._Stage5_Quest[49] && !Stage5_Controller._Stage5_Quest[50]) {
+            Q16_Talk_Finish();
+        }
+
+    }
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.CompareTag ("Player")) {
@@ -203,6 +215,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 	void Q2_Until_fadeout(){
 		if (!q2a1) {
+            mbr.enabled = false;
 			StartCoroutine (Open_Door ());
 			q2a1 = true;
 		}
@@ -222,6 +235,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 	void Q3_fadein_and_coco(){
 		if (!q3a1) {
+            mbr.enabled = false;
 			StartCoroutine (Fadein_black ());
 			q3a1 = true;
 		}
@@ -288,9 +302,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 	void Q12_getTheball(){
 		for (int i = 0; i < ic._item_list.Length; i++) {
 			if (ic._item_name_list [i] == "Ball") {
-                //save point//
-                Save_Script.Save_Now_Point();
-                //save point//
                 Stage5_Controller._Stage5_Quest [18] = true;
 			}
 		}
@@ -418,7 +429,61 @@ public class Stage5_1_GameController : MonoBehaviour {
         }
 	}
 
-	IEnumerator Delay_2sec(){
+    void Q16_Talk_Finish()
+    {
+        if (!q16a1)
+        {
+            ti.currLineArr[2] = 76;
+            ti.NPC_Say_yeah("코코");
+            q16a1 = true;
+        }
+        else if (q16a1 && !q16a2 && !_coco_textbox.activeSelf)
+        {
+            _ivon.SetActive(true);
+            _ivon.transform.position = new Vector2(0.8f, _ivon.transform.position.y);
+            ti.currLineArr[1] = 37; // 목욕해서 개운햐
+            ti.NPC_Say_yeah("이본");
+            q16a2 = true;
+        }
+        else if (q16a2 && !q16a3 && !_ivon_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 78;
+            ti.NPC_Say_yeah("코코");
+            q16a3 = true;
+        }
+        else if (q16a3 && !q16a4 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[1] = 40; // 남자친구가 새로 만들어준화분
+            ti.NPC_Say_yeah("이본");
+            q16a4 = true;
+        }
+        else if (q16a4 && !q16a5 && !_ivon_textbox.activeSelf)
+        {
+            ti.currLineArr[2] = 80;
+            ti.NPC_Say_yeah("코코");
+            q16a5 = true;
+        }
+        else if (q16a5 && !q16a6 && !_coco_textbox.activeSelf)
+        {
+            ti.currLineArr[1] = 43; // 하하 짜식
+            ti.NPC_Say_yeah("이본");
+            q16a6 = true;
+        }
+        else if (q16a6 && !q16a7 && !_ivon_textbox.activeSelf)
+        {
+            print("개신남");
+            ti.currLineArr[2] = 82;
+            ti.NPC_Say_yeah("코코");
+            q16a7 = true;
+        }
+        else if (q16a7 && !_coco_textbox.activeSelf)
+        {
+            mbr.Moving_Right(8f);
+            _ivon.transform.position = new Vector2(_ivon.transform.position.x + 0.1f, _ivon.transform.position.y);
+        }
+    }
+
+    IEnumerator Delay_2sec(){
 		while (true) {
 			yield return new WaitForSeconds (2f);
 			print ("일어남");
@@ -433,8 +498,10 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 	IEnumerator Open_Door(){
 		while (true) {
+            mbr.enabled = false;
 			print ("Open_Sound");
 			yield return new WaitForSeconds (2f); //fit to sound length
+            mbr.enabled = false;
 			print ("앞발들고 선다");
 			yield return new WaitForSeconds (1f);
 			_ivon.SetActive (true);

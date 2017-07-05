@@ -19,6 +19,7 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 	public CocoState state = CocoState.Idle;
 	public AnimateSprite[] ani;
 	public bool now_Draged = false;
+	public float jump_height;
 
 	public void SetState(CocoState newState){
 		state = newState;
@@ -167,7 +168,7 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 
 		if (player_rb.velocity == Vector2.zero) {//한번만 점프가능
 			//player_rb.AddForce (new Vector2 (0, 320f));
-			player_rb.velocity = new Vector2 (0, 6f);
+			player_rb.velocity = new Vector2 (0, jump_height);
 
 			click_to_get = false;
 			//this.GetComponent<Animator> ().enabled = true;
