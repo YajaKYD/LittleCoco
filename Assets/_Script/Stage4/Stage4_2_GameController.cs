@@ -10,6 +10,7 @@ public class Stage4_2_GameController : MonoBehaviour {
 	public GameObject player, neogul;
 	private Text_Importer ti;
 	private Item_Controller ic;
+	private GameObject itemCanvas;
 	private GameObject camera;
 	private GameObject textbox_Ivon;
 	private GameObject textbox_Coco;
@@ -24,7 +25,8 @@ public class Stage4_2_GameController : MonoBehaviour {
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		player.transform.position = start_pos.position;
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+		itemCanvas = GameObject.FindWithTag ("Item_Canvas");
+		ic = itemCanvas.GetComponent<Item_Controller> ();
 		textbox_Coco = ti._text_boxes [0];
 		textbox_Star = ti._text_boxes [1];
 		textbox_Racoon = ti._text_boxes [2];
@@ -100,9 +102,10 @@ public class Stage4_2_GameController : MonoBehaviour {
 	IEnumerator CameraMove(){
 		camera = GameObject.FindWithTag ("MainCamera");
 		camera.GetComponent<CameraManager> ().enabled = false;
-		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
+		itemCanvas.SetActive (false);
 
 		yield return new WaitForSeconds(1);
+
 		for (float f = 0f; f < 2f; f += Time.deltaTime) {
 			//camera.transform.Translate (Vector3.left * Time.deltaTime);
 			camera.transform.Translate (new Vector3(-camera.transform.position.x,0,0) * Time.deltaTime);
@@ -111,6 +114,6 @@ public class Stage4_2_GameController : MonoBehaviour {
 
 		yield return new WaitForSeconds(1.5f);
 		camera.GetComponent<CameraManager> ().enabled = true;
-		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+		itemCanvas.SetActive (true);
 	}
 }
