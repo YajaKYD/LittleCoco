@@ -72,20 +72,23 @@ public class Stage5_3_GameController : MonoBehaviour {
 		if (GetComponent<Load_data> ()._where_are_you_from == 40) {
 			player.transform.position = from_5_8.position;
 		}
-        if (GetComponent<Load_data>()._where_are_you_from == 42)
+        if (GetComponent<Load_data>()._where_are_you_from == 42 || GetComponent<Load_data>()._where_are_you_from == 39)
         {
             player.transform.position = from_5_7.position;
         }
-
+        if (GetComponent<Load_data>()._where_are_you_from == 37)
+        {
+            player.transform.position = from_5_5.position;
+        }
         ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		_star_textbox = ti._text_boxes [0];
 		_ivon_textbox = ti._text_boxes [1];
         _coco_textbox = ti._text_boxes [2];
 
-		if (Stage5_Controller._Stage5_Quest [24] && !Stage5_Controller._Stage5_Quest [25]) {
+		/*if (Stage5_Controller._Stage5_Quest [24] && !Stage5_Controller._Stage5_Quest [25]) {
 			Save_Script.Save_Now_Point ();
 			//시작할 때 저장
-		}
+		}*/
 		if (Stage5_Controller._Stage5_Quest [25]) {
 			goto_5_5.enabled = true;
 		}
@@ -329,7 +332,7 @@ public class Stage5_3_GameController : MonoBehaviour {
         mbr.enabled = false;
         while (true)
         {
-            float newPosition = Mathf.SmoothDamp(main_Camera.transform.position.x, -9.639999f, ref velocity, smoothTime);
+            float newPosition = Mathf.SmoothDamp(main_Camera.transform.position.x, -8.1f, ref velocity, smoothTime);
             main_Camera.transform.position = new Vector3(newPosition, main_Camera.transform.position.y, main_Camera.transform.position.z);
             print("다시 플레이어 비추기");
             yield return new WaitForSeconds(3f);

@@ -216,11 +216,11 @@ public class Stage5_6_GameController : MonoBehaviour {
         }
         else if (q3a2 && !q3a3 && !_ivon_textbox.activeSelf)
         {
-            main_Camera.GetComponent<CameraManager>().enabled = true;
-            main_Camera.GetComponent<CameraManager>().FocusObject = Ivon;
+            //main_Camera.GetComponent<CameraManager>().FocusObject = Ivon;
+            main_Camera.transform.position = new Vector3(main_Camera.transform.position.x + 0.1f, main_Camera.transform.position.y, -10f);
             IvonTextPos.transform.position = new Vector2(IvonTextPos.transform.position.x + 0.1f, IvonTextPos.transform.position.y);
             Ivon.transform.position = new Vector2(Ivon.transform.position.x + 0.1f, Ivon.transform.position.y);
-            if (Ivon.transform.position.x >= 5f) q3a3 = true;
+            if (Ivon.transform.position.x >= 2.5f) q3a3 = true;
         }
         else if (q3a3 && !q3a4)
         {
@@ -251,6 +251,7 @@ public class Stage5_6_GameController : MonoBehaviour {
         }
         else if (q4a4 && !q4a5)
         {
+            main_Camera.GetComponent<CameraManager>().enabled = true;
             StartCoroutine(Fadeout_Image());
             q4a5 = true;
         }
@@ -329,7 +330,7 @@ public class Stage5_6_GameController : MonoBehaviour {
         while (true)
         {
             main_Camera.GetComponent<CameraManager>().enabled = false;
-            Vector3 newPosition = Vector3.SmoothDamp(main_Camera.transform.position, new Vector3(-9.6f, -1.001358e-05f, -10f), ref velocity, smoothTime, 10f, Time.deltaTime);
+            Vector3 newPosition = Vector3.SmoothDamp(main_Camera.transform.position, new Vector3(-7.0f, -1.001358e-05f, -10f), ref velocity, smoothTime, 10f, Time.deltaTime);
             main_Camera.transform.position = newPosition;//new Vector3(newPosition, main_Camera.transform.position.y, main_Camera.transform.position.z);
             print("카메라가 이본에게로");
             yield return new WaitForSeconds(3f);

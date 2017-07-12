@@ -111,16 +111,22 @@ public class Stage5_7_1_GameController : MonoBehaviour {
         else if (Stage5_Controller._Stage5_Quest[36] && !Stage5_Controller._Stage5_Quest[37])
         {
             Q2_Start_Ani();
+            mbr.enabled = false;
         }
         else if (Stage5_Controller._Stage5_Quest[37] && !Stage5_Controller._Stage5_Quest[38])
         {
             Q3_Before_Seven_Trash();
+            mbr.enabled = false;
         }
         else if (Stage5_Controller._Stage5_Quest[38] && !Stage5_Controller._Stage5_Quest[39])
         {
             Q4_After_Seven_Trash();
+            mbr.enabled = false;
         }
-
+        else if (Stage5_Controller._Stage5_Quest[39])
+        {
+            mbr.enabled = true;
+        }
     }
 
     void Q1_Find_Trash_Ani()
@@ -186,7 +192,7 @@ public class Stage5_7_1_GameController : MonoBehaviour {
         if (!q4a1)
         {
             // save point //
-            Save_Script.Save_Now_Point();
+            //Save_Script.Save_Now_Point();
             // save point //
             trashHeap.layer = 2;
             umbrella.SetActive(true);

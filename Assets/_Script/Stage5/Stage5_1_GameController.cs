@@ -15,54 +15,17 @@ public class Stage5_1_GameController : MonoBehaviour {
 	private Text_Importer ti;
 	private Item_Controller ic;
 
-	private bool q1a1 = false;
-	private bool q1a2 = false;
-    private bool q1a3 = false;
-    private bool q1a4 = false;
-    private bool q1a5 = false;
-    private bool q1a6 = false;
-    private bool q1a7 = false;
-    private bool q1a8 = false;
-    private bool q1a9 = false;
-    private bool q2a1 = false;
-	private bool q2a2 = false;
-	private bool q2a3 = false;
-	private bool q2a4 = false;
-	private bool q3a1 = false;
-	private bool q3a2 = false;
-	private bool q3a3 = false;
-	private bool q3a4 = false;
-	private bool q3a5 = false;
-	private bool q3a6 = false;
-    private bool q10a1 = false;
-    private bool q10a2 = false;
-    private bool q10a3 = false;
-    private bool q10a4 = false;
-    private bool q13a1 = false;
-	private bool q13a2 = false;
-	private bool q13a3 = false;
-	private bool q14a1 = false;
-    private bool q14a2 = false;
-    private bool q14a3 = false;
-    private bool q15a1 = false;
-	private bool q15a2 = false;
-	private bool q15a3 = false;
-	private bool q15a4 = false;
-	private bool q15a5 = false;
-	private bool q15a6 = false;
-	private bool q15a7 = false;
-    private bool q15a8 = false;
-    private bool q15a9 = false;
-    private bool q15a10 = false;
-    private bool q15a11 = false;
-    private bool q16a1 = false;
-    private bool q16a2 = false;
-    private bool q16a3 = false;
-    private bool q16a4 = false;
-    private bool q16a5 = false;
-    private bool q16a6 = false;
-    private bool q16a7 = false;
-    private bool q16a8 = false;
+	private bool q1a1 = false; private bool q1a2 = false; private bool q1a3 = false; private bool q1a4 = false; private bool q1a5 = false;
+    private bool q1a6 = false; private bool q1a7 = false; private bool q1a8 = false; private bool q1a9 = false;
+    private bool q2a1 = false; private bool q2a2 = false; private bool q2a3 = false; private bool q2a4 = false;
+	private bool q3a1 = false; private bool q3a2 = false; private bool q3a3 = false; private bool q3a4 = false; private bool q3a5 = false; private bool q3a6 = false;
+    private bool q10a1 = false; private bool q10a2 = false; private bool q10a3 = false; private bool q10a4 = false;
+    private bool q13a1 = false; private bool q13a2 = false;	private bool q13a3 = false;
+    private bool q14a1 = false; private bool q14a2 = false; private bool q14a3 = false;
+    private bool q15a1 = false; private bool q15a2 = false;	private bool q15a3 = false;	private bool q15a4 = false;	private bool q15a5 = false;
+	private bool q15a6 = false;	private bool q15a7 = false; private bool q15a8 = false; private bool q15a9 = false; private bool q15a10 = false; private bool q15a11 = false;
+    private bool q16a1 = false; private bool q16a2 = false; private bool q16a3 = false; private bool q16a4 = false; private bool q16a5 = false;
+    private bool q16a6 = false; private bool q16a7 = false; private bool q16a8 = false;
 
     public SpriteRenderer _blackout; 
 	public SpriteRenderer _bg;
@@ -310,9 +273,6 @@ public class Stage5_1_GameController : MonoBehaviour {
 	void Q13_FadeOUT(){
 		if (!q13a1) {
             //StartCoroutine (sadcoco_2sec ());
-            ti.currLineArr[2] = 23;
-            print("상당히 실망한 코코");
-            ti.NPC_Say_yeah("코코");
 			q13a1 = true;
 		}
         if (q13a1 && !q13a2 && !_coco_textbox.activeSelf)
@@ -426,8 +386,11 @@ public class Stage5_1_GameController : MonoBehaviour {
             ti.NPC_Say_yeah("코코");
             q15a11 = true;
             Stage5_Controller._Stage5_Quest[24] = true;
+            //save point//
+            Save_Script.Save_Now_Point();
+            //save point//
         }
-	}
+    }
 
     void Q16_Talk_Finish()
     {
@@ -504,6 +467,7 @@ public class Stage5_1_GameController : MonoBehaviour {
             mbr.enabled = false;
 			print ("앞발들고 선다");
 			yield return new WaitForSeconds (1f);
+            mbr.enabled = false;
 			_ivon.SetActive (true);
 			print ("Switch sound");
 			StartCoroutine (Fadeout_bg ());
