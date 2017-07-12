@@ -44,6 +44,9 @@ public class Stage4_1_GameController : MonoBehaviour {
 		if (!Stage4_Controller.q[1]) {
 			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
 		}
+		if (Stage4_Controller.q [13]) {
+			Light.SetActive (false);
+		}
 
 		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
 		_blackout.color = bb;
@@ -181,6 +184,7 @@ public class Stage4_1_GameController : MonoBehaviour {
 			yield return null;
 		}
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+		player.transform.rotation = Quaternion.Euler (0, 180, 0);
 
 		ti.currLineArr [0] += 4; 
 		ti.NPC_Say_yeah ("코코"); // !!!!

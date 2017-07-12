@@ -12,12 +12,14 @@ public class Stage4_3_GameController : MonoBehaviour {
 	public int nextSceneNo;
 	public SpriteRenderer blackout;
 	public GameObject background;
+	public Transform startPos;
 
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
-		//test
-		Stage4_Controller.q[14] = true;
-		//Save_Script.Save_Now_Point();
+		player.transform.position = startPos.position;
+
+		Stage4_Controller.q[14] = true; //test
+		Save_Script.Save_Now_Point();
 	}
 
 	void Update () {

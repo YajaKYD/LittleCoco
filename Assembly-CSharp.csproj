@@ -57,6 +57,13 @@
      <Compile Include="Assets\Book-Page Curl Pro\Scripts\Timing.cs" />
      <Compile Include="Assets\Frame_check.cs" />
      <Compile Include="Assets\NPC_Trigger.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Demo\DemoScript.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Demo\DemoScript2D.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Demo\DemoScriptStartRainOnSpaceBar.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Prefab\BaseRainScript.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainCollision.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainScript.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainScript2D.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\AnimationHelper.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\Extensions.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\GameController.cs" />
@@ -157,15 +164,21 @@
      <Compile Include="Assets\_Script\Stage4\Stage4_Dogbed.cs" />
      <Compile Include="Assets\_Script\Stage5\DragRigidBody2D.cs" />
      <Compile Include="Assets\_Script\Stage5\DropTheBal.cs" />
+     <Compile Include="Assets\_Script\Stage5\Pot_Socket_Controller.cs" />
+     <Compile Include="Assets\_Script\Stage5\SevenGarbage.cs" />
+     <Compile Include="Assets\_Script\Stage5\SevenGarbage2.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_1_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_1x_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_2_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_3_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_4_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage5\Stage5_6_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_7_1_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage5\Stage5_7_2_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_8_GameController.cs" />
      <Compile Include="Assets\_Script\Stage5\Stage5_Controller.cs" />
+     <Compile Include="Assets\_Script\Stage5\TextClose.cs" />
      <Compile Include="Assets\_Script\Stage5\newsStand.cs" />
      <Compile Include="Assets\_Script\Stage5\stage5Paper.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />
@@ -185,7 +198,9 @@
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
+     <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />
      <None Include="Assets\Resources\32.txt" />
+     <None Include="Assets\Resources\Prefabs\RainMaker\Readme.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

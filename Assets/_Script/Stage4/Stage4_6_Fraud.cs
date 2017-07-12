@@ -16,25 +16,13 @@ public class Stage4_6_Fraud : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OnPointerClick(PointerEventData eventData){
-//		if (controller.clickable && neogulmanIn) {
-//			//click effect
-//			controller.figure.GetComponent<Image> ().enabled = true;
-//			GetComponent<Image>().enabled = false;
-//			controller.clickable = false;
-//			controller.scorePlayer++;
-//			scoreBoard.text = "Player " + controller.scorePlayer + " : " + controller.scoreNeogulman + " Neogulman";
-//		} else if(controller.clickable && !neogulmanIn){
-//			controller.figure.GetComponent<Image> ().enabled = true;
-//			GetComponent<Image>().enabled = false;
-//			controller.clickable = false;
-//			controller.scoreNeogulman++;
-//			scoreBoard.text = "Player " + controller.scorePlayer + " : " + controller.scoreNeogulman + " Neogulman";
-//		}
 		if (controller.clickable) {
 			if (neogulmanIn) {
 				controller.scorePlayer++;
+				controller.message_answer.GetComponentInChildren<Text> ().text = "날 찾아내다니..!";
 			} else if (!neogulmanIn) {
 				controller.scoreNeogulman++;
+				controller.message_answer.GetComponentInChildren<Text> ().text = "속았군!!";
 			}
 			controller.ShowAnswer ();
 			controller.clickable = false;

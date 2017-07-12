@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class Stage4_6_GameController : MonoBehaviour {
 
+	private Text_Importer ti;
+	private GameObject itemCanvas;
+
 	public Transform fraudPanel;
 	private bool q22_0, q22_1;
 	public int[] number = new int[2];
 	public int scorePlayer, scoreNeogulman;
-	//public GameObject figure, neogulmanPrefab, starPrefab;
 	public Sprite neogulman, star;
 	public bool clickable;
 	public int roundNo = 0;
-	private Text roundBoard, scoreBoard;
+	private Text roundBoard, scoreBoard, timeBoard;
 
 	public GameObject[] slot;
 	private GameObject tempSlot;
@@ -24,15 +26,32 @@ public class Stage4_6_GameController : MonoBehaviour {
 	public static bool getTempTransform;
 	private Vector3[] tempPos;
 	public bool mixDone;
+	private bool startCountSeconds;
+	private float remainSeconds;
 	public int mixTimes;
-	private GameObject itemCanvas;
+
+	private GameObject textbox_Ivon;
+	private GameObject textbox_Coco;
+	private GameObject textbox_Star;
+	private GameObject textbox_Racoon;
+	public GameObject message_answer;
+	public GameObject message_mix;
 
 	void Start () {
 		itemCanvas = GameObject.FindWithTag ("Item_Canvas");
-		Stage4_Controller.q [20] = true;
+		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+		ti.Import (25); // temp code
+		textbox_Coco = ti._text_boxes [0];
+		textbox_Star = ti._text_boxes [1];
+		textbox_Racoon = ti._text_boxes [2];
+		textbox_Ivon = ti._text_boxes [3];
+
+		Stage4_Controller.q [20] = true; // temp code
 		roundBoard = GameObject.Find ("Round").GetComponent<Text> ();
 		scoreBoard = GameObject.Find ("Score").GetComponent<Text> ();
+		timeBoard = GameObject.Find ("Time").GetComponent<Text> ();
 		returnRandom ();
+
 
 		tempPos = new Vector3[2];
 		velocity = new Vector3[2];
@@ -40,6 +59,10 @@ public class Stage4_6_GameController : MonoBehaviour {
 			velocity [i] = Vector3.zero;
 		}
 		getTempTransform = false;
+		message_mix.SetActive (false);
+		timeBoard.gameObject.SetActive (false);
+
+		ti.NPC_Say_yeah ("너굴맨");
 	}
 
 	void Update () {
@@ -53,16 +76,18 @@ public class Stage4_6_GameController : MonoBehaviour {
 	}
 
 	void Q21_popupGame(){
-		//conversation
-		itemCanvas.SetActive(false);
-		ShowMenu(fraudPanel); // Pop up Game UI
-		Stage4_Controller.q [21] = true;
+		if (!textbox_Racoon.activeSelf) {
+			//conversation
+			itemCanvas.SetActive (false);
+			ShowMenu (fraudPanel); // Pop up Game UI
+			Stage4_Controller.q [21] = true;
+		}
 	}
 
 	void Q22_startGame(){
 		switch(roundNo){
 		case 1:
-			Mix (20);
+			Mix (5); // change int variables
 			break;
 
 		case 2:
@@ -70,7 +95,7 @@ public class Stage4_6_GameController : MonoBehaviour {
 			break;
 
 		case 3:
-			Mix (20);
+			Mix (5);
 			break;
 
 		default:
@@ -119,7 +144,10 @@ public class Stage4_6_GameController : MonoBehaviour {
 		if (!q22_1) {
 			for (int i = 0; i < buttons.Length; i++) {
 				buttons [i].SetActive (true);
+				//buttons [i].GetComponent<Button> ().enabled = true;
 			}
+			Debug.Log ("mix true");
+			message_mix.SetActive (true);
 			q22_1 = true;
 			mixDone = true;
 			//conversation
@@ -128,15 +156,31 @@ public class Stage4_6_GameController : MonoBehaviour {
 				Mix (number [0], number [1]);
 			}
 		}
+
+		if (startCountSeconds && timeBoard.gameObject.activeSelf) {
+			remainSeconds -= Time.deltaTime;
+			timeBoard.GetComponent<Text> ().text = "남은 시간 : " + Mathf.RoundToInt (remainSeconds) + " 초";
+		}
 	}
 
 	IEnumerator JudgeWinning(){
 		Debug.Log ("start coroutine");
+		yield return new WaitForSeconds (2f);
+
+		Debug.Log ("mix false");
+		message_mix.SetActive (false);
+		timeBoard.gameObject.SetActive (true);
+		startCountSeconds = true;
+
 		yield return new WaitForSeconds (10);
+
 		StopCoroutine ("ActivateButtons");
 		for (int i = 0; i < buttons.Length; i++) {
-			buttons [i].GetComponent<Button> ().enabled = false;
+			buttons [i].SetActive (false);
+			//buttons [i].GetComponent<Button> ().enabled = false;
 		}
+		startCountSeconds = false;
+		timeBoard.gameObject.SetActive (false);
 
 		yield return new WaitForSeconds (1f);
 
@@ -147,6 +191,8 @@ public class Stage4_6_GameController : MonoBehaviour {
 				break;
 			}
 		}
+
+		int tempScorePlayer = scorePlayer;
 
 		if (mixTimes >= 5) {
 			int randomNo = Random.Range (0, 3);
@@ -163,12 +209,18 @@ public class Stage4_6_GameController : MonoBehaviour {
 			scoreNeogulman++;
 			PickAnswer (answer);
 		}
-		scoreBoard.text = "Player " + scorePlayer + " : " + scoreNeogulman + " Neogulman";
-	}
+		yield return new WaitForSeconds (2f);
 
-	void PickAnswer(int i){
-		//show message
-		Debug.Log("answer is " + i);
+		if (scorePlayer > tempScorePlayer) {
+			message_answer.GetComponentInChildren<Text> ().text = "하하 틀렸다!";
+		} else {
+			message_answer.GetComponentInChildren<Text> ().text = "아니 어떻게!?";
+		}
+		message_answer.transform.SetParent (slot [answer].transform);
+		message_answer.transform.localPosition = new Vector3 (-40, 70, 0);
+
+		ShowAnswer ();
+		scoreBoard.text = "Player " + scorePlayer + " : " + scoreNeogulman + " Neogulman";
 	}
 		
 	public void MixButton(int a){
@@ -209,19 +261,22 @@ public class Stage4_6_GameController : MonoBehaviour {
 		Reset ();
 		switch (roundNo) {
 		case 1:
-			CopyOneself(neogulman);
+			message_answer.GetComponentInChildren<Text> ().text = "내가 너굴맨!";
+			StartCoroutine(CopyOneself(neogulman));
 			break;
 		case 2:
-			CopyOneself (star);
+			message_answer.GetComponentInChildren<Text> ().text = "내가 별감!";
+			StartCoroutine(CopyOneself (star));
 			StartCoroutine ("JudgeWinning");
 			break;
 		case 3: 
-			CopyOneself(neogulman);
+			message_answer.GetComponentInChildren<Text> ().text = "내가 너굴맨!";
+			StartCoroutine(CopyOneself(neogulman));
 			break;
 		default:
 			break;
 		}
-		q22_0 = true;
+		//q22_0 = true;
 	}
 
 	public void RestartButton(){
@@ -248,22 +303,42 @@ public class Stage4_6_GameController : MonoBehaviour {
 
 		for (int i = 0; i < slot.Length; i++) {
 			slot [i].GetComponent<Stage4_6_Fraud> ().neogulmanIn = false;
+			slot [i].GetComponent<Image> ().sprite = null;
 		}
-		mixTimes = 0;
-		clickable = false;
+		message_answer.SetActive(false);
 
+		q22_0 = false;
+		mixTimes = 0;
+		remainSeconds = 10;
+		clickable = false;
 		for (int i = 0; i < buttons.Length; i++) {
 			buttons [i].SetActive (false);
 		}
 	}
 
-	void CopyOneself(Sprite figure){
+	IEnumerator CopyOneself(Sprite figure){
 		slot [1].GetComponent<Image> ().sprite = figure;
 		slot [1].GetComponent<Stage4_6_Fraud> ().neogulmanIn = true;
-		//conversation
-		//appear effect
-		slot[0].GetComponent<Image> ().sprite = figure;
-		slot[2].GetComponent<Image> ().sprite = figure;
+		message_answer.transform.SetParent (slot [1].transform);
+		message_answer.transform.localPosition = new Vector3 (-40, 70, 0);
+		message_answer.SetActive (true);
+
+		yield return new WaitForSeconds (2);
+		//effect
+		message_answer.SetActive(false);
+		slot [0].GetComponent<Image> ().sprite = figure;
+		slot [2].GetComponent<Image> ().sprite = figure;
+
+		yield return new WaitForSeconds (2);
+		q22_0 = true;
+	}
+
+	void PickAnswer(int i){ //show message
+		message_answer.transform.SetParent (slot [i].transform);
+		message_answer.transform.localPosition = new Vector3 (-40, 70, 0);
+		message_answer.GetComponentInChildren<Text> ().text = "이 녀석이지!";
+		message_answer.SetActive(true);
+		Debug.Log("answer is " + i);
 	}
 
 	public void ShowAnswer(){
@@ -273,6 +348,7 @@ public class Stage4_6_GameController : MonoBehaviour {
 				//disappear effect
 			}
 		}
+		message_answer.SetActive (true);
 	}
 
 	int[] returnRandom(){

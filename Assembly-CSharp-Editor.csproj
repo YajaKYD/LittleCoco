@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Book-Page Curl Pro\Editor\BookProEditor.cs" />
+     <Compile Include="Assets\Resources\Prefabs\RainMaker\Editor\RainMakerEditor.cs" />
      <None Include="Assets\Resources\11.txt" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
      <None Include="Assets\Resources\15.txt" />
@@ -54,7 +55,9 @@
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
+     <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />
      <None Include="Assets\Resources\32.txt" />
+     <None Include="Assets\Resources\Prefabs\RainMaker\Readme.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
