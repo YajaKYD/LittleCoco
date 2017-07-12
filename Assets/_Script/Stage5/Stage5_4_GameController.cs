@@ -128,7 +128,7 @@ public class Stage5_4_GameController : MonoBehaviour {
         if (Stage5_Controller._Stage5_Quest[42])
         {
             // save point //
-            Save_Script.Save_Now_Point();
+            //Save_Script.Save_Now_Point();
             // save point //
             Goto_5_7.GetComponent<Portal_Controller>()._To_Scene = 39; // 쓰레기더미도 아무것도 없는 순수 5-7 Scene으로.
         }
@@ -396,6 +396,8 @@ public class Stage5_4_GameController : MonoBehaviour {
         else if (q6a5 && q6a6 && !q6a7)
         {
             ti.currLineArr[1] = 26; // 으악 똥이잖아.
+            _ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            _ivon_textbox.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             ti.NPC_Say_yeah("이본");
             q6a7 = true;
         }
