@@ -15,6 +15,7 @@ public class Stage5_2_GameController : MonoBehaviour {
 	private Text_Importer ti;
 	private Item_Controller ic;
     private Rigidbody2D rb2D;
+    private BoxCollider2D dogBed;
 
     public Outline _Bed;
 	public GameObject _ivon;
@@ -25,6 +26,7 @@ public class Stage5_2_GameController : MonoBehaviour {
 	public GameObject _dogsnack;
 	public Transform sleep_pos;
 	public BoxCollider2D gooutportal;
+    public BoxCollider2D portalto5_1;
 	//temp
 	public GameObject _stardoll;
     public GameObject _stardoll_afterused;
@@ -52,6 +54,7 @@ public class Stage5_2_GameController : MonoBehaviour {
 	private bool q9_a2 = false;
     private bool q9_a3 = false;
 
+    private bool itemeat;
     private bool afterFadein = false;
 
     private bool t_e1 = false;
@@ -70,10 +73,12 @@ public class Stage5_2_GameController : MonoBehaviour {
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
         _dogsnack_not_item = GameObject.Find("DogSnack_notItem");
-        rb2D = _stardoll.GetComponent<Rigidbody2D>();
-
+        rb2D = _stardoll_afterused.GetComponent<Rigidbody2D>();
+        dogBed = GameObject.FindWithTag("Bed").GetComponent<BoxCollider2D>();
+     
 		player.transform.position = start_pos.position;
-        _stardoll_afterused.SetActive(false);
+        _stardoll.SetActive(false);
+        itemeat = false;
     }
 
 	void Start(){
@@ -86,14 +91,30 @@ public class Stage5_2_GameController : MonoBehaviour {
 		_ivon_textbox = ti._text_boxes [1];
         _coco_textbox = ti._text_boxes [2];
 
-		if (Stage5_Controller._Stage5_Quest[3] && !Stage5_Controller._Stage5_Quest[4]) {
-            _stardoll.GetComponent<Player_get_Item>().enabled = false;
-            Physics2D.IgnoreCollision(_stardoll.GetComponent<BoxCollider2D>(), bed);
-		}
+        Physics2D.IgnoreCollision(_stardoll_afterused.GetComponent<BoxCollider2D>(), bed);
+        Physics2D.IgnoreCollision(_stardoll_afterused.GetComponent<BoxCollider2D>(), dogBed);
+        Physics2D.IgnoreCollision(_stardoll_afterused.GetComponent<BoxCollider2D>(), player.GetComponent<PolygonCollider2D>());
+        
+            bed.enabled = true;
+
 		if (Stage5_Controller._Stage5_Quest [6]) {
 			_ivon.SetActive (false);
 		}
-		if (Stage5_Controller._Stage5_Quest[7]) {
+        if (Stage5_Controller._Stage5_Quest[6] && !Stage5_Controller._Stage5_Quest[7]) // 쿠션을 찬 상태
+        {
+            _stardoll_afterused.SetActive(false);
+            for (int i = 0; i < ic._item_list.Length; i++)
+            {
+                if (ic._item_name_list[i] == "StarDoll") // 아이템을 먹은 상태
+                {
+                    itemeat = true;
+                    break;
+                }
+            }
+            if (!itemeat) _stardoll.SetActive(true);
+        }
+
+        if (Stage5_Controller._Stage5_Quest[7]) {
 			Destroy (_stardoll);
             _stardoll_afterused.SetActive(true);
         }
@@ -242,12 +263,15 @@ public class Stage5_2_GameController : MonoBehaviour {
 		if (q5_a2 && !_ivon_textbox.activeSelf) {
 			_ivon.SetActive (false);
             //Stage5_Controller.q7 = true;
+            //_stardoll.transform.position = _stardoll_afterused.transform.position;
             q5_a3 = true;
         }
         if (q5_a3 && !q5_a4)
         {
             ti.currLineArr[0] = 14; // 주인님이 돌아오셧
             ti.NPC_Say_yeah("별감");
+            _stardoll.SetActive(true);
+            _stardoll_afterused.SetActive(false);
             q5_a4 = true;
         }
         if (q5_a4 && !q5_a5 && !_star_textbox.activeSelf)
@@ -262,6 +286,7 @@ public class Stage5_2_GameController : MonoBehaviour {
             ti.NPC_Say_yeah("별감");
             q5_a6 = true;
             Stage5_Controller._Stage5_Quest[6] = true;
+            bed.enabled = false; // 아이템 사용 시 이 콜라이더가 아이템 사용을 막음.
         }
     }
 
@@ -278,15 +303,20 @@ public class Stage5_2_GameController : MonoBehaviour {
         {
             print("사용");
             // _stardoll_afterused.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
+            _stardoll_afterused.transform.position = new Vector2(-3.66f, -3.38f);
             _stardoll_afterused.SetActive(true);
+            Physics2D.IgnoreCollision(_stardoll_afterused.GetComponent<BoxCollider2D>(), player.GetComponent<PolygonCollider2D>());
+            Physics2D.IgnoreCollision(_stardoll_afterused.GetComponent<BoxCollider2D>(), bed);
+            Physics2D.IgnoreCollision(_stardoll_afterused.GetComponent<BoxCollider2D>(), dogBed);
 
+            bed.enabled = true;
             q6_a1 = true;
         }
         if (q6_a1)
         {
             Stage5_Controller._Stage5_Quest[7] = true; // 아무것도 없는 상태..
             //save point//
-            Save_Script.Save_Now_Point();
+            //Save_Script.Save_Now_Point();
             //save point//
         }
     }
@@ -377,10 +407,11 @@ public class Stage5_2_GameController : MonoBehaviour {
 			door.enabled = false;
 			snack.enabled = true;
 			_dogsnack.SetActive (true);
+            portalto5_1.enabled = false;
 			//Stage5_Controller.q14 = true;
 			Stage5_Controller._Stage5_Quest [13] = true;
             //save point//
-            Save_Script.Save_Now_Point();
+          //  Save_Script.Save_Now_Point();
             //save point//
         }
     }
@@ -418,6 +449,7 @@ public class Stage5_2_GameController : MonoBehaviour {
         {
             ti.currLineArr[0] = 41;
             ti.NPC_Say_yeah("별감");
+            portalto5_1.enabled = true;
             Stage5_Controller._Stage5_Quest[15] = true;
         }
 	}
@@ -431,7 +463,7 @@ public class Stage5_2_GameController : MonoBehaviour {
 			yield return new WaitForSeconds (2f);
 			ti.currLineArr [1] = 10;
 			ti.NPC_Say_yeah ("이본");
-            _stardoll.GetComponent<Player_get_Item>().enabled = true;
+         //   itemScript.enabled = true;
 			break;
 		}
 		q5_a2 = true;

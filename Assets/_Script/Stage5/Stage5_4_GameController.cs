@@ -67,6 +67,7 @@ public class Stage5_4_GameController : MonoBehaviour {
         newsStand = GameObject.Find("Newsstand");
         paper = GameObject.Find("paper");
         IvonTextPos = GameObject.Find("IvonTextPos");
+        IvonTextPos.SetActive(false);
     }
 
 	void Start(){
@@ -77,7 +78,7 @@ public class Stage5_4_GameController : MonoBehaviour {
 		if (GetComponent<Load_data> ()._where_are_you_from == 38) {
 			player.transform.position = from_5_6.position; // 자동으로 씬 이동했을 때 위치 수정 필요...
 		}
-		if (GetComponent<Load_data> ()._where_are_you_from == 41) {
+		if (GetComponent<Load_data> ()._where_are_you_from == 41 || GetComponent<Load_data>()._where_are_you_from == 39) {
 			player.transform.position = from_5_7.position;
 		}
 		if (GetComponent<Load_data> ()._where_are_you_from == 40) {
@@ -86,15 +87,23 @@ public class Stage5_4_GameController : MonoBehaviour {
         if (GetComponent<Load_data>()._where_are_you_from == 42)
         {
             player.transform.position = from_5_7.position;
-            portal_5_7_1.GetComponent<Portal_Controller>()._To_Scene = 42;
+            portal_5_7_1.GetComponent<Portal_Controller>()._To_Scene = 39;
         }
         if (Stage5_Controller._Stage5_Quest[25] && !Stage5_Controller._Stage5_Quest[26])
         {
             newsStand.SetActive(false); // 처음에는 가판대 없어야함.    
             player.transform.position = from_5_5.position;
             // save point //
-            Save_Script.Save_Now_Point();
+            //Save_Script.Save_Now_Point();
             // save point //
+        }
+        if (Stage5_Controller._Stage5_Quest[26] && !Stage5_Controller._Stage5_Quest[27])
+        { 
+            GameObject k = (GameObject)Instantiate(Resources.Load("Prefabs/dogddong"));
+            k.transform.position = cluePlace.transform.position;
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), k.GetComponent<Collider2D>(), true);
+            ddong = GameObject.Find("dogddong(Clone)");
+            newsStand.SetActive(false);
         }
         if (Stage5_Controller._Stage5_Quest [29]) // 신문지 안 먹고 다른 씬으로 이동했다가 돌아온 경우 + 그 이후
         {
@@ -119,15 +128,17 @@ public class Stage5_4_GameController : MonoBehaviour {
         if (Stage5_Controller._Stage5_Quest[42])
         {
             // save point //
-            Save_Script.Save_Now_Point();
+            //Save_Script.Save_Now_Point();
             // save point //
             Goto_5_7.GetComponent<Portal_Controller>()._To_Scene = 39; // 쓰레기더미도 아무것도 없는 순수 5-7 Scene으로.
         }
         if (Stage5_Controller._Stage5_Quest[48])
         {
+            IvonTextPos.SetActive(true);
             // save point //
-            Save_Script.Save_Now_Point();
+            //Save_Script.Save_Now_Point();
             // save point //
+            player.transform.position = new Vector2(0.82f, -2.655f);
             Ivon.SetActive(true);
             newsStand.SetActive(false);
         }
@@ -385,6 +396,8 @@ public class Stage5_4_GameController : MonoBehaviour {
         else if (q6a5 && q6a6 && !q6a7)
         {
             ti.currLineArr[1] = 26; // 으악 똥이잖아.
+            _ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            _ivon_textbox.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             ti.NPC_Say_yeah("이본");
             q6a7 = true;
         }

@@ -99,11 +99,16 @@ public class Stage5_7_2_GameController : MonoBehaviour {
 
     void Q1_Go_Before_Trash()
     {
-        if (!q1a1 && player.transform.position.x <= 6f)
+        if (!q1a1)
+        {
+            mbr.Moving_left(-8f);
+            if (player.transform.position.x <= 6f) q1a1 = true;
+        }
+        else
         {
             trashHeap.layer = 0;
             StartCoroutine(Dig_Trash());
-            q1a1 = true;
+            
         }
     }
 
@@ -181,7 +186,7 @@ public class Stage5_7_2_GameController : MonoBehaviour {
         {
             //StartCoroutine(AutoMove());
             mbr.Moving_left(-8f);
-            if (player.transform.position.x <= -17.28f)  Stage5_Controller._Stage5_Quest[43] = true;
+            if (player.transform.position.x <= -17.29f)  Stage5_Controller._Stage5_Quest[43] = true;
         }
     }
 
