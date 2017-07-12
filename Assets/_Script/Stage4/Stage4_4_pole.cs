@@ -6,10 +6,10 @@ public class Stage4_4_pole : MonoBehaviour {
 
 	public GameObject posterPrefab;
 	public GameObject poster;
-	private GameObject Item_Canvas;
+	private GameObject item_Canvas;
 
 	void Start () {
-		Item_Canvas = GameObject.FindWithTag ("Item_Canvas");
+		//item_Canvas = GameObject.FindWithTag ("Item_Canvas");
 	}
 
 	void OnMouseDown(){
