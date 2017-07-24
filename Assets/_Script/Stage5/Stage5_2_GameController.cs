@@ -53,6 +53,7 @@ public class Stage5_2_GameController : MonoBehaviour {
     private bool q9_a1 = false;
 	private bool q9_a2 = false;
     private bool q9_a3 = false;
+    private bool q9_a4 = false;
 
     private bool itemeat;
     private bool afterFadein = false;
@@ -445,10 +446,14 @@ public class Stage5_2_GameController : MonoBehaviour {
             q9_a3 = true;
 			//Stage5_Controller.q16 = true;
 		}
-        if (q9_a3 && !_coco_textbox.activeSelf)
+        if (q9_a3 && !q9_a4 && !_coco_textbox.activeSelf)
         {
             ti.currLineArr[0] = 41;
             ti.NPC_Say_yeah("별감");
+            q9_a4 = true;
+        }
+        if (q9_a4 && !_star_textbox.activeSelf)
+        {
             portalto5_1.enabled = true;
             Stage5_Controller._Stage5_Quest[15] = true;
         }
