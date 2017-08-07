@@ -32,7 +32,7 @@ public class Tutorial_Controller : MonoBehaviour {
 		Debug.Log ("index is " + index + ", " + tutorialMessageIndex);
         if (index == tutorialMessageIndex && tutorialMessagePrefab[index] != null)
         {
-            tutorialMessage = Instantiate(tutorialMessagePrefab[index], Vector3.zero, Quaternion.identity) as GameObject;
+			tutorialMessage = Instantiate(tutorialMessagePrefab[index], Vector3.zero , Quaternion.identity) as GameObject;
             tutorialMessage.transform.SetParent(itemCanvas.transform, false);
 			//tutorialMessage.transform.SetSiblingIndex (itemCanvas.transform.childCount - 2 - index);
 			try{

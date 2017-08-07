@@ -10,6 +10,8 @@ public class Frame_check : MonoBehaviour {
 	void Start () {
 		aa = GetComponentInChildren<Text> ();
 		DontDestroyOnLoad (gameObject);
+
+		Cursor.visible = false;
 	}
 
 	void Update () {

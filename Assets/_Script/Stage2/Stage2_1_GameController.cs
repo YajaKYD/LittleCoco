@@ -19,6 +19,9 @@ public class Stage2_1_GameController : MonoBehaviour {
 	public GameObject[] multiTap;
 	public GameObject _coco_textbox;
 
+
+	private bool drop_tape = false;
+
 	//Test용//
 //	public GameObject a1;
 //	public GameObject b1;
@@ -77,6 +80,38 @@ public class Stage2_1_GameController : MonoBehaviour {
 			
 		if (Stage2_Controller._Stage2_Quest[3] && !Stage2_Controller._Stage2_Quest[4]) {
 			Q5_multiTap ();
+		}
+
+		//아템떨궈야하는디~ 한번만~
+		if(Stage2_Controller._Stage2_Quest[6] && Stage2_Controller._Stage2_Quest[7] && !Stage2_Controller._Stage2_Quest[25] && Item_Drag._NOW_Shaked && !drop_tape){
+			//멀티탭 설치완료
+			//shake 완료
+			//절연테이프 아직 못먹음 >> 1번 떨어트림
+			GameObject k = (GameObject)Instantiate(Resources.Load("Prefabs/Tape"));
+			k.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			k.transform.position = new Vector3 (k.transform.position.x, k.transform.position.y, 0f);
+			k.name = "Tape";
+			GameObject j = (GameObject)Instantiate(Resources.Load("Prefabs/Tape"));
+			j.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			j.transform.position = new Vector3 (j.transform.position.x, j.transform.position.y, 0f);
+			j.name = "Tape";
+
+			Item_Drag[] ids = ic.GetComponentsInChildren<Item_Drag> ();
+			for (int x = 0; x < ids.Length; x++) {
+				ids [x]._diary_usable = false;
+			} //change diary image -unusable-
+			Item_Drag._NOW_Shaked = false;
+			drop_tape = true;
+		}
+
+		if(drop_tape && !Stage2_Controller._Stage2_Quest[25]){
+			//떨어트림
+			//먹었음.
+			for (int i = 0; i < ic._item_list.Length; i++) {
+				if (ic._item_name_list [i] == "Tape") {
+					Stage2_Controller._Stage2_Quest [25] = true;
+				}
+			}
 		}
 
 	}

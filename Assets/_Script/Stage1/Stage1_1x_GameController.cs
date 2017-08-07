@@ -12,6 +12,7 @@ public class Stage1_1x_GameController : MonoBehaviour {
 	private Moving_by_RLbuttons mbr;
 	//public Text Player_text;
 	private bool a1 = false;
+	public Transform arrow;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
@@ -52,6 +53,7 @@ public class Stage1_1x_GameController : MonoBehaviour {
 			//말하고 뒤로 자동으로 움직임?
 			//mbr.enabled = false;
 			//StartCoroutine ("Backback");
+			arrow.rotation = Quaternion.Euler(Vector3.zero);
 			mbr.SetState(CocoState.Fear);
 			//mbr.enabled = false;
 			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
@@ -60,11 +62,11 @@ public class Stage1_1x_GameController : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Backback(){
-		for (int i = 0; i < 80; i++) {
-			mbr.Moving_left (-8f);
-			yield return null;
-		}
-		mbr.enabled = true;
-	}
+//	IEnumerator Backback(){
+//		for (int i = 0; i < 80; i++) {
+//			mbr.Moving_left (-8f);
+//			yield return null;
+//		}
+//		mbr.enabled = true;
+//	}
 }
