@@ -31,10 +31,12 @@ public class Stage5_1_GameController : MonoBehaviour {
 	public SpriteRenderer _bg;
 	public GameObject _ivon;
 	public PolygonCollider2D ball;
+    public GameObject ball_object;
 	public GameObject portal_to_dream;
 	public Transform afterdreampos;
-
-	void Awake(){
+    public BoxCollider2D portal; // 일기장 흔들기 전에 못나가게
+    
+    void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
@@ -64,7 +66,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 		_ivon_textbox = ti._text_boxes [1];
         _coco_textbox = ti._text_boxes [2];
 
-		if (Stage5_Controller._Stage5_Quest[3]) {//after 1st scene end
+        if (Stage5_Controller._Stage5_Quest[3]) {//after 1st scene end
 			//_blackout.color = new Color (0,0,0,0);
 			_bg.color = new Color (1, 1, 1, 1);
 			GetComponent<BoxCollider2D> ().enabled = false;
@@ -75,15 +77,23 @@ public class Stage5_1_GameController : MonoBehaviour {
 			player.transform.position = regen_pos.position;
 		}
 
-//		if (Stage5_Controller._Stage5_Quest [17]) {
-//			print ("화분 이미지 바뀜 ~ 잠깰때까지");
-//		}
+        //		if (Stage5_Controller._Stage5_Quest [17]) {
+        //			print ("화분 이미지 바뀜 ~ 잠깰때까지");
+        //		}
 
-		if (Stage5_Controller._Stage5_Quest [22] && !Stage5_Controller._Stage5_Quest[23]) {
+        if (Stage5_Controller._Stage5_Quest[18] && !Stage5_Controller._Stage5_Quest[20])
+        {
+            ball_object.SetActive(false);
+        }
+
+        if (Stage5_Controller._Stage5_Quest[20]) ball_object.transform.position = new Vector2(-12.91054f, -3.294492f);
+
+        if (Stage5_Controller._Stage5_Quest [22] && !Stage5_Controller._Stage5_Quest[23]) {
 			portal_to_dream.gameObject.SetActive(false);
 			player.transform.position = afterdreampos.position;
 			player.transform.rotation = Quaternion.Euler (0, 180, 0);
 		}
+
 	}
 
 	void Update(){
@@ -294,6 +304,7 @@ public class Stage5_1_GameController : MonoBehaviour {
 
 	void Q14_Until_diary(){
 		if (!q14a1) {
+            portal.enabled = false;
 			ti.currLineArr [0] = 52;//이게 무슨일
 			ti.NPC_Say_yeah("별감");
 			q14a1 = true;
@@ -326,14 +337,17 @@ public class Stage5_1_GameController : MonoBehaviour {
 			ti.NPC_Say_yeah ("별감");
 			Item_Drag._NOW_Shaked = false;
 			q15a2 = true;
-		}
-		if (q15a2 && _star_textbox.activeSelf) {
+            //save point//
+            Save_Script.Save_Now_Point();
+            //save point//
+        }
+        if (q15a2 && _star_textbox.activeSelf) {
 			Item_Drag._NOW_Shaked = false;
 		}
 		if (q15a2 && !q15a3 && !_star_textbox.activeSelf && Item_Drag._NOW_Shaked) {
 			GameObject k = (GameObject)Instantiate(Resources.Load("Prefabs/dogddong"));
 			k.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			k.transform.position = new Vector3 (k.transform.position.x, k.transform.position.y, 0f);
+            k.transform.position = new Vector3(k.transform.position.x, k.transform.position.y, 0f);
 			Physics2D.IgnoreCollision (player.GetComponent<Collider2D> (), k.GetComponent<Collider2D> (), true);
 			Item_Drag[] ids = ic.GetComponentsInChildren<Item_Drag> ();
 			for (int x = 0; x < ids.Length; x++) {
@@ -378,6 +392,7 @@ public class Stage5_1_GameController : MonoBehaviour {
         {
             ti.currLineArr[0] = 72; // 응? 화분을 새로??
             ti.NPC_Say_yeah("별감");
+            portal.enabled = true;
             q15a11 = true;
         }
         if (q15a11 && !_star_textbox.activeSelf)
@@ -387,7 +402,7 @@ public class Stage5_1_GameController : MonoBehaviour {
             q15a11 = true;
             Stage5_Controller._Stage5_Quest[24] = true;
             //save point//
-            Save_Script.Save_Now_Point();
+          //  Save_Script.Save_Now_Point();
             //save point//
         }
     }
