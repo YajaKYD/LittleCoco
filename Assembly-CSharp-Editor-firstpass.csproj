@@ -59,6 +59,7 @@
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Resources\32.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Readme.txt" />
+     <None Include="Assets\Resources\100.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
