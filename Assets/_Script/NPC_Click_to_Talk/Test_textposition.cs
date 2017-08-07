@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Test_textposition : MonoBehaviour {
 
-	public Camera aa;
+	private Camera aa;
 	RectTransform s;
 	public GameObject bb;
 

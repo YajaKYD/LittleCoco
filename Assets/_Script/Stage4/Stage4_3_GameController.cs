@@ -30,16 +30,13 @@ public class Stage4_3_GameController : MonoBehaviour {
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		item_Canvas = GameObject.FindWithTag ("Item_Canvas");
 
-		Stage4_Controller.q[14] = true; //test
-		ti.Import(25); // test
+		Stage4_Controller.q[14] = true; //test // need optimization
+		//ti.Import(25); // test
 
 		textbox_Coco = ti._text_boxes [0];
 		textbox_Star = ti._text_boxes [1];
 		textbox_Racoon = ti._text_boxes [2];
 		textbox_Ivon = ti._text_boxes [3];
-
-
-
 
 		Save_Script.Save_Now_Point();
 	}

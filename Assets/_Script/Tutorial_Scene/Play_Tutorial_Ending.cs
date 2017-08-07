@@ -32,7 +32,9 @@ public class Play_Tutorial_Ending : MonoBehaviour {
 		//_Ending_movie.Play ();
 		//audio.Play ();
 		//print(Handheld.PlayFullScreenMovie ("Tutorial_ending.mp4",Color.black,FullScreenMovieControlMode.CancelOnInput));
-		Handheld.PlayFullScreenMovie ("Tutorial_ending.mp4",Color.black,FullScreenMovieControlMode.Hidden);
+
+		//temporary delete for building
+		//Handheld.PlayFullScreenMovie ("Tutorial_ending.mp4",Color.black,FullScreenMovieControlMode.Hidden);
 
 	}
 
