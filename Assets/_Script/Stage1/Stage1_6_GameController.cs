@@ -18,6 +18,7 @@ public class Stage1_6_GameController : MonoBehaviour {
 	private bool a3 = false;
 	private bool a4 = false;
 	private bool a5 = false;
+	private Moving_by_RLbuttons mbr;
 
 	public Mirror_Socket_Controller msc;
 	public SpriteRenderer another_stone;
@@ -30,11 +31,14 @@ public class Stage1_6_GameController : MonoBehaviour {
 	public SpriteRenderer _whiteOut;
 	public GameObject[] _yellowThings;
 	public GameObject _endingText;
+
+	public GameObject portalto15;
 	//private Mirror_Socket_Controller msc;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
+		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		//stone = GameObject.FindWithTag ("HandMirror");
 //		o_l = stone.GetComponent<Outline> ();
 		i_c = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
@@ -55,7 +59,7 @@ public class Stage1_6_GameController : MonoBehaviour {
 	}
 
 
-	void LateUpdate(){
+	void Update(){
 
 		if (msc.mirror_in_ornot && !aaa) {
 			another_stone.gameObject.SetActive (true);
@@ -132,6 +136,7 @@ public class Stage1_6_GameController : MonoBehaviour {
 
 		if (!a1 && a3 && !_star_textbox.activeSelf) {
 			//print ("2");
+			mbr.SetState(CocoState.Bark);
 			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
 			aa.NPC_Say_yeah ("코코");
 			_coco_textbox = GameObject.Find ("코코_text");
@@ -202,6 +207,7 @@ public class Stage1_6_GameController : MonoBehaviour {
 
 		i_c.GetComponent<Canvas> ().enabled = true;
 		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = true;
+		portalto15.SetActive (false);
 		//글자띄우고.
 	}
 

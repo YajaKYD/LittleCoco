@@ -30,6 +30,7 @@ public class Game_Controller_0_1 : MonoBehaviour {
     private bool ivon_quest_end;
     public int tutorialMessageIndex;
     private bool getGum;
+	private bool remo = false;
 
     void Awake(){
 		player = GameObject.Find ("Player");
@@ -93,17 +94,22 @@ public class Game_Controller_0_1 : MonoBehaviour {
         if (i_c._now_used_item == "개껌" && !second_quest_end) {
 			_t_i.currLineArr[0] += 2;
 			_t_i.NPC_Say_yeah ("이본");
-			portal.SetActive (true);
 			second_quest_end = true;
 		}
 
         if(second_quest_end && !_ivon_textbox.activeSelf && !ivon_quest_end)
         {
             tc.instantiateMessage(4); // 왼쪽으로 이동하세요
-            //Debug.Log("이본 대사 끝");
+            //Debug.Log("이본 대사 끝")
             ivon_quest_end = true;
+			portal.SetActive (true);
             GameObject.FindWithTag("NPC").SetActive(false);
         }
+
+		if (portal.GetComponent<Portal_Controller> ().exit_ && !remo) {
+			Destroy(tc.tutorialMessage);
+			remo = true;
+		}
 	}
 
     IEnumerator changeMessage()
@@ -113,9 +119,9 @@ public class Game_Controller_0_1 : MonoBehaviour {
         tc.tutorialMessageIndex++;
         tc.instantiateMessage(2);
     }
-
-    void OnDisable()
-    {
-        Destroy(tc.tutorialMessage);
-    }
+//
+//    void OnDisable()
+//    {
+//        Destroy(tc.tutorialMessage);
+//    }
 }

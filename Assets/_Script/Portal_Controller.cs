@@ -86,6 +86,3 @@ public class Portal_Controller : MonoBehaviour {
 
 
 }
-
-
-

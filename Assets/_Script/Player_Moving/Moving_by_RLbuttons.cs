@@ -87,9 +87,16 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 
 	public IEnumerator Bark(){
 		//enter
+		float timenow = 0f;
+		this.enabled = false;
 		while (state == CocoState.Bark) {
 			yield return null;
 			//execute
+			timenow += Time.deltaTime;
+			if (timenow >= 0.8f) {
+				SetState (CocoState.Idle);
+				this.enabled = true;
+			}
 		}
 		//exit
 	}
@@ -178,6 +185,7 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 			SetState (CocoState.Jump);
 		}
 
+//		GoogleTest.instance.googleAnalytics.LogEvent ("Moving", "JUMP", "jump", 1);
 
 		//테라리아같은 점프
 		/*

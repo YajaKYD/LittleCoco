@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Book-Page Curl Pro\Editor\BookProEditor.cs" />
+     <Compile Include="Assets\GoogleAnalytics\Editor\AnalyticsDependencies.cs" />
      <Compile Include="Assets\Resources\Prefabs\RainMaker\Editor\RainMakerEditor.cs" />
      <None Include="Assets\Resources\11.txt" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
@@ -55,7 +56,9 @@
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
+     <None Include="Assets\Plugins\Android\readme.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Resources\32.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Readme.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
@@ -116,10 +119,25 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="Google.IOSResolver">
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/PlayServicesResolver/Editor/Google.IOSResolver.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.JarResolver">
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/PlayServicesResolver/Editor/Google.JarResolver.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.VersionHandler">
+ <HintPath>E:/Unity Projects/LittleCoco/Assets/PlayServicesResolver/Editor/Google.VersionHandler.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{6CE4FCF4-6F12-5754-A09D-55490ED19C25}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{B4F7BDF1-2239-2D91-2623-7C321935AB61}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
+      <Project>{3160CA41-E7FE-A453-61C6-E65471181B92}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-Editor-firstpass.unityproj">
+      <Project>{ABF6A6E8-36FB-D0AB-C38F-64EB045AA0F6}</Project>      <Name>Assembly-UnityScript-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

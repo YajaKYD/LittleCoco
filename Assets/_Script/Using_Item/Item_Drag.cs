@@ -14,7 +14,8 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 	public TurnOnOffItemList onoffList;
 	public AudioSource _click_sound;
 	public AudioSource _diary_sound;
-
+	public Sprite diary_ac;
+	public Sprite diary_nac;
 	public static bool _NOW_Shaked = false;
 
 	private float before_x;
@@ -37,6 +38,7 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 
 		if (ic._item_name_list [numbering] == "Diary" && Stage2_Controller._Stage2_Quest[6] && Stage2_Controller._Stage2_Quest[7] && !Stage2_Controller._Stage2_Quest[25]) {
 			print ("Change Diary Image -usable- on startphase");
+			this.GetComponent<Image> ().sprite = diary_ac;
 			_diary_usable = true;
 			foronce = true; //following diary usable value
 		}
@@ -63,13 +65,17 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 
 		if (ic._item_name_list [numbering] == "Diary" && _diary_usable && !foronce) {
 			print ("Change Diary Imgae -usable- on Updatephase");
+			this.GetComponent<Image> ().sprite = diary_ac;
 			foronce = true;
 		}
 
 		if (ic._item_name_list [numbering] == "Diary" && !_diary_usable && foronce) {
 			print ("Change Diary Image -unusable- on Updatephase");
+			this.GetComponent<Image> ().sprite = diary_nac;
 			foronce = false;
 		}
+
+
 
 	}
 
@@ -86,7 +92,7 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 		}
 
 		//일기장 사용
-		if(ic._item_name_list[numbering] == "Diary"){
+		if(ic._item_name_list[numbering] == "Diary" && foronce){
 			dif_bet_beforeandafter = Input.mousePosition.x - before_x;
 			if (dif_bet_beforeandafter * before_distance >= 0) {
 				//방향그대로

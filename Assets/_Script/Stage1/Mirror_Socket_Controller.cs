@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mirror_Socket_Controller : MonoBehaviour {
 
@@ -11,11 +12,14 @@ public class Mirror_Socket_Controller : MonoBehaviour {
 //	private GameObject player;
 	private Item_Controller i_c;
 	private Outline o_l;
+	private SpriteRenderer spr;
+	private bool blink = false;
 
 	void Awake(){
 //		player = GameObject.Find ("Player");
 		i_c = GameObject.Find ("Item_Canvas").GetComponent<Item_Controller>();
 		o_l = GetComponent<Outline> ();
+		spr = this.GetComponent<SpriteRenderer> ();
 	}
 
 	void Update(){
@@ -25,6 +29,16 @@ public class Mirror_Socket_Controller : MonoBehaviour {
 			o_l.eraseRenderer = true;
 		}
 
+		if (!mirror_in_ornot && !blink) {
+			StartCoroutine (Blink ());
+			blink = true;
+		}
+
+		if (mirror_in_ornot && blink) {
+			StopCoroutine (Blink ());
+			spr.color = new Color (1f,1f,1f,1f);
+			blink = false;
+		}
 	}
 
 	void OnMouseDown(){
@@ -38,4 +52,21 @@ public class Mirror_Socket_Controller : MonoBehaviour {
 		}
 	}
 
+	IEnumerator Blink(){
+		Color bb = new Color (1f, 1f, 1f, 1f);
+		for (float i = 1; i >= 0; i-= Time.deltaTime) {
+			bb.a = i;
+			spr.color = bb;
+			yield return null;
+		}
+		spr.color = new Color (1f,1f,1f,0f);
+		yield return new WaitForSeconds (1f);
+		for (float i = 0; i <= 1; i+= Time.deltaTime) {
+			bb.a = i;
+			spr.color = bb;
+			yield return null;
+		}
+		spr.color = new Color (1f,1f,1f,1f);
+		blink = false;
+	}
 }
