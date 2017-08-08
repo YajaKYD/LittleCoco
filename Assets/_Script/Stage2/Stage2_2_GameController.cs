@@ -89,14 +89,23 @@ public class Stage2_2_GameController : MonoBehaviour {
 			_clockwork.enabled = true;
 		}
 
+		if (!Stage2_Controller._Stage2_Quest [15]) {
+			clockwork.rotation = Quaternion.Euler (new Vector3( 0, 0, Stage2_Controller._Stage2_Quest_intArr [0] * 90f));
+		}
+
+		if (!Stage2_Controller._Stage2_Quest [21]) {
+			clockwork.rotation = Quaternion.Euler (new Vector3( 0, 0, Stage2_Controller._Stage2_Quest_intArr [2] * 90f));
+		}
+
 		if (Stage2_Controller._Stage2_Quest[20]) {
 			_sparkle_1.SetActive (true);
 			_clockwork.enabled = true;
 		}
 
 		if (Stage2_Controller._Stage2_Quest[22]) {
-			_sparkle_1.SetActive (false);
-			_clockwork.enabled = false;
+			//_sparkle_1.SetActive (false);
+			//_clockwork.enabled = false;
+			//이거어디야?
 		}
 
 	}
@@ -290,7 +299,7 @@ public class Stage2_2_GameController : MonoBehaviour {
 			_cws.Play ();
 
 			if (Stage2_Controller._Stage2_Quest[22]) {
-				_sparkle_1.SetActive (false);
+				//_sparkle_1.SetActive (false);
 				Stage2_Controller._Stage2_Quest[21] = true;
 			}
 
