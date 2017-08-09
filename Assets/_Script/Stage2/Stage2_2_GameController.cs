@@ -27,6 +27,7 @@ public class Stage2_2_GameController : MonoBehaviour {
 	public Outline _clockwork_ol;
 	public AudioSource _cws;
 	public GameObject[] _multi_image;
+	public Transform clockwork;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
@@ -91,6 +92,11 @@ public class Stage2_2_GameController : MonoBehaviour {
 		if (Stage2_Controller._Stage2_Quest[20]) {
 			_sparkle_1.SetActive (true);
 			_clockwork.enabled = true;
+		}
+
+		if (Stage2_Controller._Stage2_Quest[22]) {
+			_sparkle_1.SetActive (false);
+			_clockwork.enabled = false;
 		}
 
 	}
@@ -258,6 +264,7 @@ public class Stage2_2_GameController : MonoBehaviour {
 	void Q11_ClockWork(){
 		if (_clockwork_ol.used_or_not_for_retry) {
 			Stage2_Controller._Stage2_Quest_intArr[0]++;
+			clockwork.rotation = Quaternion.Euler (new Vector3( 0, 0, Stage2_Controller._Stage2_Quest_intArr [0] * 90f));
 			_cws.Play ();
 
 			if (Stage2_Controller._Stage2_Quest[16]) {
@@ -279,9 +286,11 @@ public class Stage2_2_GameController : MonoBehaviour {
 	void Q16_ClockWork(){
 		if (_clockwork_ol.used_or_not_for_retry) {
 			Stage2_Controller._Stage2_Quest_intArr[2]++;
+			clockwork.rotation = Quaternion.Euler (new Vector3( 0, 0, Stage2_Controller._Stage2_Quest_intArr [2] * 90f));
 			_cws.Play ();
 
 			if (Stage2_Controller._Stage2_Quest[22]) {
+				_sparkle_1.SetActive (false);
 				Stage2_Controller._Stage2_Quest[21] = true;
 			}
 

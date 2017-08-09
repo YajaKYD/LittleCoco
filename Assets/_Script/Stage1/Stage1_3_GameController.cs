@@ -56,8 +56,8 @@ public class Stage1_3_GameController : MonoBehaviour {
 			Vector3 ss = Vector3.zero;
 			wheels[0].transform.Rotate(new Vector3(0,0,-10f));
 			wheels[1].transform.Rotate(new Vector3(0,0,-10f));	
-			dog_in_a_cart.transform.position = Vector3.SmoothDamp (dog_in_a_cart.transform.position, new Vector3 (13.5f, -0.76f, 7f), ref ss,0.2f);
-			if (Vector3.Distance (dog_in_a_cart .transform.position, new Vector3 (13.5f, -0.76f, 7f)) < 0.5f) {
+			dog_in_a_cart.transform.position = Vector3.SmoothDamp (dog_in_a_cart.transform.position, new Vector3 (10.5f, -0.76f, 7f), ref ss,0.2f);
+			if (Vector3.Distance (dog_in_a_cart .transform.position, new Vector3 (10.5f, -0.76f, 7f)) < 0.5f) {
 				puzzle_end = false;
 				dog_in_a_cart.SetActive (false);
 				cart.SetActive (true);

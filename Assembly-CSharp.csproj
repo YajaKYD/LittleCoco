@@ -76,6 +76,7 @@
      <Compile Include="Assets\_Script\CameraManager.cs" />
      <Compile Include="Assets\_Script\Destroy_tutorialMessage.cs" />
      <Compile Include="Assets\_Script\FORTEST_SkipStage.cs" />
+     <Compile Include="Assets\_Script\GoogleTest.cs" />
      <Compile Include="Assets\_Script\Instantiate_Message.cs" />
      <Compile Include="Assets\_Script\Item_Controller.cs" />
      <Compile Include="Assets\_Script\Load_data.cs" />
@@ -93,7 +94,6 @@
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\NPC_Click.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Star_TextPosition.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Test_textposition.cs" />
-     <Compile Include="Assets\_Script\NewBehaviourScript.cs" />
      <Compile Include="Assets\_Script\PlayerPrefsX.cs" />
      <Compile Include="Assets\_Script\Player_Moving\CocoState.cs" />
      <Compile Include="Assets\_Script\Player_Moving\Joystick.cs" />
@@ -104,6 +104,7 @@
      <Compile Include="Assets\_Script\Portal_Controller.cs" />
      <Compile Include="Assets\_Script\Save&amp;Load\Save_Script.cs" />
      <Compile Include="Assets\_Script\Stage1\Cart_Puzzle.cs" />
+     <Compile Include="Assets\_Script\Stage1\Ghost_remover.cs" />
      <Compile Include="Assets\_Script\Stage1\Lever_Click.cs" />
      <Compile Include="Assets\_Script\Stage1\Lever_Puzzle.cs" />
      <Compile Include="Assets\_Script\Stage1\Mirror_Socket_Controller.cs" />
@@ -199,7 +200,9 @@
      <None Include="Assets\Resources\1.txt" />
      <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
+     <None Include="Assets\Plugins\Android\readme.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Resources\32.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Readme.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineShader.shader" />
@@ -224,6 +227,10 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{6CE4FCF4-6F12-5754-A09D-55490ED19C25}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

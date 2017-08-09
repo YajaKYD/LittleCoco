@@ -12,6 +12,11 @@ public class Stage1_5_GameController : MonoBehaviour {
 	public Outline[] o_l;
 	public Mirror_Socket_Controller[] msc;
 	public GameObject[] xx;
+	public GameObject twinkle;
+	public BoxCollider2D twall;
+
+	public Ghost_remover gr1;
+	public Ghost_remover gr2;
 
 	private Moving_by_RLbuttons mbr;
 	//public static bool stage1_5_mirror_or_not_1 = false;
@@ -45,6 +50,7 @@ public class Stage1_5_GameController : MonoBehaviour {
 			transparent_walls.enabled = false;
 			msc [0].mirror_in_ornot = false;
 			Destroy (msc [0].gameObject);
+			twall.enabled = false;
 		}
 //		if (Stage1_Controller._Stage1_Quest[7]) {
 //			xx[1].SetActive(false);
@@ -96,15 +102,22 @@ public class Stage1_5_GameController : MonoBehaviour {
 		if (other.gameObject == player) {
 			//말하고 뒤로 자동으로 움직임?
 			mbr.enabled = false;
-			StartCoroutine ("Backback");
+			mbr.SetState(CocoState.Fear);
+			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+			aa.NPC_Say_yeah ("코코");
+			// StartCoroutine ("Backback");
 		}
 	}
 
 	void GhostRemove(){
-		print ("GhostRemove_Ani");
-		xx [0].SetActive (false);
-		xx [1].SetActive (false);
-		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+		gr1.remover = true;
+		gr2.remover = true;
+		//print ("GhostRemove_Ani");
+		//xx [0].SetActive (false);
+		//xx [1].SetActive (false);
+		//player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
+		twinkle.SetActive (false);
+		twall.enabled = false;
 	}
 
 	IEnumerator Mirror_Effect(SpriteRenderer a){
@@ -124,13 +137,13 @@ public class Stage1_5_GameController : MonoBehaviour {
 		//broken_bridge.
 	}
 
-	IEnumerator Backback(){
-		for (int i = 0; i < 30; i++) {
-			mbr.Moving_Right (8f);
-			yield return null;
-		}
-		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		aa.NPC_Say_yeah ("코코");
-		mbr.enabled = true;     
-	}
+//	IEnumerator Backback(){
+//		for (int i = 0; i < 30; i++) {
+//			mbr.Moving_Right (8f);
+//			yield return null;
+//		}
+//		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//		aa.NPC_Say_yeah ("코코");
+//		mbr.enabled = true;     
+//	}
 }
