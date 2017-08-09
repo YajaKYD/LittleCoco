@@ -5,22 +5,26 @@ using UnityEngine.UI;
 
 public class Stage4_4_poster : MonoBehaviour{
 
-	private Stage4_4_GameController controller;
+	private Stage4_4_GameController2 controller;
 	public GameObject otherman;
 	private GameObject player;
 	private Vector2 pos;
-	private SpriteRenderer fade;
+	private SpriteRenderer fade, poster;
+
+	private Text_Importer2 ti;
 
 	void Start () {
-		controller = GameObject.Find ("Stage4_4_GameController").GetComponent<Stage4_4_GameController>();
+		controller = GameObject.Find ("Stage4_4_GameController").GetComponent<Stage4_4_GameController2>();
+		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
 		player = GameObject.FindWithTag ("Player");
-		controller.poster = this;
+		//controller.poster = this;
 		fade = GetComponent<SpriteRenderer> ();
+		poster = GameObject.Find("poster").GetComponent<SpriteRenderer> ();
 	}
 		
 	void OnMouseDown(){
 		Debug.Log ("mouse down");
-		if (!Stage4_Controller.q [16]) {
+		if (!Stage4_Controller.q [16] && Stage4_Controller.q[32]) {
 			StartCoroutine ("ChangeImage");
 		}
 	}
@@ -41,7 +45,7 @@ public class Stage4_4_poster : MonoBehaviour{
 		otherman.SetActive (true);
 		//this.gameObject.SetActive (false);
 
-		controller.q16_0 = true;
+		ti.Talk (ti.lineNo + 2);
 		//need animation effect
 		//pos = this.transform.position;
 		//controller.pos = pos;
@@ -53,8 +57,20 @@ public class Stage4_4_poster : MonoBehaviour{
 		yield return null;
 	}
 
+	IEnumerator FadeoutPoster(){
+		for (float a = 0f; a < 1f; a+=Time.deltaTime) {
+			Color c = poster.color;
+
+			c.a = 1 - a;
+			Debug.Log (c);
+			poster.color = c;
+			yield return null;
+		}
+		poster.gameObject.SetActive (false);
+		ti.Talk (ti.lineNo + 2);
+	}
+
 	public void DisappearPoster(){
-		//animation
-		transform.parent.gameObject.SetActive (false);
+		StartCoroutine ("FadeoutPoster");
 	}
 }

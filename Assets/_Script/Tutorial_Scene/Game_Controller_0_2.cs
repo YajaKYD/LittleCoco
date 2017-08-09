@@ -66,7 +66,7 @@ public class Game_Controller_0_2 : MonoBehaviour {
 		_ic.SetActive (false);
 		_Canvas.SetActive (true);
 		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = false;
-		Handheld.PlayFullScreenMovie ("Tutorial_ending.mp4",Color.black,FullScreenMovieControlMode.Hidden);
+		//Handheld.PlayFullScreenMovie ("Tutorial_ending.mp4",Color.black,FullScreenMovieControlMode.Hidden);
 		Invoke ("Active_Text", 2f);
 		//player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 	}

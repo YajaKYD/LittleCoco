@@ -48,6 +48,8 @@ public class GameController : MonoBehaviour
     float currentTime = 0f;
     int difficulty = 0;
 
+	private Text_Importer2 ti;
+
     float tileSize = 0f;
     /// <summary>
     /// Tile Size in Local Space used to scale the Tile to fit into the Puzzle panel
@@ -93,7 +95,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         GameState.State = State.Menu;
-
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
         //ShowMenu(gamePanel);
         //HideMenu(gameoverPanel);
         //ShowMenu(mainmenuPanel);
@@ -487,6 +489,10 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         GameState.State = State.Play;
+
+		if (!Stage4_Controller.q [40]) {
+			ti.Talk (ti.lineNo + 2);
+		}
 
         yield return 0;
     }

@@ -13,7 +13,7 @@ public class Stage4_4_GameController : MonoBehaviour {
 	private GameObject textbox_Star;
 	private GameObject textbox_Racoon;
 
-	public Stage4_4_poster poster;
+	public GameObject poster, posterPrefab;
 
 	public bool movePlayer;
 	public Transform startPos;
@@ -24,16 +24,16 @@ public class Stage4_4_GameController : MonoBehaviour {
 	public float rotationSpeed;
 	public SpriteRenderer blackout;
 
-
-	public bool q16_0, q16_1, q16_2;
+	public bool[] conv;
 
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
 		player.transform.position = startPos.position;
 		item_Canvas = GameObject.FindWithTag ("Item_Canvas");
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+		conv = new bool[10];
 
-		ti.Import(25); // test
+		//ti.Import(25); // test
 		textbox_Coco = ti._text_boxes [0];
 		textbox_Star = ti._text_boxes [1];
 		textbox_Racoon = ti._text_boxes [2];
@@ -54,19 +54,34 @@ public class Stage4_4_GameController : MonoBehaviour {
 	}
 
 	void Q16_PosterPuzzle(){
-		if (q16_0) {
-			ti.NPC_Say_yeah ("코코");
-			q16_0 = false;
-			q16_1 = true;
-		} else if (q16_1 && !textbox_Coco.activeSelf) {
-			poster.DisappearPoster ();
+		if (conv [0] && !textbox_Coco.activeSelf) {
 			ti.NPC_Say_yeah ("별감");
-			q16_1 = false;
-			q16_2 = true;
-		} else if (q16_2 && !textbox_Star.activeSelf) {
-			StartCoroutine ("FinishPosterPuzzle");
-		}
+			conv [0] = false;
+			conv [1] = true;
+		} else if (conv [1] && !textbox_Star.activeSelf) {
+			poster = Instantiate (posterPrefab, Vector3.forward, Quaternion.identity) as GameObject;
+			conv [1] = false;
+			conv [2] = true;
+		} else if (conv [2]) {
+			ti.NPC_Say_yeah ("코코");
+			conv [2] = false;
+			conv [3] = true;
+		} else if (conv [3] && !textbox_Coco.activeSelf) {
+			ti.NPC_Say_yeah ("별감");
+			conv [3] = false;
+			conv [4] = true;
+		} else if (conv [4] && !textbox_Star.activeSelf) {
+			ti.NPC_Say_yeah ("코코");
+			conv [4] = false;
+			conv [5] = true;
+		} 
 	}
+
+	public void TouchPoster(){
+		ti.NPC_Say_yeah ("코코");
+		conv[0] = true;
+	}
+
 
 //	void Q16_PosterPuzzle(){
 //		if (movePlayer) {

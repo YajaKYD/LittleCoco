@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: aac58fb8725f84c4c9b6613ccff10b0a
-timeCreated: 1479446155
+guid: e04b54d796c546d47b441e519f05382d
+timeCreated: 1502111697
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: 
+  fontName: THESherbet
   fontNames:
-  - YDIYGO330
+  - THESherbet
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

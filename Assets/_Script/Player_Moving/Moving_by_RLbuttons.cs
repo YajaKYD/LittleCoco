@@ -52,6 +52,7 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		while (state == CocoState.Run) {
 			yield return null;
 			if (!now_Draged) {
+				now_Draged = false;
 				SetState (CocoState.Idle);
 			}
 		}
@@ -110,6 +111,22 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 			//execute
 			timenow += Time.deltaTime;
 			if (timenow >= 0.9f) {
+				SetState (CocoState.Idle);
+				this.enabled = true;
+			}
+		}
+		//exit
+	}
+
+	public IEnumerator Smell(){
+		//enter
+		float timenow = 0f;
+		this.enabled = false;
+		while (state == CocoState.Smell) {
+			yield return null;
+			//execute
+			timenow += Time.deltaTime;
+			if (timenow >= 1.1f) {
 				SetState (CocoState.Idle);
 				this.enabled = true;
 			}
@@ -213,19 +230,24 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		click_to_get = true;
 	}
 	void Moving_to_get(){
-		if (state == CocoState.Idle) {
-			SetState (CocoState.Run);
-		}
+		
+
 		if (transform.position.x > item_position_to_get.x) {//아이템이 왼쪽
 			transform.position = Vector2.MoveTowards (transform.position, item_position_to_get, 8f * Time.deltaTime);
-			transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));
+			transform.localRotation = Quaternion.Euler (new Vector3 (0f, 180f, 0f));
 			//transform.localScale = new Vector3 (-1f, 1f, 1f);
 		} else if (transform.position.x < item_position_to_get.x) {//아이템이 오른쪽
 			transform.position = Vector2.MoveTowards (transform.position, item_position_to_get, 8f * Time.deltaTime);
-			transform.localRotation = Quaternion.Euler(new Vector3(0f,0f,0f));
+			transform.localRotation = Quaternion.Euler (new Vector3 (0f, 0f, 0f));
 			//transform.localScale = new Vector3 (1f, 1f, 1f);
 		} else {
 			click_to_get = false;
+			now_Draged = false;
+		}
+
+		if (state == CocoState.Idle) {
+			SetState (CocoState.Run);
+			now_Draged = true;
 		}
 	}
 

@@ -24,7 +24,7 @@ public class Stage3_5_arrowButton : MonoBehaviour {
 
         if (!instructQuest)
         {
-            likeList = Instantiate(likeList, new Vector3(0,467,0), Quaternion.identity) as GameObject;
+            likeList = Instantiate(likeList, new Vector3(0,456,0), Quaternion.identity) as GameObject;
             likeList.transform.SetParent(ui.transform, false);
 			Stage3_Controller._Stage3_Quest [14] = true;
             instructQuest = true;

@@ -30,8 +30,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 	private bool a8a1, a8a2, a8a3, a8a4;
     private bool q9 = false;
 
-    public GameObject quest1_gaugePrefab;
-    public GameObject quest1_gauge;
+	public GameObject quest1_gaugePrefab, quest1_gauge, quest1_gaugeBackPrefab, quest1_gaugeBack;
     private Vector3 tempPos;
     public GameObject quest2_ball1;
     public GameObject quest2_ball2;
@@ -68,8 +67,10 @@ public class Stage3_4_GameController : MonoBehaviour {
 			_park.SetActive(true);
 		}
 		if (Stage3_Controller._Stage3_Quest [9] && !Stage3_Controller._Stage3_Quest [10]) {
-			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(0,300,0), Quaternion.identity) as GameObject;
+			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(-500,300,0), Quaternion.identity) as GameObject;
 			quest1_gauge.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
+			quest1_gaugeBack = Instantiate(quest1_gaugeBackPrefab, new Vector3(-500,300,0), Quaternion.identity) as GameObject;
+			quest1_gaugeBack.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
 		}
 		IvonTextPos = GameObject.Find("IvonTextPos");
 		IvonTextPosTemp = IvonTextPos.transform.position;
@@ -127,6 +128,7 @@ public class Stage3_4_GameController : MonoBehaviour {
                 aa.NPC_Say_yeah("이본"); // 공놀이 끝
 				ivon_textbox = GameObject.Find("이본_text");
                 quest1_gauge.SetActive(true);
+				quest1_gaugeBack.SetActive (true);
                 a1a5 = true;
             }
         }
@@ -211,9 +213,12 @@ public class Stage3_4_GameController : MonoBehaviour {
 	void Q6_Running_Start(){
 		if (quest1_start2 && !ivon_textbox.activeSelf)
 		{
-			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(0,400,0), Quaternion.identity) as GameObject;
+			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(-418,400,0), Quaternion.identity) as GameObject;
 			quest1_gauge.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
+			quest1_gaugeBack = Instantiate(quest1_gaugeBackPrefab, new Vector3(-500,400,0), Quaternion.identity) as GameObject;
+			quest1_gaugeBack.transform.SetParent(GameObject.FindWithTag("Item_Canvas").transform, false);
 			Stage3_Controller._Stage3_Quest[9] = true;
+			Debug.Log ("ddd");
 			quest1_start2 = false;
 			tempPos = player.transform.position;
 		}
@@ -269,6 +274,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 			a1a2 = false;
 			Stage3_Controller._Stage3_Quest[11] = true;
             quest1_gauge.SetActive(false); // running pause
+			quest1_gaugeBack.SetActive(false);
         }
         
     }
@@ -289,7 +295,7 @@ public class Stage3_4_GameController : MonoBehaviour {
             }
             a1a4 = false;
 			Stage3_Controller._Stage3_Quest[12] = true;
-            quest1_gauge.SetActive(false); // running pause
+            //quest1_gauge.SetActive(false); // running pause
         }
         
     }
@@ -305,6 +311,7 @@ public class Stage3_4_GameController : MonoBehaviour {
 		if (quest1_gauge != null && quest1_gauge.transform.localScale.x <= 0)
         {
             Destroy(quest1_gauge); // 게이지 다달면 끝
+			Destroy(quest1_gaugeBack);
 			Stage3_Controller._Stage3_Quest[13] = true;
         }
     }

@@ -7,10 +7,22 @@ public class Stage4_4_pole : MonoBehaviour {
 	public GameObject posterPrefab;
 	public GameObject poster;
 	private GameObject item_Canvas;
+	private Text_Importer2 ti;
+	private Stage4_4_GameController2 controller;
 
 	void Start () {
-		//item_Canvas = GameObject.FindWithTag ("Item_Canvas");
+		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+		controller = GameObject.Find ("Stage4_4_GameController").GetComponent<Stage4_4_GameController2>();
 	}
+
+	void OnTriggerEnter2D(){
+		if (Stage4_Controller.q [30] && !Stage4_Controller.q [31]) {
+			ti.Talk (ti.lineNo + 2);
+		} else {
+			ti.Talk ();
+		}
+	}
+
 
 	void OnMouseDown(){
 		Debug.Log ("mouse down");
