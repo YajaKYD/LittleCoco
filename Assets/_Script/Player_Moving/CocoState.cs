@@ -9,6 +9,7 @@ public enum CocoState{
 	Jump = 2,
 	GetItem = 3,
 	Bark = 4,
-	Fear = 5
+	Fear = 5,
+	Smell = 6
 
 }
