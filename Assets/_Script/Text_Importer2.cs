@@ -12,11 +12,13 @@ public class Text_Importer2 : MonoBehaviour {
 	public Text [] textInBoxes;
 
 	public int lineNo;
+	public int sceneIndex;
 
 	public BoxCollider2D[] _npc_collider;
 	public GameObject[] cocoDialogue;
 
 	private string[] names = {"Coco", "Star", "Ivon", "Racoon", "null"};
+	private GameObject player;
 	private Moving_by_RLbuttons player_moving;
 
 	private char lineSeperator = '\r'; // for windows OS, use '\n'
@@ -25,23 +27,18 @@ public class Text_Importer2 : MonoBehaviour {
 	public string[] speaker;
 	public string[] textLine;
 
-	// Use this for initialization
 	void Awake () {
-		
 		lineNo = 1;
-		player_moving = GameObject.Find ("Player").GetComponent<Moving_by_RLbuttons> ();
+		player = GameObject.FindWithTag ("Player");
+		player_moving = player.GetComponent<Moving_by_RLbuttons> ();
 		textBoxes = new GameObject[names.Length];
 		textInBoxes = new Text[names.Length];
-
-//		for (int i = 0; i < names.Length; i++) {
-//			textInBoxes [i] = GameObject.Find (names [i] + "_text").GetComponent<Text> ();
-//			textBoxes [i] = GameObject.Find (names [i] + "_text");
-//			textBoxes [i].SetActive (false);
-//		}
 	}
 
 	public void Import (int a) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
 		textFile = (TextAsset)Resources.Load (a.ToString());
+		sceneIndex = a / 10;
+		//Debug.Log (sceneIndex);
 		lineNo = 1; //line information load
 
 		//Load lines from CSV file
@@ -86,6 +83,13 @@ public class Text_Importer2 : MonoBehaviour {
 					for (int j = 0; j < cocoDialogue.Length; j++) {
 						if (textLine[lineNo] == cocoDialogue [j].name) {
 							cocoDialogue [j].SetActive (true);
+							if (player.transform.localScale.x > 0) {
+								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
+								cocoDialogue [j].GetComponentInChildren<Transform> ().localScale = new Vector3 (-1, 1, 1);
+							} else if (player.transform.localScale.x < 0) {
+								cocoDialogue [j].transform.localScale = new Vector3 (1, 1, 1);
+								cocoDialogue [j].GetComponentInChildren<Transform> ().localScale = new Vector3 (1, 1, 1);
+							}
 							break;
 						}
 					}
@@ -102,7 +106,32 @@ public class Text_Importer2 : MonoBehaviour {
 				if (speaker[lineNo] == "null" ) { 
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
-					Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
+
+					switch (sceneIndex) {
+					case 0:
+						break;
+					case 1:
+						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 2:
+						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 3:
+						//Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 4:
+						Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 5:
+						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 6:
+						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					default:
+						break;
+					}
+
 					lineNo--;
 					return false;
 				} else if (lineNo < speaker.Length - 1 && speaker [lineNo] == speaker [lineNo + 1]) {
@@ -140,6 +169,13 @@ public class Text_Importer2 : MonoBehaviour {
 					for (int j = 0; j < cocoDialogue.Length; j++) {
 						if (textLine[lineNo] == cocoDialogue [j].name) {
 							cocoDialogue [j].SetActive (true);
+							if (player.transform.localScale.x > 0) {
+								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
+								cocoDialogue [j].GetComponentInChildren<Transform> ().localScale = new Vector3 (-1, 1, 1);
+							} else if (player.transform.localScale.x < 0) {
+								cocoDialogue [j].transform.localScale = new Vector3 (1, 1, 1);
+								cocoDialogue [j].GetComponentInChildren<Transform> ().localScale = new Vector3 (1, 1, 1);
+							}
 							break;
 						}
 					}
@@ -156,7 +192,32 @@ public class Text_Importer2 : MonoBehaviour {
 				if (speaker[lineNo] == "null" ) { 
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
-					Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
+
+					switch (sceneIndex) {
+					case 0:
+						break;
+					case 1:
+						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 2:
+						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 3:
+						//Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 4:
+						Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 5:
+						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					case 6:
+						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						break;
+					default:
+						break;
+					}
+
 					lineNo--;
 					return false;
 				} else if (lineNo < speaker.Length - 1 && speaker [lineNo] == speaker [lineNo + 1]) {

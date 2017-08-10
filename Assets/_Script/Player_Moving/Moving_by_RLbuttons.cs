@@ -118,6 +118,22 @@ public class Moving_by_RLbuttons : MonoBehaviour {
 		//exit
 	}
 
+	public IEnumerator Smell(){
+		//enter
+		float timenow = 0f;
+		this.enabled = false;
+		while (state == CocoState.Smell) {
+			yield return null;
+			//execute
+			timenow += Time.deltaTime;
+			if (timenow >= 1.1f) {
+				SetState (CocoState.Idle);
+				this.enabled = true;
+			}
+		}
+		//exit
+	}
+
 	void Awake () {
 		player_rb = GetComponent<Rigidbody2D> ();
 		before_position = (Vector2)this.transform.position;
