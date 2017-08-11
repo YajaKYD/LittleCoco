@@ -10,7 +10,7 @@ public class Save_Script : MonoBehaviour {
 	public static bool[] S3 = new bool[23];
 	public static bool[] S5 = new bool[51];
 	public static Item_Controller _ic_for_Save;
-	public static Text_Importer _ti_for_Save;
+	//public static Text_Importer2 _ti_for_Save;
 
 	//save는 전부 특정 시점에만 실행됨.
 
@@ -36,12 +36,12 @@ public class Save_Script : MonoBehaviour {
 		
 	public static void Save_Dialogue_Info(){ //대사 정보
 		
-		if (GameObject.FindWithTag ("Dialogue")) {
-			_ti_for_Save = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		}
-		if (_ti_for_Save._textfile != null) {
-			PlayerPrefsX.SetIntArray ("CurrArr", _ti_for_Save.currLineArr);
-		}
+//		if (GameObject.FindWithTag ("Dialogue")) {
+//			_ti_for_Save = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+//		}
+//		if (_ti_for_Save.textFile != null) {
+//			PlayerPrefs.SetInt ("CurrArr", _ti_for_Save.lineNo);
+//		}
 
 	}
 

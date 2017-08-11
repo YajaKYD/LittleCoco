@@ -11,7 +11,7 @@ public class Frame_check : MonoBehaviour {
 		aa = GetComponentInChildren<Text> ();
 		DontDestroyOnLoad (gameObject);
 
-		Cursor.visible = false;
+		//Cursor.visible = false;
 	}
 
 	void Update () {
