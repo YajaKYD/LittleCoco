@@ -33,12 +33,13 @@ public class Text_Importer2 : MonoBehaviour {
 		player_moving = player.GetComponent<Moving_by_RLbuttons> ();
 		textBoxes = new GameObject[names.Length];
 		textInBoxes = new Text[names.Length];
+		DontDestroyOnLoad (this.gameObject);
 	}
 
 	public void Import (int a) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
 		textFile = (TextAsset)Resources.Load (a.ToString());
 		sceneIndex = a / 10;
-		//Debug.Log (sceneIndex);
+		Debug.Log (sceneIndex);
 		lineNo = 1; //line information load
 
 		//Load lines from CSV file

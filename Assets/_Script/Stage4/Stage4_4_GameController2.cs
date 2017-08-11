@@ -16,7 +16,7 @@ public class Stage4_4_GameController2 : MonoBehaviour {
 
 	void Start () {
 		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
-		ti.Import (101);
+		ti.Import (44);
 		ti.Talk ();
 
 		player = GameObject.FindWithTag ("Player");
