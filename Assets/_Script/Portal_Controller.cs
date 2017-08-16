@@ -58,9 +58,11 @@ public class Portal_Controller : MonoBehaviour {
 		case 5:
 			break;
 		case 6:
-			break;
-		default:
-			break;
+            Stage6_Controller.lineNo[sceneNo] = ti.lineNo;
+            Debug.Log("save done");
+            break;
+        default:
+	    	break;
 		}
 	}
 

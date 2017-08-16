@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage6_4_GameController : MonoBehaviour {
+public class Stage6_4_GameController : Controller {
     private Transform start_pos;
     private Transform regen_pos;
     private GameObject player;
@@ -19,6 +19,11 @@ public class Stage6_4_GameController : MonoBehaviour {
     public BoxCollider2D portal6_5;
 
     private bool q4a1;
+
+    void Awake()
+    {
+        sceneNo = 64;
+    }
 
     void Start()
     {

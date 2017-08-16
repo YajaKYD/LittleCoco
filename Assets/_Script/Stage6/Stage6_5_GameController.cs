@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage6_5_GameController : MonoBehaviour {
+public class Stage6_5_GameController : Controller {
     private Transform start_pos;
     private GameObject player;
     private Moving_by_RLbuttons mbr;
@@ -19,6 +19,11 @@ public class Stage6_5_GameController : MonoBehaviour {
     public BoxCollider2D talkTrigger;
     public Image rememberScene;
     public BoxCollider2D portalTo6_4;
+
+    void Awake()
+    {
+        sceneNo = 65;
+    }
 
     void Start()
     {

@@ -6,4 +6,6 @@ public class Stage6_Controller : MonoBehaviour {
 
     public static bool[] q = new bool[50];
 
+    public static int[] lineNo = new int[7];
+
 }

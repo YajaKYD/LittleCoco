@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage6_3_GameController : MonoBehaviour {
+public class Stage6_3_GameController : Controller {
     private Transform start_pos;
     private Transform regen_pos;
     private GameObject player;
@@ -20,6 +20,11 @@ public class Stage6_3_GameController : MonoBehaviour {
 
     private bool getGum;
     private bool q1a1; private bool q1a2; private bool q1a3;
+
+    void Awake()
+    {
+        sceneNo = 63;
+    }
 
     void Start()
     {
