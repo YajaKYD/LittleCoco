@@ -12,7 +12,7 @@ public class Text_Importer2 : MonoBehaviour {
 	public Text [] textInBoxes;
 
 	public int lineNo;
-	public int sceneIndex;
+	public int stageNo;
 
 	public BoxCollider2D[] _npc_collider;
 	public GameObject[] cocoDialogue;
@@ -36,41 +36,9 @@ public class Text_Importer2 : MonoBehaviour {
 		DontDestroyOnLoad (this.gameObject);
 	}
 
-	void GetLineNo(int sceneNo){
-		int stageNo = sceneNo / 10;
-		sceneNo = sceneNo % 10;
-		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
-
-		switch (stageNo) {
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			if (Stage4_Controller.lineNo [sceneNo] == 0) {
-				lineNo = 1;
-			} else {
-				lineNo = Stage4_Controller.lineNo [sceneNo];
-			}
-			Debug.Log ("load done");
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		default:
-			break;
-		}
-	}
-
 	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
 		textFile = (TextAsset)Resources.Load (sceneNo.ToString());
-		GetLineNo (sceneNo);
-		//Load lines from CSV file
+		GetLineNo (sceneNo);  //Load lines from CSV file
 		string[] records = textFile.text.Split (lineSeperator);
 		speaker = new string[records.Length];
 		textLine = new string[records.Length];
@@ -98,7 +66,37 @@ public class Text_Importer2 : MonoBehaviour {
 			textBoxes [j].SetActive (false);
 		}
 	}
+		
+	void GetLineNo(int sceneNo){
+		stageNo = sceneNo / 10;
+		sceneNo = sceneNo % 10;
+		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
 
+		switch (stageNo) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			if (Stage4_Controller.lineNo [sceneNo] == 0) {
+				lineNo = 1;
+			} else {
+				lineNo = Stage4_Controller.lineNo [sceneNo];
+				Debug.Log ("load done");
+			}
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		default:
+			break;
+		}
+	}
 
 	public bool Talk(){
 		for (int i = 0; i < names.Length; i++) {
@@ -136,7 +134,7 @@ public class Text_Importer2 : MonoBehaviour {
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
-					switch (sceneIndex) {
+					switch (stageNo) {
 					case 0:
 						break;
 					case 1:
@@ -222,7 +220,7 @@ public class Text_Importer2 : MonoBehaviour {
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
-					switch (sceneIndex) {
+					switch (stageNo) {
 					case 0:
 						break;
 					case 1:

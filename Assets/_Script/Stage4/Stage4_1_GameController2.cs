@@ -84,6 +84,7 @@ public class Stage4_1_GameController2 : Controller {
 	}
 
 	void Q1_SayGoodnight(){
+		Debug.Log ("say good bye");
 		Destroy (GameObject.FindWithTag ("NPC"));
 		ti.Talk (ti.lineNo + 2);
 		Stage4_Controller.q [1] = true;
