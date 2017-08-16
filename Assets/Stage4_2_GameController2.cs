@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage4_2_GameController2 : MonoBehaviour {
+public class Stage4_2_GameController2 : Controller {
 
 	public BoxCollider2D Star;
 

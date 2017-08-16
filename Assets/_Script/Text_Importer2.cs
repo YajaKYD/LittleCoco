@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	private GameObject player;
 	private Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\n'; // for windows OS, use '\n'
+	private char lineSeperator = '\r'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -36,12 +36,40 @@ public class Text_Importer2 : MonoBehaviour {
 		DontDestroyOnLoad (this.gameObject);
 	}
 
-	public void Import (int a) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
-		textFile = (TextAsset)Resources.Load (a.ToString());
-		sceneIndex = a / 10;
-		Debug.Log (sceneIndex);
-		lineNo = 1; //line information load
+	void GetLineNo(int sceneNo){
+		int stageNo = sceneNo / 10;
+		sceneNo = sceneNo % 10;
+		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
 
+		switch (stageNo) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			if (Stage4_Controller.lineNo [sceneNo] == 0) {
+				lineNo = 1;
+			} else {
+				lineNo = Stage4_Controller.lineNo [sceneNo];
+			}
+			Debug.Log ("load done");
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
+		textFile = (TextAsset)Resources.Load (sceneNo.ToString());
+		GetLineNo (sceneNo);
 		//Load lines from CSV file
 		string[] records = textFile.text.Split (lineSeperator);
 		speaker = new string[records.Length];

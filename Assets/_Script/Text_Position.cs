@@ -14,7 +14,7 @@ public class Text_Position : MonoBehaviour {
 	private TurnOnOffItemList itemlist;
 
 	void Awake () {
-		mainCam = Camera.main;
+		//mainCam = Camera.main;
 		rectTransform = GetComponent<RectTransform> ();
 		//Debug.Log (nameFind);
 	}
@@ -25,9 +25,10 @@ public class Text_Position : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		mainCam = Camera.main;
+		
 
 		if (GameObject.Find (nameFind + "TextPos") != null) { // for Coco, Ivon, Racoon
+			mainCam = Camera.main;
 			textPos = GameObject.Find (nameFind + "TextPos");
 			Debug.Log ("rect position 1 " + rectTransform.position + ", " + nameFind + "textPos " + textPos.transform.position);
 			rectTransform.position = mainCam.WorldToScreenPoint (textPos.transform.position);
@@ -50,6 +51,14 @@ public class Text_Position : MonoBehaviour {
 	}
 
 	void Update(){
+//		if (GameObject.Find (nameFind + "TextPos") != null) { // for Coco, Ivon, Racoon
+//			textPos = GameObject.Find (nameFind + "TextPos");
+//			Debug.Log ("rect position 1 " + rectTransform.position + ", " + nameFind + "textPos " + textPos.transform.position);
+//			rectTransform.position = mainCam.WorldToScreenPoint (textPos.transform.position);
+//			Debug.Log ("rect position 2 " + rectTransform.position + "textPos " + textPos.transform.position);
+//		}
+
+
 		if (this.gameObject.activeSelf && nameFind == "Star") {
 			starPos = GameObject.Find ("Item_button_" + starItemIndex).GetComponent<RectTransform> ();
 			rectTransform.position = new Vector3 (starPos.position.x - 50, starPos.position.y, starPos.position.z);

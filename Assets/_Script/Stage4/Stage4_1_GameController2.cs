@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage4_1_GameController2 : MonoBehaviour {
+public class Stage4_1_GameController2 : Controller {
 	public GameObject Light;
 
 	private Transform start_pos;
@@ -33,6 +33,7 @@ public class Stage4_1_GameController2 : MonoBehaviour {
 		player.transform.position = start_pos.position;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+		sceneNo = 41;
 
 		if (!Stage4_Controller.q[0]) {
 			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
@@ -47,9 +48,9 @@ public class Stage4_1_GameController2 : MonoBehaviour {
 	}
 
 	void Start () {
+		ti.Import (41);
 		//Save_Script.Save_Now_Point();
 		if (!Stage4_Controller.q [0]) {
-			ti.Import (41);
 			ti.Talk ();
 		} else if (Stage4_Controller.q [0]) {
 			Destroy (GameObject.FindWithTag ("NPC"));
