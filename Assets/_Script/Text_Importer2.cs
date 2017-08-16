@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	private GameObject player;
 	private Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\n'; // for windows OS, use '\n'
+	private char lineSeperator = '\r'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -40,7 +40,11 @@ public class Text_Importer2 : MonoBehaviour {
 		textFile = (TextAsset)Resources.Load (a.ToString());
 		sceneIndex = a / 10;
 		Debug.Log (sceneIndex);
-		lineNo = 1; //line information load
+		if (Stage4_Controller.lineNo [a % 10] == 0) {
+			lineNo = 1; //line information load
+		} else {
+			lineNo = Stage4_Controller.lineNo [a % 10];
+		}
 
 		//Load lines from CSV file
 		string[] records = textFile.text.Split (lineSeperator);

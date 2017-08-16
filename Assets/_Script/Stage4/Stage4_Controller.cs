@@ -10,6 +10,8 @@ public class Stage4_Controller : MonoBehaviour {
 	public static bool[] q4 = new bool[3];
 	public static bool[] q15 = new bool[2];
 	public static bool[] q18 = new bool[2];
+	public static int[] lineNo = new int[7];
+
 
 //	public static bool q1 = false; // ivon go to sleep
 //	public static bool q2 = false;
