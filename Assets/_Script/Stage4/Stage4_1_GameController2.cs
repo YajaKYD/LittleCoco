@@ -75,16 +75,15 @@ public class Stage4_1_GameController2 : Controller {
 			Stage4_Controller.q[3] = true; // check if ivon sleep
 		}
 
-		if (other.CompareTag ("Player") && Stage4_Controller.q[7] && !Stage4_Controller.q[8]) {
-			Stage4_Controller.q[8] = true;
-			//ti.currLineArr [0] += 2; 
-			//ti.NPC_Say_yeah ("코코"); // ivon fell asleep
-			print ("Check Again");
-		}
+//		if (other.CompareTag ("Player") && Stage4_Controller.q[7] && !Stage4_Controller.q[8]) {
+//			Stage4_Controller.q[8] = true;
+//			//ti.currLineArr [0] += 2; 
+//			//ti.NPC_Say_yeah ("코코"); // ivon fell asleep
+//			print ("Check Again");
+//		}
 	}
 
 	void Q1_SayGoodnight(){
-		Debug.Log ("say good bye");
 		Destroy (GameObject.FindWithTag ("NPC"));
 		ti.Talk (ti.lineNo + 2);
 		Stage4_Controller.q [1] = true;

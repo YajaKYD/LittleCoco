@@ -23,6 +23,7 @@ public class Stage4_2_GameController2 : Controller {
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
 		itemCanvas = GameObject.FindWithTag ("Item_Canvas");
 		ic = itemCanvas.GetComponent<Item_Controller> ();
+		sceneNo = 42;
 	}
 
 	void Start () {

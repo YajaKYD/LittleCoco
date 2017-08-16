@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	private GameObject player;
 	private Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\n'; // for windows OS, use '\n'
+	private char lineSeperator = '\r'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -36,6 +36,48 @@ public class Text_Importer2 : MonoBehaviour {
 		DontDestroyOnLoad (this.gameObject);
 	}
 
+	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
+		textFile = (TextAsset)Resources.Load (sceneNo.ToString());
+		GetLineNo (sceneNo);  
+
+		//Load lines from CSV file
+		string[] records = textFile.text.Split (lineSeperator);
+		speaker = new string[records.Length];
+		textLine = new string[records.Length];
+		Debug.Log (records.Length);
+
+		for (int i = 1; i < records.Length; i++) {
+			string[] fields = records[i].Split (fieldSeperator);
+			speaker [i] = fields [0];
+			textLine [i] = fields [1];
+			Debug.Log (speaker [i] + " : " + textLine [i]);
+		}
+
+		//
+		for (int i = 0; i < transform.childCount; i++) {
+			transform.GetChild (i).gameObject.SetActive (true);
+		}
+		//
+		cocoDialogue = new GameObject[GameObject.Find("Coco_Dialogue").transform.childCount];
+
+		for (int i = 0; i < cocoDialogue.Length; i++) {
+			cocoDialogue [i] = GameObject.Find ("Coco_Dialogue").transform.GetChild (i).gameObject;
+		}
+			
+		Debug.Log (names.Length);
+
+		for (int j = 0; j < names.Length - 1; j++) {
+			Debug.Log (j + ", " + names [j]);
+			textBoxes [j] = GameObject.Find (names [j] + "_text");
+			textInBoxes [j] = GameObject.Find (names [j] + "_text").GetComponentInChildren<Text> ();
+			textBoxes [j].SetActive (false);
+		}
+			
+		for (int i = 0; i < transform.childCount; i++) {
+			transform.GetChild (i).gameObject.SetActive (false);
+		}
+	}
+		
 	void GetLineNo(int sceneNo){
 		stageNo = sceneNo / 10;
 		sceneNo = sceneNo % 10;
@@ -55,59 +97,17 @@ public class Text_Importer2 : MonoBehaviour {
 				lineNo = 1;
 			} else {
 				lineNo = Stage4_Controller.lineNo [sceneNo];
+				Debug.Log ("load done");
 			}
-			Debug.Log ("load done");
 			break;
 		case 5:
 			break;
 		case 6:
-            if (Stage6_Controller.lineNo[sceneNo] == 0)
-            {
-                lineNo = 1;
-            }
-            else
-            {
-                lineNo = Stage6_Controller.lineNo[sceneNo];
-            }
-            Debug.Log("load done");
-            break;
+			break;
 		default:
 			break;
 		}
 	}
-
-	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
-		textFile = (TextAsset)Resources.Load (sceneNo.ToString());
-		GetLineNo (sceneNo);
-		//Load lines from CSV file
-		string[] records = textFile.text.Split (lineSeperator);
-		speaker = new string[records.Length];
-		textLine = new string[records.Length];
-		Debug.Log (records.Length);
-
-		for (int i = 1; i < records.Length; i++) {
-			string[] fields = records[i].Split (fieldSeperator);
-			speaker [i] = fields [0];
-			textLine [i] = fields [1];
-			Debug.Log (speaker [i] + " : " + textLine [i]);
-		}
-			
-		cocoDialogue = new GameObject[GameObject.Find("Coco_Dialogue").transform.childCount];
-
-		for (int i = 0; i < cocoDialogue.Length; i++) {
-			cocoDialogue [i] = GameObject.Find ("Coco_Dialogue").transform.GetChild (i).gameObject;
-		}
-			
-		Debug.Log (names.Length);
-
-		for (int j = 0; j < names.Length - 1; j++) {
-			Debug.Log (j + ", " + names [j]);
-			textBoxes [j] = GameObject.Find (names [j] + "_text");
-			textInBoxes [j] = GameObject.Find (names [j] + "_text").GetComponentInChildren<Text> ();
-			textBoxes [j].SetActive (false);
-		}
-	}
-
 
 	public bool Talk(){
 		for (int i = 0; i < names.Length; i++) {
@@ -118,10 +118,10 @@ public class Text_Importer2 : MonoBehaviour {
 				} //직전에 한 대사를 모두 끈다.
 
 				if (speaker [lineNo] == "Coco") {
-                    for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name+"\n") {
-							cocoDialogue [j].SetActive (true);  
-                            if (player.transform.localScale.x > 0) {
+					for (int j = 0; j < cocoDialogue.Length; j++) {
+						if (textLine[lineNo] == cocoDialogue [j].name) {
+							cocoDialogue [j].SetActive (true);
+							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
 								cocoDialogue [j].GetComponentInChildren<Transform> ().localScale = new Vector3 (-1, 1, 1);
 							} else if (player.transform.localScale.x < 0) {
@@ -164,7 +164,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
@@ -250,7 +250,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
