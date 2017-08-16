@@ -188,6 +188,10 @@
      <Compile Include="Assets\_Script\Stage5\TextClose.cs" />
      <Compile Include="Assets\_Script\Stage5\newsStand.cs" />
      <Compile Include="Assets\_Script\Stage5\stage5Paper.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_3_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_4_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_Controller.cs" />
      <Compile Include="Assets\_Script\Text_Click.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />
      <Compile Include="Assets\_Script\Text_Importer2.cs" />
