@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	private GameObject player;
 	private Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\r'; // for windows OS, use '\n'
+	private char lineSeperator = '\n'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -80,10 +80,10 @@ public class Text_Importer2 : MonoBehaviour {
 				} //직전에 한 대사를 모두 끈다.
 
 				if (speaker [lineNo] == "Coco") {
-					for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name) {
-							cocoDialogue [j].SetActive (true);
-							if (player.transform.localScale.x > 0) {
+                    for (int j = 0; j < cocoDialogue.Length; j++) {
+						if (textLine[lineNo] == cocoDialogue [j].name+"\r") {
+							cocoDialogue [j].SetActive (true);  
+                            if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
 								cocoDialogue [j].GetComponentInChildren<Transform> ().localScale = new Vector3 (-1, 1, 1);
 							} else if (player.transform.localScale.x < 0) {
@@ -126,7 +126,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
@@ -212,7 +212,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
