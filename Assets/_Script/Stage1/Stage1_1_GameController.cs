@@ -11,20 +11,31 @@ public class Stage1_1_GameController : MonoBehaviour {
 	private GameObject player;
 	public GameObject mirror;
 
+	private Text_Importer2 ti;
+
+	private bool xxxx = false;
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
+
+
+
 	}
 
 	void Start(){
 		
 		if (!Stage1_Controller._Stage1_Quest[0]) {
 			//1st save point//
-			Save_Script.Save_Now_Point ();
-			print ("Saved");
+			//Save_Script.Save_Now_Point ();
+			//print ("Saved");
 			//1st save point//
+			player.transform.rotation = Quaternion.Euler(Vector3.zero);
+			ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+			ti.Import (11);
+
 		}
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 5) {
@@ -37,6 +48,11 @@ public class Stage1_1_GameController : MonoBehaviour {
 
 	void Update(){
 
+		if (!xxxx) {
+			ti.Talk ();
+			xxxx = true;
+		}
+
 		//개발용//
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.W)) {
 			print ("goto1-6");
@@ -45,9 +61,9 @@ public class Stage1_1_GameController : MonoBehaviour {
 		//
 
 
-		if (!Stage1_Controller._Stage1_Quest[0]) {
-			Q1_say_what_happen ();
-		}
+//		if (!Stage1_Controller._Stage1_Quest[0]) {
+//			Q1_say_what_happen ();
+//		}
 
 
 		if (!mirror) {
@@ -55,11 +71,11 @@ public class Stage1_1_GameController : MonoBehaviour {
 		}
 	}
 
-	void Q1_say_what_happen(){
-		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		aa.NPC_Say_yeah ("코코");
-		Stage1_Controller._Stage1_Quest[0] = true;
-	}
+//	void Q1_say_what_happen(){
+//		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//		aa.NPC_Say_yeah ("코코");
+//		Stage1_Controller._Stage1_Quest[0] = true;
+//	}
 
 
 

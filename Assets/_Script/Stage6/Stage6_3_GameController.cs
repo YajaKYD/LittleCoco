@@ -44,11 +44,11 @@ public class Stage6_3_GameController : MonoBehaviour {
             prefab.transform.position = _Ivon_Position.position + Vector3.up * 2;
             Stage6_Controller.q[1] = true;
         }
-        else if (ic._item_name_list[0] == "공" && Vector2.Distance(player.transform.position, _Ivon_Position.position) < 5f && !q1a1)
+        else if (ic._item_name_list[2] == "공" && Vector2.Distance(player.transform.position, _Ivon_Position.position) < 5f && !q1a1)
         {
-            ic._item_name_list[0] = "";
-            ic._usable_item[0] = false;
-            ic._the_number_of_items[0] = 0;
+            ic._item_name_list[2] = "";
+            ic._usable_item[2] = false;
+            ic._the_number_of_items[2] = 0;
             q1a1 = true;
             ti.Talk(ti.lineNo + 2); // 개껌이옵니다.
         }

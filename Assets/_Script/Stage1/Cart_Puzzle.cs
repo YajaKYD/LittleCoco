@@ -20,4 +20,14 @@ public class Cart_Puzzle : MonoBehaviour {
 		dog_in_a_cart.SetActive (true);
 		gameObject.SetActive (false);
 	}
+
+	void OnTriggerEnter2D(Collider2D other){ //카트에 점프해서 탐
+		if (other.gameObject == player) {
+			GameObject.Find ("Main Camera").GetComponent<CameraManager> ().FocusObject = dog_in_a_cart;
+			player.SetActive (false);
+			dog_in_a_cart.SetActive (true);
+			gameObject.SetActive (false);
+		}
+
+	}
 }

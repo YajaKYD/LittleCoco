@@ -1,20 +1,1 @@
-﻿name,text
-Star,오오!
-null,36
-Coco,!
-Racoon,아니 어떻게 이곳에?!
-Star,네 이놈!
-null,37
-Star,으아아! 다 와서 놓치다니! 너무 약올라!!
-Coco,Mung
-Star,"응? 그러게, 무엇인가 있는데?"
-null,38
-Star,"뭐지, 이 부적은?"
-Star,한 번 살펴보자.
-Coco,Mung
-Star,응? 달라고? 왜?
-null,39
-Star,그림이 뒤죽박죽인데?
-Coco,(…)
-Star,기죽지 말고 한 번 맞춰보자!
-null,40
+﻿name,textStar,오오!null,36Coco,!Racoon,아니 어떻게 이곳에?!Star,네 이놈!null,37Star,으아아! 다 와서 놓치다니! 너무 약올라!!Coco,MungStar,응? 그러게. 무엇인가 있는데?null,38Star,뭐지. 이 부적은?Star,한 번 살펴보자.Coco,MungStar,응? 달라고? 왜?null,39Star,그림이 뒤죽박죽인데?Coco,(…)Star,기죽지 말고 한 번 맞춰보자!null,40

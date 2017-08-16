@@ -12,6 +12,7 @@ public class MenuOnOff : MonoBehaviour, IPointerDownHandler {
 
 	public Toggle tog;
 	public Slider sl;
+	public AudioSource clicksound;
 
 	void Awake(){
 
@@ -37,6 +38,7 @@ public class MenuOnOff : MonoBehaviour, IPointerDownHandler {
 
 	public void OnPointerDown(PointerEventData ped)
 	{
+		clicksound.Play ();
 		if (_MenuPanel.activeSelf) {
 			_MenuPanel.SetActive (false);
 		}else {
@@ -46,6 +48,7 @@ public class MenuOnOff : MonoBehaviour, IPointerDownHandler {
 
 	public void Exit_Game(){
 		Application.Quit ();
+
 	}
 
 	public void Return_to_Main(){

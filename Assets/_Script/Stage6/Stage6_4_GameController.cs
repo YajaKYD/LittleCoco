@@ -18,6 +18,8 @@ public class Stage6_4_GameController : MonoBehaviour {
     public SpriteRenderer _blackout;
     public BoxCollider2D portal6_5;
 
+    private bool q4a1;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -31,7 +33,17 @@ public class Stage6_4_GameController : MonoBehaviour {
         player.transform.position = start_pos.position;
         ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
         ti.Import (64);
-        ti.Talk();
+        //ti.Talk();
+
+        if (!Stage6_Controller.q[10])
+        {
+            ti.Talk();
+        }
+        else if (Stage6_Controller.q[10] && !Stage6_Controller.q[11]) {
+            rainIntensity.RainIntensity = 0f;
+            Ivon.SetActive(false);
+            ti.Talk(10);
+        }
     }
 
     void Update()
