@@ -38,7 +38,9 @@ public class Text_Importer2 : MonoBehaviour {
 
 	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
 		textFile = (TextAsset)Resources.Load (sceneNo.ToString());
-		GetLineNo (sceneNo);  //Load lines from CSV file
+		GetLineNo (sceneNo);  
+
+		//Load lines from CSV file
 		string[] records = textFile.text.Split (lineSeperator);
 		speaker = new string[records.Length];
 		textLine = new string[records.Length];
@@ -50,7 +52,12 @@ public class Text_Importer2 : MonoBehaviour {
 			textLine [i] = fields [1];
 			Debug.Log (speaker [i] + " : " + textLine [i]);
 		}
-			
+
+		//
+		for (int i = 0; i < transform.childCount; i++) {
+			transform.GetChild (i).gameObject.SetActive (true);
+		}
+		//
 		cocoDialogue = new GameObject[GameObject.Find("Coco_Dialogue").transform.childCount];
 
 		for (int i = 0; i < cocoDialogue.Length; i++) {
@@ -64,6 +71,10 @@ public class Text_Importer2 : MonoBehaviour {
 			textBoxes [j] = GameObject.Find (names [j] + "_text");
 			textInBoxes [j] = GameObject.Find (names [j] + "_text").GetComponentInChildren<Text> ();
 			textBoxes [j].SetActive (false);
+		}
+			
+		for (int i = 0; i < transform.childCount; i++) {
+			transform.GetChild (i).gameObject.SetActive (false);
 		}
 	}
 		
