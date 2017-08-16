@@ -12,7 +12,7 @@ public class Text_Importer2 : MonoBehaviour {
 	public Text [] textInBoxes;
 
 	public int lineNo;
-	public int sceneIndex;
+	public int stageNo;
 
 	public BoxCollider2D[] _npc_collider;
 	public GameObject[] cocoDialogue;
@@ -37,7 +37,7 @@ public class Text_Importer2 : MonoBehaviour {
 	}
 
 	void GetLineNo(int sceneNo){
-		int stageNo = sceneNo / 10;
+		stageNo = sceneNo / 10;
 		sceneNo = sceneNo % 10;
 		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
 
@@ -119,7 +119,7 @@ public class Text_Importer2 : MonoBehaviour {
 
 				if (speaker [lineNo] == "Coco") {
                     for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name+"\r") {
+						if (textLine[lineNo] == cocoDialogue [j].name+"\n") {
 							cocoDialogue [j].SetActive (true);  
                             if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -145,7 +145,7 @@ public class Text_Importer2 : MonoBehaviour {
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
-					switch (sceneIndex) {
+					switch (stageNo) {
 					case 0:
 						break;
 					case 1:
@@ -231,7 +231,7 @@ public class Text_Importer2 : MonoBehaviour {
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
-					switch (sceneIndex) {
+					switch (stageNo) {
 					case 0:
 						break;
 					case 1:
