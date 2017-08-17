@@ -18,8 +18,8 @@ public class Text_Importer2 : MonoBehaviour {
 	public GameObject[] cocoDialogue;
 
 	private string[] names = {"Coco", "Star", "Ivon", "Racoon", "null"};
-	private GameObject player;
-	private Moving_by_RLbuttons player_moving;
+	public GameObject player;
+	public Moving_by_RLbuttons player_moving;
 
 	private char lineSeperator = '\r'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
@@ -29,11 +29,15 @@ public class Text_Importer2 : MonoBehaviour {
 
 	void Awake () {
 		lineNo = 1;
-		player = GameObject.FindWithTag ("Player");
-		player_moving = player.GetComponent<Moving_by_RLbuttons> ();
+		//player = GameObject.FindWithTag ("Player");
+
 		textBoxes = new GameObject[names.Length];
 		textInBoxes = new Text[names.Length];
 		DontDestroyOnLoad (this.gameObject);
+	}
+
+	void Start(){
+		//player_moving = player.GetComponent<Moving_by_RLbuttons> ();
 	}
 
 	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
@@ -111,6 +115,8 @@ public class Text_Importer2 : MonoBehaviour {
 
 	public bool Talk(){
 		for (int i = 0; i < names.Length; i++) {
+			Debug.Log ("lineno : " + lineNo + ", names[" + i + "]" + names[i]);
+			Debug.Log (speaker [lineNo]);
 			if (names [i] == speaker[lineNo]) {//같은 이름 NPC 찾고
 
 				for (int x = 0; x < cocoDialogue.Length; x++) {

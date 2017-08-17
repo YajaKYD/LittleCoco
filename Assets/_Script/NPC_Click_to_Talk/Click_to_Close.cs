@@ -16,7 +16,7 @@ public class Click_to_Close : MonoBehaviour {
 			npc_collider = GameObject.Find (name.Remove (name.Length - 5, 5)).GetComponent<BoxCollider2D> ();
 		}
 		_ti = GetComponentInParent<Text_Importer> ();
-		mbr = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
+		//mbr = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
 	}
 
 	void Update(){

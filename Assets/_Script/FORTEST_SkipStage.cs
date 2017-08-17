@@ -57,7 +57,7 @@ public class FORTEST_SkipStage : MonoBehaviour {
 		item_Canvas.SetActive (true);
 		DontDestroyOnLoad (dialogue_Canvas);
 		ic = item_Canvas.GetComponent<Item_Controller> ();
-		ti = dialogue_Canvas.GetComponent<Text_Importer> ();
+		//ti = dialogue_Canvas.GetComponent<Text_Importer> ();
 
 		SceneManager.LoadScene (25);
 
@@ -84,7 +84,7 @@ public class FORTEST_SkipStage : MonoBehaviour {
 			}
 		}
 
-		ti.Import (25);
+		//ti.Import (25);
 		_stage4_Controller.SetActive (true);
 		DontDestroyOnLoad (_stage4_Controller);
 	}
