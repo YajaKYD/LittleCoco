@@ -12,16 +12,16 @@ public class Text_Importer2 : MonoBehaviour {
 	public Text [] textInBoxes;
 
 	public int lineNo;
-	public int sceneIndex;
+	public int stageNo;
 
 	public BoxCollider2D[] _npc_collider;
 	public GameObject[] cocoDialogue;
 
 	private string[] names = {"Coco", "Star", "Ivon", "Racoon", "null"};
-	private GameObject player;
-	private Moving_by_RLbuttons player_moving;
+	public GameObject player;
+	public Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\n'; // for windows OS, use '\n'
+	private char lineSeperator = '\r'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -29,18 +29,20 @@ public class Text_Importer2 : MonoBehaviour {
 
 	void Awake () {
 		lineNo = 1;
-		player = GameObject.FindWithTag ("Player");
-		player_moving = player.GetComponent<Moving_by_RLbuttons> ();
+		//player = GameObject.FindWithTag ("Player");
+
 		textBoxes = new GameObject[names.Length];
 		textInBoxes = new Text[names.Length];
 		DontDestroyOnLoad (this.gameObject);
 	}
 
-	public void Import (int a) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
-		textFile = (TextAsset)Resources.Load (a.ToString());
-		sceneIndex = a / 10;
-		Debug.Log (sceneIndex);
-		lineNo = 1; //line information load
+	void Start(){
+		//player_moving = player.GetComponent<Moving_by_RLbuttons> ();
+	}
+
+	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
+		textFile = (TextAsset)Resources.Load (sceneNo.ToString());
+		GetLineNo (sceneNo);  
 
 		//Load lines from CSV file
 		string[] records = textFile.text.Split (lineSeperator);
@@ -54,7 +56,12 @@ public class Text_Importer2 : MonoBehaviour {
 			textLine [i] = fields [1];
 			Debug.Log (speaker [i] + " : " + textLine [i]);
 		}
-			
+
+		//
+		for (int i = 0; i < transform.childCount; i++) {
+			transform.GetChild (i).gameObject.SetActive (true);
+		}
+		//
 		cocoDialogue = new GameObject[GameObject.Find("Coco_Dialogue").transform.childCount];
 
 		for (int i = 0; i < cocoDialogue.Length; i++) {
@@ -69,11 +76,47 @@ public class Text_Importer2 : MonoBehaviour {
 			textInBoxes [j] = GameObject.Find (names [j] + "_text").GetComponentInChildren<Text> ();
 			textBoxes [j].SetActive (false);
 		}
+			
+		for (int i = 0; i < transform.childCount; i++) {
+			transform.GetChild (i).gameObject.SetActive (false);
+		}
 	}
+		
+	void GetLineNo(int sceneNo){
+		stageNo = sceneNo / 10;
+		sceneNo = sceneNo % 10;
+		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
 
+		switch (stageNo) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			if (Stage4_Controller.lineNo [sceneNo] == 0) {
+				lineNo = 1;
+			} else {
+				lineNo = Stage4_Controller.lineNo [sceneNo];
+				Debug.Log ("load done");
+			}
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		default:
+			break;
+		}
+	}
 
 	public bool Talk(){
 		for (int i = 0; i < names.Length; i++) {
+			Debug.Log ("lineno : " + lineNo + ", names[" + i + "]" + names[i]);
+			Debug.Log (speaker [lineNo]);
 			if (names [i] == speaker[lineNo]) {//같은 이름 NPC 찾고
 
 				for (int x = 0; x < cocoDialogue.Length; x++) {
@@ -108,7 +151,7 @@ public class Text_Importer2 : MonoBehaviour {
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
-					switch (sceneIndex) {
+					switch (stageNo) {
 					case 0:
 						break;
 					case 1:
@@ -194,7 +237,7 @@ public class Text_Importer2 : MonoBehaviour {
 					Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
-					switch (sceneIndex) {
+					switch (stageNo) {
 					case 0:
 						break;
 					case 1:

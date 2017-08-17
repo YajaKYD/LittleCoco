@@ -12,6 +12,11 @@ public class Portal_Controller : MonoBehaviour {
 	public bool exit_ = false;
 	public Joystick js;
 
+	public int stageNo, sceneNo;
+	private Text_Importer2 ti;
+
+	public Controller controllerScript;
+
 	void Awake(){
 		_Player = GameObject.Find ("Player");
 		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
@@ -19,15 +24,48 @@ public class Portal_Controller : MonoBehaviour {
 		_Player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 		StartCoroutine ("FadeIn");
 		js = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<Joystick> ();
+		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+		sceneNo = controllerScript.sceneNo;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){ //collider가 있어야함. 트리거로 해놓자.
 		
 		if (other.CompareTag("Player")) {
 			//exit_ = true;
+			SaveLineNumber ();
 			StartCoroutine("FadeOut");
 			_Player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 			exit_ = true; //해당 씬이 끝남
+		}
+	}
+
+	void SaveLineNumber(){
+		//sceneNo = GameObject.FindWithTag ("Controller").GetComponent<Controller> ().sceneNo;
+		stageNo = sceneNo / 10;
+		sceneNo = sceneNo % 10;
+		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
+
+		switch (stageNo) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			Stage4_Controller.lineNo [sceneNo] = ti.lineNo;
+			Debug.Log ("save done");
+			break;
+		case 5:
+			break;
+		case 6:
+            Stage6_Controller.lineNo[sceneNo] = ti.lineNo;
+            Debug.Log("save done");
+            break;
+        default:
+	    	break;
 		}
 	}
 

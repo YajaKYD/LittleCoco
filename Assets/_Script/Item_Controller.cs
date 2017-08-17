@@ -34,7 +34,7 @@ public class Item_Controller : MonoBehaviour {
 	//ani//
 
 	void Awake(){
-		print ("DDD");
+		Debug.Log ("item canvas awake");
 		mbr = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
 		onofflist = GetComponentInChildren<TurnOnOffItemList> ();
 		DontDestroyOnLoad (transform.gameObject);

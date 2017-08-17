@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage4_1_GameController2 : MonoBehaviour {
+public class Stage4_1_GameController2 : Controller {
 	public GameObject Light;
 
 	private Transform start_pos;
@@ -33,30 +33,33 @@ public class Stage4_1_GameController2 : MonoBehaviour {
 		player.transform.position = start_pos.position;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+		sceneNo = 41;
 
 		if (!Stage4_Controller.q[0]) {
 			player.transform.localScale = new Vector3 (1.4f, 1.4f, player.transform.localScale.z);
 		}
-		if (Stage4_Controller.q [13]) {
-			Light.SetActive (false);
-		}
-
+			
 		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
 		_blackout.color = bb;
 
 	}
 
 	void Start () {
+		ti.Import (sceneNo);
 		//Save_Script.Save_Now_Point();
 		if (!Stage4_Controller.q [0]) {
-			ti.Import (41);
 			ti.Talk ();
 		} else if (Stage4_Controller.q [0]) {
 			Destroy (GameObject.FindWithTag ("NPC"));
 		}
+			
+		if (Stage4_Controller.q [10]) {
+			Light.SetActive (false);
+		}
 
 		if (Stage4_Controller.q [13])
 			portal2.SetActive (true);
+		
 	}
 
 	void Update () {
@@ -66,20 +69,26 @@ public class Stage4_1_GameController2 : MonoBehaviour {
 			Q4_CheckIvon ();	
 		} else if (Stage4_Controller.q [7] && !Stage4_Controller.q [8]) {
 			Q8_PutDoll ();
+		} else if (Stage4_Controller.q [10] && !Stage4_Controller.q [11]) {
+			Q11_CheckIvonAgain ();
+		} else if (Stage4_Controller.q [12] && !Stage4_Controller.q [13]) {
+			Q13_CheckIvonComplete ();
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.CompareTag ("Player") && Stage4_Controller.q[2] && !Stage4_Controller.q[3]) {
-			Stage4_Controller.q[3] = true; // check if ivon sleep
+		if (other.CompareTag ("Player") && Stage4_Controller.q [2] && !Stage4_Controller.q [3]) {
+			Stage4_Controller.q [3] = true; // check if ivon sleep
+		} else if (other.CompareTag ("Player") && Stage4_Controller.q [11] && !Stage4_Controller.q [12]) {
+			Stage4_Controller.q [12] = true;
 		}
 
-		if (other.CompareTag ("Player") && Stage4_Controller.q[7] && !Stage4_Controller.q[8]) {
-			Stage4_Controller.q[8] = true;
-			//ti.currLineArr [0] += 2; 
-			//ti.NPC_Say_yeah ("코코"); // ivon fell asleep
-			print ("Check Again");
-		}
+//		if (other.CompareTag ("Player") && Stage4_Controller.q[7] && !Stage4_Controller.q[8]) {
+//			Stage4_Controller.q[8] = true;
+//			//ti.currLineArr [0] += 2; 
+//			//ti.NPC_Say_yeah ("코코"); // ivon fell asleep
+//			print ("Check Again");
+//		}
 	}
 
 	void Q1_SayGoodnight(){
@@ -99,5 +108,15 @@ public class Stage4_1_GameController2 : MonoBehaviour {
 			Light.SetActive (false);
 			print ("Change Image with doll and bed");
 		}
+	}
+
+	void Q11_CheckIvonAgain(){
+		ti.Talk (ti.lineNo + 2);
+		Stage4_Controller.q [11] = true;
+	}
+
+	void Q13_CheckIvonComplete(){
+		ti.Talk (ti.lineNo + 2);
+		Stage4_Controller.q [13] = true;
 	}
 }
