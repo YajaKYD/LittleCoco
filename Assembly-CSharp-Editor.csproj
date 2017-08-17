@@ -50,10 +50,8 @@
      <Compile Include="Assets\GoogleAnalytics\Editor\AnalyticsDependencies.cs" />
      <Compile Include="Assets\Resources\Prefabs\RainMaker\Editor\RainMakerEditor.cs" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
-     <None Include="Assets\Resources\15.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineBufferShader.shader" />
      <None Include="Assets\Resources\1.txt" />
-     <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
      <None Include="Assets\Plugins\Android\readme.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />

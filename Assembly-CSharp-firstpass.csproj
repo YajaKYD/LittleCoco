@@ -65,10 +65,8 @@
      <Compile Include="Assets\Plugins\GoogleAnalyticsV4\HitBuilders\TimingHitBuilder.cs" />
      <Compile Include="Assets\Plugins\GoogleAnalyticsV4\HitBuilders\TransactionHitBuilder.cs" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
-     <None Include="Assets\Resources\15.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineBufferShader.shader" />
      <None Include="Assets\Resources\1.txt" />
-     <None Include="Assets\Resources\25.txt" />
      <None Include="Assets\Resources\4.txt" />
      <None Include="Assets\Plugins\Android\readme.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />

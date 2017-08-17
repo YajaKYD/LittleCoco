@@ -13,6 +13,8 @@ public class Stage1_2_GameController : MonoBehaviour {
 	private GameObject player;
 	private Outline o_l;
 	private Mirror_Socket_Controller msc;
+	private Text_Importer2 ti;
+
 
 	void Awake(){
 		player = GameObject.Find ("Player");
@@ -26,6 +28,10 @@ public class Stage1_2_GameController : MonoBehaviour {
 	}
 
 	void Start(){
+
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (12);
+
 		if (GetComponent<Load_data> ()._where_are_you_from == 6) {
 			player.transform.position = regen_pos.position;
 		}
@@ -51,15 +57,17 @@ public class Stage1_2_GameController : MonoBehaviour {
 		if (msc.mirror_in_ornot) {//거울을 빼면,
 			sp.SetActive(false);
 
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr [0] += 2;//코코 다음대사로 넘김
-			aa.NPC_Say_yeah ("코코");
+			ti.Talk ();
+
+//			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//			aa.currLineArr [0] += 2;//코코 다음대사로 넘김
+//			aa.NPC_Say_yeah ("코코");
 
 			transparent_wall.enabled = false;
 			//broken_bridge.SetActive (true);
 			StartCoroutine("Mirror_Effect");
 			Destroy(GameObject.Find("Mirror_Socket"));
-			Stage1_Controller._Stage1_Quest[2] = true;
+			//Stage1_Controller._Stage1_Quest[2] = true;
 		}
 	}
 
