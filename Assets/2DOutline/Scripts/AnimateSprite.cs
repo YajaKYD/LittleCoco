@@ -31,9 +31,9 @@ public class AnimateSprite : MonoBehaviour {
 					vCptSprite = 0;
 			
 				vRenderer.sprite = vSpriteList [vCptSprite];
-				if (GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ().state == CocoState.GetItem) {
-					print ("CHeck");
-				}
+//				if (GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ().state == CocoState.GetItem) {
+//					print ("CHeck");
+//				}
 
 				vElapseTime = 0f;
 				vCptSprite++;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 
-public class Stage1_1_GameController : MonoBehaviour {
+public class Stage1_1_GameController : Controller {
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -21,37 +21,32 @@ public class Stage1_1_GameController : MonoBehaviour {
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
 
-
+		sceneNo = 11;
 
 	}
 
 	void Start(){
 		
-		if (!Stage1_Controller._Stage1_Quest[0]) {
+		if (!Stage1_Controller.q[0]) {
 			//1st save point//
-			//Save_Script.Save_Now_Point ();
+			Save_Script.Save_Now_Point ();
 			//print ("Saved");
 			//1st save point//
 			player.transform.rotation = Quaternion.Euler(Vector3.zero);
 			ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 			ti.Import (11);
-
+			ti.Talk ();
 		}
 
 		if (GetComponent<Load_data> ()._where_are_you_from == 5) {
 			player.transform.position = regen_pos.position;
 		}
-		if (Stage1_Controller._Stage1_Quest[1]) {
+		if (Stage1_Controller.q[1]) {
 			Destroy (mirror);
 		}
 	}
 
 	void Update(){
-
-		if (!xxxx) {
-			ti.Talk ();
-			xxxx = true;
-		}
 
 		//개발용//
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.W)) {
@@ -67,7 +62,7 @@ public class Stage1_1_GameController : MonoBehaviour {
 
 
 		if (!mirror) {
-			Stage1_Controller._Stage1_Quest[1] = true;
+			Stage1_Controller.q[1] = true;
 		}
 	}
 

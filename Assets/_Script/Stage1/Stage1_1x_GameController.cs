@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Stage1_1x_GameController : MonoBehaviour {
+public class Stage1_1x_GameController : Controller {
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -14,6 +14,8 @@ public class Stage1_1x_GameController : MonoBehaviour {
 	private bool a1 = false;
 	public Transform arrow;
 
+	private Text_Importer2 ti;
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
@@ -21,6 +23,11 @@ public class Stage1_1x_GameController : MonoBehaviour {
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
+
+		sceneNo = 14;
+
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (14);
 	}
 
 	void Start(){
@@ -36,8 +43,8 @@ public class Stage1_1x_GameController : MonoBehaviour {
 		if (GetComponent<Load_data> ()._where_are_you_from == 8) {
 			player.transform.position = regen_pos.position;
 		} else {
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr [0] += 2;//코코 다음대사로 넘김
+//			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//			aa.currLineArr [0] += 2;//코코 다음대사로 넘김
 		}
 	}
 
@@ -56,9 +63,11 @@ public class Stage1_1x_GameController : MonoBehaviour {
 			arrow.rotation = Quaternion.Euler(Vector3.zero);
 			mbr.SetState(CocoState.Fear);
 			//mbr.enabled = false;
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.NPC_Say_yeah ("코코");
+//			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//			aa.NPC_Say_yeah ("코코");
 			//a1 = true;
+
+			ti.Talk ();
 		}
 	}
 

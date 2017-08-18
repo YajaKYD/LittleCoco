@@ -63,7 +63,7 @@ public class Save_Script : MonoBehaviour {
 
 	public static void Save_S1(){
 		//S1 = new bool[10];
-		S1 = Stage1_Controller._Stage1_Quest;
+		S1 = Stage1_Controller.q;
 		//S1 [0] = Stage1_Controller._stage1_q1;
 		//S1 [1] = Stage1_Controller._stage1_q2;
 		//S1 [2] = Stage1_Controller._stage1_q3;

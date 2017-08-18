@@ -33,7 +33,7 @@ public class Instantiate_Message : MonoBehaviour, IPointerClickHandler {
     {
         if (other.gameObject.CompareTag("Player") && !able_message)
         {
-			Debug.Log ("collision");
+			//Debug.Log ("collision");
 			tc.instantiateMessage (index);
             able_message = true;
         }
