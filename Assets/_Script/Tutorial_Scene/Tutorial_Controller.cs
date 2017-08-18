@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tutorial_Controller : MonoBehaviour {
 
+	public static bool[] q = new bool[3];
 
     //호균
     public GameObject tutorialMessage;
@@ -24,12 +25,14 @@ public class Tutorial_Controller : MonoBehaviour {
     void Start()
     {
         tutorialMessageIndex = 0;
-		Debug.Log ("tutorialMessageIndex is " + tutorialMessageIndex);
+		//Debug.Log ("tutorialMessageIndex is " + tutorialMessageIndex);
+
+
     }
 
     public void instantiateMessage(int index)
     {
-		Debug.Log ("index is " + index + ", " + tutorialMessageIndex);
+		//Debug.Log ("index is " + index + ", " + tutorialMessageIndex);
         if (index == tutorialMessageIndex && tutorialMessagePrefab[index] != null)
         {
 			tutorialMessage = Instantiate(tutorialMessagePrefab[index], Vector3.zero , Quaternion.identity) as GameObject;
@@ -41,7 +44,7 @@ public class Tutorial_Controller : MonoBehaviour {
 					buttonForTutorial[0].transform.SetAsLastSibling();
 				}
 			} catch {
-				Debug.Log ("no button");
+				//Debug.Log ("no button");
 			}
             tutorialMessagePrefab[index] = null;
         }

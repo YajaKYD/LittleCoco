@@ -15,7 +15,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
 	private void Awake(){
 		player = GameObject.Find ("Player");
-		//mbr = player.GetComponent<Moving_by_RLbuttons> ();
+		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		bgImg = GetComponent<Image> ();
 		joystickImg = transform.GetChild (0).GetComponent<Image> ();
 	}

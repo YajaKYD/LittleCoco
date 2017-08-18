@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Stage1_Controller : MonoBehaviour {
 
-	public static bool[] _Stage1_Quest = new bool[11];
+	public static bool[] q = new bool[11];
+	public static int[] lineNo = new int[8];
 
 	//public static bool _stage1_q1 = false; //첫 대사
 	//public static bool _stage1_q2 = false; //거울 줍기

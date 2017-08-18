@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage1_3_GameController : MonoBehaviour {
+public class Stage1_3_GameController : Controller {
 
 	private Transform start_pos;
 	private GameObject player;
@@ -17,6 +17,7 @@ public class Stage1_3_GameController : MonoBehaviour {
 	public GameObject _coco_textbox;
 
 	public GameObject[] wheels;
+	private Text_Importer2 ti;
 
 	void Awake(){
 		player = GameObject.Find ("Player");
@@ -28,6 +29,10 @@ public class Stage1_3_GameController : MonoBehaviour {
 		o_l_2.used_or_not_for_retry = true;
 
 		player.transform.position = start_pos.position;
+
+		sceneNo = 13;
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (13);
 
 		for (int i = 0; i < 5; i++) { //s3 시작 시 템 없어야함. 카트에서 거울먹고 종료 후 이어하기 시 거울이 있ㅡㄴ 것ㅡㄹ 방지함
 			ic._item_name_list [i] = "";
@@ -64,30 +69,19 @@ public class Stage1_3_GameController : MonoBehaviour {
 				cart.transform.position = new Vector3 (10.5f, -1.37f, 7f);
 				player.SetActive (true);
 				player.transform.position = new Vector3 (14.5f, -1.37f, 7f);
-				Stage1_Controller._Stage1_Quest[3] = true;
+				Stage1_Controller.q[3] = true;
 				GameObject.Find ("Main Camera").GetComponent<CameraManager> ().FocusObject = player;
 			}
 		}
 
-		if (_coco_textbox != null) {
-			if (Stage1_Controller._Stage1_Quest [4] && !_coco_textbox.activeSelf) { //이동포인트 도착 후 대사 끝냄
-				portal_to_next.SetActive (true);
-			}
+		if (Stage1_Controller.q[4]) {
+			portal_to_next.SetActive (true);
 		}
 
 	}
 
 	void OnTriggerEnter2D(Collider2D other){ //이동포인트에 도착.
-//		if (other.gameObject == player) {
-//			//말하고 뒤로 자동으로 움직임?
-//			mbr.enabled = false;
-//			StartCoroutine ("Backback");
-//		}
-		Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		aa.currLineArr [0] = 5;//코코 다음대사로 넘김
-		aa.NPC_Say_yeah ("코코");
-		Stage1_Controller._Stage1_Quest[4] = true;
-		_coco_textbox = GameObject.Find ("코코_text");
+		ti.Talk();
 	}
 
 }

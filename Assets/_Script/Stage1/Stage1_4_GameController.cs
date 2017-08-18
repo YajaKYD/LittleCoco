@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage1_4_GameController : MonoBehaviour {
+public class Stage1_4_GameController : Controller {
 
 	public BoxCollider2D transparent_wall;
 
@@ -27,13 +27,15 @@ public class Stage1_4_GameController : MonoBehaviour {
 		player.transform.position = start_pos.position;
 
 		tempbool = msc.mirror_in_ornot;
+
+		sceneNo = 15;
 	}
 
 	void Start(){
 		if (GetComponent<Load_data> ()._where_are_you_from == 9) {
 			player.transform.position = regen_pos.position;
 		}
-		if (Stage1_Controller._Stage1_Quest[5]) {//없는상태는 기본이므로 굳이 저장&적용 노노!
+		if (Stage1_Controller.q[5]) {//없는상태는 기본이므로 굳이 저장&적용 노노!
 			//거울을 넣은 상태로 다른씬이동 후 왔을 때
 			o_l.used_or_not_for_retry = true;
 		}
@@ -45,13 +47,13 @@ public class Stage1_4_GameController : MonoBehaviour {
 				transparent_wall.enabled = false;
 				StartCoroutine (Mirror_Effect_Off (fence));
 				//fence.SetActive (false);
-				Stage1_Controller._Stage1_Quest [5] = true;
+				Stage1_Controller.q [5] = true;
 				//Destroy(GameObject.Find("Mirror_Socket"));
 			} else {
 				transparent_wall.enabled = true;
 				StartCoroutine (Mirror_Effect_On (fence));
 				//fence.SetActive (true);
-				Stage1_Controller._Stage1_Quest [5] = false;
+				Stage1_Controller.q [5] = false;
 			}
 			tempbool = msc.mirror_in_ornot;
 		}

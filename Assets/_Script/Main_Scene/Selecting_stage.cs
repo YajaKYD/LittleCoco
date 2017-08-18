@@ -29,11 +29,11 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 
 		if (_what_stage_now_cleared == 0 && this_num == 0) {
 			SceneManager.LoadScene (4);
-			_stage2_con_di [0].SetActive (true);
+			//_stage2_con_di [0].SetActive (true);
 			_stage2_con_di [1].SetActive (true);
-			DontDestroyOnLoad (_stage2_con_di [0]);
+			//DontDestroyOnLoad (_stage2_con_di [0]);
 			DontDestroyOnLoad (_stage2_con_di [1]);
-			aa.Import (4);
+			//aa.Import (4);
 		}
 
 	}
@@ -64,11 +64,11 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 			switch (this_num) {
 			case 0:
 				SceneManager.LoadScene (4);
-				_stage2_con_di [0].SetActive (true);
+				//_stage2_con_di [0].SetActive (true);
 				_stage2_con_di [1].SetActive (true);
-				DontDestroyOnLoad (_stage2_con_di [0]);
+				//DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa.Import (4);
+				//aa.Import (4);
 				break;
 			case 1:
 				SceneManager.LoadScene (11);

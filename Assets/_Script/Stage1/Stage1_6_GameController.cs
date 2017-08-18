@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage1_6_GameController : MonoBehaviour {
+public class Stage1_6_GameController : Controller {
 
 	private Transform start_pos;
 	private GameObject player;
@@ -35,6 +35,8 @@ public class Stage1_6_GameController : MonoBehaviour {
 	public GameObject portalto15;
 	//private Mirror_Socket_Controller msc;
 
+	private Text_Importer2 ti;
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
@@ -46,10 +48,15 @@ public class Stage1_6_GameController : MonoBehaviour {
 		//o_l.used_or_not_for_retry = false;
 
 		player.transform.position = start_pos.position;
+
+		sceneNo = 17;
+
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (16);
 	}
 
 	void Start(){
-		if (Stage1_Controller._Stage1_Quest [10]) {
+		if (Stage1_Controller.q [10]) {
 			stone.SetActive (false);
 			another_stone.gameObject.SetActive (false);
 			for (int i = 0; i < _yellowThings.Length; i++) {
@@ -97,14 +104,14 @@ public class Stage1_6_GameController : MonoBehaviour {
 			}
 		}
 
-		if (!stone.activeSelf && !Stage1_Controller._Stage1_Quest[9]) {
+		if (!stone.activeSelf && !Stage1_Controller.q[9]) {
 			Q3_Last ();
 		}
 
 
-		if (Stage1_Controller._Stage1_Quest[9]) {
+		if (Stage1_Controller.q[9]) {
 			Destroy (GameObject.FindWithTag ("Controller"));
-			Destroy (GameObject.FindWithTag ("Dialogue"));
+			//Destroy (GameObject.FindWithTag ("Dialogue"));
 			portaltoend.transform.position = player.transform.position;
 			portaltoend.GetComponent<BoxCollider2D> ().enabled = true;
 			Selecting_stage._what_stage_now_cleared = 1;//2스테이지 오픈시킴
@@ -114,10 +121,10 @@ public class Stage1_6_GameController : MonoBehaviour {
 	}
 
 	void Q3_Last(){
-		Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
+		//Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
 		//aa.currLineArr [1] += 2;//별감 다음대사 치게함.
 
-		if (!a4 && !a5) {
+		if (!a5) {
 			StartCoroutine ("WhiteOut");
 			if (ringandstar [0].activeSelf) {
 				ringandstar [0].GetComponent<BoxCollider2D> ().enabled = true;
@@ -126,34 +133,39 @@ public class Stage1_6_GameController : MonoBehaviour {
 			a5 = true;
 		}
 
-		if (!a3 && a4 && bbb) {
-			//print ("1");
-			aa.NPC_Say_yeah ("별감");
-			_star_textbox = GameObject.Find ("별감_text");
+		if (bbb && !a3) {
+			ti.Talk ();
 			a3 = true;
 		}
 
-
-		if (!a1 && a3 && !_star_textbox.activeSelf) {
-			//print ("2");
-			mbr.SetState(CocoState.Bark);
-			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
-			aa.NPC_Say_yeah ("코코");
-			_coco_textbox = GameObject.Find ("코코_text");
-			a1 = true;
-		}
-
-		if (!a2 && a1 && !_coco_textbox.activeSelf) {
-			//print ("3");
-			aa.currLineArr [1] += 2;//별감 다음대사 치게함.
-			aa.NPC_Say_yeah ("별감");
-			a2 = true;
-		}
-
-		if (a2 && !_star_textbox.activeSelf) {
-			//print ("4");
-			Stage1_Controller._Stage1_Quest[9] = true;
-		}
+//		if (!a3 && a4 && bbb) {
+//			//print ("1");
+//			aa.NPC_Say_yeah ("별감");
+//			_star_textbox = GameObject.Find ("별감_text");
+//			a3 = true;
+//		}
+//
+//
+//		if (!a1 && a3 && !_star_textbox.activeSelf) {
+//			//print ("2");
+//			mbr.SetState(CocoState.Bark);
+//			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
+//			aa.NPC_Say_yeah ("코코");
+//			_coco_textbox = GameObject.Find ("코코_text");
+//			a1 = true;
+//		}
+//
+//		if (!a2 && a1 && !_coco_textbox.activeSelf) {
+//			//print ("3");
+//			aa.currLineArr [1] += 2;//별감 다음대사 치게함.
+//			aa.NPC_Say_yeah ("별감");
+//			a2 = true;
+//		}
+//
+//		if (a2 && !_star_textbox.activeSelf) {
+//			//print ("4");
+//			Stage1_Controller.q[9] = true;
+//		}
 	}
 
 	IEnumerator Mirror_Effect_On(SpriteRenderer a){
@@ -202,7 +214,7 @@ public class Stage1_6_GameController : MonoBehaviour {
 		}
 
 		a4 = true;
-		Stage1_Controller._Stage1_Quest [10] = true;
+		Stage1_Controller.q [10] = true;
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 
 		i_c.GetComponent<Canvas> ().enabled = true;

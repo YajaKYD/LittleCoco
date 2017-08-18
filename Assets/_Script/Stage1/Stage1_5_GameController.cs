@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage1_5_GameController : MonoBehaviour {
+public class Stage1_5_GameController : Controller {
 
 	public BoxCollider2D transparent_walls;
 
@@ -23,6 +23,8 @@ public class Stage1_5_GameController : MonoBehaviour {
 	//public static bool stage1_5_mirror_or_not_2 = false;
 	//public static bool stage1_5_mirror_or_not_3 = false;
 
+	private Text_Importer2 ti;
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
@@ -38,6 +40,11 @@ public class Stage1_5_GameController : MonoBehaviour {
 		}
 
 		player.transform.position = start_pos.position;
+
+		sceneNo = 16;
+
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (15);
 	}
 
 	void Start(){
@@ -45,7 +52,7 @@ public class Stage1_5_GameController : MonoBehaviour {
 			player.transform.position = regen_pos.position;
 		}
 
-		if (Stage1_Controller._Stage1_Quest[6]) {
+		if (Stage1_Controller.q[6]) {
 			xx[1].SetActive(false);
 			transparent_walls.enabled = false;
 			msc [0].mirror_in_ornot = false;
@@ -78,7 +85,7 @@ public class Stage1_5_GameController : MonoBehaviour {
 			msc [0].mirror_in_ornot = false;
 			Destroy (msc [0].gameObject);
 			player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
-			Stage1_Controller._Stage1_Quest[6] = true;
+			Stage1_Controller.q[6] = true;
 		}
 //		if (msc[1].mirror_in_ornot) {//거울이 있을 때
 //			//xx[1].SetActive(false);
@@ -103,8 +110,9 @@ public class Stage1_5_GameController : MonoBehaviour {
 			//말하고 뒤로 자동으로 움직임?
 			mbr.enabled = false;
 			mbr.SetState(CocoState.Fear);
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.NPC_Say_yeah ("코코");
+//			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//			aa.NPC_Say_yeah ("코코");
+			ti.Talk();
 			// StartCoroutine ("Backback");
 		}
 	}

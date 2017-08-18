@@ -21,7 +21,8 @@ public class Text_Importer2 : MonoBehaviour {
 	public GameObject player;
 	public Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\r'; // for windows OS, use '\n'
+	//private char lineSeperator = '\r'; // for windows OS, use '\n'
+	private char lineSeperator = '\n';
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -91,6 +92,12 @@ public class Text_Importer2 : MonoBehaviour {
 		case 0:
 			break;
 		case 1:
+			if (Stage1_Controller.lineNo [sceneNo] == 0) {
+				lineNo = 1;
+			} else {
+				lineNo = Stage1_Controller.lineNo [sceneNo];
+				Debug.Log ("load done");
+			}
 			break;
 		case 2:
 			break;
@@ -153,9 +160,10 @@ public class Text_Importer2 : MonoBehaviour {
 
 					switch (stageNo) {
 					case 0:
+						Tutorial_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 1:
-						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
 						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
