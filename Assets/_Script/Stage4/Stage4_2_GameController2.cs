@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage4_2_GameController2 : Controller {
 
@@ -13,9 +14,6 @@ public class Stage4_2_GameController2 : Controller {
 	private GameObject itemCanvas;
 	private GameObject camera;
 
-	public bool q13_meetNeogul;
-	public bool q13_sayonce;
-
 	void Awake(){
 		player = GameObject.FindWithTag ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
@@ -27,6 +25,8 @@ public class Stage4_2_GameController2 : Controller {
 	}
 
 	void Start () {
+		Stage4_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
+
 		ti.Import (sceneNo);
 
 		if (Stage4_Controller.q[6]) {
@@ -35,7 +35,7 @@ public class Stage4_2_GameController2 : Controller {
 		if (Stage4_Controller.q[7]) {
 			Destroy (Star.gameObject);
 		} 
-		if (Stage4_Controller.q [14]) {
+		if (Stage4_Controller.q [14] && !Stage4_Controller.q[18]) {
 			racoon.SetActive (true);
 		} else {
 			racoon.SetActive (false);
@@ -47,6 +47,8 @@ public class Stage4_2_GameController2 : Controller {
 			Q7_GetaDoll ();
 		} else if (Stage4_Controller.q [15] && !Stage4_Controller.q [16]) {
 			Q16_CheckRoom ();
+		} else if (Stage4_Controller.q [17] && !Stage4_Controller.q [18]) {
+			Q18_RacoonDisappear ();
 		}
 	}
 
@@ -62,6 +64,11 @@ public class Stage4_2_GameController2 : Controller {
 	void Q16_CheckRoom(){
 		StartCoroutine ("CameraMove");
 		Stage4_Controller.q [16] = true;
+	}
+
+	void Q18_RacoonDisappear(){
+		racoon.SetActive (false);
+		Stage4_Controller.q [18] = true;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){

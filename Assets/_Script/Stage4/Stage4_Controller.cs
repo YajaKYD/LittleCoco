@@ -5,10 +5,10 @@ using UnityEngine;
 public class Stage4_Controller : MonoBehaviour {
 	
 	public Item_Controller ic;
+	public static int sceneIndex;
 
 	public static bool[] q = new bool[50];
-	public static bool[] q4 = new bool[3];
-	public static bool[] q15 = new bool[2];
+	public static bool[] q20 = new bool[2];
 	public static bool[] q18 = new bool[2];
 	public static int[] lineNo = new int[7];
 

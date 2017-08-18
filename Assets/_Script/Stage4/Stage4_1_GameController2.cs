@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Stage4_1_GameController2 : Controller {
 	public GameObject Light;
@@ -10,27 +11,15 @@ public class Stage4_1_GameController2 : Controller {
 	private GameObject player;
 	private Text_Importer2 ti;
 	private Item_Controller ic;
-	private GameObject textbox_Ivon;
-	private GameObject textbox_Coco;
-	private GameObject textbox_Star;
-	private GameObject textbox_Racoon;
 	public GameObject portal2;
 
 	public SpriteRenderer _blackout;
 	private Color bb;
 
-	private bool q2_1 = false;
-	private bool q2_2 = false;
-	private bool q3_1 = false;
-
-	private bool q2_0 = false;
-	private bool q3_0 = false;
-
 	void Awake(){
 		player = GameObject.FindWithTag ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
-		player.transform.position = start_pos.position;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
 		sceneNo = 41;
@@ -45,6 +34,14 @@ public class Stage4_1_GameController2 : Controller {
 	}
 
 	void Start () {
+
+		if (Stage4_Controller.sceneIndex > SceneManager.GetActiveScene ().buildIndex) {
+			player.transform.position = regen_pos.position;
+		} else {
+			player.transform.position = start_pos.position;
+		}
+		Stage4_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
+
 		ti.Import (sceneNo);
 		//Save_Script.Save_Now_Point();
 		if (!Stage4_Controller.q [0]) {
@@ -57,9 +54,9 @@ public class Stage4_1_GameController2 : Controller {
 			Light.SetActive (false);
 		}
 
-		if (Stage4_Controller.q [13])
+		if (Stage4_Controller.q [17]) {
 			portal2.SetActive (true);
-		
+		}
 	}
 
 	void Update () {

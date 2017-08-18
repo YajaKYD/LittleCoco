@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
-public class Stage4_3_GameController : MonoBehaviour {
+public class Stage4_3_GameController2 : MonoBehaviour {
 
 	public bool[] posAvailable;
 	public GameObject[] puzzlePiece;
@@ -14,65 +14,46 @@ public class Stage4_3_GameController : MonoBehaviour {
 	public GameObject background;
 	public Transform startPos;
 	private GameObject item_Canvas;
-	private Text_Importer ti;
-	private GameObject textbox_Ivon;
-	private GameObject textbox_Coco;
-	private GameObject textbox_Star;
-	private GameObject textbox_Racoon;
+	private Text_Importer2 ti;
 
 	public float shakeTimer, shakeAmount;
 
-	private bool q15_0, q15_1;
+	private bool q20_0, q20_1;
 
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
 		player.transform.position = startPos.position;
-		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
+		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
 		item_Canvas = GameObject.FindWithTag ("Item_Canvas");
-
-		Stage4_Controller.q[14] = true; //test // need optimization
-		//ti.Import(25); // test
-
-		textbox_Coco = ti._text_boxes [0];
-		textbox_Star = ti._text_boxes [1];
-		textbox_Racoon = ti._text_boxes [2];
-		textbox_Ivon = ti._text_boxes [3];
-
 		Save_Script.Save_Now_Point();
+
+		ti.Import(43); 
+
 	}
 
 	void Update () {
-		if (Stage4_Controller.q [14] && !Stage4_Controller.q [15]) {
-			Q15_gumPuzzle ();
-		} 
+		//19 true 20 false
+		if (!Stage4_Controller.q [20]) {
+			Q20_gumPuzzle ();
+		}
 	}
 
-	void Q15_gumPuzzle(){
-		if (Stage4_Controller.q20 [0] && Stage4_Controller.q20 [1] && !q15_0) {
-			q15_0 = true;
-			q15_1 = true;
+	void Q20_gumPuzzle(){
+		if (Stage4_Controller.q20 [0] && Stage4_Controller.q20 [1] && !Stage4_Controller.q[21]) {
+			Stage4_Controller.q [21] = true;
 			shakeAmount = 0.1f;
 			shakeTimer = 1f;
 			StartCoroutine ("FinishGumPuzzle1");
-		} else if (Stage4_Controller.q20 [0] && Stage4_Controller.q20 [1] && q15_0 && !q15_1) {
-			if (!textbox_Coco.activeSelf) {
-				q15_1 = true;
+		} else if (Stage4_Controller.q20 [0] && Stage4_Controller.q20 [1] && Stage4_Controller.q[21]) {
+			if (Stage4_Controller.q [22]) {
 				StartCoroutine ("FinishGumPuzzle2");
-				Stage4_Controller.q [15] = true;
+				Stage4_Controller.q [20] = true;
 			}
 		}
 	}
 
 	IEnumerator FinishGumPuzzle1(){
 		Debug.Log ("finish 1");
-		//animation
-//		if (shakeTimer >= 0) {
-//			Debug.Log ("shake camera");
-//			Vector2 ShakePos = Random.insideUnitCircle * shakeAmount;
-//			Camera.main.transform.position = new Vector3 (Camera.main.transform.position.x + ShakePos.x, Camera.main.transform.position.y + ShakePos.y, Camera.main.transform.position.z); 
-//			shakeTimer -= Time.deltaTime;
-//			yield return null;
-//		}
 		for (float f = 0f; f < 1; f += Time.deltaTime) {
 			Vector2 ShakePos = Random.insideUnitCircle * shakeAmount;
 			Camera.main.transform.position = new Vector3 (Camera.main.transform.position.x + ShakePos.x, Camera.main.transform.position.y + ShakePos.y, Camera.main.transform.position.z); 
@@ -80,8 +61,7 @@ public class Stage4_3_GameController : MonoBehaviour {
 		}
 
 		yield return new WaitForSeconds(0.5f);
-		ti.NPC_Say_yeah ("코코");
-		q15_1 = false;
+		ti.Talk (); //Stage4_Controller.q [21] = true;
 	}
 
 	IEnumerator FinishGumPuzzle2(){
@@ -111,7 +91,4 @@ public class Stage4_3_GameController : MonoBehaviour {
 			}
 		}
 	}
-
-
-
 }

@@ -69,7 +69,6 @@
      <Compile Include="Assets\SlidePuzzleKit\Scripts\GameController.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\GameState.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\TileController.cs" />
-     <Compile Include="Assets\Stage4_2_GameController2.cs" />
      <Compile Include="Assets\_Script\Background_Script\Closest_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_8_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_9_bg.cs" />
@@ -152,8 +151,10 @@
      <Compile Include="Assets\_Script\Stage4\Stage4_1_GameController.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_1_GameController2.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_2_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_2_GameController2.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_2_Neogul.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_3_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_3_GameController2.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_3_gum.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_3_puzzlePiece.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_4_GameController.cs" />
