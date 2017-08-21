@@ -6,11 +6,15 @@ public class Text_Click : MonoBehaviour {
 
 	private Text_Importer2 ti;
 	public bool aa = true;
-	private Moving_by_RLbuttons player_moving;
+
 
 	void Awake(){
 		ti = GetComponentInParent<Text_Importer2> ();
-		player_moving = GameObject.FindWithTag ("Player").GetComponent<Moving_by_RLbuttons> ();
+	
+	}
+
+	void Start(){
+
 	}
 
 	void OnMouseDown(){

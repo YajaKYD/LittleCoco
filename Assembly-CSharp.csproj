@@ -69,7 +69,6 @@
      <Compile Include="Assets\SlidePuzzleKit\Scripts\GameController.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\GameState.cs" />
      <Compile Include="Assets\SlidePuzzleKit\Scripts\TileController.cs" />
-     <Compile Include="Assets\Stage4_2_GameController2.cs" />
      <Compile Include="Assets\_Script\Background_Script\Closest_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_8_bg.cs" />
      <Compile Include="Assets\_Script\Background_Script\Farther_9_bg.cs" />
@@ -152,8 +151,10 @@
      <Compile Include="Assets\_Script\Stage4\Stage4_1_GameController.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_1_GameController2.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_2_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_2_GameController2.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_2_Neogul.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_3_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage4\Stage4_3_GameController2.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_3_gum.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_3_puzzlePiece.cs" />
      <Compile Include="Assets\_Script\Stage4\Stage4_4_GameController.cs" />
@@ -188,6 +189,10 @@
      <Compile Include="Assets\_Script\Stage5\TextClose.cs" />
      <Compile Include="Assets\_Script\Stage5\newsStand.cs" />
      <Compile Include="Assets\_Script\Stage5\stage5Paper.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_3_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_4_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_Controller.cs" />
      <Compile Include="Assets\_Script\Text_Click.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />
      <Compile Include="Assets\_Script\Text_Importer2.cs" />
@@ -203,11 +208,7 @@
      <Compile Include="Assets\ivonpostest.cs" />
      <Compile Include="Assets\onlydontdestroy.cs" />
      <None Include="Assets\Dialogue\Tutorial\1.txt" />
-     <None Include="Assets\Resources\15.txt" />
      <None Include="Assets\2DOutline\Resources\Mats\OutlineBufferShader.shader" />
-     <None Include="Assets\Resources\1.txt" />
-     <None Include="Assets\Resources\25.txt" />
-     <None Include="Assets\Resources\4.txt" />
      <None Include="Assets\Plugins\Android\readme.txt" />
      <None Include="Assets\Resources\Prefabs\RainMaker\Prefab\RainShader.shader" />
      <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />

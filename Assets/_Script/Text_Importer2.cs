@@ -18,10 +18,11 @@ public class Text_Importer2 : MonoBehaviour {
 	public GameObject[] cocoDialogue;
 
 	private string[] names = {"Coco", "Star", "Ivon", "Racoon", "null"};
-	private GameObject player;
-	private Moving_by_RLbuttons player_moving;
+	public GameObject player;
+	public Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\n'; // for windows OS, use '\n'
+	private char lineSeperator = '\r'; // for windows OS, use '\n'
+	//private char lineSeperator = '\n';
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -29,11 +30,15 @@ public class Text_Importer2 : MonoBehaviour {
 
 	void Awake () {
 		lineNo = 1;
-		player = GameObject.FindWithTag ("Player");
-		player_moving = player.GetComponent<Moving_by_RLbuttons> ();
+		//player = GameObject.FindWithTag ("Player");
+
 		textBoxes = new GameObject[names.Length];
 		textInBoxes = new Text[names.Length];
 		DontDestroyOnLoad (this.gameObject);
+	}
+
+	void Start(){
+		//player_moving = player.GetComponent<Moving_by_RLbuttons> ();
 	}
 
 	public void Import (int sceneNo) { //Awake시점과 다른 상황에서 텍스트파일을 불러야 할 때
@@ -87,6 +92,12 @@ public class Text_Importer2 : MonoBehaviour {
 		case 0:
 			break;
 		case 1:
+			if (Stage1_Controller.lineNo [sceneNo] == 0) {
+				lineNo = 1;
+			} else {
+				lineNo = Stage1_Controller.lineNo [sceneNo];
+				Debug.Log ("load done");
+			}
 			break;
 		case 2:
 			break;
@@ -103,16 +114,7 @@ public class Text_Importer2 : MonoBehaviour {
 		case 5:
 			break;
 		case 6:
-                if (Stage6_Controller.lineNo[sceneNo] == 0)
-                {
-                    lineNo = 1;
-                }
-                else
-                {
-                    lineNo = Stage6_Controller.lineNo[sceneNo];
-                    Debug.Log("load done");
-                }
-                break;
+			break;
 		default:
 			break;
 		}
@@ -120,6 +122,8 @@ public class Text_Importer2 : MonoBehaviour {
 
 	public bool Talk(){
 		for (int i = 0; i < names.Length; i++) {
+			Debug.Log ("lineno : " + lineNo + ", names[" + i + "]" + names[i]);
+			Debug.Log (speaker [lineNo]);
 			if (names [i] == speaker[lineNo]) {//같은 이름 NPC 찾고
 
 				for (int x = 0; x < cocoDialogue.Length; x++) {
@@ -127,8 +131,8 @@ public class Text_Importer2 : MonoBehaviour {
 				} //직전에 한 대사를 모두 끈다.
 
 				if (speaker [lineNo] == "Coco") {
-                    for (int j = 0; j < cocoDialogue.Length; j++) {
-						if ((int)textLine[lineNo][0] == (int)cocoDialogue[j].name[0]) {
+					for (int j = 0; j < cocoDialogue.Length; j++) {
+						if (textLine[lineNo] == cocoDialogue [j].name) {
 							cocoDialogue [j].SetActive (true);
 							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -156,9 +160,10 @@ public class Text_Importer2 : MonoBehaviour {
 
 					switch (stageNo) {
 					case 0:
+						Tutorial_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 1:
-						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
 						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
@@ -173,7 +178,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
@@ -214,7 +219,7 @@ public class Text_Importer2 : MonoBehaviour {
 
 				if (speaker [lineNo] == "Coco") {
 					for (int j = 0; j < cocoDialogue.Length; j++) {
-						if ((int)textLine[lineNo][0] == (int)cocoDialogue[j].name[0]) {
+						if (textLine[lineNo] == cocoDialogue [j].name) {
 							cocoDialogue [j].SetActive (true);
 							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -259,7 +264,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;

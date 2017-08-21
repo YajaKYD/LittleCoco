@@ -8,6 +8,8 @@ public class Save_Script : MonoBehaviour {
 	public static bool[] S2 = new bool[26];
 	public static int[] S2_intArr = new int[3];
 	public static bool[] S3 = new bool[23];
+	public static bool[] S4 = new bool[50];
+	public static bool[] S4_puzzle = new bool[2];
 	public static bool[] S5 = new bool[51];
     public static bool[] S6 = new bool[50];
 	public static Item_Controller _ic_for_Save;
@@ -54,19 +56,22 @@ public class Save_Script : MonoBehaviour {
 		Save_S1 ();
 		Save_S2 ();
 		Save_S3 ();
+		Save_S4 ();
 		Save_S5 ();
         Save_S6();
 		PlayerPrefsX.SetBoolArray ("Stage1_Quest", S1);
 		PlayerPrefsX.SetBoolArray ("Stage2_Quest", S2);
-		PlayerPrefsX.SetBoolArray ("Stage3_Quest", S3);
 		PlayerPrefsX.SetIntArray ("Stage2_Quest_INT", S2_intArr);
+		PlayerPrefsX.SetBoolArray ("Stage3_Quest", S3);
+		PlayerPrefsX.SetBoolArray ("Stage4_Quest", S4);
+		PlayerPrefsX.SetBoolArray ("Stage4_Quest_puzzle", S4_puzzle);
 		PlayerPrefsX.SetBoolArray ("Stage5_Quest", S5);
         PlayerPrefsX.SetBoolArray("q", S6);
     }
 
 	public static void Save_S1(){
 		//S1 = new bool[10];
-		S1 = Stage1_Controller._Stage1_Quest;
+		S1 = Stage1_Controller.q;
 		//S1 [0] = Stage1_Controller._stage1_q1;
 		//S1 [1] = Stage1_Controller._stage1_q2;
 		//S1 [2] = Stage1_Controller._stage1_q3;
@@ -111,6 +116,11 @@ public class Save_Script : MonoBehaviour {
 		//S3 = new bool[23];
 		S3 = Stage3_Controller._Stage3_Quest;
 		//Debug.Log ("save quest info activated");
+	}
+
+	public static void Save_S4(){
+		S4 = Stage4_Controller.q;
+		S4_puzzle = Stage4_Controller.q20;
 	}
 
 	public static void Save_S5(){

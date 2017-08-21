@@ -7,11 +7,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
 
-public class Game_Controller_0_1 : MonoBehaviour {
+public class Game_Controller_0_1 : Controller {
 
 	public Transform _Ivon_Position;
+	public Transform startpos;
 
-	public Text_Importer _t_i;
+	//public Text_Importer _t_i;
+	public Text_Importer2 ti;
 	private Item_Controller i_c;
 	private GameObject player;
 	private GameObject Ivon;
@@ -32,11 +34,14 @@ public class Game_Controller_0_1 : MonoBehaviour {
     private bool getGum;
 	private bool remo = false;
 
+
+
     void Awake(){
 		player = GameObject.Find ("Player");
 		Ivon = GameObject.Find ("이본");
 		portal = GameObject.Find ("Portal");
-		_t_i = GameObject.Find ("Dialogue_Canvas_").GetComponent<Text_Importer> ();
+		//_t_i = GameObject.Find ("Dialogue_Canvas_").GetComponent<Text_Importer> ();
+		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
 		i_c = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		bool musictog = PlayerPrefsX.GetBool ("Music_ONOFF");
 		float musicsl = PlayerPrefs.GetFloat ("Music_Volume");
@@ -44,6 +49,9 @@ public class Game_Controller_0_1 : MonoBehaviour {
 		PlayerPrefsX.SetBool ("Music_ONOFF", musictog);
 		PlayerPrefs.SetFloat ("Music_Volume", musicsl);
         tc = GameObject.FindWithTag("Controller").GetComponent<Tutorial_Controller>();
+		sceneNo = 1;
+		ti.Import(1);
+		player.transform.position = startpos.position;
     }
 
 	void Update(){
@@ -57,13 +65,15 @@ public class Game_Controller_0_1 : MonoBehaviour {
 
 
 		if (portal.GetComponent<Portal_Controller> ().enter_ && !throwing_ball) {//throwing ball조건을 해제하면 엄청난 일이 발생한다.
-			_t_i.NPC_Say_yeah ("이본");
+			//_t_i.NPC_Say_yeah ("이본");
+			ti.Talk();
 			first_quest_start = true;
 			portal.SetActive (false);
 			throwing_ball = true;
 		}
 
-		if (first_quest_start && _t_i.currLineArr [0] == 0) {//공을 던진다
+		if (first_quest_start && Tutorial_Controller.q[0]) {//공을 던진다
+			
 			GameObject prefab = (GameObject)Instantiate(Resources.Load("Prefabs/Ball"));
 			prefab.transform.position = _Ivon_Position.position + Vector3.up * 2;
             first_quest_start = false;
@@ -72,16 +82,20 @@ public class Game_Controller_0_1 : MonoBehaviour {
          }
 
 		if (i_c._item_name_list [0] == "공" && Vector2.Distance(player.transform.position, Ivon.transform.position) < 5f && !first_quest_end) {//공 줍고
-			_t_i.currLineArr[0] += 2;
-			_t_i.NPC_Say_yeah ("이본");
+			//_t_i.currLineArr[0] += 2;
+			//_t_i.NPC_Say_yeah ("이본");
+			ti.Talk(ti.lineNo+2);
 			i_c._item_name_list [0] = "";
 			i_c._usable_item [0] = false;
 			i_c._the_number_of_items[0] = 0;
+			i_c._interaction_object [0] = "";
+			i_c._consumable [0] = false;
+			i_c._explanations [0] = "";
 
 			first_quest_end = true;
         }
 
-        if(!_ivon_textbox.activeSelf && !getGum && first_quest_end && Input.GetMouseButtonDown(0))
+		if(Tutorial_Controller.q[1] && !getGum && first_quest_end && Input.GetMouseButtonDown(0))
         {
             GameObject gum = (GameObject)Instantiate(Resources.Load("Prefabs/dogfood"));
             gum.name = "개껌";
@@ -92,12 +106,13 @@ public class Game_Controller_0_1 : MonoBehaviour {
         }
 
         if (i_c._now_used_item == "개껌" && !second_quest_end) {
-			_t_i.currLineArr[0] += 2;
-			_t_i.NPC_Say_yeah ("이본");
+			//_t_i.currLineArr[0] += 2;
+			//_t_i.NPC_Say_yeah ("이본");
+			ti.Talk(ti.lineNo+2);
 			second_quest_end = true;
 		}
 
-        if(second_quest_end && !_ivon_textbox.activeSelf && !ivon_quest_end)
+		if(second_quest_end && Tutorial_Controller.q[2] && !ivon_quest_end)
         {
             tc.instantiateMessage(4); // 왼쪽으로 이동하세요
             //Debug.Log("이본 대사 끝")

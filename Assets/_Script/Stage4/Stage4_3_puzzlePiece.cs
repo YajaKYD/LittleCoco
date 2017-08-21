@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 
 public class Stage4_3_puzzlePiece : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler {
 
-	private Stage4_3_GameController gameController;
+	private Stage4_3_GameController2 gameController;
 	public Transform[] emptyPos;
 	public int puzzleNo;
 	private Vector3 defaultPos;
 
 	void Start () {
-		gameController = GameObject.Find ("Stage4_3_GameController").GetComponent<Stage4_3_GameController> ();
+		gameController = GameObject.Find ("Stage4_3_GameController").GetComponent<Stage4_3_GameController2> ();
 		Debug.Log ("start" + transform.position);
 		defaultPos = transform.position;
 	}
@@ -27,8 +27,8 @@ public class Stage4_3_puzzlePiece : MonoBehaviour, IDragHandler, IPointerUpHandl
 			if (Vector3.Distance (transform.position, emptyPos[i].position) <= 50 && gameController.posAvailable[i]) {
 				transform.position = emptyPos[i].position;
 				if (puzzleNo == i) {
-					Stage4_Controller.q15 [puzzleNo] = true;
-					Debug.Log ("quest15 " + Stage4_Controller.q15 [puzzleNo]);
+					Stage4_Controller.q20 [puzzleNo] = true;
+					Debug.Log ("quest19 " + Stage4_Controller.q20 [puzzleNo]);
 				}
 				result = true;
 				break;
@@ -53,8 +53,8 @@ public class Stage4_3_puzzlePiece : MonoBehaviour, IDragHandler, IPointerUpHandl
 		} else {
 			Debug.Log ("false");
 			transform.position = defaultPos;
-			Stage4_Controller.q15 [puzzleNo] = false;
-			Debug.Log ("quest15 " + Stage4_Controller.q15 [puzzleNo]);
+			Stage4_Controller.q20 [puzzleNo] = false;
+			Debug.Log ("quest19 " + Stage4_Controller.q20 [puzzleNo]);
 		}
 
 		gameController.JudgePosAvailable ();

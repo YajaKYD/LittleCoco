@@ -15,6 +15,8 @@ public class Portal_Controller : MonoBehaviour {
 	public int stageNo, sceneNo;
 	private Text_Importer2 ti;
 
+	public Controller controllerScript;
+
 	void Awake(){
 		_Player = GameObject.Find ("Player");
 		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
@@ -23,21 +25,22 @@ public class Portal_Controller : MonoBehaviour {
 		StartCoroutine ("FadeIn");
 		js = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<Joystick> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+		sceneNo = controllerScript.sceneNo;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){ //collider가 있어야함. 트리거로 해놓자.
 		
 		if (other.CompareTag("Player")) {
 			//exit_ = true;
+			SaveLineNumber ();
 			StartCoroutine("FadeOut");
 			_Player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
-			SaveLineNumber ();
 			exit_ = true; //해당 씬이 끝남
 		}
 	}
 
 	void SaveLineNumber(){
-		sceneNo = GameObject.FindWithTag ("Controller").GetComponent<Controller> ().sceneNo;
+		//sceneNo = GameObject.FindWithTag ("Controller").GetComponent<Controller> ().sceneNo;
 		stageNo = sceneNo / 10;
 		sceneNo = sceneNo % 10;
 		Debug.Log ("stage " + stageNo + ", scene " + sceneNo);
