@@ -11,17 +11,19 @@ public class Text_Position : MonoBehaviour {
 	private GameObject textPos;
 	public string nameFind;
 	private Item_Controller ic;
-	private TurnOnOffItemList itemlist;
+	public TurnOnOffItemList itemlist;
 
 	void Awake () {
 		//mainCam = Camera.main;
 		rectTransform = GetComponent<RectTransform> ();
-		//Debug.Log (nameFind);
-	}
+        //Debug.Log (nameFind);
+        ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
+        itemlist = ic.GetComponentInChildren<TurnOnOffItemList>();
+    }
 
 	void Start(){
-		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-		itemlist = ic.GetComponentInChildren<TurnOnOffItemList> ();
+		//ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+		//itemlist = ic.GetComponentInChildren<TurnOnOffItemList> ();
 	}
 
 	void OnEnable(){
@@ -42,7 +44,8 @@ public class Text_Position : MonoBehaviour {
 					starItemIndex = i;
 					starPos = GameObject.Find ("Item_button_" + i).GetComponent<RectTransform> ();
 					rectTransform.position = new Vector3 (starPos.position.x - 50, starPos.position.y, starPos.position.z);
-					itemlist.OnTime = Time.realtimeSinceStartup;
+                    
+                    itemlist.OnTime = Time.realtimeSinceStartup;
 					break;
 				}
 			}

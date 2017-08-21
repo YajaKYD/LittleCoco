@@ -9,6 +9,7 @@ public class Save_Script : MonoBehaviour {
 	public static int[] S2_intArr = new int[3];
 	public static bool[] S3 = new bool[23];
 	public static bool[] S5 = new bool[51];
+    public static bool[] S6 = new bool[50];
 	public static Item_Controller _ic_for_Save;
 	//public static Text_Importer2 _ti_for_Save;
 
@@ -54,12 +55,14 @@ public class Save_Script : MonoBehaviour {
 		Save_S2 ();
 		Save_S3 ();
 		Save_S5 ();
+        Save_S6();
 		PlayerPrefsX.SetBoolArray ("Stage1_Quest", S1);
 		PlayerPrefsX.SetBoolArray ("Stage2_Quest", S2);
 		PlayerPrefsX.SetBoolArray ("Stage3_Quest", S3);
 		PlayerPrefsX.SetIntArray ("Stage2_Quest_INT", S2_intArr);
 		PlayerPrefsX.SetBoolArray ("Stage5_Quest", S5);
-	}
+        PlayerPrefsX.SetBoolArray("q", S6);
+    }
 
 	public static void Save_S1(){
 		//S1 = new bool[10];
@@ -113,4 +116,9 @@ public class Save_Script : MonoBehaviour {
 	public static void Save_S5(){
 		S5 = Stage5_Controller._Stage5_Quest;
 	}
+
+    public static void Save_S6()
+    {
+        S6 = Stage6_Controller.q;
+    }
 }

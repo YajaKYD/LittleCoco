@@ -21,6 +21,7 @@ public class Stage5_7_1_GameController : MonoBehaviour {
     private GameObject trashHeap;
     private GameObject umbrella;
     public GameObject mission;
+    public SpriteRenderer wholePanel;
 
     public ParticleSystem rainFall;
     public ParticleSystem rainMist;
@@ -167,10 +168,12 @@ public class Stage5_7_1_GameController : MonoBehaviour {
         if (!q2a1)
         {
             mission.SetActive(true);
+            wholePanel.enabled = true;
             q2a1 = true;
         }
         else if (q2a1 && !mission.activeSelf)
         {
+            wholePanel.enabled = false;
             starDoll.GetComponent<DragRigidBody2D>().enabled = true;
             //if (!starDoll.activeSelf) q2a2 = true;
         }

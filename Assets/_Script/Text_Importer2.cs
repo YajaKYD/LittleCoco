@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	private GameObject player;
 	private Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\r'; // for windows OS, use '\n'
+	private char lineSeperator = '\n'; // for windows OS, use '\n'
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
@@ -103,7 +103,16 @@ public class Text_Importer2 : MonoBehaviour {
 		case 5:
 			break;
 		case 6:
-			break;
+                if (Stage6_Controller.lineNo[sceneNo] == 0)
+                {
+                    lineNo = 1;
+                }
+                else
+                {
+                    lineNo = Stage6_Controller.lineNo[sceneNo];
+                    Debug.Log("load done");
+                }
+                break;
 		default:
 			break;
 		}
@@ -118,8 +127,8 @@ public class Text_Importer2 : MonoBehaviour {
 				} //직전에 한 대사를 모두 끈다.
 
 				if (speaker [lineNo] == "Coco") {
-					for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name) {
+                    for (int j = 0; j < cocoDialogue.Length; j++) {
+						if ((int)textLine[lineNo][0] == (int)cocoDialogue[j].name[0]) {
 							cocoDialogue [j].SetActive (true);
 							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -164,7 +173,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
@@ -205,7 +214,7 @@ public class Text_Importer2 : MonoBehaviour {
 
 				if (speaker [lineNo] == "Coco") {
 					for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name) {
+						if ((int)textLine[lineNo][0] == (int)cocoDialogue[j].name[0]) {
 							cocoDialogue [j].SetActive (true);
 							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -250,7 +259,7 @@ public class Text_Importer2 : MonoBehaviour {
 						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;

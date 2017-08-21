@@ -21,4 +21,5 @@ Number,아이템Usable,Interaction,,0 = 소모X,Explanation
 20,paper,1,,1,잘 팔리는 신문지. 오래 됐는지 색이 바랬다.
 21,Umbrella,1,UmbrellaPot,1,고장난 우산
 22,HardBox,1,UmbrellaPot,1,단단한 박스
-23,,,,,
+23,Pot,1,NPC,1,예전에는 깨졌던 화분
+24,,,,,
