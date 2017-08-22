@@ -9,7 +9,7 @@ public class Stage4_Controller : MonoBehaviour {
 
 	public static bool[] q = new bool[50];
 	public static bool[] q20 = new bool[2];
-	public static bool[] q18 = new bool[2];
+	public static bool[] q32 = new bool[2];
 	public static int[] lineNo = new int[7];
 
 

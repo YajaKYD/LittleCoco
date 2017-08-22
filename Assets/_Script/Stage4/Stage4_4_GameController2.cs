@@ -17,26 +17,27 @@ public class Stage4_4_GameController2 : MonoBehaviour {
 	void Start () {
 		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 		ti.Import (44);
-		ti.Talk ();
 
 		player = GameObject.FindWithTag ("Player");
 		player.transform.position = startPos.position;
 		item_Canvas = GameObject.FindWithTag ("Item_Canvas");
 	
-		//Save_Script.Save_Now_Point();
+		ti.Talk ();
+
+		Save_Script.Save_Now_Point();
 	}
 
 	void Update () {
-		if (Stage4_Controller.q [31] && !Stage4_Controller.q [32]) {
+		if (Stage4_Controller.q [24] && !Stage4_Controller.q [25]) {
 			if (poster == null) {
 				poster = Instantiate (posterPrefab, Vector3.forward, Quaternion.identity) as GameObject;
 				ti.Talk (ti.lineNo + 2);
 			}
-		} else if (Stage4_Controller.q [33] && !Stage4_Controller.q [34]) {
+		} else if (Stage4_Controller.q [26] && !Stage4_Controller.q [27]) {
 			posterScript = GameObject.Find ("photo_neogulman").GetComponent<Stage4_4_poster> ();
 			posterScript.DisappearPoster ();
-			Stage4_Controller.q [34] = true;
-		} else if (Stage4_Controller.q [35]) {
+			Stage4_Controller.q [27] = true;
+		} else if (Stage4_Controller.q [28]) {
 			StartCoroutine ("FinishPosterPuzzle");
 		}
 	}

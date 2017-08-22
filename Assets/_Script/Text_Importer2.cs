@@ -147,9 +147,12 @@ public class Text_Importer2 : MonoBehaviour {
 				}
 
 				if (speaker [lineNo] == "Star") {
-					TurnOnOffItemList s = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<TurnOnOffItemList> ();
-					if (s.OnOffButton.localScale.x == 1) {
-						s.TurnOnOffitemList ();
+					try{
+						TurnOnOffItemList s = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<TurnOnOffItemList> ();
+						if (s.OnOffButton.localScale.x == 1) {
+							s.TurnOnOffitemList ();
+						}
+					} catch {
 					}
 				}
 
@@ -211,6 +214,8 @@ public class Text_Importer2 : MonoBehaviour {
 		lineNo = _lineNo;
 
 		for (int i = 0; i < names.Length; i++) {
+			Debug.Log ("lineno : " + lineNo + ", names[" + i + "]" + names[i]);
+			Debug.Log (speaker [lineNo]);
 			if (names [i] == speaker[lineNo]) {//같은 이름 NPC 찾고
 
 				for (int x = 0; x < cocoDialogue.Length; x++) {
@@ -234,9 +239,12 @@ public class Text_Importer2 : MonoBehaviour {
 				}
 
 				if (speaker [lineNo] == "Star") {
-					TurnOnOffItemList s = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<TurnOnOffItemList> ();
-					if (s.OnOffButton.localScale.x == 1) {
-						s.TurnOnOffitemList ();
+					try{
+						TurnOnOffItemList s = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<TurnOnOffItemList> ();
+						if (s.OnOffButton.localScale.x == 1) {
+							s.TurnOnOffitemList ();
+						}
+					} catch {
 					}
 				}
 
@@ -247,9 +255,10 @@ public class Text_Importer2 : MonoBehaviour {
 
 					switch (stageNo) {
 					case 0:
+						Tutorial_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 1:
-						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
 						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
