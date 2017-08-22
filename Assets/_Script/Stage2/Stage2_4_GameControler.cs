@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage2_4_GameControler : MonoBehaviour {
+public class Stage2_4_GameControler : Controller {
 
 	private Transform start_pos;
 	private GameObject player;
@@ -46,56 +46,76 @@ public class Stage2_4_GameControler : MonoBehaviour {
 	public GameObject _endingText;
 	public static bool whiteOut = false;
 
+	private Text_Importer2 ti;
+
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		player.transform.position = start_pos.position;
+
+		sceneNo = 24;
+
 	}
 
 	void Start(){
-		if (Stage2_Controller._Stage2_Quest[16]) {
+
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (24);
+
+		if (Stage2_Controller.q[16]) {
 			_mirror_use.SetActive (true);
 			Destroy (_shadow);
 			_bg.sprite = _day_bg;
 			_orgel.sprite = _day_orgel1;
 		}
 
-		if (Stage2_Controller._Stage2_Quest [18]) {
+		if (Stage2_Controller.q [18]) {
 			_clockwork_ol.GetComponent<BoxCollider2D>().enabled=false;
 		}
 
-		if (Stage2_Controller._Stage2_Quest[22]) {
+		if (Stage2_Controller.q[22]) {
 			_bg.sprite = _moode_bg;
 			_orgel.sprite = _night_orgel;
 		}
 
-		if (Stage2_Controller._Stage2_Quest[19]) {
+		if (Stage2_Controller.q[19]) {
 			//오르골 노래를 켠다.
 		}
 
-		if (Stage2_Controller._Stage2_Quest[20]) {
+		if (Stage2_Controller.q[20]) {
 			_moode_code [0].SetActive (false);
 			_moode_code [1].SetActive (true);
 		}
 
-		if (Stage2_Controller._Stage2_Quest[22] && Stage2_Controller._Stage2_Quest[19]) {
+		if (Stage2_Controller.q[22]) {
+			Item_Controller aa = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
+			for (int i = 0; i < 5; i++) {
+				if (aa._item_name_list [i] == "Clockwork") {
+					aa._consumable [i] = true;
+					break;
+				}
+			}
+		}
+
+		if (Stage2_Controller.q[22] && Stage2_Controller.q[19]) {
 			_Last_wall.SetActive (false);
-			Stage2_Controller._Stage2_Quest [23] = true;
+			Stage2_Controller.q [23] = true;
 			if (!whiteOut) {
 				StartCoroutine ("WhiteOut");
 				whiteOut = true;
 			}
 		}
 
-		if (Stage2_Controller._Stage2_Quest [22] && Stage2_Controller._Stage2_Quest [19] && !Stage2_Controller._Stage2_Quest[24]) {
+		if (Stage2_Controller.q [22] && Stage2_Controller.q [19] && !Stage2_Controller.q[24]) {
 			//8th save point//
 			Save_Script.Save_Now_Point ();
 			print ("Saved");
 			//8th save point//
 		}
 
-		if (Stage2_Controller._Stage2_Quest[23]) {
+		if (Stage2_Controller.q[23]) {
 			_mirror_use_last.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
 			_star.enabled = true;
 		}
@@ -103,27 +123,27 @@ public class Stage2_4_GameControler : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject == player && !Stage2_Controller._Stage2_Quest[3]) {
+		if (other.gameObject == player && !Stage2_Controller.q[3]) {
 			b1b1 = true;
 			_bg.sprite = _light_bg;
 			_orgel.sprite = _light_orgel;
 			Thunder_1.SetActive (true);
 		}
 
-		if (other.gameObject == player && !Stage2_Controller._Stage2_Quest[13]) {
+		if (other.gameObject == player && !Stage2_Controller.q[13]) {
 			_bg.sprite = _light_bg;
 			_orgel.sprite = _light_orgel;
 			Thunder_1.SetActive (true);
 			b1b1 = true;
 		}
 
-		if (other.gameObject == player && !Stage2_Controller._Stage2_Quest[15] && Stage2_Controller._Stage2_Quest[13]) {
+		if (other.gameObject == player && !Stage2_Controller.q[15] && Stage2_Controller.q[13]) {
 			a1a1 = true;
 			Q9_Talk ();
 		}
 
-		if (other.gameObject == player && Stage2_Controller._Stage2_Quest[16]) {
-			Stage2_Controller._Stage2_Quest[17] = true;
+		if (other.gameObject == player && Stage2_Controller.q[16]) {
+			Stage2_Controller.q[17] = true;
 		}
 
 
@@ -131,27 +151,27 @@ public class Stage2_4_GameControler : MonoBehaviour {
 
 	void Update(){
 
-		if (!Stage2_Controller._Stage2_Quest[3] && b1b1) {
+		if (!Stage2_Controller.q[3] && b1b1) {
 			Q4_Talk ();
 		}
 
-		if (Stage2_Controller._Stage2_Quest[12] && !Stage2_Controller._Stage2_Quest[13] && b1b1){
+		if (Stage2_Controller.q[12] && !Stage2_Controller.q[13] && b1b1){
 			Q9_Talk ();
 		}
 
-		if (!Stage2_Controller._Stage2_Quest[18] && Stage2_Controller._Stage2_Quest[16]) {
+		if (!Stage2_Controller.q[18] && Stage2_Controller.q[16]) {
 			Q13_ClockWork ();
 		}
 
-		if (!Stage2_Controller._Stage2_Quest[20] && Stage2_Controller._Stage2_Quest[16]) {
+		if (!Stage2_Controller.q[20] && Stage2_Controller.q[16]) {
 			Q15_turn_modelight ();
 		}
 
-		if (!Stage2_Controller._Stage2_Quest[23] && Stage2_Controller._Stage2_Quest[22]  && Stage2_Controller._Stage2_Quest[19]) {
+		if (!Stage2_Controller.q[23] && Stage2_Controller.q[22]  && Stage2_Controller.q[19]) {
 			Q18_using_mirror ();
 		}
 
-		if(Stage2_Controller._Stage2_Quest[23] && !Stage2_Controller._Stage2_Quest[24]){
+		if(Stage2_Controller.q[23] && !Stage2_Controller.q[24]){
 			Q19_put_star ();
 		}
 
@@ -159,38 +179,42 @@ public class Stage2_4_GameControler : MonoBehaviour {
 
 	void Q4_Talk(){
 		if (a1a1) {
-			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
-			aa.NPC_Say_yeah ("코코");
-			_coco_textbox = GameObject.Find ("코코_text");
+//			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
+//			aa.NPC_Say_yeah ("코코");
+//			_coco_textbox = GameObject.Find ("코코_text");
+			ti.Talk();
 			a1a1 = false;
+			//말 끝나고 27 트루로 함. 26까지가 기존. 27부터 새로 추가, 수정
 			//Stage2_Controller._stage2_q3 = true;
 		}
 
-		if (!a1a1 && !_coco_textbox.activeSelf) { //코코 말 끝내면
+		if (!a1a1 && Stage2_Controller.q[27]) { //코코 말 끝내면
 			mbr.enabled = false;
 			StartCoroutine ("Backback");
-			Stage2_Controller._Stage2_Quest[3] = true;
+			Stage2_Controller.q[3] = true;
 		}
 
 	}
 
 	void Q9_Talk(){
 		if (a1a1) {
-			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			int temp = aa.currLineArr [0];
-			aa.currLineArr [0] = 6;
-			aa.NPC_Say_yeah ("코코");
-			aa.currLineArr [0] = temp +1;
-			_coco_textbox = GameObject.Find ("코코_text");
+//			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//			int temp = aa.currLineArr [0];
+//			aa.currLineArr [0] = 6;
+//			aa.NPC_Say_yeah ("코코");
+//			aa.currLineArr [0] = temp +1;
+//			_coco_textbox = GameObject.Find ("코코_text");
+
+			ti.Talk (3);
 			a1a1 = false;
 			//Stage2_Controller._stage2_q3 = true;
 		}
 
-		if (!a1a1 && !_coco_textbox.activeSelf) { //코코 말 끝내면
+		if (!a1a1 && Stage2_Controller.q[30]) { //코코 말 끝내면
 			mbr.enabled = false;
 			StartCoroutine ("Backback");
-			Stage2_Controller._Stage2_Quest[13] = true;
+			Stage2_Controller.q[13] = true;
 		}
 	}
 
@@ -209,25 +233,21 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_clockwork_ol.used_or_not_for_retry = false;
 
 			if (Stage2_Controller._Stage2_Quest_intArr[1] % 2 == 0) {
-				_orgel.sprite = _day_orgel1;
+				if (!Stage2_Controller.q [22]) {
+					_orgel.sprite = _day_orgel1;
+				}
 			} else {
-				_orgel.sprite = _day_orgel2;
-			}
-
-			if (Stage2_Controller._Stage2_Quest_intArr [1] == 2 && Stage2_Controller._Stage2_Quest[22]) {
-				Item_Controller aa = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
-				for (int i = 0; i < 5; i++) {
-					if (aa._item_name_list [i] == "Clockwork") {
-						aa._consumable [i] = true;
-						break;
-					}
+				if (!Stage2_Controller.q [22]) {
+					_orgel.sprite = _day_orgel2;
 				}
 			}
 
-			if (Stage2_Controller._Stage2_Quest_intArr[1] == 3) {
+			if (Stage2_Controller._Stage2_Quest_intArr[1] == 1) {
 //				_OrgelSound.SetActive (true);
 //				_OrgelSound.GetComponent<AudioSource> ().volume = 0.4f;
 //				_OrgelSound.transform.SetParent (GameObject.FindWithTag ("Controller").transform);
+				ti.Talk(5);
+
 				_clockwork_ol.GetComponent<BoxCollider2D>().enabled=false;
 				GameObject _orgelsound = GameObject.FindWithTag("Controller").transform.GetChild(2).gameObject;
 				_orgelsound.SetActive(true);
@@ -241,17 +261,19 @@ public class Stage2_4_GameControler : MonoBehaviour {
 						break;
 					}
 				}
-				Stage2_Controller._Stage2_Quest[18] = true;
+				Stage2_Controller.q[18] = true;
 			}
 		}
 	}
 
 	void Q15_turn_modelight(){
 		if (_mirror_use.GetComponent<Outline> ().used_or_not_for_retry) {
+			ti.Talk (9);
+
 			_moode_code [0].SetActive (false);
 			_moode_code [1].SetActive (true);
 			_sparkle.SetActive (true);
-			Stage2_Controller._Stage2_Quest[20] = true;
+			Stage2_Controller.q[20] = true;
 		}
 	}
 
@@ -262,7 +284,7 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_mirror_use_last.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
 			_mirror_use_last.GetComponent<SpriteRenderer> ().sprite = iVon;
 			_star.enabled = true;
-			Stage2_Controller._Stage2_Quest[23] = true;
+			Stage2_Controller.q[23] = true;
 		}
 	}
 
@@ -272,7 +294,7 @@ public class Stage2_4_GameControler : MonoBehaviour {
 			_star.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
 			_star.gameObject.GetComponent<SpriteRenderer> ().sprite = sTar;
 			_dogdog.enabled = true;
-			Stage2_Controller._Stage2_Quest[24] = true;
+			Stage2_Controller.q[24] = true;
 		}
 	}
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage2_3_GameController : MonoBehaviour {
+public class Stage2_3_GameController : Controller {
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -29,6 +29,9 @@ public class Stage2_3_GameController : MonoBehaviour {
 	private Item_Controller ic;
 	private bool drop_tape = false;
 
+	private Text_Importer2 ti;
+
+
 	//public GameObject _coco_textbox;
 
 	void Awake(){
@@ -40,11 +43,17 @@ public class Stage2_3_GameController : MonoBehaviour {
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		player.transform.position = start_pos.position;
 		portal_to_2_4 = GameObject.Find ("Portal_to_#2-4");
+
+		sceneNo = 23;
+
 	}
 
 	void Start(){
 
-		if (Stage2_Controller._Stage2_Quest [3] && !Stage2_Controller._Stage2_Quest [4]) {
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (23);
+
+		if (Stage2_Controller.q [3] && !Stage2_Controller.q [4]) {
 			//4th save point//
 			Save_Script.Save_Now_Point ();
 			print ("Saved");
@@ -55,23 +64,33 @@ public class Stage2_3_GameController : MonoBehaviour {
 			player.transform.position = regen_pos.position;
 		}
 
-		if (Stage2_Controller._Stage2_Quest[3]) {
+		if (Stage2_Controller.q[3] && !Stage2_Controller.q[29]) {
+			portal_to_2_4.SetActive (false);
+			GetComponent<BoxCollider2D> ().enabled = true;
+			ti.Talk (3);
+		}
+
+		if (Stage2_Controller.q [3]) {
 			portal_to_2_4.SetActive (false);
 			GetComponent<BoxCollider2D> ().enabled = true;
 		}
 
-		if (!Stage2_Controller._Stage2_Quest[11]) {
+		if (!Stage2_Controller.q[11]) {
 		//	Destroy (_classical);
 		}
 
-		if (Stage2_Controller._Stage2_Quest[12]) {
+		if (Stage2_Controller.q[12]) {
 			_SoundEffect.SetActive (true);
 			portal_to_2_4.SetActive (true);
 			GetComponent<BoxCollider2D> ().enabled = false;
 		//	Destroy (_classical);//노래가 계속 붙어있으면 너무 로딩이 느림
 		}
 
-		if (Stage2_Controller._Stage2_Quest[13] && !Stage2_Controller._Stage2_Quest[15]) {
+		if (Stage2_Controller.q [13] && !Stage2_Controller.q [31]) {
+			ti.Talk (7);
+		}
+
+		if (Stage2_Controller.q[13] && !Stage2_Controller.q[15]) {
 			_sparkle.SetActive (true);
 			_Background_to_turn.transform.Rotate (0f, 0f, Stage2_Controller._Stage2_Quest_intArr[0] * (-90f));
 
@@ -84,23 +103,23 @@ public class Stage2_3_GameController : MonoBehaviour {
 			}
 		}
 
-		if (Stage2_Controller._Stage2_Quest[15] && Stage2_Controller._Stage2_Quest[16]) {
+		if (Stage2_Controller.q[15] && Stage2_Controller.q[16]) {
 			portal_to_2_4.SetActive (true);
 		}
 
-		if (Stage2_Controller._Stage2_Quest [16]) { //switch 켜서 불빛 나옴
+		if (Stage2_Controller.q [16]) { //switch 켜서 불빛 나옴
 			_LightFromSide.SetActive (true);
 		}
-		if (Stage2_Controller._Stage2_Quest [22]) { //switch 꺼서 불빛 꺼짐
+		if (Stage2_Controller.q [22]) { //switch 꺼서 불빛 꺼짐
 			_LightFromSide.SetActive (false);
 		}
 
 
-		if (Stage2_Controller._Stage2_Quest [19]) {
+		if (Stage2_Controller.q [19]) {
 			_SoundEffect.SetActive (false);
 		}
 
-		if (Stage2_Controller._Stage2_Quest[17] && Stage2_Controller._Stage2_Quest[20] && !Stage2_Controller._Stage2_Quest[21]) {
+		if (Stage2_Controller.q[17] && Stage2_Controller.q[20] && !Stage2_Controller.q[21]) {
 			_sparkle.SetActive (true);
 			_Background_to_turn.transform.Rotate (0f, 0f, Stage2_Controller._Stage2_Quest_intArr[2] * (-90f));
 
@@ -119,81 +138,48 @@ public class Stage2_3_GameController : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Stage2_Controller._Stage2_Quest[1] && !Stage2_Controller._Stage2_Quest[2]) {
+		if (Stage2_Controller.q[1] && !Stage2_Controller.q[2]) {
 			Q3_Talk ();
 		}
 
-		if (Stage2_Controller._Stage2_Quest[5] && !Stage2_Controller._Stage2_Quest[9]) {
+		if (Stage2_Controller.q[5] && !Stage2_Controller.q[9]) {
 			Q6_1_Say_munch ();
 		}
 
-		if (!Stage2_Controller._Stage2_Quest[12]) {
+		if (!Stage2_Controller.q[12]) {
 			Q8_Turn_it_on ();
 		}
 
-		if (!Stage2_Controller._Stage2_Quest[14] && Stage2_Controller._Stage2_Quest[13]) {
-			Q10_Talk_bySpeaker ();
-		}
+//		if (!Stage2_Controller.q[14] && Stage2_Controller.q[13]) {
+//			Q10_Talk_bySpeaker ();
+//		}
 
-		if (Stage2_Controller._Stage2_Quest[18] && !Stage2_Controller._Stage2_Quest[19]) {
+		if (Stage2_Controller.q[18] && !Stage2_Controller.q[19]) {
 			Q14_Turn_off_Audio ();
 		}
 
-		if (temp_to_saymunch) {
-			if (!cocobox.activeSelf) {
-				Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-				aa.currLineArr [0] = temp;
-			}
-		}
+//		if (temp_to_saymunch) {
+//			if (!cocobox.activeSelf) {
+//				Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//				aa.currLineArr [0] = temp;
+//			}
+//		}
 
-		//아템떨궈야하는디~ 한번만~
-		if(Stage2_Controller._Stage2_Quest[6] && Stage2_Controller._Stage2_Quest[7] && !Stage2_Controller._Stage2_Quest[25] && Item_Drag._NOW_Shaked && !drop_tape){
-			//멀티탭 설치완료
-			//shake 완료
-			//절연테이프 아직 못먹음 >> 1번 떨어트림
-			GameObject k = (GameObject)Instantiate(Resources.Load("Prefabs/Tape"));
-			k.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			k.transform.position = new Vector3 (k.transform.position.x, k.transform.position.y, 0f);
-			k.name = "Tape";
-			GameObject j = (GameObject)Instantiate(Resources.Load("Prefabs/Tape"));
-			j.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			j.transform.position = new Vector3 (j.transform.position.x, j.transform.position.y, 0f);
-			j.name = "Tape";
-
-			Item_Drag[] ids = ic.GetComponentsInChildren<Item_Drag> ();
-			for (int x = 0; x < ids.Length; x++) {
-				ids [x]._diary_usable = false;
-			} //change diary image -unusable-
-			Item_Drag._NOW_Shaked = false;
-			drop_tape = true;
-		}
-
-		if(drop_tape && !Stage2_Controller._Stage2_Quest[25]){
-			//떨어트림
-			//먹었음.
-			for (int i = 0; i < ic._item_list.Length; i++) {
-				if (ic._item_name_list [i] == "Tape") {
-					Stage2_Controller._Stage2_Quest [25] = true;
-				}
-			}
-		}
 	}
 
 	void Q3_Talk(){
 		if (a1a1) {
 			//여기에 천둥소리 약하게 하나 넣어야 함.
 			_2_3_thunder.Play();
-			Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr [0] += 2;//코코 다음대사 치게함.
-			aa.NPC_Say_yeah ("코코");
+			ti.Talk ();
 			a1a1 = false;
-			Stage2_Controller._Stage2_Quest[2] = true;
+			Stage2_Controller.q[2] = true;
 		}
 	}
 
 	void Q6_1_Say_munch(){
 		if (a2a2) {
-			Stage2_Controller._Stage2_Quest[9] = true;
+			Stage2_Controller.q[9] = true;
 		}
 	}
 
@@ -209,31 +195,31 @@ public class Stage2_3_GameController : MonoBehaviour {
 
 			portal_to_2_4.SetActive (true);
 			GetComponent<BoxCollider2D> ().enabled = false;
-			Stage2_Controller._Stage2_Quest[12] = true;
+			Stage2_Controller.q[12] = true;
 
-			//6th save point//
-			Save_Script.Save_Now_Point ();
-			print ("Saved");
-			//6th save point//
+//			//6th save point//
+//			Save_Script.Save_Now_Point ();
+//			print ("Saved");
+//			//6th save point//
 		}
 	}
 
-	void Q10_Talk_bySpeaker(){
-		if (Input.GetMouseButtonDown (0)) {
-			Vector2 wp = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			Ray2D ray = new Ray2D (wp, Vector2.zero);
-			RaycastHit2D hit = Physics2D.Raycast (ray.origin, ray.direction);
-
-			if (hit.collider != null) {
-				if (hit.collider.CompareTag ("Audio")) {
-					Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-					//aa.currLineArr [0] += 2;//코코 다음대사 치게함.
-					//aa.NPC_Say_yeah ("코코");
-					Stage2_Controller._Stage2_Quest[14] = true;
-				}
-			}
-		}
-	}
+//	void Q10_Talk_bySpeaker(){
+//		if (Input.GetMouseButtonDown (0)) {
+//			Vector2 wp = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+//			Ray2D ray = new Ray2D (wp, Vector2.zero);
+//			RaycastHit2D hit = Physics2D.Raycast (ray.origin, ray.direction);
+//
+//			if (hit.collider != null) {
+//				if (hit.collider.CompareTag ("Audio")) {
+//					Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
+//					//aa.currLineArr [0] += 2;//코코 다음대사 치게함.
+//					//aa.NPC_Say_yeah ("코코");
+//					Stage2_Controller.q[14] = true;
+//				}
+//			}
+//		}
+//	}
 
 	void Q14_Turn_off_Audio(){
 		if (_Audio.used_or_not_for_retry) {
@@ -246,7 +232,7 @@ public class Stage2_3_GameController : MonoBehaviour {
 			GameObject _orgelsound = GameObject.FindWithTag("Controller").transform.GetChild(2).gameObject;
 			_orgelsound.GetComponent<AudioSource> ().volume = 1f;
 
-			Stage2_Controller._Stage2_Quest[19] = true;
+			Stage2_Controller.q[19] = true;
 		}
 	}
 
@@ -255,7 +241,7 @@ public class Stage2_3_GameController : MonoBehaviour {
 			//말하고 뒤로 자동으로 움직임?
 			mbr.enabled = false;
 			StartCoroutine ("Backback");
-			if (Stage2_Controller._Stage2_Quest[5] && !Stage2_Controller._Stage2_Quest[9]) {
+			if (Stage2_Controller.q[5] && !Stage2_Controller.q[9]) {
 				//6_1q 하기위해서
 				a2a2 = true;
 			}
@@ -267,11 +253,7 @@ public class Stage2_3_GameController : MonoBehaviour {
 			mbr.Moving_Right (8f);
 			yield return null;
 		}
-		Text_Importer aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		temp = aa.currLineArr [0];
-		aa.currLineArr [0] = 6;
-		aa.NPC_Say_yeah ("코코");
-		cocobox = GameObject.Find ("코코_text");
+		ti.Talk (1);
 		temp_to_saymunch = true;
 	}
 }

@@ -10,11 +10,6 @@ public class Text_Click : MonoBehaviour {
 
 	void Awake(){
 		ti = GetComponentInParent<Text_Importer2> ();
-	
-	}
-
-	void Start(){
-
 	}
 
 	void OnMouseDown(){

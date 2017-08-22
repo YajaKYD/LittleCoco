@@ -56,6 +56,7 @@ public class Stage1_6_GameController : Controller {
 	}
 
 	void Start(){
+
 		if (Stage1_Controller.q [10]) {
 			stone.SetActive (false);
 			another_stone.gameObject.SetActive (false);

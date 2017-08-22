@@ -72,11 +72,11 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				break;
 			case 1:
 				SceneManager.LoadScene (11);
-				_stage2_con_di [0].SetActive (true);
+				//_stage2_con_di [0].SetActive (true);
 				_stage2_con_di [1].SetActive (true);
-				DontDestroyOnLoad (_stage2_con_di [0]);
+				//DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa.Import (11);
+				//aa.Import (11);
 				break;
 			case 2:
 				SceneManager.LoadScene (15);

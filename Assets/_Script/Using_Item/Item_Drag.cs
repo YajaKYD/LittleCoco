@@ -36,7 +36,7 @@ public class Item_Drag : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointe
 	void Start(){
 		item_Info.SetActive (false);
 
-		if (ic._item_name_list [numbering] == "Diary" && Stage2_Controller._Stage2_Quest[6] && Stage2_Controller._Stage2_Quest[7] && !Stage2_Controller._Stage2_Quest[25]) {
+		if (ic._item_name_list [numbering] == "Diary" && Stage2_Controller.q[6] && Stage2_Controller.q[7] && !Stage2_Controller.q[25]) {
 			print ("Change Diary Image -usable- on startphase");
 			this.GetComponent<Image> ().sprite = diary_ac;
 			_diary_usable = true;

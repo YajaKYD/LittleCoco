@@ -12,8 +12,9 @@ public class Stage2_Controller : MonoBehaviour {
 	//public GameObject _dialogue_Canvas;
 	//public Text_Importer _ti_stage2;
 
-	public static bool[] _Stage2_Quest = new bool[26];
+	public static bool[] q = new bool[40];
 	public static int[] _Stage2_Quest_intArr = new int[3];
+	public static int[] lineNo = new int[5];
 
 	//public static bool _stage2_q1 = false;								0
 	//public static bool _stage2_q2 = false;								1
