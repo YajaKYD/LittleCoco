@@ -22,10 +22,16 @@ public class Stage2_ending : MonoBehaviour {
 	public SpriteRenderer ivon;
 	public Sprite withcoco;
 
+	private Text_Importer2 ti;
+
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		aa = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<Text_Importer>();
+
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+		ti.Import (24);
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
@@ -36,9 +42,10 @@ public class Stage2_ending : MonoBehaviour {
 			ivon.sprite = withcoco;
 			mbr.enabled = false;
 			//sound 들어가자.
-			aa.currLineArr [1] += 2;
-			aa.NPC_Say_yeah ("별감");
-			_star_textbox = GameObject.Find ("별감_text");
+//			aa.currLineArr [1] += 2;
+//			aa.NPC_Say_yeah ("별감");
+//			_star_textbox = GameObject.Find ("별감_text");
+			ti.Talk(13);
 			a1a1 = true; //ending 시작
 		}
 	}
@@ -54,7 +61,7 @@ public class Stage2_ending : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.W) && !test_end) {
 			print ("goto_select");
 			Destroy (GameObject.FindWithTag ("Controller"));
-			Destroy (GameObject.FindWithTag ("Dialogue"));
+			//Destroy (GameObject.FindWithTag ("Dialogue"));
 			Selecting_stage._what_stage_now_cleared = 2;
 			PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
 			portaltoend.transform.position = player.transform.position;
@@ -62,36 +69,10 @@ public class Stage2_ending : MonoBehaviour {
 			test_end = true;
 		}
 		//
-
-		if (a1a1 && !_star_textbox.activeSelf) { //별감 1번대사 이후
-			aa.currLineArr [0] = 18;
-			aa.NPC_Say_yeah ("코코");
-			_coco_textbox = GameObject.Find ("코코_text");
-			a1a1 = false;
-			a1a2 = true;
-		}
-		if (a1a2 && !_coco_textbox.activeSelf) {
-			aa.currLineArr [1] += 2;
-			aa.NPC_Say_yeah ("별감");
-			a1a2 = false;
-			a1a3 = true;
-		}
-		if (a1a3 && !_star_textbox.activeSelf) { //별감 2번대사 이후
-			aa.currLineArr [0] += 2;
-			aa.NPC_Say_yeah ("코코");
-			a1a3 = false;
+		if (!a1a4 && Stage2_Controller.q[33]) {
 			a1a4 = true;
-		}
-//		if (a1a4 && !_coco_textbox.activeSelf) {
-//			aa.currLineArr [0] += 2;
-//			aa.NPC_Say_yeah ("코코");
-//			a1a4 = false;
-//			a1a5 = true;
-//		}
-		if (a1a4 && !_coco_textbox.activeSelf) {
-			a1a4 = false;
 			Destroy (GameObject.FindWithTag ("Controller"));
-			Destroy (GameObject.FindWithTag ("Dialogue"));
+			//Destroy (GameObject.FindWithTag ("Dialogue"));
 			Selecting_stage._what_stage_now_cleared = 2;
 			PlayerPrefs.SetInt("Stage_Now_Cleared",Selecting_stage._what_stage_now_cleared);
 			portaltoend.transform.position = player.transform.position;

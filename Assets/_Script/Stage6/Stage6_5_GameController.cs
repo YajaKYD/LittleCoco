@@ -20,6 +20,11 @@ public class Stage6_5_GameController : Controller {
     public Image rememberScene;
     public BoxCollider2D portalTo6_4;
 
+    public GameObject mission;
+    public SpriteRenderer wholepanel;
+
+    private bool q5a1, q5a2;
+
     void Awake()
     {
         sceneNo = 65;
@@ -27,15 +32,17 @@ public class Stage6_5_GameController : Controller {
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         Ivon = GameObject.Find("Ivon");
         mbr = player.GetComponent<Moving_by_RLbuttons>();
         start_pos = GameObject.Find("Start_Pos").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
 
+        _ivon_textbox = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetComponent<Image>();
+        _ivon_text = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetChild(0).GetComponent<Text>();
         _ivon_textbox.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
         _ivon_text.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-
+        
         sceneTrigger.enabled = false;
         player.transform.position = start_pos.position;
         ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
@@ -44,7 +51,7 @@ public class Stage6_5_GameController : Controller {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") /*&& Stage6_Controller.q[8]*/ && !Stage6_Controller.q[9])
+        if (other.CompareTag("Player") && Stage6_Controller.q[8] && !Stage6_Controller.q[9])
         {
             ti.Talk();
             talkTrigger.enabled = false;
@@ -52,6 +59,18 @@ public class Stage6_5_GameController : Controller {
         }
         else if (other.CompareTag("Player") && Stage6_Controller.q[10] && !Stage6_Controller.q[11])
         {
+            mbr.enabled = false;
+            StartCoroutine(Fadeout_black());
+        }
+        else if (other.CompareTag("Player") && Stage6_Controller.q[17] && !Stage6_Controller.q[18])
+        {
+            ti.Talk(10);
+            talkTrigger.enabled = false;
+            ic._interaction_object[2] = "NPC";
+        }
+        else if (other.CompareTag("Player") && Stage6_Controller.q[21] && !Stage6_Controller.q[22])
+        {
+            mbr.enabled = false;
             StartCoroutine(Fadeout_black());
         }
     }
@@ -63,6 +82,37 @@ public class Stage6_5_GameController : Controller {
             print("문 닫히는 소리");
             Ivon.SetActive(false);
             Stage6_Controller.q[10] = true;
+        }
+        else if (Stage6_Controller.q[18] && !Stage6_Controller.q[19])
+        {
+            System_Message();
+        }
+        else if (Stage6_Controller.q[19] && !Stage6_Controller.q[20] && ic._now_used_item == "Tape")
+        {
+            if (!q5a2) ti.Talk(21);
+            q5a2 = true;
+        }
+        else if (Stage6_Controller.q[20] && !Stage6_Controller.q[21])
+        {
+            print("문 닫히는 소리");
+            Ivon.SetActive(false);
+            sceneTrigger.enabled = true;
+            Stage6_Controller.q[21] = true;
+        }
+    }
+
+    void System_Message()
+    {
+        if (!q5a1)
+        {
+            mission.SetActive(true);
+            wholepanel.enabled = true;
+            q5a1 = true;
+        }
+        else if (q5a1 && !mission.activeSelf)
+        {
+            wholepanel.enabled = false;
+            Stage6_Controller.q[19] = true;
         }
     }
 
@@ -90,6 +140,7 @@ public class Stage6_5_GameController : Controller {
         }
         rememberScene.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(4f);
+        portalTo6_4.enabled = true;
         portalTo6_4.transform.position = player.transform.position;
     }
 
@@ -100,7 +151,6 @@ public class Stage6_5_GameController : Controller {
             Color c = new Color(1, 1, 1, 1);
             c.a = f;
             rememberScene.color = c;
-            print(rememberScene.color.a);
             yield return null;
         }
         rememberScene.color = new Color(1, 1, 1, 0);
