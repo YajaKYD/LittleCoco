@@ -23,7 +23,7 @@ public class BookPro : MonoBehaviour
     public bool interactable = true;
     public bool enableShadowEffect = true;
 
-    [HideInInspector]
+    
     public int currentPaper = 0;
     [HideInInspector]
     public Paper[] papers;
@@ -79,7 +79,7 @@ public class BookPro : MonoBehaviour
     //current flip mode
     FlipMode mode;
 
-    bool pageDragging = false;
+    public bool pageDragging = false;
 
     // Use this for initialization
     void Start()
