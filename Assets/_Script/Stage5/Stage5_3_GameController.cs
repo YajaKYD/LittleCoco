@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage5_3_GameController : MonoBehaviour {
+public class Stage5_3_GameController : Controller {
 
     public Transform from_5_5;
     public Transform from_5_6;
@@ -12,10 +12,7 @@ public class Stage5_3_GameController : MonoBehaviour {
     private Transform start_pos;
 	private GameObject player;
 	private Moving_by_RLbuttons mbr;
-	private GameObject _star_textbox;
-    private GameObject _coco_textbox;
-	private GameObject _ivon_textbox;
-	private Text_Importer ti;
+	private Text_Importer2 ti;
 	private Item_Controller ic;
 
 	public BoxCollider2D goto_5_5;
@@ -33,32 +30,17 @@ public class Stage5_3_GameController : MonoBehaviour {
     private float smoothTime = 0.7f; // For Camera move
 
     private bool q1a1 = false;
-	private bool q1a2 = false;
-	private bool q1a3 = false;
-	private bool q1a4 = false;
-	private bool q1a5 = false;
-    private bool q1a6 = false;
     private bool q2a1 = false;
-    private bool q2a2 = false;
     private bool q2a3 = false;
     private bool q2a4 = false;
     private bool q2a5 = false;
     private bool q2a6 = false;
     private bool q2a7 = false;
-    private bool q2a8 = false;
-    private bool q2a9 = false;
-    private bool q2a10 = false;
-    private bool q2a11 = false;
     private bool q3a1 = false;
-    private bool q3a2 = false;
-    private bool q3a3 = false;
-    private bool q3a4 = false;
     private bool q4a1 = false;
-    private bool q4a2 = false;
-    private bool q4a3 = false;
-    private bool q4a4 = false;
 
     void Awake(){
+        sceneNo = 53;
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
@@ -80,52 +62,54 @@ public class Stage5_3_GameController : MonoBehaviour {
         {
             player.transform.position = from_5_5.position;
         }
-        ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-		_star_textbox = ti._text_boxes [0];
-		_ivon_textbox = ti._text_boxes [1];
-        _coco_textbox = ti._text_boxes [2];
+        ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+        ti.Import(53);
 
-		/*if (Stage5_Controller._Stage5_Quest [24] && !Stage5_Controller._Stage5_Quest [25]) {
+		/*if (Stage5_Controller.q [24] && !Stage5_Controller.q [25]) {
 			Save_Script.Save_Now_Point ();
 			//시작할 때 저장
 		}*/
-		if (Stage5_Controller._Stage5_Quest [25]) {
+		if (Stage5_Controller.q [25]) {
 			goto_5_5.enabled = true;
 		}
-        if (Stage5_Controller._Stage5_Quest[31])
+        if (Stage5_Controller.q[31])
         {
             warning.SetActive(false); // 다시 돌아왔을 때 맨홀 뚜껑 없어짐.
         }
-        if (!Stage5_Controller._Stage5_Quest[39])
+        if (!Stage5_Controller.q[39])
         {
             trashTruck.SetActive(true);
             rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
         }
-        if (Stage5_Controller._Stage5_Quest[40])
+        if (Stage5_Controller.q[40])
         {
             goto_5_7.enabled = true;
         }
-        if (Stage5_Controller._Stage5_Quest[42])
+        if (Stage5_Controller.q[42])
         {
             Goto_5_7.GetComponent<Portal_Controller>()._To_Scene = 39; // 쓰레기더미도 아무것도 없는 순수 5-7 Scene으로.
         }
     }
 
     void Update() {
-        if (Stage5_Controller._Stage5_Quest[24] && !Stage5_Controller._Stage5_Quest[25]) {
+        if (Stage5_Controller.q[24] && !Stage5_Controller.q[25]) {
             Q1_firstcon();
         }
-        else if (Stage5_Controller._Stage5_Quest[31] && !Stage5_Controller._Stage5_Quest[32])
+        else if (Stage5_Controller.q[31] && !Stage5_Controller.q[32])
         {
             Q2_removed_manhole();
         }
-        else if (Stage5_Controller._Stage5_Quest[32] && !Stage5_Controller._Stage5_Quest[33])
+        else if (Stage5_Controller.q[32] && !Stage5_Controller.q[33])
         {
             Q3_Pass_Portal_5_7();
         }
-        else if (Stage5_Controller._Stage5_Quest[39] && !Stage5_Controller._Stage5_Quest[40])
+        else if (Stage5_Controller.q[39] && !Stage5_Controller.q[40])
         {
             Q4_Talk_Before_Entry(); // 5_7_2 입구 앞에서의 대화
+        }
+        else if (Stage5_Controller.q[40] && !Stage5_Controller.q[41])
+        {
+            goto_5_7.enabled = true;
         }
     }
 
@@ -136,51 +120,16 @@ public class Stage5_3_GameController : MonoBehaviour {
             StartCoroutine (Warigari ());
 			q1a1 = true;
 		}
-        if (q1a2 && !q1a3 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 32;
-            ti.NPC_Say_yeah("코코");
-            q1a3 = true;
-        }
-        if (q1a3 && !q1a4 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 78; // 뭐 이 상황에서..
-            ti.NPC_Say_yeah("별감");
-            q1a4 = true;
-        }
-        if (q1a4 && !q1a5 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 34;
-            ti.NPC_Say_yeah("코코");
-            q1a5 = true;
-        }
-        if (q1a5 && !q1a6 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 82;
-            ti.NPC_Say_yeah("별감");
-            q1a6 = true;
-        }
-		if (q1a6 && !_star_textbox.activeSelf) {
-			goto_5_5.enabled = true;
-			Stage5_Controller._Stage5_Quest [25] = true;
-		}
 	}
 
     void Q2_removed_manhole()
     {
         if (!q2a1)
         {
-            ti.currLineArr[2] = 48;
-            ti.NPC_Say_yeah("코코");
+            ti.Talk(11); //음?
             q2a1 = true;
         }
-        else if (q2a1 && !q2a2 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 115;
-            ti.NPC_Say_yeah("별감");
-            q2a2 = true;
-        }
-        else if (q2a2 && !q2a3 && !_star_textbox.activeSelf) // 중간 지점까지 카메라 훑어주기
+        else if (Stage5_Controller.q[69] && !q2a3) // 중간 지점까지 카메라 훑어주기
         {
             StartCoroutine(Right_Camera_Move());
             q2a4 = true;
@@ -193,40 +142,8 @@ public class Stage5_3_GameController : MonoBehaviour {
         else if (q2a5 && q2a6 && !q2a7)
         {
             main_Camera.GetComponent<CameraManager>().enabled = true;
-            ti.currLineArr[0] = 117;
-            ti.NPC_Say_yeah("별감");
-            q2a7 = true;        
-        }
-        else if (q2a7 && !q2a8 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 48;
-            ti.NPC_Say_yeah("코코");
-            q2a8 = true;
-        }
-        else if (q2a8 && !q2a9 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 119;
-            ti.NPC_Say_yeah("별감");
-            q2a9 = true;
-        }
-        else if (q2a9 && !q2a10 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 50;
-            ti.NPC_Say_yeah("코코");
-            q2a10 = true;
-        }
-        else if (q2a10 && !q2a11 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 122;
-            ti.NPC_Say_yeah("별감");
-            q2a11 = true;
-        }
-        else if (q2a11 && !_star_textbox.activeSelf)
-        {
-            Stage5_Controller._Stage5_Quest[32] = true; // 5_7_1로 가기 위해 5_8로 가야하기 전까지 완료.
-            //save point//
-            Save_Script.Save_Now_Point();
-            //save point//
+            ti.Talk(14); // 원래 이랬나..
+            q2a7 = true;
         }
     }
 
@@ -234,31 +151,8 @@ public class Stage5_3_GameController : MonoBehaviour {
     {
         if (!q3a1 && player.transform.position.x >= from_5_7.position.x)
         {
-            ti.currLineArr[2] = 50;
-            ti.NPC_Say_yeah("코코");
+            ti.Talk(21); //여기를... 쓰레기 수거통에 막혀서 못들어가
             q3a1 = true;
-        }
-        else if (q3a1 && !q3a2 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 124; // 여기를..?
-            ti.NPC_Say_yeah("별감");
-            q3a2 = true;
-        }
-        else if (q3a2 && !q3a3 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 50;
-            ti.NPC_Say_yeah("코코");
-            q3a3 = true;
-        }
-        else if (q3a3 && !q3a4 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 126;
-            ti.NPC_Say_yeah("별감");
-            q3a4 = true;
-        }
-        else if (q3a4 && !_star_textbox.activeSelf)
-        {
-            Stage5_Controller._Stage5_Quest[33] = true; // 5_7 포털 위치 지나갈 때 대화하는 거 끝냄. 이후 5_8로 가야됨.
         }
     }
 
@@ -266,37 +160,9 @@ public class Stage5_3_GameController : MonoBehaviour {
     {
         if (!q4a1 && player.transform.position.x <= from_5_7.position.x)
         {
-            ti.currLineArr[2] = 58;
-            ti.NPC_Say_yeah("코코");
+            ti.Talk(27); // 오 뭐야 들어갈 수 있잖아
             q4a1 = true;
         }
-        else if (q4a1 && !q4a2 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 152; // 오 뭐야 들어 갈 수 잇네
-            ti.NPC_Say_yeah("별감");
-            q4a2 = true;
-        }
-        else if (q4a2 && !q4a3 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 58;
-            ti.NPC_Say_yeah("코코");
-            q4a3 = true;
-        }
-        else if (q4a3 && !q4a4 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 156; // 아이 알겟어.
-            ti.NPC_Say_yeah("별감");
-            q4a4 = true;
-        }
-        else if (q4a4 && !_star_textbox.activeSelf)
-        {
-            goto_5_7.enabled = true;
-            Stage5_Controller._Stage5_Quest[40] = true; // 5_7 입구 앞에서 대화가 끝나고 통로가 열림.
-            //save point//
-            Save_Script.Save_Now_Point();
-            //save point//
-        }
-
     }
 
     IEnumerator Warigari(){
@@ -307,10 +173,9 @@ public class Stage5_3_GameController : MonoBehaviour {
             yield return new WaitForSeconds (2f);
 			break;
 		}
-		ti.currLineArr [0] = 75; //도대체 어디로
-		ti.NPC_Say_yeah("별감");
-		q1a2 = true;
-	}
+        ti.Talk(); // 도대체 어디로..
+        goto_5_5.enabled = true;
+    }
 
     IEnumerator Right_Camera_Move()
     {

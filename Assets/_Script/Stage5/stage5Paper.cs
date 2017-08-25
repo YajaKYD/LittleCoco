@@ -14,7 +14,7 @@ public class stage5Paper : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.CompareTag ("Player") && !q1 && Stage5_Controller._Stage5_Quest[26]) {
+		if (other.CompareTag ("Player") && !q1 && Stage5_Controller.q[26]) {
 			StartCoroutine (Paper ());
 			q1 = true;
 		}
@@ -27,7 +27,7 @@ public class stage5Paper : MonoBehaviour {
 			yield return new WaitForSeconds (2f);
 			break;
 		}
-		Stage5_Controller._Stage5_Quest [27] = true;
+		Stage5_Controller.q [27] = true;
 	}
 
 }

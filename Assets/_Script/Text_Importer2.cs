@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	public GameObject player;
 	public Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\r'; // for windows OS, use '\n'
+	private char lineSeperator = '\n'; // for windows OS, use '\n'
 	//private char lineSeperator = '\n';
 	private char fieldSeperator = ',';
 
@@ -112,11 +112,29 @@ public class Text_Importer2 : MonoBehaviour {
 			}
 			break;
 		case 5:
-			break;
+            if (Stage5_Controller.lineNo[sceneNo] == 0)
+            {
+                lineNo = 1;
+            }
+            else
+            {
+                lineNo = Stage5_Controller.lineNo[sceneNo];
+                Debug.Log("load done");
+            }
+            break;
 		case 6:
-			break;
-		default:
-			break;
+            if (Stage6_Controller.lineNo[sceneNo] == 0)
+            {
+                lineNo = 1;
+            }
+            else
+            {
+                lineNo = Stage6_Controller.lineNo[sceneNo];
+                Debug.Log("load done");
+            }
+            break;
+        default:
+		    break;
 		}
 	}
 
@@ -132,7 +150,7 @@ public class Text_Importer2 : MonoBehaviour {
 
 				if (speaker [lineNo] == "Coco") {
 					for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name) {
+						if ((int)textLine[lineNo][0] == (int)cocoDialogue[j].name[0]) {
 							cocoDialogue [j].SetActive (true);
 							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -175,10 +193,10 @@ public class Text_Importer2 : MonoBehaviour {
 						Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 5:
-						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;
@@ -219,7 +237,7 @@ public class Text_Importer2 : MonoBehaviour {
 
 				if (speaker [lineNo] == "Coco") {
 					for (int j = 0; j < cocoDialogue.Length; j++) {
-						if (textLine[lineNo] == cocoDialogue [j].name) {
+						if ((int)textLine[lineNo][0] == (int)cocoDialogue[j].name[0]) {
 							cocoDialogue [j].SetActive (true);
 							if (player.transform.localScale.x > 0) {
 								cocoDialogue [j].transform.localScale = new Vector3 (-1, 1, 1);
@@ -261,10 +279,10 @@ public class Text_Importer2 : MonoBehaviour {
 						Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 5:
-						//Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage5_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 6:
-						//Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage6_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					default:
 						break;

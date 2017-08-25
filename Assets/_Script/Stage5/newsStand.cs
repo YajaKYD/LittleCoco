@@ -14,10 +14,10 @@ public class newsStand : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (Stage5_Controller._Stage5_Quest[29] && !Stage5_Controller._Stage5_Quest[30])
+        if (Stage5_Controller.q[29] && !Stage5_Controller.q[30])
         {
             ic.Get_Item_Auto(20, paperImg);
-            Stage5_Controller._Stage5_Quest[30] = true;
+            Stage5_Controller.q[30] = true;
         }    
     }
 }

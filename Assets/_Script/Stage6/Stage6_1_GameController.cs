@@ -32,6 +32,7 @@ public class Stage6_1_GameController : Controller {
     void Awake()
     {
         sceneNo = 61;
+        Stage6_Controller.diaryscene = true;
     }
 
     void Start () {

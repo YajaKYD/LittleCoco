@@ -32,14 +32,15 @@ public class Stage6_2_GameController : Controller {
     {
         player = GameObject.FindGameObjectWithTag("Player");
         mbr = player.GetComponent<Moving_by_RLbuttons>();
-      //  start_pos = GameObject.Find("Start_Pos").transform;
+        start_pos = GameObject.Find("Start_Pos").transform;
         //regen_pos = GameObject.Find("Regen_Pos").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
         rainIntensity = rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>();
       //  Portal.enabled = false;
-        //player.transform.position = start_pos.position;
+        player.transform.position = start_pos.position;
         ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
         ti.Import(62);
+        Save_Script.Save_Now_Point();
         ti.Talk();
     }
 

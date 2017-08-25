@@ -62,11 +62,16 @@ public class Text_Position : MonoBehaviour {
 //		}
 
 
-		if (this.gameObject.activeSelf && nameFind == "Star") {
+		if (this.gameObject.activeSelf && nameFind == "Star" && !Stage6_Controller.diaryscene) {
 			starPos = GameObject.Find ("Item_button_" + starItemIndex).GetComponent<RectTransform> ();
 			rectTransform.position = new Vector3 (starPos.position.x - 50, starPos.position.y, starPos.position.z);
 			itemlist.OnTime = Time.realtimeSinceStartup;
 		}
-
-	}
+        else if (this.gameObject.activeSelf && nameFind == "Star" && Stage6_Controller.diaryscene)
+        {
+            starPos = GameObject.Find("Item_button_" + starItemIndex).GetComponent<RectTransform>();
+            rectTransform.position = new Vector3(starPos.position.x - 50, starPos.position.y + 40, starPos.position.z);
+            itemlist.OnTime = Time.realtimeSinceStartup;
+        }
+    }
 }
