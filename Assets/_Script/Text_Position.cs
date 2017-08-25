@@ -48,6 +48,9 @@ public class Text_Position : MonoBehaviour {
 					}
 				}
 			} catch {
+				mainCam = Camera.main;
+				textPos = GameObject.Find (nameFind + "TextPos");
+				rectTransform.position = mainCam.WorldToScreenPoint (textPos.transform.position);
 			}
 		}
 
