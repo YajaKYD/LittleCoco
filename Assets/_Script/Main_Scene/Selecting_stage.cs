@@ -81,27 +81,27 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 			case 2:
 				SceneManager.LoadScene (15);
 				_stage2_con_di [0].SetActive (true); //Stage controller
-				_stage2_con_di [1].SetActive (true); //Dialogue controller
+				//_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
-				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa.Import (15);
+				//DontDestroyOnLoad (_stage2_con_di [1]);
+				//aa.Import (15);
 				break;
 			case 3:
 				SceneManager.LoadScene (25);
 				_stage2_con_di [0].SetActive (true); //Stage controller
-				_stage2_con_di [1].SetActive (true); //Dialogue controller
+				//_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
-				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> (); // why???? only this one????
-				aa.Import (25);
+				//DontDestroyOnLoad (_stage2_con_di [1]);
+				//aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> (); // why???? only this one????
+				//aa.Import (25);
 				break;
 			case 4:
 				SceneManager.LoadScene (32);
 				_stage2_con_di [0].SetActive (true); //Stage controller
-				_stage2_con_di [1].SetActive (true); //Dialogue controller
+				//_stage2_con_di [1].SetActive (true); //Dialogue controller
 				DontDestroyOnLoad (_stage2_con_di [0]);
-				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa.Import (32);
+				//DontDestroyOnLoad (_stage2_con_di [1]);
+				//aa.Import (32);
 				break;
 			case 5:
 				break;

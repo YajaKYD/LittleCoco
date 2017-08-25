@@ -82,6 +82,7 @@
      <Compile Include="Assets\_Script\Item_Controller.cs" />
      <Compile Include="Assets\_Script\Load_data.cs" />
      <Compile Include="Assets\_Script\Main_Scene\AudioVolumeSetting.cs" />
+     <Compile Include="Assets\_Script\Main_Scene\CutePackagebutton.cs" />
      <Compile Include="Assets\_Script\Main_Scene\MainScene_start.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Main_GameStart.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Main_Select_Stage_Controller.cs" />
@@ -90,6 +91,7 @@
      <Compile Include="Assets\_Script\Main_Scene\Save_Setting.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Selecting_stage.cs" />
      <Compile Include="Assets\_Script\Main_Scene\Setting_Diary.cs" />
+     <Compile Include="Assets\_Script\Main_Scene\UI_ImageAnimation.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Click_to_Close.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\Coco_TextPosition.cs" />
      <Compile Include="Assets\_Script\NPC_Click_to_Talk\NPC_Click.cs" />
@@ -189,9 +191,15 @@
      <Compile Include="Assets\_Script\Stage5\TextClose.cs" />
      <Compile Include="Assets\_Script\Stage5\newsStand.cs" />
      <Compile Include="Assets\_Script\Stage5\stage5Paper.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_1_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_2_GameController.cs" />
      <Compile Include="Assets\_Script\Stage6\Stage6_3_GameController.cs" />
      <Compile Include="Assets\_Script\Stage6\Stage6_4_GameController.cs" />
      <Compile Include="Assets\_Script\Stage6\Stage6_5_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_6_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_7_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_8_GameController.cs" />
+     <Compile Include="Assets\_Script\Stage6\Stage6_9_GameController.cs" />
      <Compile Include="Assets\_Script\Stage6\Stage6_Controller.cs" />
      <Compile Include="Assets\_Script\Text_Click.cs" />
      <Compile Include="Assets\_Script\Text_Importer.cs" />
