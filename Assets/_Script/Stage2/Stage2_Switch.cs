@@ -11,19 +11,19 @@ public class Stage2_Switch : MonoBehaviour {
 
 		if (other.CompareTag ("Player")) {
 
-			if (!Stage2_Controller._Stage2_Quest [16]) {
+			if (!Stage2_Controller.q [16]) {
 				_Switch.SetActive (true);
 				_LightFromSide.SetActive (true);
 			}
 
-			Stage2_Controller._Stage2_Quest[16] = true;
+			Stage2_Controller.q[16] = true;
 
-			if (Stage2_Controller._Stage2_Quest[17] && !Stage2_Controller._Stage2_Quest[22]) {
+			if (Stage2_Controller.q[17] && !Stage2_Controller.q[22]) {
 
 				_Switch.SetActive (true);
 				_LightFromSide.SetActive (false);
 
-				if (Stage2_Controller._Stage2_Quest [18]) {
+				if (Stage2_Controller.q [18]) {
 					Item_Controller aa = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 					for (int i = 0; i < 5; i++) {
 						if (aa._item_name_list [i] == "Clockwork") {
@@ -32,7 +32,7 @@ public class Stage2_Switch : MonoBehaviour {
 						}
 					}
 				}
-				Stage2_Controller._Stage2_Quest[22] = true;
+				Stage2_Controller.q[22] = true;
 			}
 		}
 		

@@ -18,7 +18,7 @@ public class Stage4_5_Card : MonoBehaviour {
 		{
 			if (ic.Get_Item_Auto(19, GetComponent<SpriteRenderer>().sprite))
 			{
-				Stage4_Controller.q18 [0] = true;
+				Stage4_Controller.q32 [0] = true;
 				ti.Talk (ti.lineNo + 2);
 				Destroy(this.gameObject);
 			}

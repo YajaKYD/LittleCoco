@@ -16,9 +16,10 @@ public class Stage4_3_GameController2 : MonoBehaviour {
 	private GameObject item_Canvas;
 	private Text_Importer2 ti;
 
-	public float shakeTimer, shakeAmount;
+	private float shakeTimer, shakeAmount;
 
 	private bool q20_0, q20_1;
+	public Stage4_3_gum gumScript;
 
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
@@ -61,21 +62,22 @@ public class Stage4_3_GameController2 : MonoBehaviour {
 		}
 
 		yield return new WaitForSeconds(0.5f);
-		ti.Talk (); //Stage4_Controller.q [21] = true;
+		item_Canvas.SetActive (true);
+		gumScript.gumPuzzle.SetActive(false);
+		ti.Talk (ti.lineNo + 2); //Stage4_Controller.q [22] = true;
 	}
 
 	IEnumerator FinishGumPuzzle2(){
 		Debug.Log ("finish 2");
+		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 		background.GetComponent<BoxCollider2D> ().enabled = false; // player going down
 		yield return new WaitForSeconds(1);
-		player.GetComponent<Moving_by_RLbuttons> ().enabled = false;
 		for (float f = 0f; f < 1; f += Time.deltaTime) {
 			Color c = blackout.color;
 			c.a = f;
 			blackout.color = c;
 			yield return null;
 		}
-		item_Canvas.SetActive (true);
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 		SceneManager.LoadScene (nextSceneNo);
 		PlayerPrefs.SetInt ("SceneFromWhere", SceneManager.GetActiveScene ().buildIndex);

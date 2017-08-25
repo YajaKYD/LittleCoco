@@ -5,7 +5,7 @@ using UnityEngine;
 public class Save_Script : MonoBehaviour {
 
 	public static bool[] S1 = new bool[11];
-	public static bool[] S2 = new bool[26];
+	public static bool[] S2 = new bool[40];
 	public static int[] S2_intArr = new int[3];
 	public static bool[] S3 = new bool[23];
 	public static bool[] S4 = new bool[50];
@@ -88,7 +88,7 @@ public class Save_Script : MonoBehaviour {
 		//S2 = new bool[25];
 		//S2_intArr = new int[3];
 
-		S2 = Stage2_Controller._Stage2_Quest;
+		S2 = Stage2_Controller.q;
 		S2_intArr = Stage2_Controller._Stage2_Quest_intArr;
 		//		S2 [0] = Stage2_Controller._stage2_q1;
 		//		S2 [1] = Stage2_Controller._stage2_q2;
