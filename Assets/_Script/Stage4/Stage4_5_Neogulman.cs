@@ -11,13 +11,13 @@ public class Stage4_5_Neogulman : MonoBehaviour {
 	}
 
 	void Update(){
-		if (!Stage4_Controller.q[17] && Stage4_Controller.q [37]) {
+		if (Stage4_Controller.q[30] && !Stage4_Controller.q [31]) {
 			StartCoroutine ("Disappear");
 		}
 	}
 
 	void OnTriggerEnter2D(){
-		if (!Stage4_Controller.q [17]) {
+		if (!Stage4_Controller.q [30]) {
 			ti.Talk (ti.lineNo + 2); //conversation
 			GetComponent<BoxCollider2D>().enabled = false;
 		}
@@ -25,7 +25,7 @@ public class Stage4_5_Neogulman : MonoBehaviour {
 
 	IEnumerator Disappear(){
 		this.gameObject.SetActive(false); // add animation
-		Stage4_Controller.q[17] = true;
+		Stage4_Controller.q[31] = true;
 		ti.Talk (ti.lineNo + 2);
 		yield return null;
 	}

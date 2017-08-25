@@ -40,6 +40,7 @@ public class Stage4_3_gum : MonoBehaviour {
 				controller.emptyPos [1] = gumPuzzle.transform.GetChild (2);
 				controller.puzzlePiece [0] = gumPuzzle.transform.GetChild (3).gameObject;
 				controller.puzzlePiece [1] = gumPuzzle.transform.GetChild (4).gameObject;
+				ti.Talk (ti.lineNo + 2);
 				//background.GetComponent<SpriteRenderer> ().sprite = null;
 			}
 		}
@@ -47,7 +48,7 @@ public class Stage4_3_gum : MonoBehaviour {
 		
 
 	void OnTriggerExit2D(){
-		Destroy (gumPuzzle);
+		//Destroy (gumPuzzle);
 		//background.GetComponent<SpriteRenderer> ().sprite = background4_3;
 	}
 }

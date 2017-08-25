@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Stage3_9_GameController : MonoBehaviour {
+public class Stage3_9_GameController : Controller {
 
 	private bool active;
 	public AudioSource rightSound;
 	public GameObject portal1, portal2;
 	public GameObject startPos;
 
-	void Start () {
+    void Awake()
+    {
+        sceneNo = 39;
+    }
+
+    void Start () {
 		active = true;
 		rightSound = GetComponent<AudioSource> ();
 		GameObject.FindWithTag ("Player").transform.position = startPos.transform.position;

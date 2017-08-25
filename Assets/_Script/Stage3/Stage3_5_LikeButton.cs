@@ -33,7 +33,7 @@ public class Stage3_5_LikeButton : MonoBehaviour {
 			likeOff = stage3_6_GameController.likeOff;
         }
 			
-		if (tree.ID >= 1 && tree.ID <= 3 && Stage3_Controller._Stage3_Quest [tree.ID + 15]) {
+		if (tree.ID >= 1 && tree.ID <= 3 && Stage3_Controller.q [tree.ID + 15]) {
 			GetComponent<SpriteRenderer>().sprite = likeOn;
 		} else {
 			GetComponent<SpriteRenderer>().sprite = likeOff;
@@ -56,22 +56,22 @@ public class Stage3_5_LikeButton : MonoBehaviour {
 			GetComponent<SpriteRenderer>().sprite = likeOff;
             tree.like = false;
 			if (tree.ID >= 1 && tree.ID <= 3) {
-				Stage3_Controller._Stage3_Quest [tree.ID + 15] = false;
+				Stage3_Controller.q [tree.ID + 15] = false;
 				showHeart (tree.ID - 1);
 			}
 //            if (tree.ID == 1)
 //            {
-//				Stage3_Controller._Stage3_Quest[16] = false;
+//				Stage3_Controller.q[16] = false;
 //                showHeart(0);
 //            }
 //            else if (tree.ID == 2)
 //            {
-//				Stage3_Controller._Stage3_Quest[17] = false;
+//				Stage3_Controller.q[17] = false;
 //                showHeart(1);
 //            }
 //            else if (tree.ID == 3)
 //            {
-//				Stage3_Controller._Stage3_Quest[18] = false;
+//				Stage3_Controller.q[18] = false;
 //                showHeart(2);
 //            }
         }
@@ -79,22 +79,22 @@ public class Stage3_5_LikeButton : MonoBehaviour {
 			GetComponent<SpriteRenderer>().sprite = likeOn;
             tree.like = true;
 			if (tree.ID >= 1 && tree.ID <= 3) {
-				Stage3_Controller._Stage3_Quest [tree.ID + 15] = true;
+				Stage3_Controller.q [tree.ID + 15] = true;
 				showHeart (tree.ID - 1);
 			}
 //            if (tree.ID == 1)
 //            {
-//				Stage3_Controller._Stage3_Quest[16] = true;
+//				Stage3_Controller.q[16] = true;
 //                showHeart(0);
 //            }
 //            else if (tree.ID == 2)
 //            {
-//				Stage3_Controller._Stage3_Quest[17] = true;
+//				Stage3_Controller.q[17] = true;
 //                showHeart(1);
 //            }
 //            else if (tree.ID == 3)
 //            {
-//				Stage3_Controller._Stage3_Quest[18] = true;
+//				Stage3_Controller.q[18] = true;
 //                showHeart(2);
 //            }
         }

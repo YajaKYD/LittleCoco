@@ -27,7 +27,13 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 		xxx = false;
 		aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
 
-		if (_what_stage_now_cleared == 0 && this_num == 0) {
+        if (_what_stage_now_cleared == 5)
+        {
+            SceneManager.LoadScene(43);
+            _stage2_con_di[1].SetActive(true);
+            DontDestroyOnLoad(_stage2_con_di[1]);
+        }
+        else if (_what_stage_now_cleared == 0 && this_num == 0) {
 			SceneManager.LoadScene (4);
 			//_stage2_con_di [0].SetActive (true);
 			_stage2_con_di [1].SetActive (true);
@@ -35,7 +41,6 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 			DontDestroyOnLoad (_stage2_con_di [1]);
 			//aa.Import (4);
 		}
-
 	}
 
 	void Update(){
@@ -103,7 +108,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				//DontDestroyOnLoad (_stage2_con_di [1]);
 				//aa.Import (32);
 				break;
-			case 5:
+			case 5:  
 				break;
 
 			default:

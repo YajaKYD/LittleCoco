@@ -24,7 +24,7 @@ public class Stage4_4_poster : MonoBehaviour{
 		
 	void OnMouseDown(){
 		Debug.Log ("mouse down");
-		if (!Stage4_Controller.q [16] && Stage4_Controller.q[32]) {
+		if (Stage4_Controller.q[25]) { // && !Stage4_Controller.q [16]
 			StartCoroutine ("ChangeImage");
 		}
 	}

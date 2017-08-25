@@ -20,10 +20,10 @@ public class NPC_Trigger : MonoBehaviour {
 
     void OnTriggerEnter2D()
     {
-		if (!Stage3_Controller._Stage3_Quest[1])
+		if (!Stage3_Controller.q[1])
         {
             ti.NPC_Say_yeah(name);
-			Stage3_Controller._Stage3_Quest[1] = true;
+			Stage3_Controller.q[1] = true;
 			Save_Script.Save_Quest_Info ();
         }
         //enabled = false;

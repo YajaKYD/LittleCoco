@@ -80,7 +80,7 @@ public class SevenGarbage : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!garbage_1 && !garbage_1_1 && !Stage5_Controller._Stage5_Quest[38])
+        if (!garbage_1 && !garbage_1_1 && !Stage5_Controller.q[38])
         {
             garbage1.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage1.SetActive(true);
@@ -89,7 +89,7 @@ public class SevenGarbage : MonoBehaviour
             garbage_2_1 = true;
             //offset = garbage1.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));
         }
-        else if (garbage_1 && !garbage_2 && !garbage_1_2 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_1 && !garbage_2 && !garbage_1_2 && !Stage5_Controller.q[38])
         {
             garbage2.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage2.SetActive(true);
@@ -97,7 +97,7 @@ public class SevenGarbage : MonoBehaviour
             Physics2D.IgnoreCollision(player.GetComponent<PolygonCollider2D>(), garbage2.GetComponent<BoxCollider2D>());
             garbage_2_2 = true;
         }
-        else if (garbage_2 && !garbage_3 && !garbage_1_3 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_2 && !garbage_3 && !garbage_1_3 && !Stage5_Controller.q[38])
         {
             garbage3.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage3.SetActive(true);
@@ -105,7 +105,7 @@ public class SevenGarbage : MonoBehaviour
             Physics2D.IgnoreCollision(player.GetComponent<PolygonCollider2D>(), garbage3.GetComponent<BoxCollider2D>());
             garbage_2_3 = true;
         }
-        else if (garbage_3 && !garbage_4 && !garbage_1_4 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_3 && !garbage_4 && !garbage_1_4 && !Stage5_Controller.q[38])
         {
             garbage4.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage4.SetActive(true);
@@ -113,7 +113,7 @@ public class SevenGarbage : MonoBehaviour
             Physics2D.IgnoreCollision(player.GetComponent<PolygonCollider2D>(), garbage4.GetComponent<BoxCollider2D>());
             garbage_2_4 = true;
         }
-        else if (garbage_4 && !garbage_5 && !garbage_1_5 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_4 && !garbage_5 && !garbage_1_5 && !Stage5_Controller.q[38])
         {
             garbage5.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage5.SetActive(true);
@@ -121,7 +121,7 @@ public class SevenGarbage : MonoBehaviour
             Physics2D.IgnoreCollision(player.GetComponent<PolygonCollider2D>(), garbage5.GetComponent<BoxCollider2D>());
             garbage_2_5 = true;
         }
-        else if (garbage_5 && !garbage_6 && !garbage_1_6 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_5 && !garbage_6 && !garbage_1_6 && !Stage5_Controller.q[38])
         {
             garbage6.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage6.SetActive(true);
@@ -129,7 +129,7 @@ public class SevenGarbage : MonoBehaviour
             Physics2D.IgnoreCollision(player.GetComponent<PolygonCollider2D>(), garbage6.GetComponent<BoxCollider2D>());
             garbage_2_6 = true;
         }
-        else if (garbage_6 && !garbage_7 && !garbage_1_7 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_6 && !garbage_7 && !garbage_1_7 && !Stage5_Controller.q[38])
         {
             garbage7.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1f));
             garbage7.SetActive(true);
@@ -181,37 +181,37 @@ public class SevenGarbage : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (!garbage_1 && !garbage_1_1 && garbage_2_1 && !Stage5_Controller._Stage5_Quest[38])
+        if (!garbage_1 && !garbage_1_1 && garbage_2_1 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear1(garbage1));
             garbage_1_1 = true;    
         }
-        else if (garbage_1 && !garbage_2 && !garbage_1_2 && garbage_2_2 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_1 && !garbage_2 && !garbage_1_2 && garbage_2_2 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear2(garbage2));
             garbage_1_2 = true;
         }
-        else if (garbage_2 && !garbage_3 && !garbage_1_3 && garbage_2_3 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_2 && !garbage_3 && !garbage_1_3 && garbage_2_3 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear3(garbage3));
             garbage_1_3 = true;
         }
-        else if (garbage_3 && !garbage_4 && !garbage_1_4 && garbage_2_4 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_3 && !garbage_4 && !garbage_1_4 && garbage_2_4 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear4(garbage4));
             garbage_1_4 = true;
         }
-        else if (garbage_4 && !garbage_5 && !garbage_1_5 && garbage_2_5 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_4 && !garbage_5 && !garbage_1_5 && garbage_2_5 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear5(garbage5));
             garbage_1_5 = true;
         }
-        else if (garbage_5 && !garbage_6 && !garbage_1_6 && garbage_2_6 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_5 && !garbage_6 && !garbage_1_6 && garbage_2_6 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear6(garbage6));
             garbage_1_6 = true;
         }
-        else if (garbage_6 && !garbage_7 && !garbage_1_7 && garbage_2_7 && !Stage5_Controller._Stage5_Quest[38])
+        else if (garbage_6 && !garbage_7 && !garbage_1_7 && garbage_2_7 && !Stage5_Controller.q[38])
         {
             StartCoroutine(Disappear7(garbage7));
             garbage_1_7 = true;
@@ -313,7 +313,7 @@ public class SevenGarbage : MonoBehaviour
             yield return null;
         }
         Destroy(garbage.gameObject);
-        Stage5_Controller._Stage5_Quest[38] = true;
+        Stage5_Controller.q[38] = true;
         garbage_7 = true;
     }
 }

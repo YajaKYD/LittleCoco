@@ -81,7 +81,7 @@ public class DragRigidBody2D : MonoBehaviour
             spriteRenderer.color = c;
             yield return null;
         }
-        Stage5_Controller._Stage5_Quest[37] = true; // 별감 인형이 사라지고 대화 시작하기 전까지 완료
+        Stage5_Controller.q[37] = true; // 별감 인형이 사라지고 대화 시작하기 전까지 완료
         Destroy(this.gameObject);
     }
 }

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage5_6_GameController : MonoBehaviour {
+public class Stage5_6_GameController : Controller {
     private Transform start_pos;
     private GameObject player;
     private Moving_by_RLbuttons mbr;
-    private GameObject _star_textbox;
-    private GameObject _coco_textbox;
-    private GameObject _ivon_textbox;
     public SpriteRenderer _blackout;
     public Camera main_Camera;
-    private Text_Importer ti;
+    private Text_Importer2 ti;
     private Item_Controller ic;
+
+    public Image _ivon_textbox;
+    public Text _ivon_text;
 
     private GameObject Ivon;
     private GameObject IvonTextPos;
@@ -58,12 +58,13 @@ public class Stage5_6_GameController : MonoBehaviour {
 
     void Awake()
     {
+        sceneNo = 56;
         player = GameObject.Find("Player");
         Ivon = GameObject.Find("Ivon");
         mbr = player.GetComponent<Moving_by_RLbuttons>();
         start_pos = GameObject.Find("Start_Pos").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
-        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 
         babyDog = GameObject.Find("BabyDog");
         umbrella = GameObject.Find("Umbrella");
@@ -73,28 +74,30 @@ public class Stage5_6_GameController : MonoBehaviour {
 
     void Start()
     {
+        _ivon_textbox = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetComponent<Image>();
+        _ivon_text = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetChild(0).GetComponent<Text>();
+        _ivon_textbox.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
+        _ivon_text.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         Ivon.SetActive(false);
         if (GetComponent<Load_data>()._where_are_you_from == 36)
         {
             player.transform.position = start_pos.position;
         }
+        ti.Import(56);
 
-        _star_textbox = ti._text_boxes[0];
-        _ivon_textbox = ti._text_boxes[1];
-        _coco_textbox = ti._text_boxes[2];
-
-        if (!Stage5_Controller._Stage5_Quest[39])
+        if (!Stage5_Controller.q[39])
         {
             rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
         }
 
-        if (Stage5_Controller._Stage5_Quest[43])
+        if (Stage5_Controller.q[43])
         {
             babyDog.SetActive(true);
+            Save_Script.Save_Now_Point();
         }
         else babyDog.SetActive(false);
 
-        if (!Stage5_Controller._Stage5_Quest[45])
+        if (!Stage5_Controller.q[45])
         {
             umbrella.SetActive(false);
             hardbox.SetActive(false);
@@ -103,19 +106,19 @@ public class Stage5_6_GameController : MonoBehaviour {
 
     void Update()
     {
-        if (Stage5_Controller._Stage5_Quest[43] && !Stage5_Controller._Stage5_Quest[44])
+        if (Stage5_Controller.q[43] && !Stage5_Controller.q[44])
         {
             Q1_Move_Baby();
         }
-        else if (Stage5_Controller._Stage5_Quest[45] && !Stage5_Controller._Stage5_Quest[46])
+        else if (Stage5_Controller.q[45] && !Stage5_Controller.q[46])
         {
             Q2_After_Umbrella();
         }
-        else if (Stage5_Controller._Stage5_Quest[46] && !Stage5_Controller._Stage5_Quest[47])
+        else if (Stage5_Controller.q[46] && !Stage5_Controller.q[47])
         {
             Q3_Ivon_Appear();
         }
-        else if (Stage5_Controller._Stage5_Quest[47] && !Stage5_Controller._Stage5_Quest[48])
+        else if (Stage5_Controller.q[47] && !Stage5_Controller.q[48])
         {
             Q4_Remember();
         }
@@ -125,11 +128,12 @@ public class Stage5_6_GameController : MonoBehaviour {
     {
         if (!q1a1)
         {
-            ti.currLineArr[0] = 162; // 코코야 저기 봐 강아지가.
-            ti.NPC_Say_yeah("별감");
+            Save_Script.Save_Now_Point();
+            ti.Talk(); // 코코야 저기 봐 강아지가
             q1a1 = true;
         }
-        else if (q1a1 && !q1a2 && !_star_textbox.activeSelf)
+        else if (!Stage5_Controller.q[77]) mbr.enabled = false;
+        else if (Stage5_Controller.q[77] && !q1a2)
         {
             mbr.Moving_Right(8f);
             if (babyDog.transform.position.x <= player.transform.position.x)
@@ -140,25 +144,8 @@ public class Stage5_6_GameController : MonoBehaviour {
         }
         else if (q1a2 && !q1a3)
         {
-            ti.currLineArr[0] = 164; // 어떡해 감기 걸리겟어..
-            ti.NPC_Say_yeah("별감");
+            ti.Talk(3); // 어떡해 감기걸리겟어
             q1a3 = true;
-        }
-        else if (q1a3 && !q1a4 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 64;
-            ti.NPC_Say_yeah("코코");
-            q1a4 = true;
-        }
-        else if (q1a4 && !q1a5 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 166; // 우산과 상자..!
-            ti.NPC_Say_yeah("별감");
-            q1a5 = true;
-        }
-        else if (q1a5 && !_star_textbox.activeSelf)
-        {
-            Stage5_Controller._Stage5_Quest[44] = true; // 상자와 우산 설치하기 전 대화까지 완료.
         }
     }
 
@@ -208,13 +195,12 @@ public class Stage5_6_GameController : MonoBehaviour {
         }
         else if (q3a1 && !q3a2)
         {
-            ti.currLineArr[1] = 22; // 어? 우산이네..
-            _ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            _ivon_textbox.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            ti.NPC_Say_yeah("이본");
+            ti.Talk(8); // 어? 우산이네..
+           // _ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+           // _ivon_textbox.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             q3a2 = true;
         }
-        else if (q3a2 && !q3a3 && !_ivon_textbox.activeSelf)
+        else if (Stage5_Controller.q[78] && !q3a3)
         {
             //main_Camera.GetComponent<CameraManager>().FocusObject = Ivon;
             main_Camera.transform.position = new Vector3(main_Camera.transform.position.x + 0.1f, main_Camera.transform.position.y, -10f);
@@ -225,15 +211,10 @@ public class Stage5_6_GameController : MonoBehaviour {
         else if (q3a3 && !q3a4)
         {
             print("우산을 집어들려고 하며...");
-            ti.currLineArr[1] = 24; //...어?! 강아지??
-            _ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            _ivon_textbox.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            ti.NPC_Say_yeah("이본");
+            ti.Talk(10); //...어?! 강아지??
+            //_ivon_textbox.transform.parent.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            //_ivon_textbox.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             q3a4 = true;
-        }
-        else if (q3a4 && !_ivon_textbox.activeSelf)
-        {
-            Stage5_Controller._Stage5_Quest[47] = true; // 코코와 주인의 첫 만남 씬 이전 대화까지 완료.
         }
     }
 
@@ -272,7 +253,7 @@ public class Stage5_6_GameController : MonoBehaviour {
             yield return null;
         }
         _blackout.color = new Color(0, 0, 0, 1);
-        if (!Stage5_Controller._Stage5_Quest[47]) q2a3 = true;
+        if (!Stage5_Controller.q[47]) q2a3 = true;
         else q4a2 = true;
     }
 
@@ -287,7 +268,7 @@ public class Stage5_6_GameController : MonoBehaviour {
         }
         rememberScene.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(4f);
-        if (!Stage5_Controller._Stage5_Quest[47]) q2a5 = true;
+        if (!Stage5_Controller.q[47]) q2a5 = true;
         else q4a4 = true;
     }
 
@@ -302,7 +283,7 @@ public class Stage5_6_GameController : MonoBehaviour {
             yield return null;
         }
         rememberScene.color = new Color(1, 1, 1, 0);
-        if (!Stage5_Controller._Stage5_Quest[47]) q2a7 = true;
+        if (!Stage5_Controller.q[47]) q2a7 = true;
         else q4a6 = true;
     }
 
@@ -316,10 +297,10 @@ public class Stage5_6_GameController : MonoBehaviour {
             yield return null;
         }
         _blackout.color = new Color(0, 0, 0, 0);
-        if (!Stage5_Controller._Stage5_Quest[47]) Stage5_Controller._Stage5_Quest[46] = true;
+        if (!Stage5_Controller.q[47]) Stage5_Controller.q[46] = true;
         else
         {
-            Stage5_Controller._Stage5_Quest[48] = true; // 자동으로 다음 씬 넘어가기 전까지
+            Stage5_Controller.q[48] = true; // 자동으로 다음 씬 넘어가기 전까지
             portal_to_5_4.transform.position = player.transform.position;
         }
     }

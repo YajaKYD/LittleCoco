@@ -32,49 +32,49 @@ public class Stage4_5_GameController2 : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Stage4_Controller.q [17] && !Stage4_Controller.q [18]) {
-			Q18_getCard ();
-		} else if (Stage4_Controller.q [18] && !Stage4_Controller.q [19]) {
-			Q19_cardPuzzle ();
-		} else if (Stage4_Controller.q [19] && !Stage4_Controller.q [20]) {
-			Q20_completeScene ();
+		if (Stage4_Controller.q [31] && !Stage4_Controller.q [32]) {
+			Q32_getCard ();
+		} else if (Stage4_Controller.q [32] && !Stage4_Controller.q [33]) {
+			Q33_cardPuzzle ();
+		} else if (Stage4_Controller.q [33] && !Stage4_Controller.q [34]) {
+			Q34_completeScene ();
 		}
 	}
 
-	void Q18_getCard(){
-		if (!Stage4_Controller.q18 [0]) {
+	void Q32_getCard(){
+		if (!Stage4_Controller.q32 [0]) {
 			card.SetActive (true);
 			//conversation
 			//if get card -> q18[0] = true;
-		} else if (!Stage4_Controller.q18 [1]) {
+		} else if (!Stage4_Controller.q32 [1]) {
 			//conversation
 			//if coco get card -? q18[1] = true;
 			if (ic._now_used_item == "Card") {
-				Stage4_Controller.q18 [1] = true;
+				Stage4_Controller.q32 [1] = true;
 			}
-		} else if (Stage4_Controller.q18 [0] && Stage4_Controller.q18 [1]) {
-			Stage4_Controller.q [18] = true;
+		} else if (Stage4_Controller.q32 [0] && Stage4_Controller.q32 [1]) {
+			Stage4_Controller.q [32] = true;
 		}
 	}
 		
-	void Q19_cardPuzzle(){
+	void Q33_cardPuzzle(){
 		if (!q19_1) {
 			controller.StartGame (0);
-			//conversation
+			//ti.Talk (ti.lineNo + 2); //conversation
 			q19_1 = true;
-			//ti.Talk (ti.lineNo + 2);
+
 		}
-		// if puzzle solved, q[19] = true;
+		// if puzzle solved, q[33] = true;
 	}
 		
 	public void tempComplete(){
-		Stage4_Controller.q [19] = true;
+		Stage4_Controller.q [33] = true;
 	}
 
-	void Q20_completeScene(){
+	void Q34_completeScene(){
 		controller.gamePanel.Find("Coco").gameObject.SetActive(false);	//need animation
 		StartCoroutine ("CompleteScene");
-		Stage4_Controller.q [20] = true;
+		Stage4_Controller.q [34] = true;
 	}
 
 	IEnumerator CompleteScene(){

@@ -16,7 +16,7 @@ public class Stage4_4_pole : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(){
-		if (Stage4_Controller.q [30] && !Stage4_Controller.q [31]) {
+		if (Stage4_Controller.q [23] && !Stage4_Controller.q [24]) {
 			ti.Talk (ti.lineNo + 2);
 		} else {
 			ti.Talk ();

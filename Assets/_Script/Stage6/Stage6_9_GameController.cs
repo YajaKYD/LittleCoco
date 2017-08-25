@@ -36,6 +36,7 @@ public class Stage6_9_GameController : Controller {
         itemButton0.enabled = true; item0.enabled = true; itemButton1.enabled = true; item1.enabled = true;
         itemButton2.enabled = true; itemButton3.enabled = true; itemButton4.enabled = true;
 
+        Stage6_Controller.diaryscene = false;
         sceneNo = 69;
     }
 
@@ -44,6 +45,8 @@ public class Stage6_9_GameController : Controller {
         mbr = player.GetComponent<Moving_by_RLbuttons>();
         start_pos = GameObject.Find("Start_Pos").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
+        
+        Save_Script.Save_Now_Point();
 
         player.transform.position = start_pos.position;
         ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();

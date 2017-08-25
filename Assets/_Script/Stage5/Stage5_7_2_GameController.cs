@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage5_7_2_GameController : MonoBehaviour {
+public class Stage5_7_2_GameController : Controller {
 
     private Transform start_pos;
     private Transform regen_pos;
     private GameObject player;
     private Moving_by_RLbuttons mbr;
-    private GameObject _star_textbox;
-    private GameObject _coco_textbox;
-    private GameObject _ivon_textbox;
     public SpriteRenderer _blackout;
-    private Text_Importer ti;
+    private Text_Importer2 ti;
     private Item_Controller ic;
 
     public Image rememberScene;
     public Transform portalTo5_4;
+    public BoxCollider2D portalTo5_3;
 
     private GameObject trashHeap;
     private GameObject hardBox;
@@ -30,8 +28,6 @@ public class Stage5_7_2_GameController : MonoBehaviour {
 
     private bool q1a1;
     private bool q2a1;
-    private bool q2a2;
-    private bool q2a3;
     private bool q2a4;
     private bool q2a5;
     private bool q2a6;
@@ -42,16 +38,16 @@ public class Stage5_7_2_GameController : MonoBehaviour {
     private bool q2a11;
     private bool q2a12;
     private bool q3a1;
-    private bool q3a2;
 
     void Awake()
     {
+        sceneNo = 59;
         player = GameObject.Find("Player");
         mbr = player.GetComponent<Moving_by_RLbuttons>();
         start_pos = GameObject.Find("Start_Pos").transform;
         regen_pos = GameObject.Find("Regen_Pos").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
-        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 
         trashHeap = GameObject.Find("TrashHeap");
         hardBox = GameObject.Find("HardBox");
@@ -67,15 +63,13 @@ public class Stage5_7_2_GameController : MonoBehaviour {
         {
             player.transform.position = regen_pos.position;
         }
-        if (!Stage5_Controller._Stage5_Quest[39])
+        if (!Stage5_Controller.q[39])
         {
             rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
         }
-        if (Stage5_Controller._Stage5_Quest[42]) trashHeap.SetActive(false);
+        if (Stage5_Controller.q[42]) trashHeap.SetActive(false);
 
-        _star_textbox = ti._text_boxes[0];
-        _ivon_textbox = ti._text_boxes[1];
-        _coco_textbox = ti._text_boxes[2];
+        ti.Import(59);
 
         trashHeap.layer = 2;
         hardBox.SetActive(false);
@@ -83,15 +77,15 @@ public class Stage5_7_2_GameController : MonoBehaviour {
 
     void Update()
     {
-        if (Stage5_Controller._Stage5_Quest[40] && !Stage5_Controller._Stage5_Quest[41])
+        if (Stage5_Controller.q[40] && !Stage5_Controller.q[41])
         {
             Q1_Go_Before_Trash();
         }
-        else if (Stage5_Controller._Stage5_Quest[41] && !Stage5_Controller._Stage5_Quest[42])
+        else if (Stage5_Controller.q[41] && !Stage5_Controller.q[42])
         {
             Q2_After_Seven_Trash();
         }
-        else if (Stage5_Controller._Stage5_Quest[42] && !Stage5_Controller._Stage5_Quest[43])
+        else if (Stage5_Controller.q[42] && !Stage5_Controller.q[43])
         {
             Q3_Auto_Move();
         }
@@ -101,14 +95,13 @@ public class Stage5_7_2_GameController : MonoBehaviour {
     {
         if (!q1a1)
         {
-            mbr.Moving_left(-8f);
+           //   mbr.Moving_left(-8f);
             if (player.transform.position.x <= 6f) q1a1 = true;
         }
         else
         {
             trashHeap.layer = 0;
             StartCoroutine(Dig_Trash());
-            
         }
     }
 
@@ -119,30 +112,15 @@ public class Stage5_7_2_GameController : MonoBehaviour {
             hardBox.SetActive(true);
             Physics2D.IgnoreCollision(hardBox.GetComponent<BoxCollider2D>(), trashHeap.GetComponent<PolygonCollider2D>());
             print("박스에 시그널 보내");
-            for (int i = 0; i < ic._item_list.Length; i++)
+            if (ic._item_name_list[3] == "HardBox")
             {
-                if (ic._item_name_list[i] == "HardBox")
-                {
-                    ti.currLineArr[2] = 60;
-                    ti.NPC_Say_yeah("코코");
-                    q2a1 = true;
-                    break;
-                }
+                portalTo5_3.enabled = false;
+                ti.Talk();//아 상자는 왜 또
+                q2a1 = true;
             }
         }
-        else if (q2a1 && !q2a2 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 158; // 아 상자는 왜 또?
-            ti.NPC_Say_yeah("별감");
-            q2a2 = true;
-        }
-        else if (q2a2 && !q2a3 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 60;
-            ti.NPC_Say_yeah("코코");
-            q2a3 = true;
-        }
-        else if (q2a3 && !q2a4 && !_coco_textbox.activeSelf)
+        else if (!Stage5_Controller.q[75]) mbr.enabled = false;
+        else if (Stage5_Controller.q[75] && !q2a4)
         {
             StartCoroutine(Fadeout_black());
             q2a4 = true;
@@ -164,7 +142,7 @@ public class Stage5_7_2_GameController : MonoBehaviour {
         }
         else if (q2a10 && q2a11 && !q2a12)
         {
-            Stage5_Controller._Stage5_Quest[42] = true; // 회상 씬에서 돌아오는 거까지 완료.
+            Stage5_Controller.q[42] = true; // 회상 씬에서 돌아오는 거까지 완료.
         }
     }
 
@@ -172,21 +150,14 @@ public class Stage5_7_2_GameController : MonoBehaviour {
     {
         if (!q3a1)
         {
-            ti.currLineArr[0] = 160; // 코야 코코야...!
-            ti.NPC_Say_yeah("별감");
+            ti.Talk(5); //코야 코코야
             q3a1 = true;
         }
-        else if (q3a1 && !q3a2 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 62;
-            ti.NPC_Say_yeah("코코");
-            q3a2 = true;
-        }
-        else if (q3a2 && !_coco_textbox.activeSelf)
+        else if (Stage5_Controller.q[76])
         {
             //StartCoroutine(AutoMove());
             mbr.Moving_left(-8f);
-            if (player.transform.position.x <= -17.29f)  Stage5_Controller._Stage5_Quest[43] = true;
+            if (player.transform.position.x <= -17.29f)  Stage5_Controller.q[43] = true;
         }
     }
 
@@ -194,7 +165,7 @@ public class Stage5_7_2_GameController : MonoBehaviour {
     {
         mbr.enabled = false;
         print("애니 계속.. 쓰레기 주워야 풀림");
-        while (!Stage5_Controller._Stage5_Quest[41]) // 쓰레기 다 던질 때까지 계속 반복.
+        while (!Stage5_Controller.q[41]) // 쓰레기 다 던질 때까지 계속 반복.
         {
             yield return null;
         }
@@ -265,7 +236,7 @@ public class Stage5_7_2_GameController : MonoBehaviour {
             player.transform.position = new Vector3(newPosition, player.transform.position.y, player.transform.position.z);
             yield return new WaitForSeconds(2.7f);
             
-            Stage5_Controller._Stage5_Quest[43] = true;
+            Stage5_Controller.q[43] = true;
             break;
         }
     }*/
