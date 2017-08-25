@@ -16,6 +16,8 @@ public class Stage4_Dogbed : MonoBehaviour{
 	public SpriteRenderer blackout;
 	private Color bb;
 
+	public GameObject portaltoleft;
+
 	void Awake(){
 		player = GameObject.Find ("Player");
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
@@ -44,10 +46,11 @@ public class Stage4_Dogbed : MonoBehaviour{
 	void OnCollisionEnter2D(Collision2D other){
 		if (other.gameObject.CompareTag("Player")){
 			if (Stage4_Controller.q [5] && !Stage4_Controller.q [6]) {
-				ti.Talk (ti.lineNo + 2);
+				ti.Talk (11);
+				portaltoleft.SetActive (true);
 			} else if (Stage4_Controller.q [8] && !Stage4_Controller.q [9]) {
 				Debug.Log ("coco animation digging " + ti.lineNo);
-				ti.Talk (ti.lineNo + 2);
+				ti.Talk (18);
 			} else if (Stage4_Controller.q [13] && !Stage4_Controller.q [14]) {
 				Q14_SleepAndWake ();
 			}
@@ -83,7 +86,7 @@ public class Stage4_Dogbed : MonoBehaviour{
 		player.GetComponent<Moving_by_RLbuttons> ().enabled = true;
 		player.transform.rotation = Quaternion.Euler (0, 180, 0);
 
-		ti.Talk (ti.lineNo + 2);
+		ti.Talk (27);
 		// add sound effect 
 	}
 

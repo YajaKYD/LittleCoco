@@ -12,6 +12,7 @@ public class Stage4_1_GameController2 : Controller {
 	private Text_Importer2 ti;
 	private Item_Controller ic;
 	public GameObject portal2;
+	public GameObject portaltoleft;
 
 	public SpriteRenderer _blackout;
 	private Color bb;
@@ -90,12 +91,13 @@ public class Stage4_1_GameController2 : Controller {
 
 	void Q1_SayGoodnight(){
 		Destroy (GameObject.FindWithTag ("NPC"));
-		ti.Talk (ti.lineNo + 2);
+		ti.Talk (4);
+		portaltoleft.SetActive (false);
 		Stage4_Controller.q [1] = true;
 	}
 
 	void Q4_CheckIvon(){
-		ti.Talk (ti.lineNo + 2);
+		ti.Talk (8);
 		Stage4_Controller.q [4] = true;
 	}
 
@@ -108,12 +110,12 @@ public class Stage4_1_GameController2 : Controller {
 	}
 
 	void Q11_CheckIvonAgain(){
-		ti.Talk (ti.lineNo + 2);
+		ti.Talk (20);
 		Stage4_Controller.q [11] = true;
 	}
 
 	void Q13_CheckIvonComplete(){
-		ti.Talk (ti.lineNo + 2);
+		ti.Talk (24);
 		Stage4_Controller.q [13] = true;
 	}
 }

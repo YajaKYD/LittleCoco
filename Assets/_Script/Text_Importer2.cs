@@ -206,7 +206,7 @@ public class Text_Importer2 : MonoBehaviour {
 						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
-						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 3:
 						Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
@@ -301,10 +301,10 @@ public class Text_Importer2 : MonoBehaviour {
 					case 0:
 						break;
 					case 1:
-						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
-						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
+						Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 3:
 						Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
