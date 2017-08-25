@@ -10,8 +10,8 @@ public class Save_Script : MonoBehaviour {
 	public static bool[] S3 = new bool[23];
 	public static bool[] S4 = new bool[50];
 	public static bool[] S4_puzzle = new bool[2];
-	public static bool[] S5 = new bool[51];
-    public static bool[] S6 = new bool[50];
+	public static bool[] S5 = new bool[84];
+    public static bool[] S6 = new bool[60];
 	public static Item_Controller _ic_for_Save;
 	//public static Text_Importer2 _ti_for_Save;
 
@@ -66,7 +66,7 @@ public class Save_Script : MonoBehaviour {
 		PlayerPrefsX.SetBoolArray ("Stage4_Quest", S4);
 		PlayerPrefsX.SetBoolArray ("Stage4_Quest_puzzle", S4_puzzle);
 		PlayerPrefsX.SetBoolArray ("Stage5_Quest", S5);
-        PlayerPrefsX.SetBoolArray("q", S6);
+        PlayerPrefsX.SetBoolArray("Stage6_Quest", S6);
     }
 
 	public static void Save_S1(){
@@ -124,7 +124,7 @@ public class Save_Script : MonoBehaviour {
 	}
 
 	public static void Save_S5(){
-		S5 = Stage5_Controller._Stage5_Quest;
+		S5 = Stage5_Controller.q;
 	}
 
     public static void Save_S6()

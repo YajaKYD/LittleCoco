@@ -24,6 +24,7 @@ public class Stage6_4_GameController : Controller {
     public GameObject mission;
     public SpriteRenderer wholePanel;
     public Image rememberScene;
+    public GameObject card;
 
     private bool q4a1, q4a2, q4a3, q4a4, q4a5, q4a6, movieend;
 
@@ -53,12 +54,13 @@ public class Stage6_4_GameController : Controller {
 
         if (!Stage6_Controller.q[10])
         {
+            Save_Script.Save_Now_Point();
             ti.Talk();
         }
         else if (Stage6_Controller.q[10] && !Stage6_Controller.q[11]) {
             rainIntensity.RainIntensity = 0f;
             Ivon.SetActive(false);
-            ti.Talk(10);
+            ti.Talk(10); // 응?
         }
         else if (Stage6_Controller.q[16] && !Stage6_Controller.q[17])
         {
@@ -79,10 +81,27 @@ public class Stage6_4_GameController : Controller {
             ic._interaction_object[2] = "NPC";
            // player.GetComponent<Outline>().used_or_not_for_retry = false;
         }
+        else if (Stage6_Controller.q[49] && !Stage6_Controller.q[50])
+        {
+            portal6_5.enabled = false;
+            ic._interaction_object[2] = "NPC";
+            Ivon.GetComponent<Outline>().used_or_not_for_retry = false;
+            ti.Talk(71); // 킄킄 이제 부적을 사용해서 돌아가자
+        }
     }
 
     void Update()
     {
+        if (player.transform.position.x > Ivon.transform.position.x)
+        {
+            _ivon_textbox.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 180f, 0));
+            _ivon_text.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+        else
+        {
+            _ivon_textbox.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0f, 0));
+            _ivon_text.rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
         if (Stage6_Controller.q[5] && !Stage6_Controller.q[6])
         {
             Stage6_Controller.q[6] = true;
@@ -107,8 +126,6 @@ public class Stage6_4_GameController : Controller {
                 ids[k]._diary_usable = true;
             } //change diary image -usable-
             System_Message();
-            //save point//
-            Save_Script.Save_Now_Point();
         }
         else if (Stage6_Controller.q[13] && !Stage6_Controller.q[14])
         {
@@ -205,6 +222,14 @@ public class Stage6_4_GameController : Controller {
                 } //change diary image -unusable-
                 Stage6_Controller.q[34] = true;
             }
+        }
+        else if (Stage6_Controller.q[50] && !Stage6_Controller.q[51] && ic._now_used_item == "Card")
+        {
+            ic._now_used_item = "Pot";
+            ti.Talk(77); // 이게 뭐야 코코야?
+            card.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            card.transform.position = new Vector3(card.transform.position.x, card.transform.position.y, 0f);
+            card.SetActive(true);
         }
     }
 

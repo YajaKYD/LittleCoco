@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage5_7_1_GameController : MonoBehaviour {
+public class Stage5_7_1_GameController : Controller {
 
     private Transform start_pos;
     private GameObject player;
     private Moving_by_RLbuttons mbr;
-    private GameObject _star_textbox;
-    private GameObject _coco_textbox;
-    private GameObject _ivon_textbox;
     public SpriteRenderer _blackout;
-    private Text_Importer ti;
+    private Text_Importer2 ti;
     private Item_Controller ic;
 
     public GameObject starDoll;
@@ -22,22 +19,16 @@ public class Stage5_7_1_GameController : MonoBehaviour {
     private GameObject umbrella;
     public GameObject mission;
     public SpriteRenderer wholePanel;
+    public GameObject sparkle;
 
     public ParticleSystem rainFall;
     public ParticleSystem rainMist;
 
     private bool q1a1 = false;
     private bool q1a2 = false;
-    private bool q1a3 = false;
-    private bool q1a4 = false;
-    private bool q1a5 = false;
-    private bool q1a6 = false;
     private bool q2a1 = false;
-    private bool q2a2 = false;
     private bool q3a1 = false;
     private bool q4a1 = false;
-    private bool q4a2 = false;
-    private bool q4a3 = false;
     private bool q4a4 = false;
     private bool q4a5 = false;
     private bool q4a6 = false;
@@ -51,18 +42,18 @@ public class Stage5_7_1_GameController : MonoBehaviour {
     private bool q4a14 = false;
     private bool q4a15 = false;
     private bool q4a16 = false;
-    private bool q4a17 = false;
 
     private float velocity = 0.0f;
     private float smoothTime = 1.5f; // For auto move
 
     void Awake()
     {
+        sceneNo = 57;
         player = GameObject.Find("Player");
         mbr = player.GetComponent<Moving_by_RLbuttons>();
         start_pos = GameObject.Find("Start_Pos").transform;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
-        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 
         player.transform.position = start_pos.position;
 
@@ -76,28 +67,25 @@ public class Stage5_7_1_GameController : MonoBehaviour {
         {
             player.transform.position = start_pos.position;
         }
-
-        _star_textbox = ti._text_boxes[0];
-        _ivon_textbox = ti._text_boxes[1];
-        _coco_textbox = ti._text_boxes[2];
+        ti.Import(57);
 
         Physics2D.IgnoreCollision(starDoll.GetComponent<BoxCollider2D>(), trashHeap.GetComponent<PolygonCollider2D>());
         Physics2D.IgnoreCollision(starDoll.GetComponent<BoxCollider2D>(), player.GetComponent<BoxCollider2D>());
         
-        if (!Stage5_Controller._Stage5_Quest[37])
+        if (!Stage5_Controller.q[37])
         {
             trashHeap.layer = 2;
             starDoll.GetComponent<DragRigidBody2D>().enabled = false;
         }
 
-        if (Stage5_Controller._Stage5_Quest[38])
+        if (Stage5_Controller.q[38])
         {
             starDoll.SetActive(false);
             trashHeap.layer = 2;
         }
         umbrella.SetActive(false);
 
-        if (!Stage5_Controller._Stage5_Quest[39])
+        if (!Stage5_Controller.q[39])
         {
             rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
         }
@@ -105,26 +93,26 @@ public class Stage5_7_1_GameController : MonoBehaviour {
 
     void Update()
     {
-        if (Stage5_Controller._Stage5_Quest[35] && !Stage5_Controller._Stage5_Quest[36])
+        if (Stage5_Controller.q[35] && !Stage5_Controller.q[36])
         {
             Q1_Find_Trash_Ani();
         }
-        else if (Stage5_Controller._Stage5_Quest[36] && !Stage5_Controller._Stage5_Quest[37])
+        else if (Stage5_Controller.q[36] && !Stage5_Controller.q[37])
         {
             Q2_Start_Ani();
             mbr.enabled = false;
         }
-        else if (Stage5_Controller._Stage5_Quest[37] && !Stage5_Controller._Stage5_Quest[38])
+        else if (Stage5_Controller.q[37] && !Stage5_Controller.q[38])
         {
             Q3_Before_Seven_Trash();
             mbr.enabled = false;
         }
-        else if (Stage5_Controller._Stage5_Quest[38] && !Stage5_Controller._Stage5_Quest[39])
+        else if (Stage5_Controller.q[38] && !Stage5_Controller.q[39])
         {
             Q4_After_Seven_Trash();
             mbr.enabled = false;
         }
-        else if (Stage5_Controller._Stage5_Quest[39])
+        else if (Stage5_Controller.q[39])
         {
             mbr.enabled = true;
         }
@@ -134,32 +122,19 @@ public class Stage5_7_1_GameController : MonoBehaviour {
     {
         if (!q1a1)
         {
-            ti.currLineArr[0] = 135; // 엇 저 인형은?
-            ti.NPC_Say_yeah("별감");
+            ti.Talk(); // 엇 저 인형은..
             q1a1 = true;
         }
-        else if (q1a1 && !q1a2 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 54;
-            ti.NPC_Say_yeah("코코");
-            q1a2 = true;
-        }
-        else if (q1a2 && !q1a3 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 137; // 그래 한번 찾아보자
-            ti.NPC_Say_yeah("별감");
-            q1a3 = true;
-        }
-        else if (q1a3 && !q1a4 && !_star_textbox.activeSelf)
+        else if (Stage5_Controller.q[70] && !q1a2)
         {
             mbr.Moving_Right(8f);
-            if (player.transform.position.x >= -6.5f) q1a4 = true;
+            if (player.transform.position.x >= -6.5f) q1a2 = true;
             //StartCoroutine(MoveToTrash());
             //q1a5 = true;
         }
-        else if (q1a4)
+        else if (q1a2)
         {
-            Stage5_Controller._Stage5_Quest[36] = true;
+            Stage5_Controller.q[36] = true;
         }
     }
 
@@ -183,8 +158,7 @@ public class Stage5_7_1_GameController : MonoBehaviour {
     {
         if (!q3a1)
         {
-            ti.currLineArr[0] = 139;
-            ti.NPC_Say_yeah("별감");
+            ti.Talk(5); //저런 예쁜 인형을 누가
             trashHeap.layer = 0;
             q3a1 = true;
         }
@@ -201,50 +175,33 @@ public class Stage5_7_1_GameController : MonoBehaviour {
             umbrella.SetActive(true);
             umbrella.GetComponent<BoxCollider2D>().enabled = false;
             Physics2D.IgnoreCollision(umbrella.GetComponent<BoxCollider2D>(), trashHeap.GetComponent<PolygonCollider2D>());
-            ti.currLineArr[0] = 141; // 화분으로 쓸만한건없네..
-            ti.NPC_Say_yeah("별감");
+            // rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
+            ti.Talk(7); // 화분으로 쓸 만한게..
             q4a1 = true;
         }
-        else if (q4a1 && !q4a2 && !_star_textbox.activeSelf)
-        {
-            ti.currLineArr[2] = 56;
-            ti.NPC_Say_yeah("코코");
-            q4a2 = true;
-        }
-        else if (q4a2 && !q4a3 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 143; // 뭐해 임마?
-            ti.NPC_Say_yeah("별감");
-            rainFall.transform.parent.gameObject.GetComponent<DigitalRuby.RainMaker.RainScript2D>().RainIntensity = 0f;
-            q4a3 = true;
-        }
-        else if (q4a3 && !q4a4 && !_star_textbox.activeSelf)
+        else if (Stage5_Controller.q[72] && !q4a4)
         {
             StartCoroutine(RainDrop());
             q4a5 = true;
         }
         else if (q4a4 && q4a5 && !q4a6)
         {
-            ti.currLineArr[0] = 146; // 어 비온다
-            ti.NPC_Say_yeah("별감");
+            ti.Talk(12); // 어 비온다
             q4a6 = true;
         }
-        else if (q4a6 && !q4a7 && !_star_textbox.activeSelf)
+        else if (Stage5_Controller.q[73] && !q4a7)
         {
             umbrella.GetComponent<BoxCollider2D>().enabled = true;
             print("우산에 시그널 보내");
-            for (int i = 0; i < ic._item_list.Length; i++)
+            sparkle.SetActive(true);
+            if (ic._item_name_list[2] == "Umbrella")
             {
-                if (ic._item_name_list[i] == "Umbrella")
-                {
-                    ti.currLineArr[0] = 148; // 임마 쓰지도 못하는
-                    ti.NPC_Say_yeah("별감");
-                    q4a7 = true;
-                    break;
-                }
+                ti.Talk(14); // 임마 쓰지도 못하는
+                q4a7 = true;
+                sparkle.SetActive(false);
             }
         }
-        else if (q4a7 && !q4a8 && !_star_textbox.activeSelf)
+        else if (Stage5_Controller.q[74] && !q4a8)
         {
             StartCoroutine(Fadeout_black());
             q4a8 = true;
@@ -266,24 +223,12 @@ public class Stage5_7_1_GameController : MonoBehaviour {
         }
         else if (q4a14 && q4a15 && !q4a16)
         {
-            ti.currLineArr[2] = 56;
-            ti.NPC_Say_yeah("코코");
+            ti.Talk(16); // 무시하냐..
             q4a16 = true;
-        }
-        else if (q4a16 && !q4a17 && !_coco_textbox.activeSelf)
-        {
-            ti.currLineArr[0] = 150; // 무시하냐..
-            ti.NPC_Say_yeah("별감");
-            q4a17 = true;
-        }
-        else if (q4a17 && !_star_textbox.activeSelf)
-        {
-            Stage5_Controller._Stage5_Quest[39] = true; // 맵을 나오기 전까지 완료.
-            
         }
     }
     
-    IEnumerator MoveToTrash()
+ /*   IEnumerator MoveToTrash()
     {
         mbr.enabled = false;
         print("자동으로 쓰레기 더미 앞까지 가기");
@@ -297,7 +242,7 @@ public class Stage5_7_1_GameController : MonoBehaviour {
         }
     }
 
- /*   IEnumerator Mission()
+    IEnumerator Mission()
     {
         print("텍스트");
         while (true)

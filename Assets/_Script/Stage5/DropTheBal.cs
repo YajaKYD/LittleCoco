@@ -7,24 +7,19 @@ public class DropTheBal : MonoBehaviour {
 
 	private Item_Controller ic;
 	public Sprite starImg;
-    private GameObject _star_textbox;
-    private GameObject _ivon_textbox;
-    private GameObject _coco_textbox;
-    private Text_Importer ti;
+    private Text_Importer2 ti;
 
     private bool q1a1 = false;
 
 	void Awake(){
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 
-        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
-        _star_textbox = ti._text_boxes[0];
-        _ivon_textbox = ti._text_boxes[1];
-        _coco_textbox = ti._text_boxes[2];
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+        ti.Import(500);
     }
 
 	/*void OnTriggerEnter2D(Collider2D other){
-		if (other.CompareTag ("Player") && Stage5_Controller._Stage5_Quest [18] && !Stage5_Controller._Stage5_Quest[19]) {
+		if (other.CompareTag ("Player") && Stage5_Controller.q [18] && !Stage5_Controller.q[19]) {
 			//GameObject.Find ("Player").GetComponent<Moving_by_RLbuttons> ().enabled = false;
 			GameObject ball = (GameObject)Instantiate (Resources.Load ("Prefabs/Ball"));
 			Destroy (ball.GetComponent<Ball_popup> ());
@@ -35,13 +30,13 @@ public class DropTheBal : MonoBehaviour {
 			Physics2D.IgnoreCollision (GameObject.Find("Player").GetComponent<Collider2D> (), ball.GetComponent<Collider2D> (), true);
 			ball.transform.position = this.transform.position;
 			Auto_ItemUse ();
-			Stage5_Controller._Stage5_Quest [19] = true;
+			Stage5_Controller.q [19] = true;
 		}
 	}*/
 
     void Update()
     {
-        if (Stage5_Controller._Stage5_Quest[18] && !Stage5_Controller._Stage5_Quest[19])
+        if (Stage5_Controller.q[18] && !Stage5_Controller.q[19])
         {
             GetComponent<Outline>().used_or_not_for_retry = false;
             ic._interaction_object[1] = "Player"; // 공을 임시로 player로 interaction object 바꾸기
@@ -57,10 +52,10 @@ public class DropTheBal : MonoBehaviour {
                 Physics2D.IgnoreCollision(GameObject.Find("Player").GetComponent<Collider2D>(), ball.GetComponent<Collider2D>(), true);
                 ball.transform.position = this.transform.position;
                 Auto_ItemUse();
-                Stage5_Controller._Stage5_Quest[19] = true;
+                Stage5_Controller.q[19] = true;
             }
         }
-        else if (Stage5_Controller._Stage5_Quest[19] && !Stage5_Controller._Stage5_Quest[20])
+        else if (Stage5_Controller.q[19] && !Stage5_Controller.q[20])
         {
             Star_GoBack();
         }
@@ -86,24 +81,22 @@ public class DropTheBal : MonoBehaviour {
     {
         if (!q1a1)
         {
-            ti.currLineArr[2] = 23;
-            print("상당히 실망한 코코");
-            ti.NPC_Say_yeah("코코");
+            ti.Talk();
             q1a1 = true;
         }
-        else
+        else if (Stage5_Controller.q[54])
         {
             ic.Get_Item_Auto(5, starImg); // 탭으로 아이템 획득
             ic._interaction_object[1] = "";
-            Stage5_Controller._Stage5_Quest[20] = true;
+            Stage5_Controller.q[20] = true;
         }
     }
 
 /*	void OnMouseDown(){
-		if (Stage5_Controller._Stage5_Quest [19] && !Stage5_Controller._Stage5_Quest[20]) {
+		if (Stage5_Controller.q [19] && !Stage5_Controller.q[20]) {
 			ic.Get_Item_Auto (5, starImg); // 탭으로 아이템 획득
             ic._interaction_object[1] = "";
-			Stage5_Controller._Stage5_Quest [20] = true;
+			Stage5_Controller.q [20] = true;
 		}
 	}*/
 }

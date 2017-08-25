@@ -31,7 +31,7 @@ public class Pot_Socket_Controller : MonoBehaviour {
 
     void Update()
     {
-        if (Stage5_Controller._Stage5_Quest[44] && !Stage5_Controller._Stage5_Quest[45])
+        if (Stage5_Controller.q[44] && !Stage5_Controller.q[45])
         {
             mbr.enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = true;
@@ -53,7 +53,7 @@ public class Pot_Socket_Controller : MonoBehaviour {
             else
             {
                 this.GetComponent<SpriteRenderer>().enabled = false;
-                Stage5_Controller._Stage5_Quest[45] = true; // 상자와 우산 설치 완료
+                Stage5_Controller.q[45] = true; // 상자와 우산 설치 완료
             }
         }
     }

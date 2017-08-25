@@ -47,6 +47,7 @@ public class Stage6_8_GameController : Controller {
         itemButton0.enabled = true; item0.enabled = true; itemButton1.enabled = true; item1.enabled = true;
         itemButton2.enabled = true; itemButton3.enabled = true; itemButton4.enabled = true;
 
+        Stage6_Controller.diaryscene = false;
         sceneNo = 68;
     }
 
@@ -60,7 +61,7 @@ public class Stage6_8_GameController : Controller {
 
         ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
         ti.Import(68);
-        
+       
         if (!Stage6_Controller.q[36])
         {
             player.transform.position = start_pos.position;
