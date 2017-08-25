@@ -63,8 +63,6 @@ public class Text_Position : MonoBehaviour {
 //			rectTransform.position = mainCam.WorldToScreenPoint (textPos.transform.position);
 //			Debug.Log ("rect position 2 " + rectTransform.position + "textPos " + textPos.transform.position);
 //		}
-
-
 		if (this.gameObject.activeSelf && ic.gameObject.activeSelf && nameFind == "Star") {
 			starPos = GameObject.Find ("Item_button_" + starItemIndex).GetComponent<RectTransform> ();
 			rectTransform.position = new Vector3 (starPos.position.x - 50, starPos.position.y, starPos.position.z);
