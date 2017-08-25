@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage3_2_GameController : MonoBehaviour {
+public class Stage3_2_GameController : Controller {
 
 	private GameObject player;
 	private Transform start_pos;
@@ -13,6 +13,7 @@ public class Stage3_2_GameController : MonoBehaviour {
 	public Outline _air;
 
 	void Awake(){
+        sceneNo = 32;
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
@@ -25,32 +26,32 @@ public class Stage3_2_GameController : MonoBehaviour {
 			player.transform.position = regen_pos.position;
 		}
 
-		if (Stage3_Controller._Stage3_Quest[1] && !Stage3_Controller._Stage3_Quest[2]) {
+		if (Stage3_Controller.q[1] && !Stage3_Controller.q[2]) {
 			_toys [0].GetComponent<Toys> ()._pickable = true;
 			_toys [1].GetComponent<Toys> ()._pickable = true;
 			_toys [2].GetComponent<Toys> ()._pickable = true; 
 		}
 
-		if (Stage3_Controller._Stage3_Quest[2]) { //공을 가져다준 후엔 주울 수 없음.
+		if (Stage3_Controller.q[2]) { //공을 가져다준 후엔 주울 수 없음.
 			_toys [0].GetComponent<Toys> ()._pickable = false;
 			_toys [1].GetComponent<Toys> ()._pickable = false;
 			_toys [2].GetComponent<Toys> ()._pickable = false;
         }
 
-		if (Stage3_Controller._Stage3_Quest[3]) {
+		if (Stage3_Controller.q[3]) {
 			Destroy (_toys [0]);
 		}
-		if (Stage3_Controller._Stage3_Quest[4]) {
+		if (Stage3_Controller.q[4]) {
 			Destroy (_toys [1]);
 		}
-		if (Stage3_Controller._Stage3_Quest[5]) {
+		if (Stage3_Controller.q[5]) {
 			Destroy (_toys [2]);
 		}
 	}
 
 	void Update(){
 
-		if (Stage3_Controller._Stage3_Quest[1] && !Stage3_Controller._Stage3_Quest[2]) {
+		if (Stage3_Controller.q[1] && !Stage3_Controller.q[2]) {
 			Q3_pick_them_up ();
 		}
 
@@ -63,11 +64,11 @@ public class Stage3_2_GameController : MonoBehaviour {
 			aa.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			aa.transform.position = new Vector3 (aa.transform.position.x, aa.transform.position.y, 6.5f);
 			if (aa.GetComponent<Toys> ()._this_num == 11) {
-				Stage3_Controller._Stage3_Quest[3] = false;
+				Stage3_Controller.q[3] = false;
 			} else if (aa.GetComponent<Toys> ()._this_num == 12) {
-				Stage3_Controller._Stage3_Quest[4] = false;
+				Stage3_Controller.q[4] = false;
 			} else {
-				Stage3_Controller._Stage3_Quest[5]	 = false;
+				Stage3_Controller.q[5]	 = false;
 			}
 			_air.used_or_not_for_retry = false;
 		}

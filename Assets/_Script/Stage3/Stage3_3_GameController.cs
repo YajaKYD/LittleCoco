@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stage3_3_GameController : MonoBehaviour {
+public class Stage3_3_GameController : Controller {
 
 	private bool a1 = false;
 	private bool a2 = false;
@@ -12,47 +12,50 @@ public class Stage3_3_GameController : MonoBehaviour {
 	public GameObject _ivon_textbox;
 	private Transform start_pos;
     private Item_Controller ic;
-    private Text_Importer aa;
+    private Text_Importer2 aa;
 
 	public Transform _ivon;
     public GameObject portalto3_4;
+    
 	//private Transform regen_pos;
 	void Awake(){
+        sceneNo = 33;
 		player = GameObject.Find ("Player");
         npc = GameObject.FindWithTag("NPC");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		player.transform.position = start_pos.position;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
-        aa = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+        aa = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
         //regen_pos = GameObject.Find ("Regen_Pos").transform;
     }
 
 	void Start(){
-		if (Stage3_Controller._Stage3_Quest [8]) {
+        aa.Import(33);
+		if (Stage3_Controller.q [8]) {
 			portalto3_4.GetComponent<BoxCollider2D>().enabled = true;
 		}
 	}
 
     void OnTriggerEnter2D()
     {
-		if (Stage3_Controller._Stage3_Quest[0] && !Stage3_Controller._Stage3_Quest[1])
+		if (Stage3_Controller.q[0] && !Stage3_Controller.q[1])
         {
             Q2_start_getaBall();
         }
 
-		if (Stage3_Controller._Stage3_Quest[1] && !Stage3_Controller._Stage3_Quest[2])
+		if (Stage3_Controller.q[1] && !Stage3_Controller.q[2])
         {
-			if ((Stage3_Controller._Stage3_Quest[3] && Stage3_Controller._Stage3_Quest[4]) ||
-				(Stage3_Controller._Stage3_Quest[3] && Stage3_Controller._Stage3_Quest[5]) ||
-				(Stage3_Controller._Stage3_Quest[4] && Stage3_Controller._Stage3_Quest[5]))
+			if ((Stage3_Controller.q[3] && Stage3_Controller.q[4]) ||
+				(Stage3_Controller.q[3] && Stage3_Controller.q[5]) ||
+				(Stage3_Controller.q[4] && Stage3_Controller.q[5]))
             {
                 Q4_start_getaBag();
             }
         }
 
-		if (Stage3_Controller._Stage3_Quest[2] && !Stage3_Controller._Stage3_Quest[6])
+		if (Stage3_Controller.q[2] && !Stage3_Controller.q[6])
         {
-			if (Stage3_Controller._Stage3_Quest[7] && !Stage3_Controller._Stage3_Quest[8])
+			if (Stage3_Controller.q[7] && !Stage3_Controller.q[8])
             {
                 Q5_start_goOut();
             }
@@ -60,27 +63,23 @@ public class Stage3_3_GameController : MonoBehaviour {
     }
 
 	void Q2_start_getaBall(){
-        aa.currLineArr[1] = 2;
-        aa.NPC_Say_yeah(name);
-		Stage3_Controller._Stage3_Quest[1] = true;
+        aa.Talk(); // 공원으로 놀러가자 코코
     }
 
 	void Q4_start_getaBag(){
         Use_Item("ball1");
         Use_Item("ball2");
         Use_Item("ball3");//공주워온거지움
-        aa.currLineArr[1] += 2;//이본 다음대사 치게함.
-        aa.NPC_Say_yeah("이본");
-        _ivon_textbox = GameObject.Find("이본_text");
-		Stage3_Controller._Stage3_Quest[2] = true;
+        aa.Talk(5); // 우리 코코 똑똑하지!
+       // _ivon_textbox = GameObject.Find("이본_text");
+		//Stage3_Controller.q[2] = true;
 	}
 
     void Q5_start_goOut()
     {
         Use_Item("Dog_bag");
-        aa.currLineArr[1] += 2;//이본 다음대사 치게함.
-        aa.NPC_Say_yeah("이본");
-		Stage3_Controller._Stage3_Quest[8] = true;
+        aa.Talk(9); // 와 우리코코 잘했어
+		//Stage3_Controller.q[8] = true;
         portalto3_4.GetComponent<BoxCollider2D>().enabled = true;
     }
 

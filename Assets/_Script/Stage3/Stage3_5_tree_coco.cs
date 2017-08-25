@@ -7,7 +7,7 @@ public class Stage3_5_tree_coco : MonoBehaviour {
     protected Stage3_5_GameController controller;
     protected bool closeToTree;
     private Item_Controller ic;
-    private Text_Importer ti;
+    private Text_Importer2 ti;
     public GameObject posting;
     public bool postingOn;
     public bool like;
@@ -24,7 +24,8 @@ public class Stage3_5_tree_coco : MonoBehaviour {
     }
 
     void Start () {
-        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+        ti.Import(35);
         controller = GameObject.Find("Stage3_5_GameController").GetComponent<Stage3_5_GameController>();
         like = true;
     }
@@ -40,12 +41,12 @@ public class Stage3_5_tree_coco : MonoBehaviour {
 	
 //    void OnMouseDown()
 //    {
-//		if (!Stage3_Controller._Stage3_Quest[14])
+//		if (!Stage3_Controller.q[14])
 //        {
-//			Stage3_Controller._Stage3_Quest[14] = true;
+//			Stage3_Controller.q[14] = true;
 //			Save_Script.Save_Quest_Info ();
 //            ti.NPC_Say_yeah("별감"); // 나무를 만지면 흔적을 볼 수 있어(설명1)
-//		} else if (!postingOn && Stage3_Controller._Stage3_Quest[14] && closeToTree)
+//		} else if (!postingOn && Stage3_Controller.q[14] && closeToTree)
 //        {
 //            for(int i=0; i<postings.Length; i++)
 //            {
@@ -62,7 +63,7 @@ public class Stage3_5_tree_coco : MonoBehaviour {
 //                instructQuest = true;
 //            }
 //
-//		} else if(postingOn && Stage3_Controller._Stage3_Quest[14] && closeToTree)
+//		} else if(postingOn && Stage3_Controller.q[14] && closeToTree)
 //        {
 //            posting.SetActive(false);
 //            postingOn = false;
@@ -76,7 +77,7 @@ public class Stage3_5_tree_coco : MonoBehaviour {
 		{
 			print ("SDDF");
 			instructQuest[0] = true;
-			ti.NPC_Say_yeah("별감"); // 나무를 만지면 흔적을 볼 수 있어(설명1)
+			ti.Talk(); // 나무를 만지면 흔적을 볼 수 있어(설명1)
 		} else if (!postingOn && instructQuest[0] && closeToTree)
 		{
 			for(int i=0; i<postings.Length; i++)
@@ -89,8 +90,7 @@ public class Stage3_5_tree_coco : MonoBehaviour {
 
 			if (!instructQuest[1])
 			{
-				ti.currLineArr[2] += 2; // 별감이 다음 대사
-				ti.NPC_Say_yeah("별감"); // 화살표를 클릭해서 좋아요를 눌러준 친구를 확인하고 너도 좋아요를 눌러주렴
+                ti.Talk(3); // 화살표를 클릭해서 좋아요를 눌러준 친구를 확인하고 너도 좋아요를 눌러주렴
 				instructQuest[1] = true;
 			}
 

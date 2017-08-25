@@ -132,6 +132,7 @@ public class Stage5_6_GameController : Controller {
             ti.Talk(); // 코코야 저기 봐 강아지가
             q1a1 = true;
         }
+        else if (!Stage5_Controller.q[77]) mbr.enabled = false;
         else if (Stage5_Controller.q[77] && !q1a2)
         {
             mbr.Moving_Right(8f);

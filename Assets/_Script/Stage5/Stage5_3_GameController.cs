@@ -116,10 +116,10 @@ public class Stage5_3_GameController : Controller {
 	void Q1_firstcon(){
 		if (!q1a1)
         {
-            mbr.enabled = false;
             StartCoroutine (Warigari ());
 			q1a1 = true;
 		}
+        mbr.enabled = false;
 	}
 
     void Q2_removed_manhole()
@@ -129,6 +129,7 @@ public class Stage5_3_GameController : Controller {
             ti.Talk(11); //음?
             q2a1 = true;
         }
+        else if (!Stage5_Controller.q[69]) mbr.enabled = false;
         else if (Stage5_Controller.q[69] && !q2a3) // 중간 지점까지 카메라 훑어주기
         {
             StartCoroutine(Right_Camera_Move());
@@ -167,9 +168,7 @@ public class Stage5_3_GameController : Controller {
 
     IEnumerator Warigari(){
 		print ("전전긍긍");
-        mbr.enabled = false;
 		while (true) {
-            mbr.enabled = false;
             yield return new WaitForSeconds (2f);
 			break;
 		}

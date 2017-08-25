@@ -124,6 +124,7 @@ public class Stage5_2_GameController : Controller {
         }
         else if (Stage5_Controller.q[53] && !Stage5_Controller.q[11]) // Fadeout 시키기 위함
         {
+            mbr.enabled = false;
             StartCoroutine(Fadeout_black());
         }
         else if (Stage5_Controller.q[11] && !Stage5_Controller.q[12] && afterFadein) // Fadein 시키기 위함
@@ -203,6 +204,7 @@ public class Stage5_2_GameController : Controller {
             ti.Talk(); // 코코야 어서 자야지
 			q4_a1 = true;
 		}
+        mbr.enabled = false;
 	}
 
 	void Q5_Until_ivonOut(){

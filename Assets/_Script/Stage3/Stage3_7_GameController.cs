@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 //using UnityEditor;
 
-public class Stage3_7_GameController : MonoBehaviour {
+public class Stage3_7_GameController : Controller {
 
 //	[MenuItem("MyMenu/for test")]
 //	static void DoSomething()
@@ -22,16 +22,21 @@ public class Stage3_7_GameController : MonoBehaviour {
 	public GameObject startPos;
 	public GameObject earphone_message;
 	private GameObject Item_Canvas;
-	private Text_Importer ti;
+	private Text_Importer2 ti;
 	private bool active;
 	private bool lookingforIvon;
 
-	void Start () {
+    void Awake()
+    {
+        sceneNo = 37;
+    }
+    void Start () {
 		active = true;
 		leftSound = GetComponent<AudioSource> ();
 		GameObject.FindWithTag ("Player").transform.position = startPos.transform.position;
 		Item_Canvas = GameObject.Find ("Item_Canvas");
-		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+        ti.Import(37);
 		//ti.Import (15);
 
 		GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject; // stop bgm
@@ -44,7 +49,7 @@ public class Stage3_7_GameController : MonoBehaviour {
 			
 		GameObject.FindWithTag ("Player").transform.localScale = new Vector3 (0.6f, 0.6f, 1f);
 
-		if (!Stage3_Controller._Stage3_Quest[20]) {
+		if (!Stage3_Controller.q[20]) {
 			Save_Script.Save_Now_Point();
 			earphone_message = Instantiate (earphone_message, Vector3.zero, Quaternion.identity) as GameObject;
 			earphone_message.transform.SetParent (Item_Canvas.transform, false);
@@ -58,7 +63,7 @@ public class Stage3_7_GameController : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Stage3_Controller._Stage3_Quest[20] && active) {
+		if (Stage3_Controller.q[20] && active) {
 			StartCoroutine("WaitAndSound");
 			active = false;
 		}	
@@ -70,8 +75,7 @@ public class Stage3_7_GameController : MonoBehaviour {
 		Debug.Log ("left sound");
 		yield return new WaitForSeconds(1);
 		if (!lookingforIvon) {
-			ti.currLineArr [0] = 8; //코코 대사 
-			ti.NPC_Say_yeah ("코코");
+            ti.Talk(3); // Ivon
 		}
 		yield return new WaitForSeconds(2);
 		portal1.GetComponent<BoxCollider2D> ().enabled = true;

@@ -125,6 +125,7 @@ public class Stage5_7_1_GameController : Controller {
             ti.Talk(); // 엇 저 인형은..
             q1a1 = true;
         }
+        else if (!Stage5_Controller.q[70]) mbr.enabled = false;
         else if (Stage5_Controller.q[70] && !q1a2)
         {
             mbr.Moving_Right(8f);

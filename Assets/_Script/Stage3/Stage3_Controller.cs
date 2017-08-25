@@ -9,8 +9,8 @@ public class Stage3_Controller : MonoBehaviour {
 	public Item_Controller ic;
 
 	public static int sceneIndex;
-
-	public static bool[] _Stage3_Quest = new bool[23];
+    public static int[] lineNo = new int[10];
+    public static bool[] q = new bool[34];
 
 	//public static bool _stage3_q1 = false; //첫 대사0
 	//public static bool _stage3_q2 = false; //3-3 대사1

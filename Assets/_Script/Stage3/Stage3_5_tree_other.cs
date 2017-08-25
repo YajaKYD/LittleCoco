@@ -35,10 +35,10 @@ public class Stage3_5_tree_other : Stage3_5_tree_coco
 
 
 
-		if (Stage3_Controller._Stage3_Quest[14] && closeToTree)
+		if (Stage3_Controller.q[14] && closeToTree)
         {
 			//animation
-			mbr.SetState(CocoState.Smell);
+			//mbr.SetState(CocoState.Smell);
 
             if (!postingOn)
             {

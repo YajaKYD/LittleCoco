@@ -22,6 +22,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 
     void Start()
     {
+        ti.Import(36);
 		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + ", sceneIndex is " + Stage3_Controller.sceneIndex);
 		if (Stage3_Controller.sceneIndex > SceneManager.GetActiveScene ().buildIndex || Stage3_Controller.sceneIndex==0) {
 			Save_Script.Save_Now_Point ();
@@ -31,7 +32,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 		Debug.Log (name + "buildIndex is " + SceneManager.GetActiveScene ().buildIndex + ", sceneIndex is " + Stage3_Controller.sceneIndex);
 
         activatePortal();
-		if (Stage3_Controller._Stage3_Quest[19]) {
+		if (Stage3_Controller.q[19]) {
 
 			//whiteout//
 			//print("whiteout");
@@ -59,10 +60,10 @@ public class Stage3_6_GameController : Stage3_5_GameController
     
     public void activatePortal()
     {
-		if(Stage3_Controller._Stage3_Quest[16] && Stage3_Controller._Stage3_Quest[17] && Stage3_Controller._Stage3_Quest[18])
+		if(Stage3_Controller.q[16] && Stage3_Controller.q[17] && Stage3_Controller.q[18])
         {
             portal.GetComponent<BoxCollider2D>().enabled = true;
-			Stage3_Controller._Stage3_Quest[15] = true;
+			Stage3_Controller.q[15] = true;
             Debug.Log("likebutton" + likeButton.Length);
             for (int i = 0; i < likeButton.Length; i++)
                 {
@@ -109,10 +110,9 @@ public class Stage3_6_GameController : Stage3_5_GameController
 
 		GameObject.FindWithTag("Item_Canvas").GetComponent<Canvas> ().enabled = true;
 		GameObject.FindWithTag ("Setting").GetComponent<Canvas> ().enabled = true;
-		//글자띄우고.
+        //글자띄우고.
 
-		ti.currLineArr[1] += 2; //이본 다음대사 넘김
-		ti.NPC_Say_yeah ("이본"); // Ivon calls Coco
+        ti.Talk(); // Ivon calls Coco
 	}
 
 	void PopUpEndingText(){

@@ -12,8 +12,9 @@ public class Stage5_1x_GameController : Controller {
 	public BoxCollider2D a2;
 	public GameObject portal;
 	public Transform startpos;
+    private Moving_by_RLbuttons mbr;
 
-	void Awake(){
+    void Awake(){
         sceneNo = 50;
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
         ti.Import(50);
@@ -22,9 +23,10 @@ public class Stage5_1x_GameController : Controller {
 	}
 
 	void Start () {
-
+        mbr = player.GetComponent<Moving_by_RLbuttons>();
         Save_Script.Save_Now_Point();
         ti.Talk(); // 코코~
+        mbr.enabled = false;
 
 		player.transform.position = startpos.position;
 	}
@@ -41,11 +43,13 @@ public class Stage5_1x_GameController : Controller {
 	}
 
 	void Update () {
-		if (Stage5_Controller.q[57] && !q_b) {
-			a1.enabled = false;
-			a2.enabled = true;
-			GameObject prefab = (GameObject)Instantiate(Resources.Load("Prefabs/Ball"));
-			q_b = true;
-		}
+        if (Stage5_Controller.q[57] && !q_b)
+        {
+            a1.enabled = false;
+            a2.enabled = true;
+            GameObject prefab = (GameObject)Instantiate(Resources.Load("Prefabs/Ball"));
+            q_b = true;
+        }
+        else if (!Stage5_Controller.q[56]) mbr.enabled = false;
 	}
 }
