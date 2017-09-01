@@ -59,5 +59,6 @@ public class Stage5_5_GameController : Controller {
             ti.Talk();
             q1a1 = true;
         }
+        mbr.enabled = false;
     }
 }

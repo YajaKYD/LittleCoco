@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Stage3_5_GameController : MonoBehaviour {
+public class Stage3_5_GameController : Controller {
 
     protected GameObject player;
     protected Transform start_pos;
 	protected Transform end_pos;
     protected Item_Controller ic;
-    protected Text_Importer ti;
+    protected Text_Importer2 ti;
 	public GameObject portal3_4, portal3_6;
 
     //public Sprite npcTemp;
@@ -27,12 +27,13 @@ public class Stage3_5_GameController : MonoBehaviour {
 
     protected void Awake()
     {
+        sceneNo = 35;
         player = GameObject.Find("Player");
         start_pos = GameObject.Find("Start_Pos").transform;
 		end_pos = GameObject.Find ("End_Pos").transform;
         player.transform.position = start_pos.position;
         ic = GameObject.FindWithTag("Item_Canvas").GetComponent<Item_Controller>();
-        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer>();
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
         trees = GameObject.FindGameObjectsWithTag("Tree");
         likeButton = GameObject.FindGameObjectsWithTag("likeButton");
     }
@@ -46,13 +47,13 @@ public class Stage3_5_GameController : MonoBehaviour {
 		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
 		Debug.Log ("buildIndex is " + SceneManager.GetActiveScene ().buildIndex + "sceneIndex is " + Stage3_Controller.sceneIndex);
 
-		if (!Stage3_Controller._Stage3_Quest[14])
+		if (!Stage3_Controller.q[14])
         {
 			//ic.Get_Item_Auto (5, npcTemp); //temp code
             //ti.Import(15);
         }
 
-		if (Stage3_Controller._Stage3_Quest[15])
+		if (Stage3_Controller.q[15])
         {
             for (int i = 0; i < likeButton.Length; i++)
             {
@@ -60,7 +61,7 @@ public class Stage3_5_GameController : MonoBehaviour {
             }
         }
 
-		if (Stage3_Controller._Stage3_Quest[19]) {
+		if (Stage3_Controller.q[19]) {
 
 			logo.SetActive (false);
 

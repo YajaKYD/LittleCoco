@@ -44,8 +44,7 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 	}
 
 	void Update(){
-
-
+		
 
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.Alpha1)) {
 			_what_stage_now_cleared = 0;
@@ -58,6 +57,9 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 		}
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.Alpha4)) {
 			_what_stage_now_cleared = 3;
+		}
+		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.Alpha5)) {
+			_what_stage_now_cleared = 4;
 		}
 	}
 
@@ -85,30 +87,33 @@ public class Selecting_stage : MonoBehaviour, IPointerClickHandler {
 				break;
 			case 2:
 				SceneManager.LoadScene (15);
-				_stage2_con_di [0].SetActive (true); //Stage controller
-				_stage2_con_di [1].SetActive (true); //Dialogue controller
-				DontDestroyOnLoad (_stage2_con_di [0]);
+				//_stage2_con_di [0].SetActive (true);
+				_stage2_con_di [1].SetActive (true);
+				//DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa.Import (15);
+				//aa.Import (15);
 				break;
 			case 3:
 				SceneManager.LoadScene (25);
-				_stage2_con_di [0].SetActive (true); //Stage controller
-				_stage2_con_di [1].SetActive (true); //Dialogue controller
-				DontDestroyOnLoad (_stage2_con_di [0]);
+				//_stage2_con_di [0].SetActive (true);
+				_stage2_con_di [1].SetActive (true);
+				//DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> (); // why???? only this one????
-				aa.Import (25);
+				//aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> (); // why???? only this one????
+				//aa.Import (25);
 				break;
 			case 4:
 				SceneManager.LoadScene (32);
-				_stage2_con_di [0].SetActive (true); //Stage controller
-				_stage2_con_di [1].SetActive (true); //Dialogue controller
-				DontDestroyOnLoad (_stage2_con_di [0]);
+				//_stage2_con_di [0].SetActive (true);
+				_stage2_con_di [1].SetActive (true);
+				//DontDestroyOnLoad (_stage2_con_di [0]);
 				DontDestroyOnLoad (_stage2_con_di [1]);
-				aa.Import (32);
+				//aa.Import (32);
 				break;
 			case 5:  
+				SceneManager.LoadScene (43);
+				_stage2_con_di [1].SetActive (true);
+				DontDestroyOnLoad (_stage2_con_di [1]);
 				break;
 
 			default:

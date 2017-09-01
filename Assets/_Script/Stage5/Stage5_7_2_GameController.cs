@@ -116,10 +116,10 @@ public class Stage5_7_2_GameController : Controller {
             {
                 portalTo5_3.enabled = false;
                 ti.Talk();//아 상자는 왜 또
-                mbr.enabled = false;
                 q2a1 = true;
             }
         }
+        else if (!Stage5_Controller.q[75]) mbr.enabled = false;
         else if (Stage5_Controller.q[75] && !q2a4)
         {
             StartCoroutine(Fadeout_black());

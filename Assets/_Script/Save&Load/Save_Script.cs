@@ -7,7 +7,7 @@ public class Save_Script : MonoBehaviour {
 	public static bool[] S1 = new bool[11];
 	public static bool[] S2 = new bool[40];
 	public static int[] S2_intArr = new int[3];
-	public static bool[] S3 = new bool[23];
+	public static bool[] S3 = new bool[34];
 	public static bool[] S4 = new bool[50];
 	public static bool[] S4_puzzle = new bool[2];
 	public static bool[] S5 = new bool[84];
@@ -114,7 +114,7 @@ public class Save_Script : MonoBehaviour {
 
 	public static void Save_S3(){
 		//S3 = new bool[23];
-		S3 = Stage3_Controller._Stage3_Quest;
+		S3 = Stage3_Controller.q;
 		//Debug.Log ("save quest info activated");
 	}
 

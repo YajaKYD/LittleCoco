@@ -81,7 +81,6 @@ public class Stage2_1_GameController : Controller {
 			SceneManager.LoadScene (14);
 		}
 		//
-
 		if(!Stage2_Controller.q[0]){
 			Q1_pick_clockwork_up ();
 		}

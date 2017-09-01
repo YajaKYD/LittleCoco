@@ -212,6 +212,7 @@ public class Stage5_1_GameController : Controller {
             q10a1 = true;
             ic._consumable[1] = true; // 임시로 소모품 만듦
         }
+        mbr.enabled = false;
     }
 
 	void Q11_putStaronPot(){
@@ -253,15 +254,13 @@ public class Stage5_1_GameController : Controller {
             StartCoroutine(Diary_enable());
             q14a2 = true;
         }
+        mbr.enabled = false;
     }
 
 	void Q15_using_diary(){
 		if (!q15a1 && Item_Drag._NOW_Shaked) {
             ti.Talk(40); // 도움이 될 만한
 			q15a1 = true;
-            //save point//
-            Save_Script.Save_Now_Point();
-            //save point//
         }
         else if (Stage5_Controller.q[59] && !q15a2)
         {
@@ -334,7 +333,7 @@ public class Stage5_1_GameController : Controller {
 			break;
 		}
         //Stage5_Controller.q1 = true;
-        mbr.enabled = true;
+        mbr.enabled = false;
 		GGALJAKI2 = true;
 	}
 

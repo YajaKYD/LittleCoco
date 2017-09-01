@@ -182,11 +182,11 @@ public class Stage5_4_GameController : Controller {
 
 	void Q1_gotoPaper(){
 		if (!q1a1) {
-            mbr.enabled = false;
             ti.Talk(); // 오 여긴 비교적 한적해
 			q1a1 = true;
 			//StartCoroutine (Coco_ddong ());
 		}
+        else if (!Stage5_Controller.q[63]) mbr.enabled = false;
         else if (Stage5_Controller.q[63] && !q1a2 && player.transform.position.x <= cluePlace.transform.position.x)
         {
             ti.Talk(4); // Coco: !
@@ -231,7 +231,7 @@ public class Stage5_4_GameController : Controller {
         {
             main_Camera.GetComponent<CameraManager>().enabled = true;
             ti.Talk(17); // 음..신문지로 가려만 놓자.
-            q1a18 = true;            
+            q1a18 = true;
         }
 	}
 

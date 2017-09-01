@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Stage3_1_GameController : MonoBehaviour {
+public class Stage3_1_GameController : Controller {
 
 	private bool a1;
 	private bool a2;
@@ -11,18 +11,19 @@ public class Stage3_1_GameController : MonoBehaviour {
 	private GameObject player;
 	private Transform start_pos;
 	private Transform regen_pos;
+    private Text_Importer2 ti;
 
     public GameObject bag;
 
 	void Awake(){
-
+        sceneNo = 31;
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 
 
 
-		if (Stage3_Controller._Stage3_Quest[7])
+		if (Stage3_Controller.q[7])
         {
             Destroy(bag);
         }
@@ -30,9 +31,10 @@ public class Stage3_1_GameController : MonoBehaviour {
 	}
 
 	void Start(){
-
-		//Stage3 Save point 1//
-		if (!Stage3_Controller._Stage3_Quest [0]) {
+        ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
+        ti.Import(31);
+        //Stage3 Save point 1//
+        if (!Stage3_Controller.q [0]) {
 			Save_Script.Save_Now_Point ();
 		}
 		//Stage3 Save point 1//
@@ -43,7 +45,7 @@ public class Stage3_1_GameController : MonoBehaviour {
 		} else {
 			player.transform.position = start_pos.position;
 		}
-		if (Stage3_Controller._Stage3_Quest[2])
+		if (Stage3_Controller.q[2])
         {
             bag.GetComponent<BoxCollider2D>().enabled = true;
         }
@@ -54,8 +56,8 @@ public class Stage3_1_GameController : MonoBehaviour {
 		//개발용//
 		if (Input.GetKey (KeyCode.Q) && Input.GetKey (KeyCode.W)) {
 			print ("go to end");
-			for (int i = 0; i < Stage3_Controller._Stage3_Quest.Length; i++) {
-				Stage3_Controller._Stage3_Quest [i] = true;
+			for (int i = 0; i < Stage3_Controller.q.Length; i++) {
+				Stage3_Controller.q [i] = true;
 			}
 			SceneManager.LoadScene (18);
 			//SceneManager.LoadScene (21);
@@ -63,7 +65,7 @@ public class Stage3_1_GameController : MonoBehaviour {
 		//
 
 
-		if (!Stage3_Controller._Stage3_Quest[0]) {
+		if (!Stage3_Controller.q[0]) {
 			Q1_StartTalk ();
 		}
 
@@ -72,18 +74,9 @@ public class Stage3_1_GameController : MonoBehaviour {
 
 	void Q1_StartTalk(){
 		if (!a1) {
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr[1] = 0;
-			aa.NPC_Say_yeah ("이본");
-			_ivon_textbox = GameObject.Find ("이본_text");
+            ti.Talk();
+			//_ivon_textbox = GameObject.Find ("이본_text");
 			a1 = true;
-		}
-
-		if (!a2 && a1 && !_ivon_textbox.activeSelf) {
-			Text_Importer aa = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer> ();
-			aa.currLineArr[0] = 0;
-			aa.NPC_Say_yeah ("코코");
-			Stage3_Controller._Stage3_Quest[0] = true;
 		}
 	}
 }

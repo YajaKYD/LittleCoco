@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Stage3_10_GameController : MonoBehaviour {
+public class Stage3_10_GameController : Controller {
 
 	private bool active;
 	public AudioSource leftSound;
 	public GameObject portal1, portal2;
 	public GameObject startPos;
 
-	void Start () {
+    void Awake()
+    {
+        sceneNo = 30;    
+    }
+
+    void Start () {
 		active = true;
 		leftSound = GetComponent<AudioSource> ();
 		GameObject.FindWithTag ("Player").transform.position = startPos.transform.position;
 		Stage3_Controller.sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-		if (Stage3_Controller._Stage3_Quest[22]) {
+		if (Stage3_Controller.q[22]) {
 			Destroy (GameObject.Find ("basil"));
 		}
 	}
 
 	void Update () {
-		if (Stage3_Controller._Stage3_Quest[22] && active) {
+		if (Stage3_Controller.q[22] && active) {
 			StartCoroutine("WaitAndSound");
 			active = false;
 		}

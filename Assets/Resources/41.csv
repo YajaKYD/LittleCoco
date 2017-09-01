@@ -1,1 +1,29 @@
-﻿name,textCoco,?Ivon,잘자!null,0Star,오늘 하루도 재미있었다! 이제 자볼까?Coco,IvonStar,아 맞다. 주인님이 잠들어야 마음 놓고 잘 수 있지.null,2Coco,MusicStar,음악을 듣고 계신가봐!null,5Star,그럼 잘 준비를 해볼까!Coco,MungStar,음..? 쿠션이 어디있지?Coco,?Coco,MungStar,거실에? 그래. 가져오자.null,6Star,응? 이게 무슨 소리지..? 가보자!null,9Star,주인님은 잠에 드셨으려나?Coco,IvonStar,그래. 확인하고 자야지.null,11Coco,HeartStar,귀여운 녀석. 이제 우리도 자러가자!null,13Coco,!null,15
+name,text
+Coco,?
+Ivon,잘자!
+null,0
+Star,오늘 하루도 재미있었다! 이제 자볼까?
+Coco,Ivon
+Star,아 맞다. 주인님이 잠들어야 마음 놓고 잘 수 있지.
+null,2
+Coco,Music
+Star,음악을 듣고 계신가봐!
+null,5
+Star,그럼 잘 준비를 해볼까!
+Coco,Mung
+Star,음..? 쿠션이 어디있지?
+Coco,?
+Coco,Mung
+Star,거실에? 그래. 가져오자.
+null,6
+Star,응? 이게 무슨 소리지..? 가보자!
+null,9
+Star,주인님은 잠에 드셨으려나?
+Coco,Ivon
+Star,그래. 확인하고 자야지.
+null,11
+Coco,Heart
+Star,귀여운 녀석. 이제 우리도 자러가자!
+null,13
+Coco,!
+null,15
