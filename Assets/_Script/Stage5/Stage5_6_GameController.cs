@@ -120,6 +120,7 @@ public class Stage5_6_GameController : Controller {
         }
         else if (Stage5_Controller.q[47] && !Stage5_Controller.q[48])
         {
+            mbr.enabled = false;
             Q4_Remember();
         }
     }
@@ -203,6 +204,7 @@ public class Stage5_6_GameController : Controller {
         else if (Stage5_Controller.q[78] && !q3a3)
         {
             //main_Camera.GetComponent<CameraManager>().FocusObject = Ivon;
+            mbr.enabled = false;
             main_Camera.transform.position = new Vector3(main_Camera.transform.position.x + 0.1f, main_Camera.transform.position.y, -10f);
             IvonTextPos.transform.position = new Vector2(IvonTextPos.transform.position.x + 0.1f, IvonTextPos.transform.position.y);
             Ivon.transform.position = new Vector2(Ivon.transform.position.x + 0.1f, Ivon.transform.position.y);
@@ -240,6 +242,11 @@ public class Stage5_6_GameController : Controller {
         {
             StartCoroutine(Fadein_black());
             q4a7 = true;
+        }
+        else if (q4a8)
+        {
+            Stage5_Controller.q[48] = true; // 자동으로 다음 씬 넘어가기 전까지
+            portal_to_5_4.transform.position = player.transform.position;
         }
     }
 
@@ -284,7 +291,10 @@ public class Stage5_6_GameController : Controller {
         }
         rememberScene.color = new Color(1, 1, 1, 0);
         if (!Stage5_Controller.q[47]) q2a7 = true;
-        else q4a6 = true;
+        else
+        {
+            q4a6 = true;
+        }
     }
 
     IEnumerator Fadein_black()
@@ -300,8 +310,7 @@ public class Stage5_6_GameController : Controller {
         if (!Stage5_Controller.q[47]) Stage5_Controller.q[46] = true;
         else
         {
-            Stage5_Controller.q[48] = true; // 자동으로 다음 씬 넘어가기 전까지
-            portal_to_5_4.transform.position = player.transform.position;
+            q4a8 = true;
         }
     }
 

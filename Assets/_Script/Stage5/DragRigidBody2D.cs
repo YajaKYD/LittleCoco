@@ -33,20 +33,20 @@ public class DragRigidBody2D : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+    /*    if (Input.GetMouseButtonDown(0))
         {
             start = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0))
+        else */if (Input.GetMouseButtonUp(0))
         {
-            end = Input.mousePosition;
+            //end = Input.mousePosition;
 
-            force = start - end;
+            //force = start - end;
             
-            if (clicked) rb2D.AddForce(force*-1*throwSpeed);
+            if (clicked) rb2D.AddForce(new Vector2(-1f,1f)*throwSpeed);
 
-            start = new Vector2(0f, 0f);
-            end = new Vector2(0f, 0f);
+            //start = new Vector2(0f, 0f);
+            //end = new Vector2(0f, 0f);
         }
         
         
@@ -59,12 +59,12 @@ public class DragRigidBody2D : MonoBehaviour
         clicked = true;
     }
 
-    void OnMouseDrag()
+  /*  void OnMouseDrag()
     {
         if (!enabled || !clicked) return;
         Vector3 newPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f);
         transform.position = Camera.main.ScreenToWorldPoint(newPosition) + offset;
-    }
+    }*/
 
     void OnMouseUp()
     {

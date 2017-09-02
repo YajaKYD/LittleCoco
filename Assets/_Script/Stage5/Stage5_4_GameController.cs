@@ -142,6 +142,7 @@ public class Stage5_4_GameController : Controller {
             //Save_Script.Save_Now_Point();
             // save point //
             player.transform.position = new Vector2(0.82f, -2.655f);
+            mbr.Moving_Right(0.1f);
             Ivon.SetActive(true);
             newsStand.SetActive(false);
         }
@@ -286,6 +287,7 @@ public class Stage5_4_GameController : Controller {
     {
         if (!q6a1)
         {
+            mbr.Moving_Right(0.1f);
             ti.Talk(36); // 후 화분은 결국
             q6a1 = true;
         }
@@ -308,17 +310,16 @@ public class Stage5_4_GameController : Controller {
         }
         else if (q6a8 && q6a9 && !q6a10)
         {
-            main_Camera.GetComponent<CameraManager>().enabled = false;
+            main_Camera.GetComponent<CameraManager>().enabled = true;
             ti.Talk(44); // 주인님이다..!
             q6a10 = true;
         }
         else if (Stage5_Controller.q[81] && !q6a16)
         {
-            mbr.enabled = false;
-            if (Ivon.transform.position.x >= 9f)
+            if (player.transform.position.x <= 24f)
             {
-                IvonTextPos.transform.position = new Vector2(IvonTextPos.transform.position.x - 0.1f, IvonTextPos.transform.position.y);
-                Ivon.transform.position = new Vector2(Ivon.transform.position.x - 0.1f, Ivon.transform.position.y);
+                mbr.Moving_Right(8f);
+                //Ivon.transform.position = new Vector2(Ivon.transform.position.x - 0.1f, Ivon.transform.position.y);
             }
             else
             {

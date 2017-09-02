@@ -89,8 +89,10 @@ public class Stage5_2_GameController : Controller {
 			Destroy (_stardoll);
             _stardoll_afterused.SetActive(true);
         }
-		if (Stage5_Controller.q [8] && !Stage5_Controller.q [9]) {
-			
+		if (Stage5_Controller.q [7] && !Stage5_Controller.q [9]) {
+            portalto5_1.enabled = false;
+            bed.enabled = true; 
+            door.enabled = false;
 		}
 
 		if (Stage5_Controller.q[11] && !Stage5_Controller.q[12]) {//savepoint
@@ -225,6 +227,7 @@ public class Stage5_2_GameController : Controller {
             bed.enabled = false; // 아이템 사용 시 이 콜라이더가 아이템 사용을 막음.
             ti.Talk(10); // 쿠션 다시 가져와..
             q5_a3 = true;
+            portalto5_1.enabled = false;
         }
     }
 

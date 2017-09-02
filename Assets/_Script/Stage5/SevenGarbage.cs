@@ -53,30 +53,32 @@ public class SevenGarbage : MonoBehaviour
         garbage4.SetActive(false); garbage5.SetActive(false); garbage6.SetActive(false); garbage7.SetActive(false);
     }
 
-    void Update()
+    /*void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            start = Input.mousePosition;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            end = Input.mousePosition;
+        /* if (Input.GetMouseButtonDown(0))
+         {
+             start = Input.mousePosition;
+         }
+         else*/
+      //  if (Input.GetMouseButtonUp(0))
+      //  {
 
-            force = start - end;
+            //end = Input.mousePosition;
 
-            if (!garbage_1) rb2D_garbage1.AddForce(force * -1 * throwSpeed);
-            else if (garbage_1 && !garbage_2) rb2D_garbage2.AddForce(force * -1 * throwSpeed);
-            else if (garbage_2 && !garbage_3) rb2D_garbage3.AddForce(force * -1 * throwSpeed);
-            else if (garbage_3 && !garbage_4) rb2D_garbage4.AddForce(force * -1 * throwSpeed);
-            else if (garbage_4 && !garbage_5) rb2D_garbage5.AddForce(force * -1 * throwSpeed);
-            else if (garbage_5 && !garbage_6) rb2D_garbage6.AddForce(force * -1 * throwSpeed);
-            else if (garbage_6 && !garbage_7) rb2D_garbage7.AddForce(force * -1 * throwSpeed);
+            //          force = start - end;
 
-            start = new Vector2(0f, 0f);
-            end = new Vector2(0f, 0f);
-        }
-    }
+        /*    if (!garbage_1) rb2D_garbage1.AddForce(new Vector2(-1f, 1f) * throwSpeed);
+            else if (garbage_1 && !garbage_2) rb2D_garbage2.AddForce(new Vector2(-1f, 1f) * throwSpeed);
+            else if (garbage_2 && !garbage_3) rb2D_garbage3.AddForce(new Vector2(-1f, 1f) * throwSpeed);
+            else if (garbage_3 && !garbage_4) rb2D_garbage4.AddForce(new Vector2(-1f, 1f) * throwSpeed);
+            else if (garbage_4 && !garbage_5) rb2D_garbage5.AddForce(new Vector2(-1f, 1f) * throwSpeed);
+            else if (garbage_5 && !garbage_6) rb2D_garbage6.AddForce(new Vector2(-1f, 1f) * throwSpeed);
+            else if (garbage_6 && !garbage_7) rb2D_garbage7.AddForce(new Vector2(-1f, 1f) * throwSpeed);*/
+      //  }
+            //start = new Vector2(0f, 0f);
+            //end = new Vector2(0f, 0f);
+        
+    //}
 
     void OnMouseDown()
     {
@@ -183,36 +185,43 @@ public class SevenGarbage : MonoBehaviour
     {
         if (!garbage_1 && !garbage_1_1 && garbage_2_1 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage1.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear1(garbage1));
             garbage_1_1 = true;    
         }
         else if (garbage_1 && !garbage_2 && !garbage_1_2 && garbage_2_2 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage2.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear2(garbage2));
             garbage_1_2 = true;
         }
         else if (garbage_2 && !garbage_3 && !garbage_1_3 && garbage_2_3 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage3.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear3(garbage3));
             garbage_1_3 = true;
         }
         else if (garbage_3 && !garbage_4 && !garbage_1_4 && garbage_2_4 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage4.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear4(garbage4));
             garbage_1_4 = true;
         }
         else if (garbage_4 && !garbage_5 && !garbage_1_5 && garbage_2_5 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage5.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear5(garbage5));
             garbage_1_5 = true;
         }
         else if (garbage_5 && !garbage_6 && !garbage_1_6 && garbage_2_6 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage6.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear6(garbage6));
             garbage_1_6 = true;
         }
         else if (garbage_6 && !garbage_7 && !garbage_1_7 && garbage_2_7 && !Stage5_Controller.q[38])
         {
+            rb2D_garbage7.AddForce(new Vector2(-1f, 1f) * throwSpeed);
             StartCoroutine(Disappear7(garbage7));
             garbage_1_7 = true;
         }

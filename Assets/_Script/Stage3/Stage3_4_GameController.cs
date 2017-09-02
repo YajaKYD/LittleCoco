@@ -67,10 +67,10 @@ public class Stage3_4_GameController : Controller {
 			//Stage3 Save point 2//
 			//집에서 나옴. 달리기미션 not clear
 			//quest1_start1 = true;
-			GameObject _room = GameObject.FindWithTag("Controller").transform.GetChild (0).gameObject;
-			GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject;
-			_room.SetActive (false);
-			_park.SetActive(true);
+			//GameObject _room = GameObject.FindWithTag("Controller").transform.GetChild (0).gameObject;
+			//GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject;
+			//_room.SetActive (false);
+			//_park.SetActive(true);
 		}
 		if (Stage3_Controller.q [9] && !Stage3_Controller.q [10]) {
 			quest1_gauge = Instantiate(quest1_gaugePrefab, new Vector3(-500,300,0), Quaternion.identity) as GameObject;
@@ -323,7 +323,7 @@ public class Stage3_4_GameController : Controller {
 			//ivon_textbox = GameObject.Find ("이본_text");
 			a8a1 = true;
 		}
-		else if (Stage3_Controller.q[20]) {
+		else if (Stage3_Controller.q[33]) {
 			Debug.Log ("a8a5");
 			portal3_5.GetComponent<BoxCollider2D> ().enabled = false;
 			portalEnd.GetComponent<BoxCollider2D> ().enabled = true;

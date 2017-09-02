@@ -39,8 +39,8 @@ public class Stage3_7_GameController : Controller {
         ti.Import(37);
 		//ti.Import (15);
 
-		GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject; // stop bgm
-		_park.SetActive(false);
+		//GameObject _park = GameObject.FindWithTag("Controller").transform.GetChild (1).gameObject; // stop bgm
+		//_park.SetActive(false);
 
 
 		if (GameObject.Find ("quest12_likelist(Clone)") != null) {
