@@ -25,7 +25,11 @@ public class Portal_Controller : MonoBehaviour {
 		StartCoroutine ("FadeIn");
 		js = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<Joystick> ();
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
+	}
+
+	void Start(){
 		sceneNo = controllerScript.sceneNo;
+		Debug.Log (sceneNo);
 	}
 
 	void OnTriggerEnter2D(Collider2D other){ //collider가 있어야함. 트리거로 해놓자.

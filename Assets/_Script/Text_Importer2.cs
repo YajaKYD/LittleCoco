@@ -21,7 +21,7 @@ public class Text_Importer2 : MonoBehaviour {
 	public GameObject player;
 	public Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\n'; // for windows OS, use '\n'
+	private char lineSeperator = '\r'; // for windows OS, use '\n'
 	//private char lineSeperator = '\n';
 	private char fieldSeperator = ',';
 
@@ -55,7 +55,7 @@ public class Text_Importer2 : MonoBehaviour {
 			string[] fields = records[i].Split (fieldSeperator);
 			speaker [i] = fields [0];
 			textLine [i] = fields [1];
-			Debug.Log (speaker [i] + " : " + textLine [i]);
+			//Debug.Log (speaker [i] + " : " + textLine [i]);
 		}
 
 		//
@@ -102,17 +102,8 @@ public class Text_Importer2 : MonoBehaviour {
 		case 2:
 			break;
 		case 3:
-            if (Stage3_Controller.lineNo[sceneNo] == 0)
-            {
-                lineNo = 1;
-            }
-            else
-            {
-                lineNo = Stage3_Controller.lineNo[sceneNo];
-                Debug.Log("load done");
-            }
-            break;
-        case 4:
+			break;
+		case 4:
 			if (Stage4_Controller.lineNo [sceneNo] == 0) {
 				lineNo = 1;
 			} else {
@@ -149,8 +140,8 @@ public class Text_Importer2 : MonoBehaviour {
 
 	public bool Talk(){
 		for (int i = 0; i < names.Length; i++) {
-			Debug.Log ("lineno : " + lineNo + ", names[" + i + "]" + names[i]);
-			Debug.Log (speaker [lineNo]);
+			//Debug.Log ("lineno : " + lineNo + ", names[" + i + "]" + names[i]);
+			//Debug.Log (speaker [lineNo]);
 			if (names [i] == speaker[lineNo]) {//같은 이름 NPC 찾고
 
 				for (int x = 0; x < cocoDialogue.Length; x++) {
@@ -173,25 +164,15 @@ public class Text_Importer2 : MonoBehaviour {
 					}
 				}
 
-                if (speaker[lineNo] == "Star")
-                {
-                    try
-                    {
-                        TurnOnOffItemList s = GameObject.FindWithTag("Item_Canvas").GetComponentInChildren<TurnOnOffItemList>();
-                        if (s.OnOffButton.localScale.x == 1)
-                        {
-                            s.TurnOnOffitemList();
-                        }
-                    }
-                    catch
-                    {
-                        TurnOnOffItemList s = GameObject.FindWithTag("Item_Canvas").GetComponentInChildren<TurnOnOffItemList>();
-                        if (s.OnOffButton.localScale.x == 1)
-                        {
-                            s.TurnOnOffitemList();
-                        }
-                    }
-                }
+				if (speaker [lineNo] == "Star") {
+					try{
+						TurnOnOffItemList s = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<TurnOnOffItemList> ();
+						if (s.OnOffButton.localScale.x == 1) {
+							s.TurnOnOffitemList ();
+						}
+					} catch {
+					}
+				}
 
 				//other character say
 				if (speaker[lineNo] == "null" ) { 
@@ -206,10 +187,10 @@ public class Text_Importer2 : MonoBehaviour {
 						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
-						Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 3:
-						Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 4:
 						Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
@@ -274,40 +255,31 @@ public class Text_Importer2 : MonoBehaviour {
 				}
 
 				if (speaker [lineNo] == "Star") {
-                    try
-                    {
-                        TurnOnOffItemList s = GameObject.FindWithTag("Item_Canvas").GetComponentInChildren<TurnOnOffItemList>();
-                        if (s.OnOffButton.localScale.x == 1)
-                        {
-                            s.TurnOnOffitemList();
-                        }
-                    }
-                    catch
-                    {
-                        TurnOnOffItemList s = GameObject.FindWithTag("Item_Canvas").GetComponentInChildren<TurnOnOffItemList>();
-                        if (s.OnOffButton.localScale.x == 1)
-                        {
-                            s.TurnOnOffitemList();
-                        }
-                    }
+					try{
+						TurnOnOffItemList s = GameObject.FindWithTag ("Item_Canvas").GetComponentInChildren<TurnOnOffItemList> ();
+						if (s.OnOffButton.localScale.x == 1) {
+							s.TurnOnOffitemList ();
+						}
+					} catch {
+					}
 				}
 
 				//other character say
 				if (speaker[lineNo] == "null" ) { 
-					Debug.Log ("case 1");
+					//Debug.Log ("case 1");
 					player_moving.enabled = true; 
 
 					switch (stageNo) {
 					case 0:
 						break;
 					case 1:
-						Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage1_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 2:
-						Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage2_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 3:
-						Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
+						//Stage3_Controller.q [int.Parse (textLine [lineNo])] = true;
 						break;
 					case 4:
 						Stage4_Controller.q [int.Parse (textLine [lineNo])] = true;
@@ -325,13 +297,13 @@ public class Text_Importer2 : MonoBehaviour {
 					lineNo--;
 					return false;
 				} else if (lineNo < speaker.Length - 1 && speaker [lineNo] == speaker [lineNo + 1]) {
-					Debug.Log("case 2");
+					//Debug.Log("case 2");
 					textBoxes [i].SetActive (true);
 					player_moving.enabled = false;
 					textInBoxes [i].text = textLine [lineNo++];
 					return true;
 				} else {
-					Debug.Log("case 3");
+					//Debug.Log("case 3");
 					textBoxes [i].SetActive (true);
 					player_moving.enabled = false;
 					textInBoxes [i].text = textLine [lineNo++];
