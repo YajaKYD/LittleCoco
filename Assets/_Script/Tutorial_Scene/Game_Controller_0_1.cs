@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Game_Controller_0_1 : Controller {
 
+    public GoogleAnalyticsV4 googleAnalytics;
+
 	public Transform _Ivon_Position;
 	public Transform startpos;
 
@@ -37,7 +39,10 @@ public class Game_Controller_0_1 : Controller {
 
 
     void Awake(){
-		player = GameObject.Find ("Player");
+        googleAnalytics.StartSession();
+        googleAnalytics.LogScreen(SceneManager.GetActiveScene().name);
+
+        player = GameObject.Find ("Player");
 		Ivon = GameObject.Find ("이본");
 		portal = GameObject.Find ("Portal");
 		//_t_i = GameObject.Find ("Dialogue_Canvas_").GetComponent<Text_Importer> ();

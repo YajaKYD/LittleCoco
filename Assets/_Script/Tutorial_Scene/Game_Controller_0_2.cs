@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Game_Controller_0_2 : MonoBehaviour {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
 	private GameObject player;
 	private Transform start_pos;
@@ -17,7 +19,11 @@ public class Game_Controller_0_2 : MonoBehaviour {
 
 
 	void Awake(){
-		player = GameObject.Find ("Player");
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen(SceneManager.GetActiveScene().name);
+
+        player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_pos").transform;
 		_ic = GameObject.FindWithTag ("Item_Canvas");
 		player.transform.position = start_pos.position;

@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 using System.IO;
 
 public class Portal_Controller : MonoBehaviour {
-	public GameObject _Player;
+    public GoogleAnalyticsV4 googleAnalytics;
+
+    public GameObject _Player;
 	public int _To_Scene;
 	public SpriteRenderer _blackout;
 	private Color bb;
@@ -18,7 +20,7 @@ public class Portal_Controller : MonoBehaviour {
 	public Controller controllerScript;
 
 	void Awake(){
-		_Player = GameObject.Find ("Player");
+        _Player = GameObject.Find ("Player");
 		bb = new Color (0f, 0f, 0f, 1f); //검정,불투명
 		_blackout.color = bb;
 		_Player.GetComponent<Moving_by_RLbuttons> ().enabled = false;

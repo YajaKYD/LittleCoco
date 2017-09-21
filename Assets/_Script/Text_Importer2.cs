@@ -21,8 +21,8 @@ public class Text_Importer2 : MonoBehaviour {
 	public GameObject player;
 	public Moving_by_RLbuttons player_moving;
 
-	private char lineSeperator = '\r'; // for windows OS, use '\n'
-	//private char lineSeperator = '\n';
+	//private char lineSeperator = '\r'; // for windows OS, use '\n'
+	private char lineSeperator = '\n';
 	private char fieldSeperator = ',';
 
 	public string[] speaker;
