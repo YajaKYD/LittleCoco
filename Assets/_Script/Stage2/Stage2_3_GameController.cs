@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage2_3_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private Transform start_pos;
+    private Transform start_pos;
 	private Transform regen_pos;
 	private GameObject player;
 	private GameObject portal_to_2_4;
@@ -35,7 +37,12 @@ public class Stage2_3_GameController : Controller {
 	//public GameObject _coco_textbox;
 
 	void Awake(){
-		player = GameObject.Find ("Player");
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Stage2_3");
+
+        player = GameObject.Find ("Player");
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();

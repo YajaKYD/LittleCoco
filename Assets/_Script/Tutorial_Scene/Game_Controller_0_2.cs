@@ -19,8 +19,9 @@ public class Game_Controller_0_2 : MonoBehaviour {
 
 
 	void Awake(){
+        googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
         googleAnalytics.LogScreen(SceneManager.GetActiveScene().name);
 
         player = GameObject.Find ("Player");

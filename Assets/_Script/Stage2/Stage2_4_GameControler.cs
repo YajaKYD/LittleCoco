@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage2_4_GameControler : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private Transform start_pos;
+    private Transform start_pos;
 	private GameObject player;
 	private Moving_by_RLbuttons mbr;
 	public GameObject Thunder_1;
@@ -50,7 +52,12 @@ public class Stage2_4_GameControler : Controller {
 
 
 	void Awake(){
-		player = GameObject.Find ("Player");
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Stage2_4");
+
+        player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		player.transform.position = start_pos.position;

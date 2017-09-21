@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage1_5_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	public BoxCollider2D transparent_walls;
+    public BoxCollider2D transparent_walls;
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -26,7 +28,12 @@ public class Stage1_5_GameController : Controller {
 	private Text_Importer2 ti;
 
 	void Awake(){
-		player = GameObject.Find ("Player");
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Stage1_5");
+
+        player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;

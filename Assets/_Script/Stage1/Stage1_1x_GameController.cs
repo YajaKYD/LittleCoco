@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 
 public class Stage1_1x_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private Transform start_pos;
+    private Transform start_pos;
 	private Transform regen_pos;
 	private GameObject player;
 	private Moving_by_RLbuttons mbr;
@@ -17,6 +19,11 @@ public class Stage1_1x_GameController : Controller {
 	private Text_Importer2 ti;
 
 	void Awake(){
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Stage1_1x");
+
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		//Player_text = GameObject.Find ("코코_text").GetComponent<Text> ();

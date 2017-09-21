@@ -6,8 +6,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Main_Select_Stage_Controller : MonoBehaviour {
-	
-	public RectTransform panel;
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
+
+    public RectTransform panel;
 	public float speed_control;
 	public float speed_control_world;
 	public bool xx;
@@ -33,7 +35,12 @@ public class Main_Select_Stage_Controller : MonoBehaviour {
 	public static bool _PAYD_OR_NOT = false;
 
 	void Awake(){
-		player = GameObject.FindGameObjectWithTag ("Player");
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Main_Select_Stage");
+
+        player = GameObject.FindGameObjectWithTag ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();
 		Item_canvas = GameObject.Find ("Item_Canvas");
 		for (int i = 0; i < 6; i++) {

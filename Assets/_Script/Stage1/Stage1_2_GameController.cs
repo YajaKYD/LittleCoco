@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage1_2_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	public BoxCollider2D transparent_wall;
+    public BoxCollider2D transparent_wall;
 	public SpriteRenderer broken_bridge;
 	public GameObject sp;
 
@@ -17,7 +19,12 @@ public class Stage1_2_GameController : Controller {
 
 
 	void Awake(){
-		player = GameObject.Find ("Player");
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Stage1_2");
+
+        player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		msc = GameObject.Find ("Mirror_Socket").GetComponent<Mirror_Socket_Controller> ();

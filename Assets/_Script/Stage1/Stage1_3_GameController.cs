@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Stage1_3_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private Transform start_pos;
+    private Transform start_pos;
 	private GameObject player;
 	public Outline o_l_1;
 	public Outline o_l_2;
@@ -20,7 +22,12 @@ public class Stage1_3_GameController : Controller {
 	private Text_Importer2 ti;
 
 	void Awake(){
-		player = GameObject.Find ("Player");
+        googleAnalytics.StartSession();
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        googleAnalytics.LogScreen("Stage1_3");
+
+        player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
