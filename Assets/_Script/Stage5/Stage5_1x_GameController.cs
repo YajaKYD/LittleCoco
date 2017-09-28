@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage5_1x_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private Text_Importer2 ti;
+    private Text_Importer2 ti;
 	private bool q_b = false;
 	private GameObject player;
 
@@ -15,6 +17,10 @@ public class Stage5_1x_GameController : Controller {
     private Moving_by_RLbuttons mbr;
 
     void Awake(){
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage5_1#");
+
         sceneNo = 50;
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
         ti.Import(50);

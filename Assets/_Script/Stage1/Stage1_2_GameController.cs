@@ -19,9 +19,9 @@ public class Stage1_2_GameController : Controller {
 
 
 	void Awake(){
-        googleAnalytics.StartSession();
+        //googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
         googleAnalytics.LogScreen("Stage1_2");
 
         player = GameObject.Find ("Player");

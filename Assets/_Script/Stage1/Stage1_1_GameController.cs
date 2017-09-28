@@ -17,10 +17,14 @@ public class Stage1_1_GameController : Controller {
 
 	private bool xxxx = false;
 
-	void Awake(){
-        googleAnalytics.StartSession();
+    void Awake(){
+        //googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1)
+        {
+            Destroy(Analyticslist[0]);
+            Destroy(Analyticslist[1]);
+        }
         googleAnalytics.LogScreen("Stage1_1");
 
         player = GameObject.Find ("Player");

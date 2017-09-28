@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Stage4_6_GameController2 : MonoBehaviour {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private Text_Importer2 ti;
+    private Text_Importer2 ti;
 	private GameObject itemCanvas;
 	public GameObject player;
 	public Transform startPos;
@@ -39,7 +41,11 @@ public class Stage4_6_GameController2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindWithTag ("Player");
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage4_6");
+
+        player = GameObject.FindWithTag ("Player");
 		itemCanvas = GameObject.FindWithTag ("Item_Canvas");
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();
 		ti.Import (46); // temp code

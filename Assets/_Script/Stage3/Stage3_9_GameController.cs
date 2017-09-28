@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Stage3_9_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private bool active;
+    private bool active;
 	public AudioSource rightSound;
 	public GameObject portal1, portal2;
 	public GameObject startPos;
@@ -13,6 +15,9 @@ public class Stage3_9_GameController : Controller {
     void Awake()
     {
         sceneNo = 39;
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage3_9");
     }
 
     void Start () {

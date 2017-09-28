@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement; 
 
 public class Stage4_3_GameController2 : MonoBehaviour {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	public bool[] posAvailable;
+    public bool[] posAvailable;
 	public GameObject[] puzzlePiece;
 	public Transform[] emptyPos;
 	private GameObject player;
@@ -21,7 +23,14 @@ public class Stage4_3_GameController2 : MonoBehaviour {
 	private bool q20_0, q20_1;
 	public Stage4_3_gum gumScript;
 
-	void Start () {
+    void Awake()
+    {
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage4_3");
+    }
+
+    void Start () {
 		player = GameObject.FindWithTag ("Player");
 		player.transform.position = startPos.position;
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();

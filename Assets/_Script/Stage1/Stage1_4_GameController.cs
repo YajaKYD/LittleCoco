@@ -19,9 +19,9 @@ public class Stage1_4_GameController : Controller {
 	//public static bool stage1_4_mirror_or_not = false;
 
 	void Awake(){
-        googleAnalytics.StartSession();
+        //googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
         googleAnalytics.LogScreen("Stage1_4");
 
         player = GameObject.Find ("Player");

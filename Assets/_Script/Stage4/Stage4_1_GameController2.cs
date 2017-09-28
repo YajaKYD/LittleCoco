@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Stage4_1_GameController2 : Controller {
-	public GameObject Light;
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
+
+    public GameObject Light;
 
 	private Transform start_pos;
 	private Transform regen_pos;
@@ -18,7 +21,11 @@ public class Stage4_1_GameController2 : Controller {
 	private Color bb;
 
 	void Awake(){
-		player = GameObject.FindWithTag ("Player");
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage4_1");
+
+        player = GameObject.FindWithTag ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		regen_pos = GameObject.Find ("Regen_Pos").transform;
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();

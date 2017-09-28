@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement; 
 
 public class Stage4_4_GameController2 : MonoBehaviour {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private GameObject player;
+    private GameObject player;
 	private GameObject item_Canvas;
 	private Text_Importer2 ti;
 	public GameObject poster, posterPrefab;
@@ -14,7 +16,14 @@ public class Stage4_4_GameController2 : MonoBehaviour {
 	public Transform startPos;
 	public SpriteRenderer blackout;
 
-	void Start () {
+    void Awake()
+    {
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage4_4");
+    }
+
+    void Start () {
 		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 		ti.Import (44);
 

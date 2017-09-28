@@ -7,17 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class Stage3_7_GameController : Controller {
 
-//	[MenuItem("MyMenu/for test")]
-//	static void DoSomething()
-//	{
-//		Debug.Log("Doing Something...");
-//		GameObject.Find ("Player").SetActive (false);
-//		GameObject.Find ("Dialogue_Canvas_").SetActive (false);
-//		GameObject.Find ("Item_Canvas").SetActive (false);
-//		GameObject.Find ("Stage3_Controller").SetActive (false);
-//	}
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	public AudioSource leftSound;
+    //	[MenuItem("MyMenu/for test")]
+    //	static void DoSomething()
+    //	{
+    //		Debug.Log("Doing Something...");
+    //		GameObject.Find ("Player").SetActive (false);
+    //		GameObject.Find ("Dialogue_Canvas_").SetActive (false);
+    //		GameObject.Find ("Item_Canvas").SetActive (false);
+    //		GameObject.Find ("Stage3_Controller").SetActive (false);
+    //	}
+
+    public AudioSource leftSound;
 	public GameObject portal1, portal2;
 	public GameObject startPos;
 	public GameObject earphone_message;
@@ -29,6 +32,9 @@ public class Stage3_7_GameController : Controller {
     void Awake()
     {
         sceneNo = 37;
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage3_7");
     }
     void Start () {
 		active = true;

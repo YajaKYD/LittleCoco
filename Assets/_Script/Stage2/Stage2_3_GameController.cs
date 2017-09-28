@@ -37,9 +37,8 @@ public class Stage2_3_GameController : Controller {
 	//public GameObject _coco_textbox;
 
 	void Awake(){
-        googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
         googleAnalytics.LogScreen("Stage2_3");
 
         player = GameObject.Find ("Player");

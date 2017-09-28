@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Stage3_10_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private bool active;
+    private bool active;
 	public AudioSource leftSound;
 	public GameObject portal1, portal2;
 	public GameObject startPos;
 
     void Awake()
     {
-        sceneNo = 30;    
+        sceneNo = 30;
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage3_10");
     }
 
     void Start () {

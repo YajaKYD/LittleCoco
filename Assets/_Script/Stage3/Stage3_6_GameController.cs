@@ -17,6 +17,7 @@ public class Stage3_6_GameController : Stage3_5_GameController
 
     new void Awake()
     {
+        sceneNo = 36;
         base.Awake();
     }
 

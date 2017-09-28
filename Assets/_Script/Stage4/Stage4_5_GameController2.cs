@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement; 
 
 public class Stage4_5_GameController2 : MonoBehaviour {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	public GameController controller;
+    public GameController controller;
 	public Item_Controller ic;
 	private GameObject player;
 	public GameObject card;
@@ -19,7 +21,11 @@ public class Stage4_5_GameController2 : MonoBehaviour {
 	public GameObject blackout2;
 
 	void Awake(){
-		player = GameObject.FindWithTag ("Player");
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage4_5");
+
+        player = GameObject.FindWithTag ("Player");
 		ic = GameObject.FindWithTag ("Item_Canvas").GetComponent<Item_Controller> ();
 		ti = GameObject.FindWithTag("Dialogue").GetComponent<Text_Importer2>();
 		controller = GameObject.Find ("PuzzleController").GetComponent<GameController> ();

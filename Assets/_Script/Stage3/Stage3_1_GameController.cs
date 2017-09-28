@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Stage3_1_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private bool a1;
+    private bool a1;
 	private bool a2;
 	private GameObject _ivon_textbox;
 	private GameObject player;
@@ -16,6 +18,10 @@ public class Stage3_1_GameController : Controller {
     public GameObject bag;
 
 	void Awake(){
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage3_1");
+
         sceneNo = 31;
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;

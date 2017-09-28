@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage5_3_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
     public Transform from_5_5;
     public Transform from_5_6;
@@ -40,6 +42,10 @@ public class Stage5_3_GameController : Controller {
     private bool q4a1 = false;
 
     void Awake(){
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage5_3");
+
         sceneNo = 53;
 		player = GameObject.Find ("Player");
 		mbr = player.GetComponent<Moving_by_RLbuttons> ();

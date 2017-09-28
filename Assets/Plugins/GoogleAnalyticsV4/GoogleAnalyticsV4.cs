@@ -32,7 +32,7 @@ using System.Collections.Generic;
 */
 public class GoogleAnalyticsV4 : MonoBehaviour {
   private string uncaughtExceptionStackTrace = null;
-  private bool initialized = false;
+  public bool initialized = false;
 
   public enum DebugMode {
     ERROR,

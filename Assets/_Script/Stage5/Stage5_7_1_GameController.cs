@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Stage5_7_1_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
     private Transform start_pos;
     private GameObject player;
@@ -48,6 +50,10 @@ public class Stage5_7_1_GameController : Controller {
 
     void Awake()
     {
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage5_7_1");
+
         sceneNo = 57;
         player = GameObject.Find("Player");
         mbr = player.GetComponent<Moving_by_RLbuttons>();

@@ -40,9 +40,9 @@ public class Stage1_6_GameController : Controller {
 	private Text_Importer2 ti;
 
 	void Awake(){
-        googleAnalytics.StartSession();
+      //  googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
         googleAnalytics.LogScreen("Stage1_6");
 
         player = GameObject.Find ("Player");

@@ -39,7 +39,7 @@ public class Game_Controller_0_1 : Controller {
 
 
     void Awake(){
-        googleAnalytics.StartSession();
+        //googleAnalytics.StartSession();
         googleAnalytics.LogScreen(SceneManager.GetActiveScene().name);
 
         player = GameObject.Find ("Player");

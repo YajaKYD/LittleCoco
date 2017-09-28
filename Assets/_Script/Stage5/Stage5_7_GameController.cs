@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage5_7_GameController : MonoBehaviour {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
+
     private Transform start_pos;
     private Transform regen_pos;
     private GameObject player;
@@ -19,6 +22,10 @@ public class Stage5_7_GameController : MonoBehaviour {
 
     void Awake()
     {
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage5_7");
+
         player = GameObject.Find("Player");
         mbr = player.GetComponent<Moving_by_RLbuttons>();
         start_pos = GameObject.Find("Start_Pos").transform;

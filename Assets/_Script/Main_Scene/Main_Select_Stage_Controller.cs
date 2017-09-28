@@ -35,9 +35,9 @@ public class Main_Select_Stage_Controller : MonoBehaviour {
 	public static bool _PAYD_OR_NOT = false;
 
 	void Awake(){
-        googleAnalytics.StartSession();
+        //googleAnalytics.StartSession();
         Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
-        if (Analyticslist.Length > 1) Destroy(Analyticslist[1]);
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
         googleAnalytics.LogScreen("Main_Select_Stage");
 
         player = GameObject.FindGameObjectWithTag ("Player");

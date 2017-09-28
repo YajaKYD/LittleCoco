@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Stage4_2_GameController2 : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	public BoxCollider2D Star;
+    public BoxCollider2D Star;
 
 	private Transform start_pos;
 	public GameObject player, racoon;
@@ -15,7 +17,11 @@ public class Stage4_2_GameController2 : Controller {
 	private GameObject camera;
 
 	void Awake(){
-		player = GameObject.FindWithTag ("Player");
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage4_2");
+
+        player = GameObject.FindWithTag ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
 		player.transform.position = start_pos.position;
 		ti = GameObject.FindWithTag ("Dialogue").GetComponent<Text_Importer2> ();

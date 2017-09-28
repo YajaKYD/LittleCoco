@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Stage3_3_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private bool a1 = false;
+    private bool a1 = false;
 	private bool a2 = false;
 	private GameObject player;
     private GameObject npc;
@@ -19,6 +21,10 @@ public class Stage3_3_GameController : Controller {
     
 	//private Transform regen_pos;
 	void Awake(){
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage3_3");
+
         sceneNo = 33;
 		player = GameObject.Find ("Player");
         npc = GameObject.FindWithTag("NPC");

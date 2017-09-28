@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Stage3_5_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
     protected GameObject player;
     protected Transform start_pos;
@@ -28,6 +30,12 @@ public class Stage3_5_GameController : Controller {
     protected void Awake()
     {
         sceneNo = 35;
+
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        if (sceneNo == 35) googleAnalytics.LogScreen("Stage3_5");
+        else if (sceneNo == 36) googleAnalytics.LogScreen("Stage3_6");
+
         player = GameObject.Find("Player");
         start_pos = GameObject.Find("Start_Pos").transform;
 		end_pos = GameObject.Find ("End_Pos").transform;

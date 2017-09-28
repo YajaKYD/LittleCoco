@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage3_2_GameController : Controller {
+    public GoogleAnalyticsV4 googleAnalytics;
+    private GameObject[] Analyticslist;
 
-	private GameObject player;
+    private GameObject player;
 	private Transform start_pos;
 	private Transform regen_pos;
 	private Item_Controller _ic;
@@ -13,6 +15,10 @@ public class Stage3_2_GameController : Controller {
 	public Outline _air;
 
 	void Awake(){
+        Analyticslist = GameObject.FindGameObjectsWithTag("Analysis");
+        if (Analyticslist.Length > 1) Destroy(Analyticslist[0]);
+        googleAnalytics.LogScreen("Stage3_2");
+
         sceneNo = 32;
 		player = GameObject.Find ("Player");
 		start_pos = GameObject.Find ("Start_Pos").transform;
